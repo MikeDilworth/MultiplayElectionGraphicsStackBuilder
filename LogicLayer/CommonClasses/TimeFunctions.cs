@@ -8,6 +8,9 @@ namespace LogicLayer.CommonClasses
     using DataInterface.SQL;
     using LogicLayer.Collections;
     
+    /// <summary>
+    /// Class for functions related to time settings
+    /// </summary>
     public static class TimeFunctions
     {
         #region Logger instantiation - uses reflection to get module name
@@ -81,6 +84,7 @@ namespace LogicLayer.CommonClasses
             return st;
         }
 
+        // Get the time to use based on simulated time setting
         public static DateTime GetTime()
         {
             DateTime referenceTime = DateTime.MaxValue;

@@ -241,7 +241,7 @@ namespace GUILayer.Forms
                 KeyPreview = true;
                 this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
 
-                timer1.Enabled = true;
+                timerStatusUpdate.Enabled = true;
 
                 TimeFunctions.ElectionsDBConnectionString = ElectionsDBConnectionString;
             }
@@ -290,6 +290,48 @@ namespace GUILayer.Forms
         }
         #endregion
 
+        #region General Form related methods
+        // General update timer
+        private void timerStatusUpdate_Tick(object sender, EventArgs e)
+        {
+            if (ApplicationSettingsFlagsCollection.UseSimulatedTime == true)
+            {
+                referenceTime = TimeFunctions.GetSimulatedTime();
+                gbTime.Text = @"SIMULATED TIME";
+            }
+            else
+            {
+                referenceTime = DateTime.Now;
+                gbTime.Text = @"ACTUAL TIME";
+            }
+
+            //label1.Text = Convert.ToString(referenceTime);
+            label1.Text = String.Format("{0:h:mm:ss tt  MMM dd, yyyy}", referenceTime);
+
+        }
+
+        // Handler for change to main data mode select tab control
+        private void dataModeSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dataModeSelect.SelectedIndex == 0)
+            {
+                gbRCF.Visible = true;
+                gbROF.Visible = true;
+            }
+            else
+            {
+                gbRCF.Visible = false;
+                gbROF.Visible = false;
+            }
+
+            if (dataModeSelect.SelectedIndex == 1)
+                gbExitPolls.Visible = true;
+            else
+                gbExitPolls.Visible = false;
+        }
+
+        #endregion 
+        
         #region Utility functions
         // Refresh the list of available stacks for the grid
 
@@ -1157,7 +1199,7 @@ namespace GUILayer.Forms
         }
 
         // Handler for Clear Stack button
-        private void btnClearStack_Click(object sender, EventArgs e)
+        private void btnClearStack_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -2502,6 +2544,7 @@ namespace GUILayer.Forms
         #endregion
 
         #region Add select boards
+        // Add 1-way select board
         private void btnSelect1_Click(object sender, EventArgs e)
         {
 
@@ -2554,6 +2597,7 @@ namespace GUILayer.Forms
             }
         }
 
+        // Add 2-way select board
         private void btnSelect2_Click(object sender, EventArgs e)
         {
             try
@@ -2606,6 +2650,7 @@ namespace GUILayer.Forms
 
         }
 
+        // Add 3-way select board
         private void btnSelect3_Click(object sender, EventArgs e)
         {
             try
@@ -2655,10 +2700,62 @@ namespace GUILayer.Forms
                 log.Error("frmMain Exception occurred: " + ex.Message);
                 log.Debug("frmMain Exception occurred", ex);
             }
+        }
+
+        // Add 4-way select board
+        private void btnSelect4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32 selectedCandidate1 = 0;
+                Int32 selectedCandidate2 = 0;
+                Int32 selectedCandidate3 = 0;
+                Int32 selectedCandidate4 = 0;
+                string cand1Name = string.Empty;
+                string cand2Name = string.Empty;
+                string cand3Name = string.Empty;
+                string cand4Name = string.Empty;
+                Int16 numCand = 4;
+
+                //Get the selected race list object
+                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
+                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
+
+                string eType = selectedRace.Election_Type;
+                string ofc = selectedRace.Race_Office;
+                Int16 st = selectedRace.State_Number;
+                string des = selectedRace.Race_Description;
+
+                DialogResult dr = new DialogResult();
+                //frmCandidateSelect selectCand = new frmCandidateSelect();
+                FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
+                dr = selectCand.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    // Set candidateID's
+
+                    selectedCandidate1 = selectCand.Cand1;
+                    cand1Name = selectCand.CandName1;
+                    selectedCandidate2 = selectCand.Cand2;
+                    cand2Name = selectCand.CandName2;
+                    selectedCandidate3 = selectCand.Cand3;
+                    cand3Name = selectCand.CandName3;
+                    selectedCandidate4 = selectCand.Cand4;
+                    cand4Name = selectCand.CandName4;
+                    AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                log.Error("frmMain Exception occurred: " + ex.Message);
+                log.Debug("frmMain Exception occurred", ex);
+            }
 
         }
 
-
+        // Generic method to add a candidate select race board to the stack
         private void AddSelectRaceBoardToStack(Int16 numCand, Int32 cID1, Int32 cID2, Int32 cID3, Int32 cID4, string cand1Name, string cand2Name, string cand3Name, string cand4Name)
         {
             //Get the selected race list object
@@ -2754,114 +2851,9 @@ namespace GUILayer.Forms
             }
 
         }
-
-        private void btnSelect4_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Int32 selectedCandidate1 = 0;
-                Int32 selectedCandidate2 = 0;
-                Int32 selectedCandidate3 = 0;
-                Int32 selectedCandidate4 = 0;
-                string cand1Name = string.Empty;
-                string cand2Name = string.Empty;
-                string cand3Name = string.Empty;
-                string cand4Name = string.Empty;
-                Int16 numCand = 4;
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                string eType = selectedRace.Election_Type;
-                string ofc = selectedRace.Race_Office;
-                Int16 st = selectedRace.State_Number;
-                string des = selectedRace.Race_Description;
-
-                DialogResult dr = new DialogResult();
-                //frmCandidateSelect selectCand = new frmCandidateSelect();
-                FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
-                dr = selectCand.ShowDialog();
-                if (dr == DialogResult.OK)
-                {
-                    // Set candidateID's
-
-                    selectedCandidate1 = selectCand.Cand1;
-                    cand1Name = selectCand.CandName1;
-                    selectedCandidate2 = selectCand.Cand2;
-                    cand2Name = selectCand.CandName2;
-                    selectedCandidate3 = selectCand.Cand3;
-                    cand3Name = selectCand.CandName3;
-                    selectedCandidate4 = selectCand.Cand4;
-                    cand4Name = selectCand.CandName4;
-                    AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
-
-        }
         #endregion
 
-        #region General Form related stuff
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (ApplicationSettingsFlagsCollection.UseSimulatedTime  == true)
-            {
-                referenceTime = TimeFunctions.GetSimulatedTime();
-                gbTime.Text = @"SIMULATED TIME";
-            }
-            else
-            {
-                referenceTime = DateTime.Now;
-                gbTime.Text = @"ACTUAL TIME";
-            }
-
-            //label1.Text = Convert.ToString(referenceTime);
-            label1.Text = String.Format("{0:h:mm:ss tt  MMM dd, yyyy}", referenceTime);
-            
-        }
-
-        private void dataModeSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (dataModeSelect.SelectedIndex == 0)
-            {
-                gbRCF.Visible = true;
-                gbROF.Visible = true;
-            }
-            else
-            {
-                gbRCF.Visible = false;
-                gbROF.Visible = false;
-            }
-
-            if (dataModeSelect.SelectedIndex == 1)
-                gbExitPolls.Visible = true;
-            else
-                gbExitPolls.Visible = false;
-        }
-
-        #endregion 
-
-        private void tpExitPolls_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            ActivateStack(stackID, stackDescription);
-        }
-
-        
-
-        #region Concepts
-
+        #region Methods for handling graphics concepts
         // Handler for Concept Change
         private void cbGraphicConcept_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2892,6 +2884,5 @@ namespace GUILayer.Forms
         {
 
         }
-
     }
 }

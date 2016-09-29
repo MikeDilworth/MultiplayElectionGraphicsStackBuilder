@@ -63,7 +63,7 @@
             this.btnAddRace4Way = new System.Windows.Forms.Button();
             this.btnSelect4 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnSelect3 = new System.Windows.Forms.Button();
+            this.btnAddRace3WaySelect = new System.Windows.Forms.Button();
             this.btnAddRace3Way = new System.Windows.Forms.Button();
             this.gbRCF = new System.Windows.Forms.GroupBox();
             this.rbAll = new System.Windows.Forms.RadioButton();
@@ -71,7 +71,7 @@
             this.rbJustCalled = new System.Windows.Forms.RadioButton();
             this.rbTCTC = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnSelect2 = new System.Windows.Forms.Button();
+            this.btnAddRace2WaySelect = new System.Windows.Forms.Button();
             this.btnAddRace2Way = new System.Windows.Forms.Button();
             this.gbROF = new System.Windows.Forms.GroupBox();
             this.rbShowAll = new System.Windows.Forms.RadioButton();
@@ -81,11 +81,21 @@
             this.rbPresident = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddRace1Way = new System.Windows.Forms.Button();
-            this.btnSelect1 = new System.Windows.Forms.Button();
+            this.btnAddRace1WaySelect = new System.Windows.Forms.Button();
             this.availableRacesGrid = new System.Windows.Forms.DataGridView();
             this.Race_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Race_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpExitPolls = new System.Windows.Forms.TabPage();
+            this.tpBalanceOfPower = new System.Windows.Forms.TabPage();
+            this.BOPdataGridView = new System.Windows.Forms.DataGridView();
+            this.eType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Session = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddBalanceOfPower = new System.Windows.Forms.Button();
+            this.tpReferendums = new System.Windows.Forms.TabPage();
+            this.btnAddReferendum = new System.Windows.Forms.Button();
+            this.ReferendumsGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbExitPolls = new System.Windows.Forms.GroupBox();
             this.rbEPMan = new System.Windows.Forms.RadioButton();
             this.rbEPAuto = new System.Windows.Forms.RadioButton();
@@ -97,24 +107,15 @@
             this.Question = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rowText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subset = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tpBalanceOfPower = new System.Windows.Forms.TabPage();
-            this.BOPdataGridView = new System.Windows.Forms.DataGridView();
-            this.eType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Session = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddBalanceOfPower = new System.Windows.Forms.Button();
-            this.tpReferendums = new System.Windows.Forms.TabPage();
-            this.btnAddReferendum = new System.Windows.Forms.Button();
-            this.ReferendumsGrid = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerStatusUpdate = new System.Windows.Forms.Timer(this.components);
             this.gbTime = new System.Windows.Forms.GroupBox();
             this.pnlStack = new System.Windows.Forms.Panel();
             this.cbGraphicConcept = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnClearStack = new System.Windows.Forms.Button();
+            this.btnDeleteStackElement = new System.Windows.Forms.Button();
             this.btnLoadStack = new System.Windows.Forms.Button();
             this.btnActivateStack = new System.Windows.Forms.Button();
             this.btnSaveStack = new System.Windows.Forms.Button();
@@ -129,8 +130,6 @@
             this.Element_Type_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stack_Entry_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDeleteElement = new System.Windows.Forms.Button();
-            this.btnClearStack = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -145,13 +144,12 @@
             this.gbROF.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.availableRacesGrid)).BeginInit();
-            this.tpExitPolls.SuspendLayout();
-            this.gbExitPolls.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).BeginInit();
             this.tpBalanceOfPower.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BOPdataGridView)).BeginInit();
             this.tpReferendums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReferendumsGrid)).BeginInit();
+            this.gbExitPolls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).BeginInit();
             this.gbTime.SuspendLayout();
             this.pnlStack.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -462,7 +460,6 @@
             // 
             this.btnSelect4.BackColor = System.Drawing.SystemColors.Control;
             this.btnSelect4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelect4.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect4.Image")));
             this.btnSelect4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSelect4.Location = new System.Drawing.Point(139, 21);
             this.btnSelect4.Name = "btnSelect4";
@@ -475,7 +472,7 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.groupBox4.Controls.Add(this.btnSelect3);
+            this.groupBox4.Controls.Add(this.btnAddRace3WaySelect);
             this.groupBox4.Controls.Add(this.btnAddRace3Way);
             this.groupBox4.Location = new System.Drawing.Point(424, 385);
             this.groupBox4.Name = "groupBox4";
@@ -484,19 +481,19 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "3 - Way";
             // 
-            // btnSelect3
+            // btnAddRace3WaySelect
             // 
-            this.btnSelect3.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSelect3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelect3.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect3.Image")));
-            this.btnSelect3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelect3.Location = new System.Drawing.Point(139, 21);
-            this.btnSelect3.Name = "btnSelect3";
-            this.btnSelect3.Size = new System.Drawing.Size(100, 55);
-            this.btnSelect3.TabIndex = 65;
-            this.btnSelect3.Text = "Select";
-            this.btnSelect3.UseVisualStyleBackColor = false;
-            this.btnSelect3.Click += new System.EventHandler(this.btnSelect3_Click);
+            this.btnAddRace3WaySelect.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace3WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace3WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace3WaySelect.Image")));
+            this.btnAddRace3WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace3WaySelect.Location = new System.Drawing.Point(139, 21);
+            this.btnAddRace3WaySelect.Name = "btnAddRace3WaySelect";
+            this.btnAddRace3WaySelect.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace3WaySelect.TabIndex = 65;
+            this.btnAddRace3WaySelect.Text = "Select";
+            this.btnAddRace3WaySelect.UseVisualStyleBackColor = false;
+            this.btnAddRace3WaySelect.Click += new System.EventHandler(this.btnSelect3_Click);
             // 
             // btnAddRace3Way
             // 
@@ -578,7 +575,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.groupBox3.Controls.Add(this.btnSelect2);
+            this.groupBox3.Controls.Add(this.btnAddRace2WaySelect);
             this.groupBox3.Controls.Add(this.btnAddRace2Way);
             this.groupBox3.Location = new System.Drawing.Point(424, 285);
             this.groupBox3.Name = "groupBox3";
@@ -587,19 +584,19 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "2 - Way";
             // 
-            // btnSelect2
+            // btnAddRace2WaySelect
             // 
-            this.btnSelect2.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSelect2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelect2.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect2.Image")));
-            this.btnSelect2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelect2.Location = new System.Drawing.Point(139, 21);
-            this.btnSelect2.Name = "btnSelect2";
-            this.btnSelect2.Size = new System.Drawing.Size(100, 55);
-            this.btnSelect2.TabIndex = 64;
-            this.btnSelect2.Text = "Select";
-            this.btnSelect2.UseVisualStyleBackColor = false;
-            this.btnSelect2.Click += new System.EventHandler(this.btnSelect2_Click);
+            this.btnAddRace2WaySelect.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace2WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace2WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace2WaySelect.Image")));
+            this.btnAddRace2WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace2WaySelect.Location = new System.Drawing.Point(139, 21);
+            this.btnAddRace2WaySelect.Name = "btnAddRace2WaySelect";
+            this.btnAddRace2WaySelect.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace2WaySelect.TabIndex = 64;
+            this.btnAddRace2WaySelect.Text = "Select";
+            this.btnAddRace2WaySelect.UseVisualStyleBackColor = false;
+            this.btnAddRace2WaySelect.Click += new System.EventHandler(this.btnSelect2_Click);
             // 
             // btnAddRace2Way
             // 
@@ -694,7 +691,7 @@
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox2.Controls.Add(this.btnAddRace1Way);
-            this.groupBox2.Controls.Add(this.btnSelect1);
+            this.groupBox2.Controls.Add(this.btnAddRace1WaySelect);
             this.groupBox2.Location = new System.Drawing.Point(424, 186);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(248, 88);
@@ -716,19 +713,19 @@
             this.btnAddRace1Way.UseVisualStyleBackColor = false;
             this.btnAddRace1Way.Click += new System.EventHandler(this.btnAddRace1Way_Click);
             // 
-            // btnSelect1
+            // btnAddRace1WaySelect
             // 
-            this.btnSelect1.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSelect1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelect1.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect1.Image")));
-            this.btnSelect1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelect1.Location = new System.Drawing.Point(139, 21);
-            this.btnSelect1.Name = "btnSelect1";
-            this.btnSelect1.Size = new System.Drawing.Size(100, 55);
-            this.btnSelect1.TabIndex = 63;
-            this.btnSelect1.Text = "Select";
-            this.btnSelect1.UseVisualStyleBackColor = false;
-            this.btnSelect1.Click += new System.EventHandler(this.btnSelect1_Click);
+            this.btnAddRace1WaySelect.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace1WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace1WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace1WaySelect.Image")));
+            this.btnAddRace1WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace1WaySelect.Location = new System.Drawing.Point(139, 21);
+            this.btnAddRace1WaySelect.Name = "btnAddRace1WaySelect";
+            this.btnAddRace1WaySelect.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace1WaySelect.TabIndex = 63;
+            this.btnAddRace1WaySelect.Text = "Select";
+            this.btnAddRace1WaySelect.UseVisualStyleBackColor = false;
+            this.btnAddRace1WaySelect.Click += new System.EventHandler(this.btnSelect1_Click);
             // 
             // availableRacesGrid
             // 
@@ -770,138 +767,10 @@
             // 
             // tpExitPolls
             // 
-            this.tpExitPolls.BackColor = System.Drawing.Color.SteelBlue;
-            this.tpExitPolls.Controls.Add(this.gbExitPolls);
-            this.tpExitPolls.Controls.Add(this.btnAddExitPoll);
-            this.tpExitPolls.Controls.Add(this.availableExitPollsGrid);
             this.tpExitPolls.Location = new System.Drawing.Point(4, 25);
             this.tpExitPolls.Name = "tpExitPolls";
-            this.tpExitPolls.Padding = new System.Windows.Forms.Padding(3);
             this.tpExitPolls.Size = new System.Drawing.Size(678, 691);
             this.tpExitPolls.TabIndex = 1;
-            this.tpExitPolls.Text = "Exit Polls";
-            this.tpExitPolls.Click += new System.EventHandler(this.tpExitPolls_Click);
-            // 
-            // gbExitPolls
-            // 
-            this.gbExitPolls.BackColor = System.Drawing.Color.SteelBlue;
-            this.gbExitPolls.Controls.Add(this.rbEPMan);
-            this.gbExitPolls.Controls.Add(this.rbEPAuto);
-            this.gbExitPolls.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbExitPolls.Location = new System.Drawing.Point(3, 6);
-            this.gbExitPolls.Name = "gbExitPolls";
-            this.gbExitPolls.Size = new System.Drawing.Size(708, 53);
-            this.gbExitPolls.TabIndex = 121;
-            this.gbExitPolls.TabStop = false;
-            this.gbExitPolls.Text = "Exit Polls";
-            this.gbExitPolls.Visible = false;
-            // 
-            // rbEPMan
-            // 
-            this.rbEPMan.AutoSize = true;
-            this.rbEPMan.Location = new System.Drawing.Point(409, 22);
-            this.rbEPMan.Name = "rbEPMan";
-            this.rbEPMan.Size = new System.Drawing.Size(78, 21);
-            this.rbEPMan.TabIndex = 6;
-            this.rbEPMan.Text = "Manual";
-            this.rbEPMan.UseVisualStyleBackColor = true;
-            this.rbEPMan.CheckedChanged += new System.EventHandler(this.rbEPMan_CheckedChanged);
-            // 
-            // rbEPAuto
-            // 
-            this.rbEPAuto.AutoSize = true;
-            this.rbEPAuto.Location = new System.Drawing.Point(221, 22);
-            this.rbEPAuto.Name = "rbEPAuto";
-            this.rbEPAuto.Size = new System.Drawing.Size(59, 21);
-            this.rbEPAuto.TabIndex = 5;
-            this.rbEPAuto.Text = "Auto";
-            this.rbEPAuto.UseVisualStyleBackColor = true;
-            this.rbEPAuto.CheckedChanged += new System.EventHandler(this.rbEPAuto_CheckedChanged);
-            // 
-            // btnAddExitPoll
-            // 
-            this.btnAddExitPoll.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
-            this.btnAddExitPoll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddExitPoll.Location = new System.Drawing.Point(257, 617);
-            this.btnAddExitPoll.Name = "btnAddExitPoll";
-            this.btnAddExitPoll.Size = new System.Drawing.Size(202, 60);
-            this.btnAddExitPoll.TabIndex = 2;
-            this.btnAddExitPoll.Text = "Add Exit Poll";
-            this.btnAddExitPoll.UseVisualStyleBackColor = true;
-            this.btnAddExitPoll.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // availableExitPollsGrid
-            // 
-            this.availableExitPollsGrid.AllowUserToAddRows = false;
-            this.availableExitPollsGrid.AllowUserToDeleteRows = false;
-            this.availableExitPollsGrid.AllowUserToResizeColumns = false;
-            this.availableExitPollsGrid.AllowUserToResizeRows = false;
-            this.availableExitPollsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.availableExitPollsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.availableExitPollsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Type,
-            this.st,
-            this.Category,
-            this.Question,
-            this.rowText,
-            this.Subset});
-            this.availableExitPollsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.availableExitPollsGrid.Location = new System.Drawing.Point(3, 65);
-            this.availableExitPollsGrid.MultiSelect = false;
-            this.availableExitPollsGrid.Name = "availableExitPollsGrid";
-            this.availableExitPollsGrid.RowHeadersWidth = 15;
-            this.availableExitPollsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.availableExitPollsGrid.Size = new System.Drawing.Size(708, 532);
-            this.availableExitPollsGrid.TabIndex = 0;
-            this.availableExitPollsGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableExitPollsGrid_CellContentDoubleClick);
-            // 
-            // Type
-            // 
-            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Type.DataPropertyName = "questionType";
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.Width = 69;
-            // 
-            // st
-            // 
-            this.st.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.st.DataPropertyName = "stateOffice";
-            this.st.HeaderText = "mxID/st/ofc";
-            this.st.Name = "st";
-            this.st.Width = 110;
-            // 
-            // Category
-            // 
-            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Category.DataPropertyName = "shortMXLabel";
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.Width = 96;
-            // 
-            // Question
-            // 
-            this.Question.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Question.DataPropertyName = "fullMXLabel";
-            this.Question.HeaderText = "Question";
-            this.Question.Name = "Question";
-            this.Question.Width = 94;
-            // 
-            // rowText
-            // 
-            this.rowText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.rowText.DataPropertyName = "rowText";
-            this.rowText.HeaderText = "rowText";
-            this.rowText.Name = "rowText";
-            this.rowText.Width = 87;
-            // 
-            // Subset
-            // 
-            this.Subset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Subset.DataPropertyName = "subsetName";
-            this.Subset.HeaderText = "Subset";
-            this.Subset.Name = "Subset";
-            this.Subset.Width = 81;
             // 
             // tpBalanceOfPower
             // 
@@ -1017,6 +886,127 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 700;
             // 
+            // gbExitPolls
+            // 
+            this.gbExitPolls.BackColor = System.Drawing.Color.SteelBlue;
+            this.gbExitPolls.Controls.Add(this.rbEPMan);
+            this.gbExitPolls.Controls.Add(this.rbEPAuto);
+            this.gbExitPolls.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbExitPolls.Location = new System.Drawing.Point(3, 6);
+            this.gbExitPolls.Name = "gbExitPolls";
+            this.gbExitPolls.Size = new System.Drawing.Size(708, 53);
+            this.gbExitPolls.TabIndex = 121;
+            this.gbExitPolls.TabStop = false;
+            this.gbExitPolls.Text = "Exit Polls";
+            this.gbExitPolls.Visible = false;
+            // 
+            // rbEPMan
+            // 
+            this.rbEPMan.AutoSize = true;
+            this.rbEPMan.Location = new System.Drawing.Point(409, 22);
+            this.rbEPMan.Name = "rbEPMan";
+            this.rbEPMan.Size = new System.Drawing.Size(78, 21);
+            this.rbEPMan.TabIndex = 6;
+            this.rbEPMan.Text = "Manual";
+            this.rbEPMan.UseVisualStyleBackColor = true;
+            this.rbEPMan.CheckedChanged += new System.EventHandler(this.rbEPMan_CheckedChanged);
+            // 
+            // rbEPAuto
+            // 
+            this.rbEPAuto.AutoSize = true;
+            this.rbEPAuto.Location = new System.Drawing.Point(221, 22);
+            this.rbEPAuto.Name = "rbEPAuto";
+            this.rbEPAuto.Size = new System.Drawing.Size(59, 21);
+            this.rbEPAuto.TabIndex = 5;
+            this.rbEPAuto.Text = "Auto";
+            this.rbEPAuto.UseVisualStyleBackColor = true;
+            this.rbEPAuto.CheckedChanged += new System.EventHandler(this.rbEPAuto_CheckedChanged);
+            // 
+            // btnAddExitPoll
+            // 
+            this.btnAddExitPoll.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
+            this.btnAddExitPoll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddExitPoll.Location = new System.Drawing.Point(257, 617);
+            this.btnAddExitPoll.Name = "btnAddExitPoll";
+            this.btnAddExitPoll.Size = new System.Drawing.Size(202, 60);
+            this.btnAddExitPoll.TabIndex = 2;
+            this.btnAddExitPoll.Text = "Add Exit Poll";
+            this.btnAddExitPoll.UseVisualStyleBackColor = true;
+            this.btnAddExitPoll.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // availableExitPollsGrid
+            // 
+            this.availableExitPollsGrid.AllowUserToAddRows = false;
+            this.availableExitPollsGrid.AllowUserToDeleteRows = false;
+            this.availableExitPollsGrid.AllowUserToResizeColumns = false;
+            this.availableExitPollsGrid.AllowUserToResizeRows = false;
+            this.availableExitPollsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.availableExitPollsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.availableExitPollsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Type,
+            this.st,
+            this.Category,
+            this.Question,
+            this.rowText,
+            this.Subset});
+            this.availableExitPollsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.availableExitPollsGrid.Location = new System.Drawing.Point(3, 65);
+            this.availableExitPollsGrid.MultiSelect = false;
+            this.availableExitPollsGrid.Name = "availableExitPollsGrid";
+            this.availableExitPollsGrid.RowHeadersWidth = 15;
+            this.availableExitPollsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.availableExitPollsGrid.Size = new System.Drawing.Size(708, 532);
+            this.availableExitPollsGrid.TabIndex = 0;
+            this.availableExitPollsGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableExitPollsGrid_CellContentDoubleClick);
+            // 
+            // Type
+            // 
+            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Type.DataPropertyName = "questionType";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.Width = 56;
+            // 
+            // st
+            // 
+            this.st.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.st.DataPropertyName = "stateOffice";
+            this.st.HeaderText = "mxID/st/ofc";
+            this.st.Name = "st";
+            this.st.Width = 89;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Category.DataPropertyName = "shortMXLabel";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.Width = 74;
+            // 
+            // Question
+            // 
+            this.Question.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Question.DataPropertyName = "fullMXLabel";
+            this.Question.HeaderText = "Question";
+            this.Question.Name = "Question";
+            this.Question.Width = 74;
+            // 
+            // rowText
+            // 
+            this.rowText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.rowText.DataPropertyName = "rowText";
+            this.rowText.HeaderText = "rowText";
+            this.rowText.Name = "rowText";
+            this.rowText.Width = 70;
+            // 
+            // Subset
+            // 
+            this.Subset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Subset.DataPropertyName = "subsetName";
+            this.Subset.HeaderText = "Subset";
+            this.Subset.Name = "Subset";
+            this.Subset.Width = 65;
+            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Black;
@@ -1029,10 +1019,10 @@
             this.label1.Text = "Time";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // timer1
+            // timerStatusUpdate
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timerStatusUpdate.Interval = 1000;
+            this.timerStatusUpdate.Tick += new System.EventHandler(this.timerStatusUpdate_Tick);
             // 
             // gbTime
             // 
@@ -1087,8 +1077,7 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel3.Controls.Add(this.btnClearStack);
-            this.panel3.Controls.Add(this.btnDeleteElement);
-            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.btnDeleteStackElement);
             this.panel3.Controls.Add(this.btnLoadStack);
             this.panel3.Controls.Add(this.btnActivateStack);
             this.panel3.Controls.Add(this.btnSaveStack);
@@ -1097,18 +1086,33 @@
             this.panel3.Size = new System.Drawing.Size(632, 138);
             this.panel3.TabIndex = 129;
             // 
-            // button4
+            // btnClearStack
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button4.Enabled = false;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(228, 84);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(170, 40);
-            this.button4.TabIndex = 134;
-            this.button4.Text = "Activate";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClearStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClearStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearStack.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
+            this.btnClearStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClearStack.Location = new System.Drawing.Point(31, 84);
+            this.btnClearStack.Name = "btnClearStack";
+            this.btnClearStack.Size = new System.Drawing.Size(170, 40);
+            this.btnClearStack.TabIndex = 136;
+            this.btnClearStack.Text = "Clear Stack";
+            this.btnClearStack.UseVisualStyleBackColor = false;
+            this.btnClearStack.Click += new System.EventHandler(this.btnClearStack_Click_1);
+            // 
+            // btnDeleteStackElement
+            // 
+            this.btnDeleteStackElement.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteStackElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteStackElement.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
+            this.btnDeleteStackElement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteStackElement.Location = new System.Drawing.Point(31, 16);
+            this.btnDeleteStackElement.Name = "btnDeleteStackElement";
+            this.btnDeleteStackElement.Size = new System.Drawing.Size(170, 40);
+            this.btnDeleteStackElement.TabIndex = 135;
+            this.btnDeleteStackElement.Text = "Delete Element";
+            this.btnDeleteStackElement.UseVisualStyleBackColor = false;
+            this.btnDeleteStackElement.Click += new System.EventHandler(this.btnDeleteStackElement_Click);
             // 
             // btnLoadStack
             // 
@@ -1116,7 +1120,7 @@
             this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
             this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLoadStack.Location = new System.Drawing.Point(31, 84);
+            this.btnLoadStack.Location = new System.Drawing.Point(228, 16);
             this.btnLoadStack.Name = "btnLoadStack";
             this.btnLoadStack.Size = new System.Drawing.Size(170, 40);
             this.btnLoadStack.TabIndex = 133;
@@ -1130,9 +1134,9 @@
             this.btnActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
             this.btnActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActivateStack.Location = new System.Drawing.Point(424, 84);
+            this.btnActivateStack.Location = new System.Drawing.Point(426, 16);
             this.btnActivateStack.Name = "btnActivateStack";
-            this.btnActivateStack.Size = new System.Drawing.Size(170, 40);
+            this.btnActivateStack.Size = new System.Drawing.Size(170, 108);
             this.btnActivateStack.TabIndex = 132;
             this.btnActivateStack.Text = "  Save && Activate";
             this.btnActivateStack.UseVisualStyleBackColor = false;
@@ -1144,7 +1148,7 @@
             this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Closed_16xLG;
             this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveStack.Location = new System.Drawing.Point(424, 16);
+            this.btnSaveStack.Location = new System.Drawing.Point(228, 84);
             this.btnSaveStack.Name = "btnSaveStack";
             this.btnSaveStack.Size = new System.Drawing.Size(170, 40);
             this.btnSaveStack.TabIndex = 129;
@@ -1297,32 +1301,6 @@
             this.Stack_Entry_Description.ReadOnly = true;
             this.Stack_Entry_Description.Width = 280;
             // 
-            // btnDeleteElement
-            // 
-            this.btnDeleteElement.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDeleteElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteElement.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
-            this.btnDeleteElement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteElement.Location = new System.Drawing.Point(31, 16);
-            this.btnDeleteElement.Name = "btnDeleteElement";
-            this.btnDeleteElement.Size = new System.Drawing.Size(170, 40);
-            this.btnDeleteElement.TabIndex = 135;
-            this.btnDeleteElement.Text = "Delete Element";
-            this.btnDeleteElement.UseVisualStyleBackColor = false;
-            // 
-            // btnClearStack
-            // 
-            this.btnClearStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnClearStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
-            this.btnClearStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClearStack.Location = new System.Drawing.Point(228, 16);
-            this.btnClearStack.Name = "btnClearStack";
-            this.btnClearStack.Size = new System.Drawing.Size(170, 40);
-            this.btnClearStack.TabIndex = 136;
-            this.btnClearStack.Text = "Clear Stack";
-            this.btnClearStack.UseVisualStyleBackColor = false;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1367,14 +1345,13 @@
             this.gbROF.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.availableRacesGrid)).EndInit();
-            this.tpExitPolls.ResumeLayout(false);
-            this.gbExitPolls.ResumeLayout(false);
-            this.gbExitPolls.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).EndInit();
             this.tpBalanceOfPower.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BOPdataGridView)).EndInit();
             this.tpReferendums.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ReferendumsGrid)).EndInit();
+            this.gbExitPolls.ResumeLayout(false);
+            this.gbExitPolls.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).EndInit();
             this.gbTime.ResumeLayout(false);
             this.pnlStack.ResumeLayout(false);
             this.pnlStack.PerformLayout();
@@ -1430,21 +1407,21 @@
         private System.Windows.Forms.Button btnAddRace4Way;
         private System.Windows.Forms.Button btnSelect4;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnSelect3;
+        private System.Windows.Forms.Button btnAddRace3WaySelect;
         private System.Windows.Forms.Button btnAddRace3Way;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnSelect2;
+        private System.Windows.Forms.Button btnAddRace2WaySelect;
         private System.Windows.Forms.Button btnAddRace2Way;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnAddRace1Way;
-        private System.Windows.Forms.Button btnSelect1;
+        private System.Windows.Forms.Button btnAddRace1WaySelect;
         private System.Windows.Forms.GroupBox gbRCF;
         private System.Windows.Forms.RadioButton rbAll;
         private System.Windows.Forms.RadioButton rbCalled;
         private System.Windows.Forms.RadioButton rbJustCalled;
         private System.Windows.Forms.RadioButton rbTCTC;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timerStatusUpdate;
         private System.Windows.Forms.GroupBox gbTime;
         private System.Windows.Forms.Button btnAddAll;
         private System.Windows.Forms.Panel pnlStack;
@@ -1477,7 +1454,6 @@
         private System.Windows.Forms.DataGridView ReferendumsGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.Button btnAddReferendum;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox cbGraphicConcept;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Race_ID;
@@ -1486,7 +1462,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stack_Entry_Description;
         private System.Windows.Forms.Button btnClearStack;
-        private System.Windows.Forms.Button btnDeleteElement;
+        private System.Windows.Forms.Button btnDeleteStackElement;
     }
 }
 
