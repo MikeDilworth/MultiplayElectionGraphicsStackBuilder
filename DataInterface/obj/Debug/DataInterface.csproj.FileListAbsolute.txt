@@ -1,0 +1,21 @@
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\DataInterface\bin\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\DataInterface\bin\Debug\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\DataInterface\obj\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\DataInterface\obj\Debug\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\DataInterface\obj\Debug\DataInterface.csprojResolveAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\DataInterface\bin\Debug\log4net.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\DataInterface\bin\Debug\log4net.xml
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\bin\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\bin\Debug\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\bin\Debug\log4net.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\bin\Debug\log4net.xml
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.csprojResolveAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.pdb
+D:\ElectionsRepos\electiongraphicsstackbuilder\DataInterface\bin\Debug\DataInterface.dll
+D:\ElectionsRepos\electiongraphicsstackbuilder\DataInterface\bin\Debug\DataInterface.pdb
+D:\ElectionsRepos\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.dll
+D:\ElectionsRepos\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.xml
+D:\ElectionsRepos\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.dll
+D:\ElectionsRepos\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.pdb
+D:\ElectionsRepos\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csprojResolveAssemblyReference.cache

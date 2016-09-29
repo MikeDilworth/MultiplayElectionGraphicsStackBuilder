@@ -1,0 +1,27 @@
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\bin\Debug\MSEInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\bin\Debug\MSEInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\obj\Debug\MSEInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\obj\Debug\MSEInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\obj\Debug\MSEInterface.csprojResolveAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\bin\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\bin\Debug\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\bin\Debug\log4net.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\MSE_REST\MSEInterface\bin\Debug\log4net.xml
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\bin\Debug\MSEInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\bin\Debug\MSEInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\bin\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\bin\Debug\log4net.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\bin\Debug\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\bin\Debug\log4net.xml
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.csprojResolveAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.pdb
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\MSEInterface.dll
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\MSEInterface.pdb
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\DataInterface.dll
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\log4net.dll
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\DataInterface.pdb
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\log4net.xml
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\obj\Debug\MSEInterface.csprojResolveAssemblyReference.cache
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\obj\Debug\MSEInterface.dll
+D:\ElectionsRepos\electiongraphicsstackbuilder\MSEInterface\obj\Debug\MSEInterface.pdb
