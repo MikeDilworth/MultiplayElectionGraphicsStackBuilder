@@ -117,7 +117,6 @@ namespace GUILayer.Forms
         string profilesURI = Properties.Settings.Default.MSEEndpoint1 + "profiles";
         string currentShowName = Properties.Settings.Default.CurrentShowName;
         string currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
-        string currentShowPath = Properties.Settings.Default.CurrentShowPath;
 
         // Read in database connection strings
         string GraphicsDBConnectionString = Properties.Settings.Default.GraphicsDBConnectionString;
@@ -343,11 +342,6 @@ namespace GUILayer.Forms
                 this.stacksCollection = new StacksCollection();
                 this.stacksCollection.MainDBConnectionString = GraphicsDBConnectionString;
                 stacks = this.stacksCollection.GetStackCollection();
-
-                // Setup the available stacks grid
-//                availableStacksGrid.AutoGenerateColumns = false;
-//                var availableStacksGridDataSource = new BindingSource(stacks, null);
-//                availableStacksGrid.DataSource = availableStacksGridDataSource;
             }
             catch (Exception ex)
             {
@@ -581,8 +575,6 @@ namespace GUILayer.Forms
                 log.Debug("frmMain Exception occurred", ex);
             }
         }
-        
-        
         #endregion
 
         #region Stack (group) creation & management functions
@@ -659,7 +651,6 @@ namespace GUILayer.Forms
         /// STACK OPERATIONS
         /// </summary>
         // Handler for delete stack button
-
         private void btnDeleteStack_Click(object sender, EventArgs e)
         {
 
@@ -668,71 +659,9 @@ namespace GUILayer.Forms
         // Handler for Add 1-Way race board button
         private void btnAddRace1Way_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Instantiate new stack element model
-                StackElementModel newStackElement = new StackElementModel();
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                Int32 stackID = 0;
-                newStackElement.fkey_StackID = stackID;
-                newStackElement.Stack_Element_ID = stackElements.Count;
-                newStackElement.Stack_Element_Type = (short)StackElementTypes.Race_Board_1_Way;
-                newStackElement.Stack_Element_Description = "Race Board (1-Way)";
-                // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_1_Way).Element_Type_Template_ID;
-
-                newStackElement.Election_Type = selectedRace.Election_Type;
-                newStackElement.Office_Code = selectedRace.Race_Office;
-                newStackElement.State_Number = selectedRace.State_Number;
-                newStackElement.State_Mnemonic = selectedRace.State_Mnemonic;
-                newStackElement.State_Name = selectedRace.State_Name;
-                newStackElement.CD = selectedRace.CD;
-                newStackElement.County_Number = 0;
-                newStackElement.County_Name = "N/A";
-                newStackElement.Listbox_Description = selectedRace.Race_Description;
-
-                // Specific to race boards
-                newStackElement.Race_ID = selectedRace.Race_ID;
-                newStackElement.Race_RecordType = string.Empty;
-                newStackElement.Race_Office = selectedRace.Race_Office;
-                newStackElement.Race_District = selectedRace.CD;
-                newStackElement.Race_CandidateID_1 = 0;
-                newStackElement.Race_CandidateID_2 = 0;
-                newStackElement.Race_CandidateID_3 = 0;
-                newStackElement.Race_CandidateID_4 = 0;
-                newStackElement.Race_PollClosingTime = selectedRace.Race_PollClosingTime;
-                newStackElement.Race_UseAPRaceCall = selectedRace.Race_UseAPRaceCall;
-
-                //Specific to exit polls - set to default values
-                newStackElement.ExitPoll_mxID = 0;
-                newStackElement.ExitPoll_BoardID = 0;
-                newStackElement.ExitPoll_ShortMxLabel = string.Empty;
-                newStackElement.ExitPoll_NumRows = 0;
-                newStackElement.ExitPoll_xRow = 0;
-                newStackElement.ExitPoll_BaseQuestion = false;
-                newStackElement.ExitPoll_RowQuestion = false;
-                newStackElement.ExitPoll_Subtitle = string.Empty;
-                newStackElement.ExitPoll_Suffix = string.Empty;
-                newStackElement.ExitPoll_HeaderText_1 = string.Empty;
-                newStackElement.ExitPoll_HeaderText_2 = string.Empty;
-                newStackElement.ExitPoll_SubsetName = string.Empty;
-                newStackElement.ExitPoll_SubsetID = 0;
-
-                // Add element
-                stackElementsCollection.AppendStackElement(newStackElement);
-                // Update stack entries count label
-                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
+            Int16 seType = (short)StackElementTypes.Race_Board_1_Way;
+            string seDescription = "Race Board (1-Way)";
+            AddRaceBoardToStack(seType, seDescription);
         }
 
         // Handler for Add 2-Way race board button
@@ -750,141 +679,17 @@ namespace GUILayer.Forms
         // General method to add a 2-way race board
         private void Add2WayBoard()
         {
-            try
-            {
-                // Instantiate new stack element model
-                StackElementModel newStackElement = new StackElementModel();
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                Int32 stackID = 0;
-                newStackElement.fkey_StackID = stackID;
-                newStackElement.Stack_Element_ID = stackElements.Count;
-                newStackElement.Stack_Element_Type = (short)StackElementTypes.Race_Board_2_Way;
-                newStackElement.Stack_Element_Description = "Race Board (2-Way)";
-                // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_2_Way).Element_Type_Template_ID;
-
-                newStackElement.Election_Type = selectedRace.Election_Type;
-                newStackElement.Office_Code = selectedRace.Race_Office;
-                newStackElement.State_Number = selectedRace.State_Number;
-                newStackElement.State_Mnemonic = selectedRace.State_Mnemonic;
-                newStackElement.State_Name = selectedRace.State_Name;
-                newStackElement.CD = selectedRace.CD;
-                newStackElement.County_Number = 0;
-                newStackElement.County_Name = "N/A";
-                newStackElement.Listbox_Description = selectedRace.Race_Description;
-
-                // Specific to race boards
-                newStackElement.Race_ID = selectedRace.Race_ID;
-                newStackElement.Race_RecordType = string.Empty;
-                newStackElement.Race_Office = selectedRace.Race_Office;
-                newStackElement.Race_District = selectedRace.CD;
-                newStackElement.Race_CandidateID_1 = 0;
-                newStackElement.Race_CandidateID_2 = 0;
-                newStackElement.Race_CandidateID_3 = 0;
-                newStackElement.Race_CandidateID_4 = 0;
-                newStackElement.Race_PollClosingTime = selectedRace.Race_PollClosingTime;
-                newStackElement.Race_UseAPRaceCall = selectedRace.Race_UseAPRaceCall;
-
-                //Specific to exit polls - set to default values
-                newStackElement.ExitPoll_mxID = 0;
-                newStackElement.ExitPoll_BoardID = 0;
-                newStackElement.ExitPoll_ShortMxLabel = string.Empty;
-                newStackElement.ExitPoll_NumRows = 0;
-                newStackElement.ExitPoll_xRow = 0;
-                newStackElement.ExitPoll_BaseQuestion = false;
-                newStackElement.ExitPoll_RowQuestion = false;
-                newStackElement.ExitPoll_Subtitle = string.Empty;
-                newStackElement.ExitPoll_Suffix = string.Empty;
-                newStackElement.ExitPoll_HeaderText_1 = string.Empty;
-                newStackElement.ExitPoll_HeaderText_2 = string.Empty;
-                newStackElement.ExitPoll_SubsetName = string.Empty;
-                newStackElement.ExitPoll_SubsetID = 0;
-
-                // Add element
-                stackElementsCollection.AppendStackElement(newStackElement);
-                // Update stack entries count label
-                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
+            Int16 seType = (short)StackElementTypes.Race_Board_2_Way;
+            string seDescription = "Race Board (2-Way)";
+            AddRaceBoardToStack(seType, seDescription);
         }
 
         // Handler for Add 3-Way race board button
         private void btnAddRace3Way_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Instantiate new stack element model
-                StackElementModel newStackElement = new StackElementModel();
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                Int32 stackID = 0;
-                newStackElement.fkey_StackID = stackID;
-                newStackElement.Stack_Element_ID = stackElements.Count;
-                newStackElement.Stack_Element_Type = (short)StackElementTypes.Race_Board_3_Way;
-                newStackElement.Stack_Element_Description = "Race Board (3-Way)";
-                // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_3_Way).Element_Type_Template_ID;
-
-                newStackElement.Election_Type = selectedRace.Election_Type;
-                newStackElement.Office_Code = selectedRace.Race_Office;
-                newStackElement.State_Number = selectedRace.State_Number;
-                newStackElement.State_Mnemonic = selectedRace.State_Mnemonic;
-                newStackElement.State_Name = selectedRace.State_Name;
-                newStackElement.CD = selectedRace.CD;
-                newStackElement.County_Number = 0;
-                newStackElement.County_Name = "N/A";
-                newStackElement.Listbox_Description = selectedRace.Race_Description;
-
-                // Specific to race boards
-                newStackElement.Race_ID = selectedRace.Race_ID;
-                newStackElement.Race_RecordType = string.Empty;
-                newStackElement.Race_Office = selectedRace.Race_Office;
-                newStackElement.Race_District = selectedRace.CD;
-                newStackElement.Race_CandidateID_1 = 0;
-                newStackElement.Race_CandidateID_2 = 0;
-                newStackElement.Race_CandidateID_3 = 0;
-                newStackElement.Race_CandidateID_4 = 0;
-                newStackElement.Race_PollClosingTime = selectedRace.Race_PollClosingTime;
-                newStackElement.Race_UseAPRaceCall = selectedRace.Race_UseAPRaceCall;
-
-                //Specific to exit polls - set to default values
-                newStackElement.ExitPoll_mxID = 0;
-                newStackElement.ExitPoll_BoardID = 0;
-                newStackElement.ExitPoll_ShortMxLabel = string.Empty;
-                newStackElement.ExitPoll_NumRows = 0;
-                newStackElement.ExitPoll_xRow = 0;
-                newStackElement.ExitPoll_BaseQuestion = false;
-                newStackElement.ExitPoll_RowQuestion = false;
-                newStackElement.ExitPoll_Subtitle = string.Empty;
-                newStackElement.ExitPoll_Suffix = string.Empty;
-                newStackElement.ExitPoll_HeaderText_1 = string.Empty;
-                newStackElement.ExitPoll_HeaderText_2 = string.Empty;
-                newStackElement.ExitPoll_SubsetName = string.Empty;
-                newStackElement.ExitPoll_SubsetID = 0;
-
-                // Add element
-                stackElementsCollection.AppendStackElement(newStackElement);
-                // Update stack entries count label
-                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
+            Int16 seType = (short)StackElementTypes.Race_Board_3_Way;
+            string seDescription = "Race Board (3-Way)";
+            AddRaceBoardToStack(seType, seDescription);
         }
 
         private void btnAddRace4Way_Click(object sender, EventArgs e)
@@ -894,6 +699,7 @@ namespace GUILayer.Forms
             AddRaceBoardToStack(seType, seDescription);    
         }
 
+        // Generic method to add a race board to a stack
         private void AddRaceBoardToStack(Int16 stackElementType, string stackElementDescription)
         {
             try
@@ -959,8 +765,8 @@ namespace GUILayer.Forms
             catch (Exception ex)
             {
                 // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
+                log.Error("Exception occurred while trying to add board to stack: " + ex.Message);
+                log.Debug("Exception occurred while trying to add board to stack", ex);
             }
         }
 
@@ -975,7 +781,6 @@ namespace GUILayer.Forms
                 AddRaceBoardToStack(seType, seDescription);
                 i++;
             }
-
         }
 
         #endregion
@@ -1023,26 +828,7 @@ namespace GUILayer.Forms
             }
         }
 
-        // Handler for change to stack save mode (default or other)
-        private void chkSaveStackAsDefault_CheckedChanged(object sender, EventArgs e)
-        {
-        //    if (chkSaveStackAsDefault.Checked)
-        //    {
-        //        lblStackID.Visible = false;
-        //        txtStackID.Visible = false;
-        //        lblStackDescription.Visible = false;
-        //        txtStackDescription.Visible = false;
-        //    }
-        //    else
-        //    {
-        //        lblStackID.Visible = true;
-        //        txtStackID.Visible = true;
-        //        lblStackDescription.Visible = true;
-        //        txtStackDescription.Visible = true;
-        //    }
-        //
-        }
-
+        // Method to handle function keys for race boards
         private void KeyEvent(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -1080,7 +866,7 @@ namespace GUILayer.Forms
                 case Keys.F11:
                     rbPollClosing.Checked = true;
                     break;
-                case Keys.R:
+                case Keys.A:
                     if (e.Control == true)
                         btnAddAll_Click(sender, e);
                     break;
@@ -1738,8 +1524,17 @@ namespace GUILayer.Forms
 
                                 //Get the URI to the show templates collection
                                 templateCollectionURIShow = show.GetTemplateCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
+
                                 //Get the URI to the model for the specified template within the specified show
                                 templateModel = template.GetTemplateElementModel(templateCollectionURIShow, templateID);
+
+                                // Alert if template model not found
+                                if (templateModel == null)
+                                {
+                                    // Log error
+                                    log.Error("Could not resolve template model - template might not exist");
+                                    log.Debug("Could not resolve template model - template might not exist");
+                                }
 
                                 //Get the URI to the currently-specified playlist                                
                                 elementCollectionURIPlaylist = restResponse.downLink;
@@ -2547,7 +2342,6 @@ namespace GUILayer.Forms
         // Add 1-way select board
         private void btnSelect1_Click(object sender, EventArgs e)
         {
-
             try
             {
                 Int32 selectedCandidate1 = 0;
