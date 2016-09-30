@@ -232,15 +232,40 @@ namespace DataInterface.SQL
         /// </summary>
         public static readonly string sqlGetManualExitPollQuestion = "SELECT QuestionText FROM ManualFNCQuestions WHERE ixQuestionID = @questionID";
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Graphics Concept related functions
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Sql to get the Graphics Concepts Taben
+        /// Sql to get the Graphics Concepts Tab data
         /// </summary>
         public static readonly string sqlGetGraphicsConcepts = "SELECT * FROM MSE_Stack_Graphics_Concepts";
 
         /// <summary>
-        /// Sql to get the Graphics Concepts Taben
+        /// Sql to get the Graphics Concepts Tab data
         /// </summary>
         public static readonly string sqlGetGraphicsConceptTypes = "SELECT DISTINCT ConceptID, ConceptName from MSE_Stack_Graphics_Concepts";
-        
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Application log related functions
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Sql to make an entry in the applications log
+        /// </summary>
+        public static readonly string sqlSetFGEApplicationLogEntry = "setFGEApplicationLogEntry " +
+                                                                       "@Application_Name, " +
+                                                                       "@Application_Description, " +
+                                                                       "@HostPC_Name, " +
+                                                                       "@HostPC_IP_Address, " +
+                                                                       "@Engine_Enabled_1, " +
+                                                                       "@Engine_IP_Address_1, " +
+                                                                       "@Engine_Enabled_2, " +
+                                                                       "@Engine_IP_Address_2, " +
+                                                                       "@Entry_Text, " +
+                                                                       "@Application_Version, " +
+                                                                       "@Application_ID, " + 
+                                                                       "@Comments, " + 
+                                                                       "@CurrentSystemTime";
+
+
     }
 }

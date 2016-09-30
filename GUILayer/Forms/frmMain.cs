@@ -10,8 +10,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DataInterface.DataAccess;
 using DataInterface.DataModel;
 using DataInterface.Enums;
+using GUILayer.Properties;
 using log4net.Appender;
 using LogicLayer.Collections;
 using LogicLayer.CommonClasses;
@@ -242,7 +244,36 @@ namespace GUILayer.Forms
 
                 timerStatusUpdate.Enabled = true;
 
+                // Set connection string for functions to get simulated time
                 TimeFunctions.ElectionsDBConnectionString = ElectionsDBConnectionString;
+
+                // Make entry into applications log
+                ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
+                string ipAddress = string.Empty;
+                string hostName = string.Empty;
+                ipAddress = HostIPNameFunctions.GetLocalIPAddress();
+                hostName = HostIPNameFunctions.GetHostName(ipAddress);
+                lblIpAddress.Text = ipAddress;
+                lblHostName.Text = hostName; 
+
+                // Post application log entry
+                applicationSettingsFlagsAccess.ElectionsDBConnectionString = ElectionsDBConnectionString;
+                applicationSettingsFlagsAccess.PostApplicationLogEntryFlags(
+                    Properties.Settings.Default.ApplicationName,
+                    Properties.Settings.Default.ApplicationName,
+                    hostName,
+                    ipAddress,
+                    // Engines not used for this application
+                    false,
+                    "",
+                    false,
+                    "",
+                    "Launched application",
+                    Convert.ToString(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version), 
+                    Properties.Settings.Default.ApplicationID,
+                    "",
+                    System.DateTime.Now
+                );
             }
             catch (Exception ex)
             {
@@ -278,6 +309,36 @@ namespace GUILayer.Forms
             if (result1 != DialogResult.Yes)
             {
                 e.Cancel = true;
+            }
+            else
+            {
+                // Make entry into applications log
+                ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
+                string ipAddress = string.Empty;
+                string hostName = string.Empty;
+                ipAddress = HostIPNameFunctions.GetLocalIPAddress();
+                hostName = HostIPNameFunctions.GetHostName(ipAddress);
+                lblIpAddress.Text = ipAddress;
+                lblHostName.Text = hostName;
+
+                // Post application log entry
+                applicationSettingsFlagsAccess.ElectionsDBConnectionString = ElectionsDBConnectionString;
+                applicationSettingsFlagsAccess.PostApplicationLogEntryFlags(
+                    Properties.Settings.Default.ApplicationName,
+                    Properties.Settings.Default.ApplicationName,
+                    hostName,
+                    ipAddress,
+                    // Engines not used for this application
+                    false,
+                    "",
+                    false,
+                    "",
+                    "Closed application",
+                    Convert.ToString(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version),
+                    Properties.Settings.Default.ApplicationID,
+                    "",
+                    System.DateTime.Now
+                );               
             }
         }
 

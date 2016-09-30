@@ -43,15 +43,6 @@ namespace GUILayer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("A")]
-        public string DefaultTrioChannel {
-            get {
-                return ((string)(this["DefaultTrioChannel"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SQL-DEV;Initial Catalog=Stackbuilder_MSE_Dev;Persist Security Info=Tr" +
             "ue;User ID=sa;Password=Engineer@1")]
@@ -150,6 +141,39 @@ namespace GUILayer.Properties {
             }
             set {
                 this["CurrentShowName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("[PROGRAM]")]
+        public string DefaultTrioChannel {
+            get {
+                return ((string)(this["DefaultTrioChannel"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("14")]
+        public int ApplicationID {
+            get {
+                return ((int)(this["ApplicationID"]));
+            }
+            set {
+                this["ApplicationID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Election Graphics Stack Builder")]
+        public string ApplicationName {
+            get {
+                return ((string)(this["ApplicationName"]));
+            }
+            set {
+                this["ApplicationName"] = value;
             }
         }
     }

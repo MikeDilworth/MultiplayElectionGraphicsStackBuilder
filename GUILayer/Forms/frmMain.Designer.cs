@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,6 +130,9 @@
             this.Element_Type_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stack_Entry_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblIpAddress = new System.Windows.Forms.Label();
+            this.lblHostName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -250,7 +253,7 @@
             // 
             this.lblCurrentShow.AutoSize = true;
             this.lblCurrentShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentShow.Location = new System.Drawing.Point(126, 33);
+            this.lblCurrentShow.Location = new System.Drawing.Point(124, 33);
             this.lblCurrentShow.Name = "lblCurrentShow";
             this.lblCurrentShow.Size = new System.Drawing.Size(34, 16);
             this.lblCurrentShow.TabIndex = 86;
@@ -270,7 +273,7 @@
             // 
             this.lblPlaylistNameHeader.AutoSize = true;
             this.lblPlaylistNameHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(310, 33);
+            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(271, 33);
             this.lblPlaylistNameHeader.Name = "lblPlaylistNameHeader";
             this.lblPlaylistNameHeader.Size = new System.Drawing.Size(108, 16);
             this.lblPlaylistNameHeader.TabIndex = 88;
@@ -280,7 +283,7 @@
             // 
             this.lblPlaylistName.AutoSize = true;
             this.lblPlaylistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistName.Location = new System.Drawing.Point(417, 33);
+            this.lblPlaylistName.Location = new System.Drawing.Point(376, 33);
             this.lblPlaylistName.Name = "lblPlaylistName";
             this.lblPlaylistName.Size = new System.Drawing.Size(34, 16);
             this.lblPlaylistName.TabIndex = 89;
@@ -290,7 +293,7 @@
             // 
             this.lblTrioChannelHeader.AutoSize = true;
             this.lblTrioChannelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannelHeader.Location = new System.Drawing.Point(641, 33);
+            this.lblTrioChannelHeader.Location = new System.Drawing.Point(533, 33);
             this.lblTrioChannelHeader.Name = "lblTrioChannelHeader";
             this.lblTrioChannelHeader.Size = new System.Drawing.Size(100, 16);
             this.lblTrioChannelHeader.TabIndex = 90;
@@ -300,7 +303,7 @@
             // 
             this.lblTrioChannel.AutoSize = true;
             this.lblTrioChannel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannel.Location = new System.Drawing.Point(740, 33);
+            this.lblTrioChannel.Location = new System.Drawing.Point(630, 33);
             this.lblTrioChannel.Name = "lblTrioChannel";
             this.lblTrioChannel.Size = new System.Drawing.Size(34, 16);
             this.lblTrioChannel.TabIndex = 91;
@@ -1241,27 +1244,27 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle12;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
             this.stackGrid.MaximumSize = new System.Drawing.Size(800, 495);
             this.stackGrid.MinimumSize = new System.Drawing.Size(558, 300);
@@ -1301,12 +1304,45 @@
             this.Stack_Entry_Description.ReadOnly = true;
             this.Stack_Entry_Description.Width = 280;
             // 
+            // lblIpAddress
+            // 
+            this.lblIpAddress.AutoSize = true;
+            this.lblIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIpAddress.Location = new System.Drawing.Point(860, 33);
+            this.lblIpAddress.Name = "lblIpAddress";
+            this.lblIpAddress.Size = new System.Drawing.Size(34, 16);
+            this.lblIpAddress.TabIndex = 121;
+            this.lblIpAddress.Text = "N/A";
+            // 
+            // lblHostName
+            // 
+            this.lblHostName.AutoSize = true;
+            this.lblHostName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHostName.Location = new System.Drawing.Point(968, 33);
+            this.lblHostName.Name = "lblHostName";
+            this.lblHostName.Size = new System.Drawing.Size(34, 16);
+            this.lblHostName.TabIndex = 122;
+            this.lblHostName.Text = "N/A";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(766, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 16);
+            this.label3.TabIndex = 123;
+            this.label3.Text = "Host PC Info:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1423, 810);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblHostName);
+            this.Controls.Add(this.lblIpAddress);
             this.Controls.Add(this.pnlStack);
             this.Controls.Add(this.gbTime);
             this.Controls.Add(this.dataModeSelect);
@@ -1463,6 +1499,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Stack_Entry_Description;
         private System.Windows.Forms.Button btnClearStack;
         private System.Windows.Forms.Button btnDeleteStackElement;
+        private System.Windows.Forms.Label lblIpAddress;
+        private System.Windows.Forms.Label lblHostName;
+        private System.Windows.Forms.Label label3;
     }
 }
 
