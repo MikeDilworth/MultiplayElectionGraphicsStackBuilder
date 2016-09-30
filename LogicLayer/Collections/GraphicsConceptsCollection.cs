@@ -69,7 +69,7 @@ namespace LogicLayer.Collections
                         ElementTypeDescription = row["ElementTypeDescription"].ToString() ?? "",
                         TemplateName = row["TemplateName"].ToString() ?? "",
                         TemplateDescription = row["TemplateDescription"].ToString() ?? "",
-
+                        AllowConceptChange = Convert.ToBoolean(row["AllowConceptChange"] ?? 0),
                     };
 
                     graphicsConcepts.Add(newgraphicsConcepts);
@@ -107,7 +107,7 @@ namespace LogicLayer.Collections
                     var newgraphicsConcepts = new GraphicsConceptsModel()
                     {
 
-                        //Specific to referendums
+                        //Specific to graphics concepts
                         ConceptID = Convert.ToInt16(row["ConceptID"] ?? 0),
                         ConceptName = row["ConceptName"].ToString() ?? "",
 

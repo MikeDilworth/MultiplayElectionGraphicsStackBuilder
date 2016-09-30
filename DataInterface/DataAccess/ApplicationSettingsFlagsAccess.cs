@@ -63,9 +63,9 @@ namespace DataInterface.DataAccess
         }
 
         /// <summary>
-        /// Method to get the list of available races for the current election event
+        /// Method to post an entry to the election applications log
         /// </summary>
-        public void PostApplicationLogEntryFlags(
+        public void PostApplicationLogEntry(
                             string application_Name, 
                             string application_Description,
                             string hostPC_Name,

@@ -59,7 +59,6 @@ D:\ElectionsRepos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.P
 D:\ElectionsRepos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.GenerateResource.Cache
 D:\ElectionsRepos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.exe
 D:\ElectionsRepos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\Crad.Windows.Forms.Actions.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmSaveStack.resources
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmLoadStack.resources
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmCandidateSelect.resources

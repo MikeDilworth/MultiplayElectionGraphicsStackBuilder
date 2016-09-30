@@ -32,6 +32,9 @@ namespace LogicLayer.Collections
         public string ElectionsDBConnectionString { get; set; }
         // Define the collection used for storing state metadata for all 50 states + US
         public  StateMetadataCollection stateMetadataCollection;
+
+        // Time for next poll closing
+        public DateTime NextPollClosingTime;
         #endregion
 
         #region Public Methods
@@ -255,9 +258,12 @@ namespace LogicLayer.Collections
 
                         // Next Poll Closing Mode and Next Poll Closing Time = State's Poll Closing Time
                         case (short)SpecialCaseFilterModes.Next_Poll_Closing_States_Only:
-                            DateTime NextPollClosingTime = TimeFunctions.GetNextPollClosingTime(TimeNow);
+                            // Value defined above
+                            NextPollClosingTime = TimeFunctions.GetNextPollClosingTime(TimeNow);
                             if (StatePollClosingTime == NextPollClosingTime)
+                            {
                                 availableRaces.Add(newAvailableRace);
+                            }
                             break;
 
                         default:
@@ -265,8 +271,7 @@ namespace LogicLayer.Collections
                             break;
                     }
 
-                }
-                
+                }                
             }
             catch (Exception ex)
             {

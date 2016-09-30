@@ -13,7 +13,6 @@ using System.Xml.Linq;
 using DataInterface.DataAccess;
 using DataInterface.DataModel;
 using DataInterface.Enums;
-using GUILayer.Properties;
 using log4net.Appender;
 using LogicLayer.Collections;
 using LogicLayer.CommonClasses;
@@ -37,6 +36,20 @@ namespace GUILayer.Forms
         Boolean nonNumberEntered = false;
         public static Boolean UseSimulatedTime = false;
         DateTime referenceTime = DateTime.MaxValue;
+
+        string elementCollectionURIShow;
+        string templateCollectionURIShow;
+        string elementCollectionURIPlaylist;
+        string templateModel;
+
+        Int32 stackID;
+        string stackDescription;
+
+        Int16 conceptID;
+        string conceptName;
+        string templateName;
+
+        private Boolean manualEPQuestions = false;
         #endregion
 
         #region Collection & binding list definitions
@@ -126,22 +139,7 @@ namespace GUILayer.Forms
 
         //Read in default Trio profile and channel
         string defaultTrioProfile = Properties.Settings.Default.DefaultTrioProfile;
-        string defaultTrioChannel = Properties.Settings.Default.DefaultTrioChannel;
-
-        string elementCollectionURIShow;
-        string templateCollectionURIShow;
-        string elementCollectionURIPlaylist;
-        string templateModel;
-
-        Int32 stackID;
-        string stackDescription;
-
-        Int16 ConceptID;
-        string ConceptName;
-        string TemplateName;
-
-        private Boolean manualEPQuestions = false;
-                        
+        string defaultTrioChannel = Properties.Settings.Default.DefaultTrioChannel;                        
         #endregion
 
         #region Logger instantiation - uses reflection to get module name
@@ -258,7 +256,7 @@ namespace GUILayer.Forms
 
                 // Post application log entry
                 applicationSettingsFlagsAccess.ElectionsDBConnectionString = ElectionsDBConnectionString;
-                applicationSettingsFlagsAccess.PostApplicationLogEntryFlags(
+                applicationSettingsFlagsAccess.PostApplicationLogEntry(
                     Properties.Settings.Default.ApplicationName,
                     Properties.Settings.Default.ApplicationName,
                     hostName,
@@ -323,7 +321,7 @@ namespace GUILayer.Forms
 
                 // Post application log entry
                 applicationSettingsFlagsAccess.ElectionsDBConnectionString = ElectionsDBConnectionString;
-                applicationSettingsFlagsAccess.PostApplicationLogEntryFlags(
+                applicationSettingsFlagsAccess.PostApplicationLogEntry(
                     Properties.Settings.Default.ApplicationName,
                     Properties.Settings.Default.ApplicationName,
                     hostName,
@@ -487,6 +485,20 @@ namespace GUILayer.Forms
                 this.availableRacesCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
                 availableRaces = this.availableRacesCollection.GetFilteredRaceCollection(ofc, cStatus, scfm, stateMetadata);
 
+                // Set next poll closing label
+                if (scfm == (short) SpecialCaseFilterModes.Next_Poll_Closing_States_Only)
+                {
+                    txtNextPollClosingTime.Text = Convert.ToString(this.availableRacesCollection.NextPollClosingTime);
+                    txtNextPollClosingTimeHeader.Visible = true;
+                    txtNextPollClosingTime.Visible = true;
+                }
+                else
+                {
+                    txtNextPollClosingTimeHeader.Visible = false;
+                    txtNextPollClosingTime.Visible = false;
+                    txtNextPollClosingTime.Text = "N/A";
+                }
+
                 // Setup the available races grid
                 availableRacesGrid.AutoGenerateColumns = false;
                 var availableRacesGridDataSource = new BindingSource(availableRaces, null);
@@ -605,7 +617,7 @@ namespace GUILayer.Forms
             }
         }
 
-        // Create the state metadata collection
+        // Create the graphics concepts collection
         private void CreateGraphicsConceptsCollection()
         {
             try
@@ -618,10 +630,10 @@ namespace GUILayer.Forms
                 for (Int16 i = 0; i < graphicsConceptTypes.Count; i++)
                     cbGraphicConcept.Items.Add(graphicsConceptTypes[i].ConceptName);
 
-                ConceptID = graphicsConceptTypes[0].ConceptID;
-                ConceptName = graphicsConceptTypes[0].ConceptName;
+                conceptID = graphicsConceptTypes[0].ConceptID;
+                conceptName = graphicsConceptTypes[0].ConceptName;
                 cbGraphicConcept.SelectedIndex = 0;
-                cbGraphicConcept.Text = ConceptName;
+                cbGraphicConcept.Text = conceptName;
                 
                 // Setup the master race collection & bind to grid
                 //this.graphicsConceptsCollection = new GraphicsConceptsCollection();
@@ -632,8 +644,8 @@ namespace GUILayer.Forms
             catch (Exception ex)
             {
                 // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
+                log.Error("frmMain Exception occurred while trying to create graphics concepts collection: " + ex.Message);
+                log.Debug("frmMain Exception occurred while trying to create graphics concepts collection", ex);
             }
         }
         #endregion
@@ -779,7 +791,8 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Description = stackElementDescription;
                 
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_3_Way).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = 
+                    mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_3_Way).Element_Type_Template_ID;
 
                 newStackElement.Election_Type = selectedRace.Election_Type;
                 newStackElement.Office_Code = selectedRace.Race_Office;
@@ -968,8 +981,8 @@ namespace GUILayer.Forms
                         
                         stackMetadata.StackType = 0;
                         stackMetadata.ShowName = currentShowName;
-                        stackMetadata.ConceptID = ConceptID;
-                        stackMetadata.ConceptName = ConceptName;
+                        stackMetadata.ConceptID = conceptID;
+                        stackMetadata.ConceptName = conceptName;
                         stackMetadata.Notes = "Not currently used";
                         stacksCollection.SaveStack(stackMetadata);
 
@@ -979,7 +992,7 @@ namespace GUILayer.Forms
 
                         // Update stack entries count label & name label
                         txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                        txtStack.Text = stackDescription;
+                        txtStackName.Text = stackDescription;
                     }
                 }
 
@@ -1067,6 +1080,7 @@ namespace GUILayer.Forms
                     }
                     // Update stack entries count label
                     txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+                    txtStackName.Text = "None Selected";
                 }
             }
             catch (Exception ex)
@@ -1123,6 +1137,7 @@ namespace GUILayer.Forms
                 DialogResult dr = new DialogResult();
                 //frmCandidateSelect selectCand = new frmCandidateSelect();
                 frmLoadStack selectStack = new frmLoadStack();
+                selectStack.StackCollectionCount = stackElements.Count;
                 dr = selectStack.ShowDialog();
                 if (dr == DialogResult.OK)
                 {
@@ -1130,7 +1145,7 @@ namespace GUILayer.Forms
                     stackIndex = selectStack.StackIndex;
                     stackID = selectStack.StackID;
                     stackDescription = selectStack.StackDesc;
-
+                         
                     // Clear the collection
                     stackElements.Clear();
 
@@ -1144,7 +1159,7 @@ namespace GUILayer.Forms
                     stackElementsCollection.GetStackElementsCollection(selectedStack.ixStackID);
                     // Update stack entries count label
                     txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                    txtStack.Text = selectedStack.ixStackID  + " " + selectedStack.StackName;
+                    txtStackName.Text = selectedStack.StackName + " [ID: " + Convert.ToString(selectedStack.ixStackID) + "]";
                 }
                 else if (dr == DialogResult.Abort)
                 {
@@ -1211,8 +1226,7 @@ namespace GUILayer.Forms
             }
         }
 
-
-
+        // Method for handing click on Save & Activate stack button
         private void btnActivateStack_Click(object sender, EventArgs e)
         {
             try
@@ -1221,7 +1235,6 @@ namespace GUILayer.Forms
                 //string stackDesc;
                 if (stackElements.Count > 0)
                 {
-                    
                     DialogResult dr = new DialogResult();
                     FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
                     dr = saveStack.ShowDialog();
@@ -1238,18 +1251,17 @@ namespace GUILayer.Forms
                         
                         stackMetadata.StackType = 0;
                         stackMetadata.ShowName = currentShowName;
-                        stackMetadata.ConceptID = ConceptID;
-                        stackMetadata.ConceptName = ConceptName;
+                        stackMetadata.ConceptID = conceptID;
+                        stackMetadata.ConceptName = conceptName;
                         stackMetadata.Notes = "Not currently used";
                         stacksCollection.SaveStack(stackMetadata);
 
                         // Save out stack elements; specify stack ID, and set flag to delete existing elements before adding
                         stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
 
-
                         // Update stack entries count label & name label
                         txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                        txtStack.Text = stackID + " " + stackDescription;
+                        txtStackName.Text = stackDescription + " [ID: " + Convert.ToString(stackID) + "]";
                 
                         ActivateStack(stackID, stackDescription);
                     }
@@ -1290,8 +1302,8 @@ namespace GUILayer.Forms
                     stackMetadata.StackName = stack_Description;
                     stackMetadata.StackType = 0;
                     stackMetadata.ShowName = currentShowName;
-                    stackMetadata.ConceptID = ConceptID;
-                    stackMetadata.ConceptName = ConceptName;
+                    stackMetadata.ConceptID = conceptID;
+                    stackMetadata.ConceptName = conceptName;
                     stackMetadata.Notes = "Not currently used";
                     stacksCollection.SaveStack(stackMetadata);
 
@@ -2712,9 +2724,9 @@ namespace GUILayer.Forms
         // Handler for Concept Change
         private void cbGraphicConcept_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ConceptID = (short)(cbGraphicConcept.SelectedIndex + 1);
-            ConceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
-                
+            // Set data members for specifying graphics concept
+            conceptID = (short)(cbGraphicConcept.SelectedIndex + 1);
+            conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;                
         }
         
         // Look up Template Name from conceptID and BoardType
@@ -2736,6 +2748,11 @@ namespace GUILayer.Forms
         #endregion 
 
         private void gbROF_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

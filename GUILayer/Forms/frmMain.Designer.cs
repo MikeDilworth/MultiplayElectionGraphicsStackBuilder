@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +122,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnStackElementDown = new System.Windows.Forms.Button();
             this.btnStackElementUp = new System.Windows.Forms.Button();
-            this.txtStack = new System.Windows.Forms.Label();
+            this.txtStackName = new System.Windows.Forms.Label();
             this.txtStackEntriesCount = new System.Windows.Forms.Label();
             this.lblStackEntriesCount = new System.Windows.Forms.Label();
             this.lblStackHeader = new System.Windows.Forms.Label();
@@ -133,6 +133,8 @@
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtNextPollClosingTimeHeader = new System.Windows.Forms.Label();
+            this.txtNextPollClosingTime = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -293,7 +295,7 @@
             // 
             this.lblTrioChannelHeader.AutoSize = true;
             this.lblTrioChannelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannelHeader.Location = new System.Drawing.Point(533, 33);
+            this.lblTrioChannelHeader.Location = new System.Drawing.Point(524, 33);
             this.lblTrioChannelHeader.Name = "lblTrioChannelHeader";
             this.lblTrioChannelHeader.Size = new System.Drawing.Size(100, 16);
             this.lblTrioChannelHeader.TabIndex = 90;
@@ -303,7 +305,7 @@
             // 
             this.lblTrioChannel.AutoSize = true;
             this.lblTrioChannel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannel.Location = new System.Drawing.Point(630, 33);
+            this.lblTrioChannel.Location = new System.Drawing.Point(621, 33);
             this.lblTrioChannel.Name = "lblTrioChannel";
             this.lblTrioChannel.Size = new System.Drawing.Size(34, 16);
             this.lblTrioChannel.TabIndex = 91;
@@ -346,6 +348,8 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Gray;
+            this.panel4.Controls.Add(this.txtNextPollClosingTime);
+            this.panel4.Controls.Add(this.txtNextPollClosingTimeHeader);
             this.panel4.Controls.Add(this.lblAvailRaceCnt);
             this.panel4.Location = new System.Drawing.Point(6, 150);
             this.panel4.Name = "panel4";
@@ -1017,7 +1021,7 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(6, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 20);
+            this.label1.Size = new System.Drawing.Size(248, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Time";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1032,9 +1036,9 @@
             this.gbTime.Controls.Add(this.label1);
             this.gbTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTime.Location = new System.Drawing.Point(1182, 27);
+            this.gbTime.Location = new System.Drawing.Point(1149, 27);
             this.gbTime.Name = "gbTime";
-            this.gbTime.Size = new System.Drawing.Size(227, 42);
+            this.gbTime.Size = new System.Drawing.Size(260, 42);
             this.gbTime.TabIndex = 119;
             this.gbTime.TabStop = false;
             this.gbTime.Text = "SIMULATED TIME";
@@ -1046,7 +1050,7 @@
             this.pnlStack.Controls.Add(this.label2);
             this.pnlStack.Controls.Add(this.panel3);
             this.pnlStack.Controls.Add(this.panel1);
-            this.pnlStack.Controls.Add(this.txtStack);
+            this.pnlStack.Controls.Add(this.txtStackName);
             this.pnlStack.Controls.Add(this.txtStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackHeader);
@@ -1060,7 +1064,7 @@
             // 
             this.cbGraphicConcept.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbGraphicConcept.FormattingEnabled = true;
-            this.cbGraphicConcept.Location = new System.Drawing.Point(449, 26);
+            this.cbGraphicConcept.Location = new System.Drawing.Point(497, 25);
             this.cbGraphicConcept.Name = "cbGraphicConcept";
             this.cbGraphicConcept.Size = new System.Drawing.Size(148, 24);
             this.cbGraphicConcept.TabIndex = 132;
@@ -1070,7 +1074,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(316, 31);
+            this.label2.Location = new System.Drawing.Point(364, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 16);
             this.label2.TabIndex = 131;
@@ -1088,6 +1092,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(632, 138);
             this.panel3.TabIndex = 129;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // btnClearStack
             // 
@@ -1197,21 +1202,21 @@
             this.btnStackElementUp.UseVisualStyleBackColor = false;
             this.btnStackElementUp.Click += new System.EventHandler(this.btnStackElementUp_Click);
             // 
-            // txtStack
+            // txtStackName
             // 
-            this.txtStack.AutoSize = true;
-            this.txtStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStack.Location = new System.Drawing.Point(66, 8);
-            this.txtStack.Name = "txtStack";
-            this.txtStack.Size = new System.Drawing.Size(111, 16);
-            this.txtStack.TabIndex = 126;
-            this.txtStack.Text = "None Selected";
+            this.txtStackName.AutoSize = true;
+            this.txtStackName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStackName.Location = new System.Drawing.Point(60, 8);
+            this.txtStackName.Name = "txtStackName";
+            this.txtStackName.Size = new System.Drawing.Size(111, 16);
+            this.txtStackName.TabIndex = 126;
+            this.txtStackName.Text = "None Selected";
             // 
             // txtStackEntriesCount
             // 
             this.txtStackEntriesCount.AutoSize = true;
             this.txtStackEntriesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStackEntriesCount.Location = new System.Drawing.Point(159, 28);
+            this.txtStackEntriesCount.Location = new System.Drawing.Point(161, 30);
             this.txtStackEntriesCount.Name = "txtStackEntriesCount";
             this.txtStackEntriesCount.Size = new System.Drawing.Size(16, 16);
             this.txtStackEntriesCount.TabIndex = 123;
@@ -1221,7 +1226,7 @@
             // 
             this.lblStackEntriesCount.AutoSize = true;
             this.lblStackEntriesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStackEntriesCount.Location = new System.Drawing.Point(12, 28);
+            this.lblStackEntriesCount.Location = new System.Drawing.Point(12, 30);
             this.lblStackEntriesCount.Name = "lblStackEntriesCount";
             this.lblStackEntriesCount.Size = new System.Drawing.Size(151, 16);
             this.lblStackEntriesCount.TabIndex = 122;
@@ -1244,27 +1249,27 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
             this.stackGrid.MaximumSize = new System.Drawing.Size(800, 495);
             this.stackGrid.MinimumSize = new System.Drawing.Size(558, 300);
@@ -1308,7 +1313,7 @@
             // 
             this.lblIpAddress.AutoSize = true;
             this.lblIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIpAddress.Location = new System.Drawing.Point(860, 33);
+            this.lblIpAddress.Location = new System.Drawing.Point(822, 33);
             this.lblIpAddress.Name = "lblIpAddress";
             this.lblIpAddress.Size = new System.Drawing.Size(34, 16);
             this.lblIpAddress.TabIndex = 121;
@@ -1318,7 +1323,7 @@
             // 
             this.lblHostName.AutoSize = true;
             this.lblHostName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHostName.Location = new System.Drawing.Point(968, 33);
+            this.lblHostName.Location = new System.Drawing.Point(930, 33);
             this.lblHostName.Name = "lblHostName";
             this.lblHostName.Size = new System.Drawing.Size(34, 16);
             this.lblHostName.TabIndex = 122;
@@ -1328,11 +1333,31 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(766, 33);
+            this.label3.Location = new System.Drawing.Point(728, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 16);
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
+            // 
+            // txtNextPollClosingTimeHeader
+            // 
+            this.txtNextPollClosingTimeHeader.AutoSize = true;
+            this.txtNextPollClosingTimeHeader.Location = new System.Drawing.Point(257, 8);
+            this.txtNextPollClosingTimeHeader.Name = "txtNextPollClosingTimeHeader";
+            this.txtNextPollClosingTimeHeader.Size = new System.Drawing.Size(169, 16);
+            this.txtNextPollClosingTimeHeader.TabIndex = 1;
+            this.txtNextPollClosingTimeHeader.Text = "Next Poll Closing Time:";
+            this.txtNextPollClosingTimeHeader.Visible = false;
+            // 
+            // txtNextPollClosingTime
+            // 
+            this.txtNextPollClosingTime.AutoSize = true;
+            this.txtNextPollClosingTime.Location = new System.Drawing.Point(422, 8);
+            this.txtNextPollClosingTime.Name = "txtNextPollClosingTime";
+            this.txtNextPollClosingTime.Size = new System.Drawing.Size(34, 16);
+            this.txtNextPollClosingTime.TabIndex = 2;
+            this.txtNextPollClosingTime.Text = "N/A";
+            this.txtNextPollClosingTime.Visible = false;
             // 
             // frmMain
             // 
@@ -1468,7 +1493,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnStackElementDown;
         private System.Windows.Forms.Button btnStackElementUp;
-        private System.Windows.Forms.Label txtStack;
+        private System.Windows.Forms.Label txtStackName;
         private System.Windows.Forms.Label txtStackEntriesCount;
         private System.Windows.Forms.Label lblStackEntriesCount;
         private System.Windows.Forms.Label lblStackHeader;
@@ -1502,6 +1527,8 @@
         private System.Windows.Forms.Label lblIpAddress;
         private System.Windows.Forms.Label lblHostName;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label txtNextPollClosingTime;
+        private System.Windows.Forms.Label txtNextPollClosingTimeHeader;
     }
 }
 

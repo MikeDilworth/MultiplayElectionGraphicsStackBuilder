@@ -38,6 +38,8 @@ namespace GUILayer.Forms
         private string stackDesc;
         public string StackDesc { get { return stackDesc; } set { StackDesc = stackDesc; } }
 
+        public Int32 StackCollectionCount { get; set; }
+
         string topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory;
         string currentShowName = Properties.Settings.Default.CurrentShowName;
         string currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
@@ -113,7 +115,7 @@ namespace GUILayer.Forms
         {
             try
             {
-                if (stackIndex >= 0)
+                if ((stackIndex >= 0) && (StackCollectionCount > 0))
                 {
                     DialogResult result1 =
                         MessageBox.Show(
@@ -130,6 +132,11 @@ namespace GUILayer.Forms
                         this.DialogResult = DialogResult.Cancel;
                         this.Close();
                     }
+                }
+                // No elements in stack, so don't prompt operator
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();                   
                 }
 
             }

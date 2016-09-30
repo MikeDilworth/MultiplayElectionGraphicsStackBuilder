@@ -31,7 +31,7 @@ namespace GUILayer.Forms
         //private string stackDescription;
         //public string StackDescription { get { return stackDescription; } set { StackDescription = stackDescription; } }
         public string StackDescription { get; set; }
-        
+
         public FrmSaveStack(int stID, string stackDesc)
         {
             InitializeComponent();

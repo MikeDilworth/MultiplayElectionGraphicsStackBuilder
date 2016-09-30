@@ -61,8 +61,8 @@ namespace DataInterface.DataAccess
             catch (Exception ex)
             {
                 // Log error
-                log.Error("AvailableRaceAccess Exception occurred: " + ex.Message);
-                log.Debug("AvailableRaceAccess Exception occurred", ex);
+                log.Error("GraphicsConceptsAccess Exception occurred: " + ex.Message);
+                log.Debug("GraphicsConceptsAccess Exception occurred", ex);
             }
 
             return dataTable;
@@ -95,8 +95,8 @@ namespace DataInterface.DataAccess
             catch (Exception ex)
             {
                 // Log error
-                log.Error("AvailableRaceAccess Exception occurred: " + ex.Message);
-                log.Debug("AvailableRaceAccess Exception occurred", ex);
+                log.Error("GraphicsConceptsAccess Exception occurred: " + ex.Message);
+                log.Debug("GraphicsConceptsAccess Exception occurred", ex);
             }
 
             return dataTable;

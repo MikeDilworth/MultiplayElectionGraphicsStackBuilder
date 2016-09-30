@@ -35,7 +35,7 @@ namespace LogicLayer.Collections
         }
 
         /// <summary>
-        /// Get the MSE Stack list from the SQL DB; clears out existing collection first
+        /// Get the MSE Stack Element Type list from the SQL DB; clears out existing collection first
         /// </summary>
         public BindingList<MSEStackElementTypeModel> GetMSEStackElementTypeCollection()
         {
