@@ -39,44 +39,48 @@ namespace MSEInterface
                 //Get all the entries
                 var showNames = getURI.SendGETRequest(showsDirectoryURI).Descendants(Atom + "entry");
 
-                foreach (XElement show in showNames)
+                if (showNames != null)
                 {
-                    string title = show.Element(Atom + "title").Value;
 
-                    string selfLink = string.Empty;
-                    showDoc = show.Descendants(Atom + "link")
-                        .Where(x => (string)x.Attribute("rel") == "self")
-                        .FirstOrDefault();
-                    if (showDoc != null)
+                    foreach (XElement show in showNames)
                     {
-                        selfLink = showDoc.Attribute("href").Value;
+                        string title = show.Element(Atom + "title").Value;
+
+                        string selfLink = string.Empty;
+                        showDoc = show.Descendants(Atom + "link")
+                            .Where(x => (string) x.Attribute("rel") == "self")
+                            .FirstOrDefault();
+                        if (showDoc != null)
+                        {
+                            selfLink = showDoc.Attribute("href").Value;
+                        }
+
+                        string alternateLink = string.Empty;
+                        showDoc = show.Descendants(Atom + "link")
+                            .Where(x => (string) x.Attribute("rel") == "alternate")
+                            .FirstOrDefault();
+                        if (showDoc != null)
+                        {
+                            alternateLink = showDoc.Attribute("href").Value;
+                        }
+
+                        string relatedLink = string.Empty;
+                        showDoc = show.Descendants(Atom + "link")
+                            .Where(x => (string) x.Attribute("rel") == "related")
+                            .FirstOrDefault();
+                        if (showDoc != null)
+                        {
+                            relatedLink = showDoc.Attribute("href").Value;
+                        }
+
+                        ShowObject showObject = new ShowObject();
+                        showObject.title = title;
+                        showObject.selfLink = selfLink;
+                        showObject.alternateLink = alternateLink;
+                        showObject.relatedLink = relatedLink;
+
+                        showList.Add(showObject);
                     }
-
-                    string alternateLink = string.Empty;
-                    showDoc = show.Descendants(Atom + "link")
-                        .Where(x => (string)x.Attribute("rel") == "alternate")
-                        .FirstOrDefault();
-                    if (showDoc != null)
-                    {
-                        alternateLink = showDoc.Attribute("href").Value;
-                    }
-
-                    string relatedLink = string.Empty;
-                    showDoc = show.Descendants(Atom + "link")
-                        .Where(x => (string)x.Attribute("rel") == "related")
-                        .FirstOrDefault();
-                    if (showDoc != null)
-                    {
-                        relatedLink = showDoc.Attribute("href").Value;
-                    }
-
-                    ShowObject showObject = new ShowObject();
-                    showObject.title = title;
-                    showObject.selfLink = selfLink;
-                    showObject.alternateLink = alternateLink;
-                    showObject.relatedLink = relatedLink;
-
-                    showList.Add(showObject);
                 }
             }
             catch (Exception ex)
