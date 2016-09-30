@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +52,8 @@
             this.dataModeSelect = new System.Windows.Forms.TabControl();
             this.tpRaces = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtNextPollClosingTime = new System.Windows.Forms.Label();
+            this.txtNextPollClosingTimeHeader = new System.Windows.Forms.Label();
             this.lblAvailRaceCnt = new System.Windows.Forms.Label();
             this.gbSpF = new System.Windows.Forms.GroupBox();
             this.rbNone = new System.Windows.Forms.RadioButton();
@@ -133,8 +135,6 @@
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtNextPollClosingTimeHeader = new System.Windows.Forms.Label();
-            this.txtNextPollClosingTime = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -275,7 +275,7 @@
             // 
             this.lblPlaylistNameHeader.AutoSize = true;
             this.lblPlaylistNameHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(271, 33);
+            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(271, 25);
             this.lblPlaylistNameHeader.Name = "lblPlaylistNameHeader";
             this.lblPlaylistNameHeader.Size = new System.Drawing.Size(108, 16);
             this.lblPlaylistNameHeader.TabIndex = 88;
@@ -285,7 +285,7 @@
             // 
             this.lblPlaylistName.AutoSize = true;
             this.lblPlaylistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistName.Location = new System.Drawing.Point(376, 33);
+            this.lblPlaylistName.Location = new System.Drawing.Point(376, 25);
             this.lblPlaylistName.Name = "lblPlaylistName";
             this.lblPlaylistName.Size = new System.Drawing.Size(34, 16);
             this.lblPlaylistName.TabIndex = 89;
@@ -295,7 +295,7 @@
             // 
             this.lblTrioChannelHeader.AutoSize = true;
             this.lblTrioChannelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannelHeader.Location = new System.Drawing.Point(524, 33);
+            this.lblTrioChannelHeader.Location = new System.Drawing.Point(524, 25);
             this.lblTrioChannelHeader.Name = "lblTrioChannelHeader";
             this.lblTrioChannelHeader.Size = new System.Drawing.Size(100, 16);
             this.lblTrioChannelHeader.TabIndex = 90;
@@ -305,7 +305,7 @@
             // 
             this.lblTrioChannel.AutoSize = true;
             this.lblTrioChannel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannel.Location = new System.Drawing.Point(621, 33);
+            this.lblTrioChannel.Location = new System.Drawing.Point(621, 25);
             this.lblTrioChannel.Name = "lblTrioChannel";
             this.lblTrioChannel.Size = new System.Drawing.Size(34, 16);
             this.lblTrioChannel.TabIndex = 91;
@@ -318,7 +318,7 @@
             this.dataModeSelect.Controls.Add(this.tpBalanceOfPower);
             this.dataModeSelect.Controls.Add(this.tpReferendums);
             this.dataModeSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataModeSelect.Location = new System.Drawing.Point(12, 58);
+            this.dataModeSelect.Location = new System.Drawing.Point(12, 50);
             this.dataModeSelect.Name = "dataModeSelect";
             this.dataModeSelect.SelectedIndex = 0;
             this.dataModeSelect.Size = new System.Drawing.Size(686, 720);
@@ -355,6 +355,24 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(666, 32);
             this.panel4.TabIndex = 121;
+            // 
+            // txtNextPollClosingTime
+            // 
+            this.txtNextPollClosingTime.AutoSize = true;
+            this.txtNextPollClosingTime.Location = new System.Drawing.Point(422, 8);
+            this.txtNextPollClosingTime.Name = "txtNextPollClosingTime";
+            this.txtNextPollClosingTime.Size = new System.Drawing.Size(34, 16);
+            this.txtNextPollClosingTime.TabIndex = 2;
+            this.txtNextPollClosingTime.Text = "N/A";
+            // 
+            // txtNextPollClosingTimeHeader
+            // 
+            this.txtNextPollClosingTimeHeader.AutoSize = true;
+            this.txtNextPollClosingTimeHeader.Location = new System.Drawing.Point(257, 8);
+            this.txtNextPollClosingTimeHeader.Name = "txtNextPollClosingTimeHeader";
+            this.txtNextPollClosingTimeHeader.Size = new System.Drawing.Size(169, 16);
+            this.txtNextPollClosingTimeHeader.TabIndex = 1;
+            this.txtNextPollClosingTimeHeader.Text = "Next Poll Closing Time:";
             // 
             // lblAvailRaceCnt
             // 
@@ -1055,7 +1073,7 @@
             this.pnlStack.Controls.Add(this.lblStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackHeader);
             this.pnlStack.Controls.Add(this.stackGrid);
-            this.pnlStack.Location = new System.Drawing.Point(700, 83);
+            this.pnlStack.Location = new System.Drawing.Point(700, 75);
             this.pnlStack.Name = "pnlStack";
             this.pnlStack.Size = new System.Drawing.Size(711, 693);
             this.pnlStack.TabIndex = 120;
@@ -1249,27 +1267,27 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
             this.stackGrid.MaximumSize = new System.Drawing.Size(800, 495);
             this.stackGrid.MinimumSize = new System.Drawing.Size(558, 300);
@@ -1338,26 +1356,6 @@
             this.label3.Size = new System.Drawing.Size(97, 16);
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
-            // 
-            // txtNextPollClosingTimeHeader
-            // 
-            this.txtNextPollClosingTimeHeader.AutoSize = true;
-            this.txtNextPollClosingTimeHeader.Location = new System.Drawing.Point(257, 8);
-            this.txtNextPollClosingTimeHeader.Name = "txtNextPollClosingTimeHeader";
-            this.txtNextPollClosingTimeHeader.Size = new System.Drawing.Size(169, 16);
-            this.txtNextPollClosingTimeHeader.TabIndex = 1;
-            this.txtNextPollClosingTimeHeader.Text = "Next Poll Closing Time:";
-            this.txtNextPollClosingTimeHeader.Visible = false;
-            // 
-            // txtNextPollClosingTime
-            // 
-            this.txtNextPollClosingTime.AutoSize = true;
-            this.txtNextPollClosingTime.Location = new System.Drawing.Point(422, 8);
-            this.txtNextPollClosingTime.Name = "txtNextPollClosingTime";
-            this.txtNextPollClosingTime.Size = new System.Drawing.Size(34, 16);
-            this.txtNextPollClosingTime.TabIndex = 2;
-            this.txtNextPollClosingTime.Text = "N/A";
-            this.txtNextPollClosingTime.Visible = false;
             // 
             // frmMain
             // 

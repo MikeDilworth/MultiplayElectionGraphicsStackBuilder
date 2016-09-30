@@ -50,7 +50,6 @@
     <Compile Include="Collections\ReferendumsDataCollection.cs" />
     <Compile Include="Collections\ReferendumsCollection.cs" />
     <Compile Include="Collections\ExitPollQuestionsCollection.cs" />
-    <Compile Include="Collections\MSEStackElementTypeCollection.cs" />
     <Compile Include="Collections\RaceDataCollection.cs" />
     <Compile Include="Collections\RacePreviewCollection.cs" />
     <Compile Include="Collections\StackElementsCollection.cs" />

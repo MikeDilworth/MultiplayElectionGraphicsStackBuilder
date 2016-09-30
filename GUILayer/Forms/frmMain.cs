@@ -88,10 +88,6 @@ namespace GUILayer.Forms
         private ExitPollDataCollection exitPollDataCollection;
         //BindingList<ExitPollDataCollection> exitPollData;
 
-        // Define the collection for MSE stack element data types
-        private MSEStackElementTypeCollection mseStackElementTypeCollection;
-        BindingList<MSEStackElementTypeModel> mseStackElementTypes;
-
         // Define the collection used for storing candidate data for a specific race
         private RaceDataCollection raceDataCollection;
         BindingList<RaceDataModel> raceData;
@@ -199,9 +195,6 @@ namespace GUILayer.Forms
 
                 // Query the graphics DB to get the list of already saved stacks
                 RefreshStacksList();
-
-                // Read in the list of available MSE stack element types
-                RefreshMSEStackElementTypesList();
 
                 // Query the elections DB to get the list of exit poll questions
                 RefreshExitPollQuestions();
@@ -412,23 +405,6 @@ namespace GUILayer.Forms
         #endregion
 
         # region Data refresh functions
-        // Read in the list of available MSE stack element types
-        private void RefreshMSEStackElementTypesList()
-        {
-            try
-            {
-                this.mseStackElementTypeCollection = new MSEStackElementTypeCollection();
-                this.mseStackElementTypeCollection.MainDBConnectionString = GraphicsDBConnectionString;
-                mseStackElementTypes = this.mseStackElementTypeCollection.GetMSEStackElementTypeCollection();
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
-        }
-
         // Refresh the list of available races for the races list
         private void RefreshAvailableRacesList()
         {
@@ -791,8 +767,9 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Description = stackElementDescription;
                 
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = 
-                    mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_3_Way).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = "TEMP";
+                //093016
+                    //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_3_Way).Element_Type_Template_ID;
 
                 newStackElement.Election_Type = selectedRace.Election_Type;
                 newStackElement.Office_Code = selectedRace.Race_Office;
@@ -940,6 +917,9 @@ namespace GUILayer.Forms
                 case Keys.F11:
                     rbPollClosing.Checked = true;
                     break;
+                case Keys.F12:
+                    rbNone.Checked = true;
+                    break;
                 case Keys.A:
                     if (e.Control == true)
                         btnAddAll_Click(sender, e);
@@ -970,7 +950,6 @@ namespace GUILayer.Forms
                     dr = saveStack.ShowDialog();
                     if (dr == DialogResult.OK)
                     {
-
                         // Instantiate a new top-level stack metadata model
                         StackModel stackMetadata = new StackModel();
 
@@ -2017,7 +1996,9 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = eType;
                 newStackElement.Stack_Element_Description = "Balance Of Power";
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, eType).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = "TEMP";
+                //093016
+                //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, eType).Element_Type_Template_ID;
 
                 newStackElement.Election_Type = "G";
                 newStackElement.Office_Code = BOPoffice;
@@ -2100,7 +2081,9 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = (short)StackElementTypes.Exit_Poll_Full_Screen;
                 newStackElement.Stack_Element_Description = "Exit Poll";
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Exit_Poll_Full_Screen).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = "TEMP";
+                //093016
+                //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Exit_Poll_Full_Screen).Element_Type_Template_ID;
 
                 newStackElement.Election_Type = selectedPoll.electionType;
                 newStackElement.Office_Code = selectedPoll.office;
@@ -2211,7 +2194,9 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = (short)StackElementTypes.Referendums;
                 newStackElement.Stack_Element_Description = "Referendums";
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Referendums).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = "TEMP";
+                //093016
+                //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Referendums).Element_Type_Template_ID;
 
                 newStackElement.Election_Type = selectedReferendum.race_ElectionType;
                 newStackElement.Office_Code = selectedReferendum.race_OfficeCode;
@@ -2666,7 +2651,9 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Description = eDesc;
                 
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_1_Way).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = "TEMP";
+                //093016
+                //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_1_Way).Element_Type_Template_ID;
 
                 newStackElement.Election_Type = selectedRace.Election_Type;
                 newStackElement.Office_Code = selectedRace.Race_Office;
@@ -2726,7 +2713,21 @@ namespace GUILayer.Forms
         {
             // Set data members for specifying graphics concept
             conceptID = (short)(cbGraphicConcept.SelectedIndex + 1);
-            conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;                
+            conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
+
+            // Call method to re-assign templates based on graphics concept selected
+            if (stackElements.Count > 0)
+            {
+                // Loop through stack elements
+                for (int i = 0; i < stackElements.Count; i++)
+                {
+                    // Loop through graphics concepts
+                    for (int j = 0; j < graphicsConceptTypes.Count; j++)
+                    {
+                        
+                    }
+                }
+            }
         }
         
         // Look up Template Name from conceptID and BoardType
@@ -2753,6 +2754,11 @@ namespace GUILayer.Forms
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlStack_Paint(object sender, PaintEventArgs e)
         {
 
         }

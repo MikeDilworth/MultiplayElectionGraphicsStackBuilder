@@ -51,7 +51,6 @@
     <Compile Include="DataAccess\ReferendumDataAccess.cs" />
     <Compile Include="DataAccess\ReferendumAccess.cs" />
     <Compile Include="DataAccess\ExitPollAccess.cs" />
-    <Compile Include="DataAccess\MSEStackElementTypeAccess.cs" />
     <Compile Include="DataAccess\RaceDataAccess.cs" />
     <Compile Include="DataAccess\StackAccess.cs" />
     <Compile Include="DataAccess\StackElementAccess.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="DataModel\ReferendumDataModel.cs" />
     <Compile Include="DataModel\ReferendumModel.cs" />
     <Compile Include="DataModel\ExitPollQuestionsModel.cs" />
-    <Compile Include="DataModel\MSEStackElementTypeModel.cs" />
     <Compile Include="DataModel\RaceDataModel.cs" />
     <Compile Include="DataModel\RacePreviewModel.cs" />
     <Compile Include="DataModel\StackElementModel.cs" />
