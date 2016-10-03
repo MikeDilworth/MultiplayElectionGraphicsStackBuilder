@@ -211,6 +211,11 @@ namespace GUILayer.Forms
                 // Init the stack elements collection
                 CreateStackElementsCollection();
 
+                // Setup data binding for stacks grid
+                stackGrid.AutoGenerateColumns = false;
+                var stackGridDataSource = new BindingSource(stackElements, null);
+                stackGrid.DataSource = stackGridDataSource;
+
                 // Init the race data collection
                 CreateRaceDataCollection();
 
@@ -1214,6 +1219,7 @@ namespace GUILayer.Forms
                 {
                     DialogResult dr = new DialogResult();
                     FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
+                    saveStack.PromptForOverwrite = cbPromptForOverwrite.Checked;
                     dr = saveStack.ShowDialog();
                     if (dr == DialogResult.OK)
                     {
@@ -2700,58 +2706,86 @@ namespace GUILayer.Forms
         #endregion
 
         #region Methods for handling graphics concepts
-        // Handler for Concept Change
+        // Handler for Graphics Concept dropdown selector change
         private void cbGraphicConcept_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Set data members for specifying graphics concept
-            conceptID = (short)(cbGraphicConcept.SelectedIndex + 1);
-            conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
+            if (graphicsConceptTypes.Count > 0)
+            {
+                // Set data members for specifying graphics concept
+                conceptID = (short) (cbGraphicConcept.SelectedIndex + 1);
+                conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
+
+                // Re-assign templates to elements in grid
+                if (stackElements.Count > 0)
+                {
+                    for (int i = 0; i < stackElements.Count; i++)
+                    {
+                        stackElements[i].Stack_Element_TemplateID = GetTemplate(conceptID,
+                            stackElements[i].Stack_Element_Type);
+                    }
+                }
+                // For focus to the grid to get it to repaint
+                stackGrid.Refresh();
+            }
         }
         
         // Look up Template Name from conceptID and BoardType - used when saving out various graphic element types
-        private string GetTemplate(Int16 conceptID, Int16 boardType)
+        private string GetTemplate(Int16 tempConceptID, Int16 tempElementType)
         {
-            Int16 Indx = -1;
-            string Template = "None";
+            string Template = string.Empty;
             for (short  i = 0; i < graphicsConcepts.Count; i++)
             {
-                if ((conceptID == graphicsConcepts[i].ConceptID) & (boardType == (short)graphicsConcepts[i].ElementTypeCode))
+                if ((tempConceptID == graphicsConcepts[i].ConceptID) & (tempElementType == (short)graphicsConcepts[i].ElementTypeCode))
                 {
-                    Indx = i;
                     Template = graphicsConcepts[i].TemplateName;
-                }
-                
+                }                
             }
             return Template;
-        }
-
-        private Boolean GetStackGridHighlightEnableFlag(int rowIndex)
-        {
-            Boolean highlightEnable = false;
-
-            // Call method to re-assign templates based on graphics concept selected
-            if ((stackElements.Count > 0) && (graphicsConceptTypes.Count > 0))
-            {
-                // Loop through stack elements
-                for (int i = 0; i < stackElements.Count; i++)
-                {
-                    // Loop through graphics concepts
-                    for (int j = 0; j < graphicsConceptTypes.Count; j++)
-                    {
-                        highlightEnable = false;
-                    }
-                }
-            }
-
-            return highlightEnable;
         }
 
         // Method to color any rows in grid red where the template specified is not the default template for the
         // data type and cannot be changed.
         private void stackGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (GetStackGridHighlightEnableFlag((int)e.RowIndex))
+            if (GetStackGridHighlightEnableFlag((int) e.RowIndex))
+            {
                 stackGrid.Rows[e.RowIndex].Cells["TemplateID"].Style.BackColor = Color.Red;
+
+            }
+            else
+            {
+                stackGrid.Rows[e.RowIndex].Cells["TemplateID"].Style.BackColor = Color.White;
+            }
+        }
+        
+        // Method to determine if the stack grid entry template column should be highlighted to indicate
+        // that the graphics concept for that entry cannot be changed to the overall concept selected.
+        private Boolean GetStackGridHighlightEnableFlag(int rowIndex)
+        {
+            Boolean highlightEnable = false;
+
+            // Call method to re-assign templates based on graphics concept selected
+            if ((stackElements.Count > 0) && (graphicsConcepts.Count > 0))
+            {
+                // Loop through graphics concepts
+                for (int j = 0; j < graphicsConcepts.Count; j++)
+                {
+                    if ((graphicsConcepts[j].ElementTypeCode == stackElements[rowIndex].Stack_Element_Type) &&
+                       (graphicsConcepts[j].ConceptID == conceptID))
+                    {
+                        if ((graphicsConcepts[j].AllowConceptChange == false) &&
+                            (graphicsConcepts[j].IsBaseConcept == false))
+                        {
+                            highlightEnable = true;                           
+                        }
+                        else
+                        {
+                            highlightEnable = false;
+                        }
+                    }
+                }
+            }
+            return highlightEnable;
         }
 
         #endregion

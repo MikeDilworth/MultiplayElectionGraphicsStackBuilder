@@ -25,8 +25,9 @@ namespace GUILayer.Forms
         string GraphicsDBConnectionString = Properties.Settings.Default.GraphicsDBConnectionString;
         
         private Int32 stackId;
-//        public Int32 StackId { get { return stackId; } set { StackId = stackId; } }
         public Int32 StackId { get; set; }
+
+        public Boolean PromptForOverwrite { get; set; }
 
         //private string stackDescription;
         //public string StackDescription { get { return stackDescription; } set { StackDescription = stackDescription; } }
@@ -134,13 +135,11 @@ namespace GUILayer.Forms
                 return;
             }
             
-                //Check if playlist already exists in database
+                //Check if playlist already exists in database; if prompt for overwrite not checked, skip step
                 try
                 {
-                    //StackAccess checkStack = new StackAccess();
-                    //checkStack.MainDBConnectionString = GraphicsDBConnectionString;
                     Boolean stackExists = stacksCollection.CheckIfStackExists_DB(stackId);
-                    if (stackExists)
+                    if ((stackExists) && (PromptForOverwrite))
                     {
                         // Check to see if the sublist already exists in the database; if so, prompt for overwrite
                         DialogResult result1 =
