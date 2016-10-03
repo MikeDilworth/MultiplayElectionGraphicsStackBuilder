@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +87,6 @@
             this.availableRacesGrid = new System.Windows.Forms.DataGridView();
             this.Race_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Race_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tpExitPolls = new System.Windows.Forms.TabPage();
             this.tpBalanceOfPower = new System.Windows.Forms.TabPage();
             this.BOPdataGridView = new System.Windows.Forms.DataGridView();
             this.eType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,11 +97,15 @@
             this.btnAddReferendum = new System.Windows.Forms.Button();
             this.ReferendumsGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gbExitPolls = new System.Windows.Forms.GroupBox();
-            this.rbEPMan = new System.Windows.Forms.RadioButton();
-            this.rbEPAuto = new System.Windows.Forms.RadioButton();
-            this.btnAddExitPoll = new System.Windows.Forms.Button();
+            this.tpExitPolls = new System.Windows.Forms.TabPage();
             this.availableExitPollsGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddExitPoll = new System.Windows.Forms.Button();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -135,6 +138,9 @@
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.rbEPMan = new System.Windows.Forms.RadioButton();
+            this.gbExitPolls = new System.Windows.Forms.GroupBox();
+            this.rbEPAuto = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -153,13 +159,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.BOPdataGridView)).BeginInit();
             this.tpReferendums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReferendumsGrid)).BeginInit();
-            this.gbExitPolls.SuspendLayout();
+            this.tpExitPolls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).BeginInit();
             this.gbTime.SuspendLayout();
             this.pnlStack.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).BeginInit();
+            this.gbExitPolls.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -237,7 +244,7 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 788);
+            this.statusStrip.Location = new System.Drawing.Point(0, 796);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1423, 22);
             this.statusStrip.TabIndex = 53;
@@ -255,7 +262,7 @@
             // 
             this.lblCurrentShow.AutoSize = true;
             this.lblCurrentShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentShow.Location = new System.Drawing.Point(124, 33);
+            this.lblCurrentShow.Location = new System.Drawing.Point(125, 40);
             this.lblCurrentShow.Name = "lblCurrentShow";
             this.lblCurrentShow.Size = new System.Drawing.Size(34, 16);
             this.lblCurrentShow.TabIndex = 86;
@@ -265,7 +272,7 @@
             // 
             this.lblCurrentShowHeader.AutoSize = true;
             this.lblCurrentShowHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentShowHeader.Location = new System.Drawing.Point(12, 33);
+            this.lblCurrentShowHeader.Location = new System.Drawing.Point(13, 40);
             this.lblCurrentShowHeader.Name = "lblCurrentShowHeader";
             this.lblCurrentShowHeader.Size = new System.Drawing.Size(115, 16);
             this.lblCurrentShowHeader.TabIndex = 85;
@@ -275,7 +282,7 @@
             // 
             this.lblPlaylistNameHeader.AutoSize = true;
             this.lblPlaylistNameHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(271, 25);
+            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(271, 40);
             this.lblPlaylistNameHeader.Name = "lblPlaylistNameHeader";
             this.lblPlaylistNameHeader.Size = new System.Drawing.Size(108, 16);
             this.lblPlaylistNameHeader.TabIndex = 88;
@@ -285,7 +292,7 @@
             // 
             this.lblPlaylistName.AutoSize = true;
             this.lblPlaylistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistName.Location = new System.Drawing.Point(376, 25);
+            this.lblPlaylistName.Location = new System.Drawing.Point(376, 40);
             this.lblPlaylistName.Name = "lblPlaylistName";
             this.lblPlaylistName.Size = new System.Drawing.Size(34, 16);
             this.lblPlaylistName.TabIndex = 89;
@@ -295,7 +302,7 @@
             // 
             this.lblTrioChannelHeader.AutoSize = true;
             this.lblTrioChannelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannelHeader.Location = new System.Drawing.Point(524, 25);
+            this.lblTrioChannelHeader.Location = new System.Drawing.Point(524, 40);
             this.lblTrioChannelHeader.Name = "lblTrioChannelHeader";
             this.lblTrioChannelHeader.Size = new System.Drawing.Size(100, 16);
             this.lblTrioChannelHeader.TabIndex = 90;
@@ -305,7 +312,7 @@
             // 
             this.lblTrioChannel.AutoSize = true;
             this.lblTrioChannel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannel.Location = new System.Drawing.Point(621, 25);
+            this.lblTrioChannel.Location = new System.Drawing.Point(621, 40);
             this.lblTrioChannel.Name = "lblTrioChannel";
             this.lblTrioChannel.Size = new System.Drawing.Size(34, 16);
             this.lblTrioChannel.TabIndex = 91;
@@ -318,7 +325,7 @@
             this.dataModeSelect.Controls.Add(this.tpBalanceOfPower);
             this.dataModeSelect.Controls.Add(this.tpReferendums);
             this.dataModeSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataModeSelect.Location = new System.Drawing.Point(12, 50);
+            this.dataModeSelect.Location = new System.Drawing.Point(12, 68);
             this.dataModeSelect.Name = "dataModeSelect";
             this.dataModeSelect.SelectedIndex = 0;
             this.dataModeSelect.Size = new System.Drawing.Size(686, 720);
@@ -652,7 +659,6 @@
             this.gbROF.TabIndex = 95;
             this.gbROF.TabStop = false;
             this.gbROF.Text = "Race Office Filters";
-            this.gbROF.Enter += new System.EventHandler(this.gbROF_Enter);
             // 
             // rbShowAll
             // 
@@ -790,13 +796,6 @@
             this.Race_Description.ReadOnly = true;
             this.Race_Description.Width = 302;
             // 
-            // tpExitPolls
-            // 
-            this.tpExitPolls.Location = new System.Drawing.Point(4, 25);
-            this.tpExitPolls.Name = "tpExitPolls";
-            this.tpExitPolls.Size = new System.Drawing.Size(678, 691);
-            this.tpExitPolls.TabIndex = 1;
-            // 
             // tpBalanceOfPower
             // 
             this.tpBalanceOfPower.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -821,7 +820,7 @@
             this.Branch,
             this.Session});
             this.BOPdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.BOPdataGridView.Location = new System.Drawing.Point(126, 75);
+            this.BOPdataGridView.Location = new System.Drawing.Point(100, 59);
             this.BOPdataGridView.Name = "BOPdataGridView";
             this.BOPdataGridView.RowHeadersWidth = 15;
             this.BOPdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -851,7 +850,7 @@
             // 
             this.btnAddBalanceOfPower.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
             this.btnAddBalanceOfPower.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddBalanceOfPower.Location = new System.Drawing.Point(251, 458);
+            this.btnAddBalanceOfPower.Location = new System.Drawing.Point(230, 461);
             this.btnAddBalanceOfPower.Name = "btnAddBalanceOfPower";
             this.btnAddBalanceOfPower.Size = new System.Drawing.Size(219, 60);
             this.btnAddBalanceOfPower.TabIndex = 1;
@@ -875,7 +874,7 @@
             // 
             this.btnAddReferendum.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
             this.btnAddReferendum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddReferendum.Location = new System.Drawing.Point(273, 606);
+            this.btnAddReferendum.Location = new System.Drawing.Point(258, 582);
             this.btnAddReferendum.Name = "btnAddReferendum";
             this.btnAddReferendum.Size = new System.Drawing.Size(172, 60);
             this.btnAddReferendum.TabIndex = 2;
@@ -894,12 +893,12 @@
             this.ReferendumsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6});
             this.ReferendumsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.ReferendumsGrid.Location = new System.Drawing.Point(4, 104);
+            this.ReferendumsGrid.Location = new System.Drawing.Point(7, 59);
             this.ReferendumsGrid.MultiSelect = false;
             this.ReferendumsGrid.Name = "ReferendumsGrid";
             this.ReferendumsGrid.RowHeadersWidth = 15;
             this.ReferendumsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ReferendumsGrid.Size = new System.Drawing.Size(708, 482);
+            this.ReferendumsGrid.Size = new System.Drawing.Size(665, 482);
             this.ReferendumsGrid.TabIndex = 1;
             this.ReferendumsGrid.DoubleClick += new System.EventHandler(this.ReferendumsGrid_DoubleClick);
             // 
@@ -911,78 +910,102 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 700;
             // 
-            // gbExitPolls
+            // tpExitPolls
             // 
-            this.gbExitPolls.BackColor = System.Drawing.Color.SteelBlue;
-            this.gbExitPolls.Controls.Add(this.rbEPMan);
-            this.gbExitPolls.Controls.Add(this.rbEPAuto);
-            this.gbExitPolls.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbExitPolls.Location = new System.Drawing.Point(3, 6);
-            this.gbExitPolls.Name = "gbExitPolls";
-            this.gbExitPolls.Size = new System.Drawing.Size(708, 53);
-            this.gbExitPolls.TabIndex = 121;
-            this.gbExitPolls.TabStop = false;
-            this.gbExitPolls.Text = "Exit Polls";
-            this.gbExitPolls.Visible = false;
-            // 
-            // rbEPMan
-            // 
-            this.rbEPMan.AutoSize = true;
-            this.rbEPMan.Location = new System.Drawing.Point(409, 22);
-            this.rbEPMan.Name = "rbEPMan";
-            this.rbEPMan.Size = new System.Drawing.Size(78, 21);
-            this.rbEPMan.TabIndex = 6;
-            this.rbEPMan.Text = "Manual";
-            this.rbEPMan.UseVisualStyleBackColor = true;
-            this.rbEPMan.CheckedChanged += new System.EventHandler(this.rbEPMan_CheckedChanged);
-            // 
-            // rbEPAuto
-            // 
-            this.rbEPAuto.AutoSize = true;
-            this.rbEPAuto.Location = new System.Drawing.Point(221, 22);
-            this.rbEPAuto.Name = "rbEPAuto";
-            this.rbEPAuto.Size = new System.Drawing.Size(59, 21);
-            this.rbEPAuto.TabIndex = 5;
-            this.rbEPAuto.Text = "Auto";
-            this.rbEPAuto.UseVisualStyleBackColor = true;
-            this.rbEPAuto.CheckedChanged += new System.EventHandler(this.rbEPAuto_CheckedChanged);
-            // 
-            // btnAddExitPoll
-            // 
-            this.btnAddExitPoll.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
-            this.btnAddExitPoll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddExitPoll.Location = new System.Drawing.Point(257, 617);
-            this.btnAddExitPoll.Name = "btnAddExitPoll";
-            this.btnAddExitPoll.Size = new System.Drawing.Size(202, 60);
-            this.btnAddExitPoll.TabIndex = 2;
-            this.btnAddExitPoll.Text = "Add Exit Poll";
-            this.btnAddExitPoll.UseVisualStyleBackColor = true;
-            this.btnAddExitPoll.Click += new System.EventHandler(this.button3_Click);
+            this.tpExitPolls.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tpExitPolls.Controls.Add(this.gbExitPolls);
+            this.tpExitPolls.Controls.Add(this.availableExitPollsGrid);
+            this.tpExitPolls.Controls.Add(this.btnAddExitPoll);
+            this.tpExitPolls.Location = new System.Drawing.Point(4, 25);
+            this.tpExitPolls.Name = "tpExitPolls";
+            this.tpExitPolls.Size = new System.Drawing.Size(678, 691);
+            this.tpExitPolls.TabIndex = 1;
+            this.tpExitPolls.Text = "Exit Polls";
             // 
             // availableExitPollsGrid
             // 
             this.availableExitPollsGrid.AllowUserToAddRows = false;
             this.availableExitPollsGrid.AllowUserToDeleteRows = false;
-            this.availableExitPollsGrid.AllowUserToResizeColumns = false;
+            this.availableExitPollsGrid.AllowUserToOrderColumns = true;
             this.availableExitPollsGrid.AllowUserToResizeRows = false;
             this.availableExitPollsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.availableExitPollsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.availableExitPollsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Type,
-            this.st,
-            this.Category,
-            this.Question,
-            this.rowText,
-            this.Subset});
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn7});
             this.availableExitPollsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.availableExitPollsGrid.Location = new System.Drawing.Point(3, 65);
+            this.availableExitPollsGrid.Location = new System.Drawing.Point(6, 76);
             this.availableExitPollsGrid.MultiSelect = false;
             this.availableExitPollsGrid.Name = "availableExitPollsGrid";
             this.availableExitPollsGrid.RowHeadersWidth = 15;
             this.availableExitPollsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.availableExitPollsGrid.Size = new System.Drawing.Size(708, 532);
-            this.availableExitPollsGrid.TabIndex = 0;
-            this.availableExitPollsGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableExitPollsGrid_CellContentDoubleClick);
+            this.availableExitPollsGrid.Size = new System.Drawing.Size(663, 507);
+            this.availableExitPollsGrid.TabIndex = 122;
+            this.availableExitPollsGrid.DoubleClick += new System.EventHandler(this.availableExitPollsGrid_DoubleClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "questionType";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 69;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "stateOffice";
+            this.dataGridViewTextBoxColumn2.HeaderText = "mxID/st/ofc";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "shortMXLabel";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Category";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 96;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "fullMXLabel";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Question";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 94;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "rowText";
+            this.dataGridViewTextBoxColumn5.HeaderText = "rowText";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 87;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "subsetName";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Subset";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 81;
+            // 
+            // btnAddExitPoll
+            // 
+            this.btnAddExitPoll.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
+            this.btnAddExitPoll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddExitPoll.Location = new System.Drawing.Point(229, 608);
+            this.btnAddExitPoll.Name = "btnAddExitPoll";
+            this.btnAddExitPoll.Size = new System.Drawing.Size(219, 60);
+            this.btnAddExitPoll.TabIndex = 2;
+            this.btnAddExitPoll.Text = "Add Exit Poll";
+            this.btnAddExitPoll.UseVisualStyleBackColor = true;
+            this.btnAddExitPoll.Click += new System.EventHandler(this.btnAddExitPoll_Click);
             // 
             // Type
             // 
@@ -990,7 +1013,6 @@
             this.Type.DataPropertyName = "questionType";
             this.Type.HeaderText = "Type";
             this.Type.Name = "Type";
-            this.Type.Width = 56;
             // 
             // st
             // 
@@ -998,7 +1020,6 @@
             this.st.DataPropertyName = "stateOffice";
             this.st.HeaderText = "mxID/st/ofc";
             this.st.Name = "st";
-            this.st.Width = 89;
             // 
             // Category
             // 
@@ -1006,7 +1027,6 @@
             this.Category.DataPropertyName = "shortMXLabel";
             this.Category.HeaderText = "Category";
             this.Category.Name = "Category";
-            this.Category.Width = 74;
             // 
             // Question
             // 
@@ -1014,7 +1034,6 @@
             this.Question.DataPropertyName = "fullMXLabel";
             this.Question.HeaderText = "Question";
             this.Question.Name = "Question";
-            this.Question.Width = 74;
             // 
             // rowText
             // 
@@ -1022,7 +1041,6 @@
             this.rowText.DataPropertyName = "rowText";
             this.rowText.HeaderText = "rowText";
             this.rowText.Name = "rowText";
-            this.rowText.Width = 70;
             // 
             // Subset
             // 
@@ -1030,7 +1048,6 @@
             this.Subset.DataPropertyName = "subsetName";
             this.Subset.HeaderText = "Subset";
             this.Subset.Name = "Subset";
-            this.Subset.Width = 65;
             // 
             // label1
             // 
@@ -1073,7 +1090,7 @@
             this.pnlStack.Controls.Add(this.lblStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackHeader);
             this.pnlStack.Controls.Add(this.stackGrid);
-            this.pnlStack.Location = new System.Drawing.Point(700, 75);
+            this.pnlStack.Location = new System.Drawing.Point(700, 95);
             this.pnlStack.Name = "pnlStack";
             this.pnlStack.Size = new System.Drawing.Size(711, 693);
             this.pnlStack.TabIndex = 120;
@@ -1110,7 +1127,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(632, 138);
             this.panel3.TabIndex = 129;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // btnClearStack
             // 
@@ -1162,7 +1178,7 @@
             this.btnActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnActivateStack.Location = new System.Drawing.Point(437, 16);
             this.btnActivateStack.Name = "btnActivateStack";
-            this.btnActivateStack.Size = new System.Drawing.Size(180, 108);
+            this.btnActivateStack.Size = new System.Drawing.Size(180, 82);
             this.btnActivateStack.TabIndex = 132;
             this.btnActivateStack.Text = "  Save && Activate Stack";
             this.btnActivateStack.UseVisualStyleBackColor = false;
@@ -1267,27 +1283,27 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
             this.stackGrid.MaximumSize = new System.Drawing.Size(800, 495);
             this.stackGrid.MinimumSize = new System.Drawing.Size(558, 300);
@@ -1299,6 +1315,7 @@
             this.stackGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.stackGrid.Size = new System.Drawing.Size(633, 479);
             this.stackGrid.TabIndex = 118;
+            this.stackGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.stackGrid_CellFormatting);
             // 
             // Element_Type_Description
             // 
@@ -1331,7 +1348,7 @@
             // 
             this.lblIpAddress.AutoSize = true;
             this.lblIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIpAddress.Location = new System.Drawing.Point(822, 33);
+            this.lblIpAddress.Location = new System.Drawing.Point(822, 40);
             this.lblIpAddress.Name = "lblIpAddress";
             this.lblIpAddress.Size = new System.Drawing.Size(34, 16);
             this.lblIpAddress.TabIndex = 121;
@@ -1341,7 +1358,7 @@
             // 
             this.lblHostName.AutoSize = true;
             this.lblHostName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHostName.Location = new System.Drawing.Point(930, 33);
+            this.lblHostName.Location = new System.Drawing.Point(930, 40);
             this.lblHostName.Name = "lblHostName";
             this.lblHostName.Size = new System.Drawing.Size(34, 16);
             this.lblHostName.TabIndex = 122;
@@ -1351,18 +1368,51 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(728, 33);
+            this.label3.Location = new System.Drawing.Point(728, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 16);
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
+            // 
+            // rbEPMan
+            // 
+            this.rbEPMan.AutoSize = true;
+            this.rbEPMan.Location = new System.Drawing.Point(366, 22);
+            this.rbEPMan.Name = "rbEPMan";
+            this.rbEPMan.Size = new System.Drawing.Size(76, 20);
+            this.rbEPMan.TabIndex = 130;
+            this.rbEPMan.Text = "Manual";
+            this.rbEPMan.UseVisualStyleBackColor = true;
+            this.rbEPMan.CheckedChanged += new System.EventHandler(this.rbEPMan_CheckedChanged);
+            // 
+            // gbExitPolls
+            // 
+            this.gbExitPolls.Controls.Add(this.rbEPAuto);
+            this.gbExitPolls.Controls.Add(this.rbEPMan);
+            this.gbExitPolls.Location = new System.Drawing.Point(6, 10);
+            this.gbExitPolls.Name = "gbExitPolls";
+            this.gbExitPolls.Size = new System.Drawing.Size(663, 60);
+            this.gbExitPolls.TabIndex = 131;
+            this.gbExitPolls.TabStop = false;
+            this.gbExitPolls.Text = "Exit Polls";
+            // 
+            // rbEPAuto
+            // 
+            this.rbEPAuto.AutoSize = true;
+            this.rbEPAuto.Location = new System.Drawing.Point(191, 21);
+            this.rbEPAuto.Name = "rbEPAuto";
+            this.rbEPAuto.Size = new System.Drawing.Size(57, 20);
+            this.rbEPAuto.TabIndex = 130;
+            this.rbEPAuto.Text = "Auto";
+            this.rbEPAuto.UseVisualStyleBackColor = true;
+            this.rbEPAuto.CheckedChanged += new System.EventHandler(this.rbEPAuto_CheckedChanged);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1423, 810);
+            this.ClientSize = new System.Drawing.Size(1423, 818);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblHostName);
             this.Controls.Add(this.lblIpAddress);
@@ -1408,8 +1458,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BOPdataGridView)).EndInit();
             this.tpReferendums.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ReferendumsGrid)).EndInit();
-            this.gbExitPolls.ResumeLayout(false);
-            this.gbExitPolls.PerformLayout();
+            this.tpExitPolls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).EndInit();
             this.gbTime.ResumeLayout(false);
             this.pnlStack.ResumeLayout(false);
@@ -1417,6 +1466,8 @@
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).EndInit();
+            this.gbExitPolls.ResumeLayout(false);
+            this.gbExitPolls.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1447,8 +1498,6 @@
         private System.Windows.Forms.TabPage tpBalanceOfPower;
         private System.Windows.Forms.DataGridView availableRacesGrid;
         private System.Windows.Forms.Button btnAddBalanceOfPower;
-        private System.Windows.Forms.DataGridView availableExitPollsGrid;
-        private System.Windows.Forms.Button btnAddExitPoll;
         private System.Windows.Forms.DataGridView BOPdataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn st;
@@ -1496,9 +1545,6 @@
         private System.Windows.Forms.Label lblStackEntriesCount;
         private System.Windows.Forms.Label lblStackHeader;
         private System.Windows.Forms.DataGridView stackGrid;
-        private System.Windows.Forms.GroupBox gbExitPolls;
-        private System.Windows.Forms.RadioButton rbEPMan;
-        private System.Windows.Forms.RadioButton rbEPAuto;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox gbSpF;
         private System.Windows.Forms.RadioButton rbNone;
@@ -1527,6 +1573,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label txtNextPollClosingTime;
         private System.Windows.Forms.Label txtNextPollClosingTimeHeader;
+        private System.Windows.Forms.DataGridView availableExitPollsGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.Button btnAddExitPoll;
+        private System.Windows.Forms.RadioButton rbEPMan;
+        private System.Windows.Forms.GroupBox gbExitPolls;
+        private System.Windows.Forms.RadioButton rbEPAuto;
     }
 }
 

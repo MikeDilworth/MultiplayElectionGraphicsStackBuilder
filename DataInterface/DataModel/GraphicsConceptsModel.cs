@@ -14,6 +14,7 @@ namespace DataInterface.DataModel
         public string ElementTypeDescription { get; set; }
         public string TemplateName { get; set; }
         public string TemplateDescription { get; set; }
+        public Boolean IsBaseConcept { get; set; }
         public Boolean AllowConceptChange { get; set; }
     }
 

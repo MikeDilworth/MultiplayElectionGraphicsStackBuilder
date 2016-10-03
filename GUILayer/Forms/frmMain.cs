@@ -522,7 +522,7 @@ namespace GUILayer.Forms
                 this.referendumsCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
                 referendums = this.referendumsCollection.GetReferendumsCollection();
 
-                // Setup the available exit polls grid
+                // Setup the available referendums grid
                 ReferendumsGrid.AutoGenerateColumns = false;
                 var ReferendumsGridDataSource = new BindingSource(referendums, null);
                 ReferendumsGrid.DataSource = ReferendumsGridDataSource;
@@ -766,10 +766,8 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = stackElementType;
                 newStackElement.Stack_Element_Description = stackElementDescription;
                 
-                // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = "TEMP";
-                //093016
-                    //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_3_Way).Element_Type_Template_ID;
+                // Get the template ID for the specified element type & concept ID
+                newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, stackElementType);
 
                 newStackElement.Election_Type = selectedRace.Election_Type;
                 newStackElement.Office_Code = selectedRace.Race_Office;
@@ -1996,9 +1994,7 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = eType;
                 newStackElement.Stack_Element_Description = "Balance Of Power";
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = "TEMP";
-                //093016
-                //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, eType).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, eType);
 
                 newStackElement.Election_Type = "G";
                 newStackElement.Office_Code = BOPoffice;
@@ -2055,12 +2051,11 @@ namespace GUILayer.Forms
         /// <summary>
         /// Methods to add selected Exit Polls to stack
         /// </summary>
-        private void button3_Click(object sender, EventArgs e)
+        private void btnAddExitPoll_Click(object sender, EventArgs e)
         {
             AddExitPoll();
         }
-
-        private void availableExitPollsGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void availableExitPollsGrid_DoubleClick(object sender, EventArgs e)
         {
             AddExitPoll();
         }
@@ -2081,9 +2076,7 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = (short)StackElementTypes.Exit_Poll_Full_Screen;
                 newStackElement.Stack_Element_Description = "Exit Poll";
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = "TEMP";
-                //093016
-                //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Exit_Poll_Full_Screen).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, (short)StackElementTypes.Exit_Poll_Full_Screen);
 
                 newStackElement.Election_Type = selectedPoll.electionType;
                 newStackElement.Office_Code = selectedPoll.office;
@@ -2178,6 +2171,7 @@ namespace GUILayer.Forms
             Addreferendum();
         }
 
+        // Method to add a referendum
         private void Addreferendum()
         {
             try
@@ -2194,7 +2188,7 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = (short)StackElementTypes.Referendums;
                 newStackElement.Stack_Element_Description = "Referendums";
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = "TEMP";
+                newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, (short)StackElementTypes.Referendums);
                 //093016
                 //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Referendums).Element_Type_Template_ID;
 
@@ -2638,6 +2632,7 @@ namespace GUILayer.Forms
                 }
                 nameList = nameList + ")";
 
+                // Calculate element type based on number of candidates
                 int eType = numCand * 2;
 
                 string eDesc = "Race Board (" + numCand + "-Way Select)"; 
@@ -2651,9 +2646,7 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Description = eDesc;
                 
                 // Get the template ID for the specified element type
-                newStackElement.Stack_Element_TemplateID = "TEMP";
-                //093016
-                //mseStackElementTypeCollection.GetMSEStackElementType(mseStackElementTypes, (short)StackElementTypes.Race_Board_1_Way).Element_Type_Template_ID;
+                newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, newStackElement.Stack_Element_Type);
 
                 newStackElement.Election_Type = selectedRace.Election_Type;
                 newStackElement.Office_Code = selectedRace.Race_Office;
@@ -2703,7 +2696,6 @@ namespace GUILayer.Forms
                 log.Error("frmMain Exception occurred: " + ex.Message);
                 log.Debug("frmMain Exception occurred", ex);
             }
-
         }
         #endregion
 
@@ -2714,30 +2706,16 @@ namespace GUILayer.Forms
             // Set data members for specifying graphics concept
             conceptID = (short)(cbGraphicConcept.SelectedIndex + 1);
             conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
-
-            // Call method to re-assign templates based on graphics concept selected
-            if (stackElements.Count > 0)
-            {
-                // Loop through stack elements
-                for (int i = 0; i < stackElements.Count; i++)
-                {
-                    // Loop through graphics concepts
-                    for (int j = 0; j < graphicsConceptTypes.Count; j++)
-                    {
-                        
-                    }
-                }
-            }
         }
         
-        // Look up Template Name from conceptID and BoardType
-        private string GetTemplate(Int16 cID, Int16 boardType)
+        // Look up Template Name from conceptID and BoardType - used when saving out various graphic element types
+        private string GetTemplate(Int16 conceptID, Int16 boardType)
         {
             Int16 Indx = -1;
             string Template = "None";
             for (short  i = 0; i < graphicsConcepts.Count; i++)
             {
-                if ((cID == graphicsConcepts[i].ConceptID) & (boardType == (short)graphicsConcepts[i].ElementTypeCode))
+                if ((conceptID == graphicsConcepts[i].ConceptID) & (boardType == (short)graphicsConcepts[i].ElementTypeCode))
                 {
                     Indx = i;
                     Template = graphicsConcepts[i].TemplateName;
@@ -2746,21 +2724,38 @@ namespace GUILayer.Forms
             }
             return Template;
         }
-        #endregion 
 
-        private void gbROF_Enter(object sender, EventArgs e)
+        private Boolean GetStackGridHighlightEnableFlag(int rowIndex)
         {
+            Boolean highlightEnable = false;
 
+            // Call method to re-assign templates based on graphics concept selected
+            if ((stackElements.Count > 0) && (graphicsConceptTypes.Count > 0))
+            {
+                // Loop through stack elements
+                for (int i = 0; i < stackElements.Count; i++)
+                {
+                    // Loop through graphics concepts
+                    for (int j = 0; j < graphicsConceptTypes.Count; j++)
+                    {
+                        highlightEnable = false;
+                    }
+                }
+            }
+
+            return highlightEnable;
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        // Method to color any rows in grid red where the template specified is not the default template for the
+        // data type and cannot be changed.
+        private void stackGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
+            if (GetStackGridHighlightEnableFlag((int)e.RowIndex))
+                stackGrid.Rows[e.RowIndex].Cells["TemplateID"].Style.BackColor = Color.Red;
         }
 
-        private void pnlStack_Paint(object sender, PaintEventArgs e)
-        {
+        #endregion
 
-        }
+
     }
 }

@@ -69,6 +69,7 @@ namespace LogicLayer.Collections
                         ElementTypeDescription = row["ElementTypeDescription"].ToString() ?? "",
                         TemplateName = row["TemplateName"].ToString() ?? "",
                         TemplateDescription = row["TemplateDescription"].ToString() ?? "",
+                        IsBaseConcept = Convert.ToBoolean(row["IsBaseConcept"] ?? 0),
                         AllowConceptChange = Convert.ToBoolean(row["AllowConceptChange"] ?? 0),
                     };
 
