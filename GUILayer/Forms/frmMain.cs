@@ -1525,8 +1525,22 @@ namespace GUILayer.Forms
                     // Get playlists directory URI based on current show
                     showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI, currentShowName);
 
+                    // Log if the URI could not be resolved
+                    if (showPlaylistsDirectoryURI == string.Empty)
+                    {
+                        log.Error("Could not resolve Show Playlist Directory URI");
+                        log.Debug("Could not resolve Show Playlist Directory URI");
+                    }
+
                     // Get templates directory URI based on current show
                     string showTemplatesDirectoryURI = show.GetTemplateCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
+
+                    // Log if the URI could not be resolved
+                    if (showTemplatesDirectoryURI == string.Empty)
+                    {
+                        log.Error("Could not resolve Show Templates Directory URI");
+                        log.Debug("Could not resolve Show Templates Directory URI");
+                    }
 
                     // Check for a playlist in the VDOM with the specified name & return the Alt link; if the playlist doesn't exist, create it first
                     if (playlist.CheckIfPlaylistExists(showPlaylistsDirectoryURI, currentPlaylistName) == false)
@@ -1534,7 +1548,7 @@ namespace GUILayer.Forms
                         playlist.CreatePlaylist(showPlaylistsDirectoryURI, currentPlaylistName);
                     }
 
-                    // Check for a playlist in the VDOM with the specified name & return the Alt link
+                    // Check for a playlist in the VDOM with the specified name & return the Down link
                     // Delete the group so it can be re-created
                     string playlistDownLink = playlist.GetPlaylistDownLink(showPlaylistsDirectoryURI, currentPlaylistName);
                     if (playlistDownLink != string.Empty)
@@ -1578,8 +1592,23 @@ namespace GUILayer.Forms
                                 //Get the URI to the show elements collection
                                 elementCollectionURIShow = show.GetElementCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
 
+                                // Log if the URI could not be resolved
+                                if (elementCollectionURIShow == string.Empty)
+                                {
+                                    log.Error("Could not resolve Show Elements Collection URI");
+                                    log.Debug("Could not resolve Show Elements Collection URI");
+                                }
+
+
                                 //Get the URI to the show templates collection
                                 templateCollectionURIShow = show.GetTemplateCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
+
+                                // Log if the URI could not be resolved
+                                if (templateCollectionURIShow == string.Empty)
+                                {
+                                    log.Error("Could not resolve Show Templates Collection URI");
+                                    log.Debug("Could not resolve Show Templates Collection URI");
+                                }
 
                                 //Get the URI to the model for the specified template within the specified show
                                 templateModel = template.GetTemplateElementModel(templateCollectionURIShow, templateID);
@@ -1594,6 +1623,14 @@ namespace GUILayer.Forms
 
                                 //Get the URI to the currently-specified playlist                                
                                 elementCollectionURIPlaylist = restResponse.downLink;
+
+                                // Check for element collection URI for the specified playlist
+                                if (elementCollectionURIPlaylist == null)
+                                {                                
+                                    log.Error("Could not resolve URI for specified playlist");
+                                    log.Debug("Could not resolve URI for specified playlist");
+                                }
+
 
                                 // Set the data values as name/value pairs
                                 // Get the element from the collection
@@ -1612,6 +1649,12 @@ namespace GUILayer.Forms
                                 element.createNewElement(i.ToString() + ": " + racePreviewElement.Raceboard_Description, elementCollectionURIPlaylist, templateModel, nameValuePairs, defaultTrioChannel);
                             }
                         }
+                    }
+                    // Log if the URI could not be resolved
+                    else
+                    {
+                        log.Error("Could not resolve Playlist Down link");
+                        log.Debug("Could not resolve Playlist Down link");
                     }
 
                     // SQL DB OPERATION - SAVE OUT THE STACK ELEMENTS
