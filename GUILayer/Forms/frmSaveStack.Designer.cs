@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.availableStacksGrid = new System.Windows.Forms.DataGridView();
@@ -37,7 +37,6 @@
             this.ShowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSaveStack = new System.Windows.Forms.Button();
-            this.btnSaveAsDefaultStack = new System.Windows.Forms.Button();
             this.txtStackDescription = new System.Windows.Forms.TextBox();
             this.lblStackDescription = new System.Windows.Forms.Label();
             this.lblStackID = new System.Windows.Forms.Label();
@@ -51,9 +50,9 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(130, 717);
+            this.button2.Location = new System.Drawing.Point(224, 629);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(165, 55);
+            this.button2.Size = new System.Drawing.Size(165, 65);
             this.button2.TabIndex = 4;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
@@ -74,14 +73,14 @@
             this.availableStacksGrid.AllowUserToDeleteRows = false;
             this.availableStacksGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.availableStacksGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.availableStacksGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.availableStacksGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.availableStacksGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.availableStacksGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ixStackID,
@@ -93,14 +92,14 @@
             this.availableStacksGrid.MultiSelect = false;
             this.availableStacksGrid.Name = "availableStacksGrid";
             this.availableStacksGrid.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.availableStacksGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.availableStacksGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.availableStacksGrid.RowHeadersWidth = 15;
             this.availableStacksGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.availableStacksGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -143,24 +142,9 @@
             this.btnSaveStack.Name = "btnSaveStack";
             this.btnSaveStack.Size = new System.Drawing.Size(175, 65);
             this.btnSaveStack.TabIndex = 2;
-            this.btnSaveStack.Text = "Save Stack\r\n(Not Default)\r\n";
+            this.btnSaveStack.Text = "Save Stack";
             this.btnSaveStack.UseVisualStyleBackColor = true;
             this.btnSaveStack.Click += new System.EventHandler(this.btnLoadStack_Click);
-            // 
-            // btnSaveAsDefaultStack
-            // 
-            this.btnSaveAsDefaultStack.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSaveAsDefaultStack.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.btnSaveAsDefaultStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveAsDefaultStack.Image = global::GUILayer.Properties.Resources.action_create_16xLG;
-            this.btnSaveAsDefaultStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveAsDefaultStack.Location = new System.Drawing.Point(224, 629);
-            this.btnSaveAsDefaultStack.Name = "btnSaveAsDefaultStack";
-            this.btnSaveAsDefaultStack.Size = new System.Drawing.Size(175, 65);
-            this.btnSaveAsDefaultStack.TabIndex = 3;
-            this.btnSaveAsDefaultStack.Text = "Save Stack \r\n(As Default)\r\n";
-            this.btnSaveAsDefaultStack.UseVisualStyleBackColor = false;
-            this.btnSaveAsDefaultStack.Click += new System.EventHandler(this.btnDefaultStack_Click);
             // 
             // txtStackDescription
             // 
@@ -207,7 +191,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(425, 784);
+            this.ClientSize = new System.Drawing.Size(425, 712);
             this.Controls.Add(this.txtStackDescription);
             this.Controls.Add(this.lblStackDescription);
             this.Controls.Add(this.lblStackID);
@@ -216,7 +200,6 @@
             this.Controls.Add(this.btnSaveStack);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.availableStacksGrid);
-            this.Controls.Add(this.btnSaveAsDefaultStack);
             this.Location = new System.Drawing.Point(550, 150);
             this.Name = "FrmSaveStack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -236,7 +219,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ixStackID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShowName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StackName;
-        private System.Windows.Forms.Button btnSaveAsDefaultStack;
         private System.Windows.Forms.TextBox txtStackDescription;
         private System.Windows.Forms.Label lblStackDescription;
         private System.Windows.Forms.Label lblStackID;

@@ -183,15 +183,5 @@ namespace GUILayer.Forms
         {
 
         }
-
-        private void btnDefaultStack_Click(object sender, EventArgs e)
-        {
-            StackId = 0;
-            StackDescription = "Default Stack";
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        
     }
 }
