@@ -25,6 +25,8 @@ namespace GUILayer.Forms
 
         private readonly short _st;
 
+        public Boolean candidatesFound = false;
+
         public FrmCandidateSelect(short numCandidates, short stNum, string office, string electionType,
             string raceDesription)
         {
@@ -35,58 +37,56 @@ namespace GUILayer.Forms
             _ofc = office;
             _eType = electionType;
 
-            Width = numCandidates*360 + 40;
-            dgvCand1.Left = 40;
-            dgvCand2.Left = 40;
-            dgvCand3.Left = 40;
-            dgvCand4.Left = 40;
-            dgvCand1.Top = 80;
-            dgvCand2.Top = 80;
-            dgvCand3.Top = 80;
-            dgvCand4.Top = 80;
-            var half = (numCandidates*360 + 40)/2;
+            Width = numCandidates*340 + 20;
+            dgvCand1.Left = 20;
+            dgvCand2.Left = 20;
+            dgvCand3.Left = 20;
+            dgvCand4.Left = 20;
+            dgvCand1.Top = 70;
+            dgvCand2.Top = 70;
+            dgvCand3.Top = 70;
+            dgvCand4.Top = 70;
+            var half = (numCandidates*340 + 20)/2;
 
             switch (numCandidates)
             {
                 case 1:
-                    dgvCand1.Left = 40;
+                    dgvCand1.Left = 15;
                     dgvCand1.Visible = true;
                     dgvCand2.Visible = false;
                     dgvCand3.Visible = false;
                     dgvCand4.Visible = false;
-                    //btnOK.Left = 80;
-                    //btnCancel.Left = 220;
                     break;
                 case 2:
-                    dgvCand1.Left = 40;
-                    dgvCand2.Left = 400;
+                    dgvCand1.Left = 15;
+                    dgvCand2.Left = 355;
                     dgvCand1.Visible = true;
                     dgvCand2.Visible = true;
                     dgvCand3.Visible = false;
                     dgvCand4.Visible = false;
                     break;
                 case 3:
-                    dgvCand1.Left = 40;
-                    dgvCand2.Left = 400;
-                    dgvCand3.Left = 760;
+                    dgvCand1.Left = 15;
+                    dgvCand2.Left = 355;
+                    dgvCand3.Left = 695;
                     dgvCand1.Visible = true;
                     dgvCand2.Visible = true;
                     dgvCand3.Visible = true;
                     dgvCand4.Visible = false;
                     break;
                 case 4:
-                    dgvCand1.Left = 40;
-                    dgvCand2.Left = 400;
-                    dgvCand3.Left = 760;
-                    dgvCand4.Left = 1120;
+                    dgvCand1.Left = 15;
+                    dgvCand2.Left = 355;
+                    dgvCand3.Left = 695;
+                    dgvCand4.Left = 1035;
                     dgvCand1.Visible = true;
                     dgvCand2.Visible = true;
                     dgvCand3.Visible = true;
                     dgvCand4.Visible = true;
                     break;
                 default:
-                    dgvCand1.Left = 40;
-                    dgvCand2.Left = 540;
+                    dgvCand1.Left = 15;
+                    dgvCand2.Left = 355;
                     dgvCand1.Visible = true;
                     dgvCand2.Visible = true;
                     dgvCand3.Visible = false;
@@ -95,8 +95,7 @@ namespace GUILayer.Forms
             }
 
             btnOK.Left = half - 120;
-            btnCancel.Left = half + 20;
-
+            btnCancel.Left = half + 10;
 
             label2.Text = numCandidates + @" Way Select Board for: " + raceDesription;
             GetCandidatesForRace();
@@ -150,12 +149,18 @@ namespace GUILayer.Forms
                 label1.Text = @"Number of candidates in race: " + _raceData.Count;
                 if (_raceData.Count < _numCand)
                 {
+                    candidatesFound = false;
+
                     MessageBox.Show(
                         @"You cannot add a " + label2.Text + @" because there are only " + _raceData.Count +
                         @" candidates in race.", @"Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     DialogResult = DialogResult.Abort;
                     Close();
+                }
+                else
+                {
+                    candidatesFound = true;
                 }
             }
             catch (Exception ex)

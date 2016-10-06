@@ -142,27 +142,21 @@ namespace GUILayer.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("14")]
         public int ApplicationID {
             get {
                 return ((int)(this["ApplicationID"]));
             }
-            set {
-                this["ApplicationID"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Election Graphics Stack Builder")]
         public string ApplicationName {
             get {
                 return ((string)(this["ApplicationName"]));
-            }
-            set {
-                this["ApplicationName"] = value;
             }
         }
         
@@ -174,6 +168,42 @@ namespace GUILayer.Properties {
         public string GraphicsDBConnectionString {
             get {
                 return ((string)(this["GraphicsDBConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TabEnableRaces {
+            get {
+                return ((bool)(this["TabEnableRaces"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool TabEnableExitPolls {
+            get {
+                return ((bool)(this["TabEnableExitPolls"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TabEnableBalanceOfPower {
+            get {
+                return ((bool)(this["TabEnableBalanceOfPower"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool TabEnableReferendums {
+            get {
+                return ((bool)(this["TabEnableReferendums"]));
             }
         }
     }

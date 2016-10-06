@@ -115,7 +115,7 @@
             this.Question = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rowText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subset = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.timeLabel = new System.Windows.Forms.Label();
             this.timerStatusUpdate = new System.Windows.Forms.Timer(this.components);
             this.gbTime = new System.Windows.Forms.GroupBox();
             this.pnlStack = new System.Windows.Forms.Panel();
@@ -303,7 +303,7 @@
             // 
             this.lblTrioChannelHeader.AutoSize = true;
             this.lblTrioChannelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannelHeader.Location = new System.Drawing.Point(524, 40);
+            this.lblTrioChannelHeader.Location = new System.Drawing.Point(504, 40);
             this.lblTrioChannelHeader.Name = "lblTrioChannelHeader";
             this.lblTrioChannelHeader.Size = new System.Drawing.Size(100, 16);
             this.lblTrioChannelHeader.TabIndex = 90;
@@ -313,7 +313,7 @@
             // 
             this.lblTrioChannel.AutoSize = true;
             this.lblTrioChannel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannel.Location = new System.Drawing.Point(621, 40);
+            this.lblTrioChannel.Location = new System.Drawing.Point(601, 40);
             this.lblTrioChannel.Name = "lblTrioChannel";
             this.lblTrioChannel.Size = new System.Drawing.Size(34, 16);
             this.lblTrioChannel.TabIndex = 91;
@@ -1083,17 +1083,17 @@
             this.Subset.HeaderText = "Subset";
             this.Subset.Name = "Subset";
             // 
-            // label1
+            // timeLabel
             // 
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(6, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(248, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Time";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.timeLabel.BackColor = System.Drawing.Color.Black;
+            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeLabel.ForeColor = System.Drawing.Color.Red;
+            this.timeLabel.Location = new System.Drawing.Point(6, 17);
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Size = new System.Drawing.Size(248, 20);
+            this.timeLabel.TabIndex = 0;
+            this.timeLabel.Text = "Time";
+            this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timerStatusUpdate
             // 
@@ -1102,7 +1102,7 @@
             // 
             // gbTime
             // 
-            this.gbTime.Controls.Add(this.label1);
+            this.gbTime.Controls.Add(this.timeLabel);
             this.gbTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbTime.Location = new System.Drawing.Point(1149, 27);
@@ -1542,7 +1542,7 @@
         private System.Windows.Forms.RadioButton rbCalled;
         private System.Windows.Forms.RadioButton rbJustCalled;
         private System.Windows.Forms.RadioButton rbTCTC;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Timer timerStatusUpdate;
         private System.Windows.Forms.GroupBox gbTime;
         private System.Windows.Forms.Button btnAddAll;

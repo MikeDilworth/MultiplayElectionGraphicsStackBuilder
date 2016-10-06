@@ -42,10 +42,10 @@
     <Setting Name="DefaultTrioChannel" Type="System.String" Scope="Application">
       <Value Profile="(Default)">[PROGRAM]</Value>
     </Setting>
-    <Setting Name="ApplicationID" Type="System.Int32" Scope="User">
+    <Setting Name="ApplicationID" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">14</Value>
     </Setting>
-    <Setting Name="ApplicationName" Type="System.String" Scope="User">
+    <Setting Name="ApplicationName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Election Graphics Stack Builder</Value>
     </Setting>
     <Setting Name="GraphicsDBConnectionString" Type="(Connection string)" Scope="Application">
@@ -54,6 +54,18 @@
   &lt;ConnectionString&gt;Data Source=enygdb;Initial Catalog=VizMultiPlayStackData;Persist Security Info=True;User ID=gfxuser;Password=elect2014&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=enygdb;Initial Catalog=VizMultiPlayStackData;Persist Security Info=True;User ID=gfxuser;Password=elect2014</Value>
+    </Setting>
+    <Setting Name="TabEnableRaces" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="TabEnableExitPolls" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TabEnableBalanceOfPower" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="TabEnableReferendums" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

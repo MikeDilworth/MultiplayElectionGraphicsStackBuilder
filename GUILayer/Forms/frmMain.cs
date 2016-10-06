@@ -194,6 +194,40 @@ namespace GUILayer.Forms
                 rbNone.Checked = true;
                 rbNone.BackColor = Color.Gold;
 
+                // Set enable/disable state of tab pages
+                if (Properties.Settings.Default.TabEnableRaces)
+                {
+                    tpRaces.Enabled = true;   
+                }
+                else
+                {
+                    tpRaces.Enabled = false;   
+                }
+                if (Properties.Settings.Default.TabEnableExitPolls)
+                {
+                    tpExitPolls.Enabled = true;
+                }
+                else
+                {
+                    tpExitPolls.Enabled = false;
+                }
+                if (Properties.Settings.Default.TabEnableBalanceOfPower)
+                {
+                    tpBalanceOfPower.Enabled = true;
+                }
+                else
+                {
+                    tpBalanceOfPower.Enabled = false;
+                }
+                if (Properties.Settings.Default.TabEnableReferendums)
+                {
+                    tpReferendums.Enabled = true;
+                }
+                else
+                {
+                    tpReferendums.Enabled = false;
+                }
+
                 // Update status
                 toolStripStatusLabel.Text = "Starting program initialization - loading data from SQL database.";
 
@@ -366,7 +400,7 @@ namespace GUILayer.Forms
             }
 
             //label1.Text = Convert.ToString(referenceTime);
-            label1.Text = String.Format("{0:h:mm:ss tt  MMM dd, yyyy}", referenceTime);
+            timeLabel.Text = String.Format("{0:h:mm:ss tt  MMM dd, yyyy}", referenceTime);
 
         }
 
@@ -2684,22 +2718,27 @@ namespace GUILayer.Forms
                 DialogResult dr = new DialogResult();
                 //frmCandidateSelect selectCand = new frmCandidateSelect();
                 FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
-                dr = selectCand.ShowDialog();
-                if (dr == DialogResult.OK)
+
+                // Only process if required number of candidates in race
+                if (selectCand.candidatesFound)
                 {
-                    // Set candidateID's
+                    dr = selectCand.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        // Set candidateID's
 
-                    selectedCandidate1 = selectCand.Cand1;
-                    cand1Name = selectCand.CandName1;
-                    selectedCandidate2 = selectCand.Cand2;
-                    cand2Name = selectCand.CandName2;
-                    selectedCandidate3 = selectCand.Cand3;
-                    cand3Name = selectCand.CandName3;
-                    selectedCandidate4 = selectCand.Cand4;
-                    cand4Name = selectCand.CandName4;
-                    AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                        selectedCandidate1 = selectCand.Cand1;
+                        cand1Name = selectCand.CandName1;
+                        selectedCandidate2 = selectCand.Cand2;
+                        cand2Name = selectCand.CandName2;
+                        selectedCandidate3 = selectCand.Cand3;
+                        cand3Name = selectCand.CandName3;
+                        selectedCandidate4 = selectCand.Cand4;
+                        cand4Name = selectCand.CandName4;
+                        AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3,
+                            selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    }
                 }
-
             }
             catch (Exception ex)
             {
