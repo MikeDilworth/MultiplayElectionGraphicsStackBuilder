@@ -27,8 +27,6 @@ namespace GUILayer.Forms
         private Int32 stackId;
         public Int32 StackId { get; set; }
 
-        public Boolean PromptForOverwrite { get; set; }
-
         //private string stackDescription;
         //public string StackDescription { get { return stackDescription; } set { StackDescription = stackDescription; } }
         public string StackDescription { get; set; }
@@ -139,7 +137,7 @@ namespace GUILayer.Forms
                 try
                 {
                     Boolean stackExists = stacksCollection.CheckIfStackExists_DB(stackId);
-                    if ((stackExists) && (PromptForOverwrite))
+                    if (stackExists)
                     {
                         // Check to see if the sublist already exists in the database; if so, prompt for overwrite
                         DialogResult result1 =
@@ -174,9 +172,7 @@ namespace GUILayer.Forms
                     // Log error
                     log.Error("frmMain Exception occurred: " + ex.Message);
                     log.Debug("frmMain Exception occurred", ex);
-                }
-            
-            
+                }                        
         }
 
         private void txtStackID_TextChanged(object sender, EventArgs e)

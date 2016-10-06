@@ -64,9 +64,13 @@ namespace GUILayer.Forms
         private StacksCollection stacksCollection;
         BindingList<StackModel> stacks;
 
-        // Define the collection object for the elements within a specified stack
+        // Define the collection object for the elements within a specified working stack
         public StackElementsCollection stackElementsCollection;
         BindingList<StackElementModel> stackElements;
+
+        // Define the collection object for the elements within a specified stack to be activated
+        public StackElementsCollection activateStackElementsCollection;
+        BindingList<StackElementModel> activateStackElements;
 
         // Define the collection object for the list of available races
         private AvailableRacesCollection availableRacesCollection;
@@ -208,8 +212,8 @@ namespace GUILayer.Forms
                 // Query the elections DB to get application flags(option settings)
                 RefreshApplicationFlags();
 
-                // Init the stack elements collection
-                CreateStackElementsCollection();
+                // Init the stack elements collections
+                CreateStackElementsCollections();
 
                 // Setup data binding for stacks grid
                 stackGrid.AutoGenerateColumns = false;
@@ -636,11 +640,11 @@ namespace GUILayer.Forms
         /// STACK CREATION & MANAGEMENT FUNCTIONS
         /// </summary>
         // Function create the initial playlist elements collection for editing
-        private void CreateStackElementsCollection()
+        private void CreateStackElementsCollections()
         {
             try
             {
-                // Setup the master race collection & bind to grid
+                // Setup the master stack collection & bind to grid
                 this.stackElementsCollection = new StackElementsCollection();
                 this.stackElementsCollection.MainDBConnectionString = GraphicsDBConnectionString;
                 stackElements = this.stackElementsCollection.GetStackElementsCollection(-1);
@@ -649,6 +653,12 @@ namespace GUILayer.Forms
                 stackGrid.AutoGenerateColumns = false;
                 var stackGridDataSource = new BindingSource(stackElements, null);
                 stackGrid.DataSource = stackGridDataSource;
+
+                // Setup the stack collection used for loading to MSE only
+                this.activateStackElementsCollection = new StackElementsCollection();
+                this.activateStackElementsCollection.MainDBConnectionString = GraphicsDBConnectionString;
+                activateStackElements = this.stackElementsCollection.GetStackElementsCollection(-1);
+
             }
             catch (Exception ex)
             {
@@ -1060,9 +1070,13 @@ namespace GUILayer.Forms
                         //Clear the collection
                         stackElements.Clear();
                     }
+
+                    // Clear out current settings
+                    stackID = 0;
+                    txtStackName.Text = "None Selected";
+
                     // Update stack entries count label
                     txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                    txtStackName.Text = "None Selected";
                 }
             }
             catch (Exception ex)
@@ -1088,6 +1102,13 @@ namespace GUILayer.Forms
                 }
                 // Update stack entries count label
                 txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+
+                // Clear out current settings if no entries left in stack
+                if (stackElements.Count == 0)
+                {
+                    stackID = 0;
+                    txtStackName.Text = "None Selected";
+                }
             }
             catch (Exception ex)
             {
@@ -1110,17 +1131,19 @@ namespace GUILayer.Forms
         private void LoadSelectedStack()
         {
             try
-            {
-                
+            {               
                 //Refresh the list of available stacks
                 RefreshStacksList();
                 Int32 stackIndex = 0;
-                
-                DialogResult dr = new DialogResult();
-                //frmCandidateSelect selectCand = new frmCandidateSelect();
+
+                // Setup dialog to load stack
+                DialogResult dr = new DialogResult();               
                 frmLoadStack selectStack = new frmLoadStack();
                 selectStack.StackCollectionCount = stackElements.Count;
+
                 dr = selectStack.ShowDialog();
+
+                // Check for Load Stack operation
                 if (dr == DialogResult.OK)
                 {
                     // Set candidateID's
@@ -1143,6 +1166,8 @@ namespace GUILayer.Forms
                     txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
                     txtStackName.Text = selectedStack.StackName + " [ID: " + Convert.ToString(selectedStack.ixStackID) + "]";
                 }
+
+                // Check for Delete Stack operation
                 else if (dr == DialogResult.Abort)
                 {
                     stackIndex = selectStack.StackIndex;
@@ -1181,22 +1206,27 @@ namespace GUILayer.Forms
                         RefreshStacksList();
                     }
                 }
+
+                // Check for Activate Stack operation
                 else if (dr == DialogResult.Yes)
                 {
                     // Set candidateID's
                     stackIndex = selectStack.StackIndex;
-                    Int32 selStackID = selectStack.StackID;
-                    string selStackDesc = selectStack.StackDesc;
+                    stackID = selectStack.StackID;
+                    stackDescription = selectStack.StackDesc;
 
                     // Clear the collection
-                    //stackElements.Clear();
+                    activateStackElements.Clear();
 
                     // Get the stack ID and load the selected collection
-                    int currentStackIndex = stackIndex;
-                    StackModel selectedStack = stacksCollection.GetStackMetadata(stacks, currentStackIndex);
+                    StackModel selectedStack = stacksCollection.GetStackMetadata(stacks, stackIndex);
 
-                    ActivateStack(selStackID, selStackDesc);
+                    // Load the collection
+                    activateStackElementsCollection.GetStackElementsCollection(selectedStack.ixStackID);
+                    activateStackElements = activateStackElementsCollection.stackElements; 
                     
+                    // Activate the specified stack
+                    ActivateStack(stackID, stackDescription, activateStackElementsCollection, activateStackElements);                    
                 }
 
             }
@@ -1209,50 +1239,84 @@ namespace GUILayer.Forms
         }
 
         // Method for handing click on Save & Activate stack button
-        private void btnActivateStack_Click(object sender, EventArgs e)
+        private void btnSaveActivateStack_Click(object sender, EventArgs e)
         {
             try
             {
-                //Int32 stackID = 0;
-                //string stackDesc;
                 if (stackElements.Count > 0)
                 {
-                    DialogResult dr = new DialogResult();
-                    FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
-                    saveStack.PromptForOverwrite = cbPromptForOverwrite.Checked;
-                    dr = saveStack.ShowDialog();
-                    if (dr == DialogResult.OK)
+                    // Only display dialog if checkbox for prompt for info is checked
+                    if (cbPromptForInfo.Checked == true)
                     {
+                        DialogResult dr = new DialogResult();
+                        FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
+                        dr = saveStack.ShowDialog();
 
+                        // Will only get here if Prompt for Info checkbox is checked
+                        if (dr == DialogResult.OK)
+                        {
+
+                            // Instantiate a new top-level stack metadata model
+                            StackModel stackMetadata = new StackModel();
+
+                            stackID = saveStack.StackId;
+                            stackDescription = saveStack.StackDescription;
+                            stackMetadata.ixStackID = stackID;
+                            stackMetadata.StackName = stackDescription;
+
+                            stackMetadata.StackType = 0;
+                            stackMetadata.ShowName = currentShowName;
+                            stackMetadata.ConceptID = conceptID;
+                            stackMetadata.ConceptName = conceptName;
+                            stackMetadata.Notes = "Not currently used";
+
+                            // Save out the top level metadata for the stack
+                            stacksCollection.SaveStack(stackMetadata);
+
+                            // Save out stack elements; specify stack ID, and set flag to delete existing elements before adding
+                            stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
+
+                            // Update stack entries count label & name label
+                            txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+                            txtStackName.Text = stackDescription + " [ID: " + Convert.ToString(stackID) + "]";
+
+                            // Call method to save stack out to MSE
+                            ActivateStack(stackID, stackDescription, stackElementsCollection, stackElements);
+                        }
+                    }
+                    else if ((cbPromptForInfo.Checked == false) && (stackID > 0))
+                    {
                         // Instantiate a new top-level stack metadata model
                         StackModel stackMetadata = new StackModel();
 
-                        stackID = saveStack.StackId;
-                        stackDescription  = saveStack.StackDescription;
                         stackMetadata.ixStackID = stackID;
                         stackMetadata.StackName = stackDescription;
-                        
+
                         stackMetadata.StackType = 0;
                         stackMetadata.ShowName = currentShowName;
                         stackMetadata.ConceptID = conceptID;
                         stackMetadata.ConceptName = conceptName;
                         stackMetadata.Notes = "Not currently used";
+
+                        // Save out the top level metadata for the stack
                         stacksCollection.SaveStack(stackMetadata);
 
                         // Save out stack elements; specify stack ID, and set flag to delete existing elements before adding
                         stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
 
                         // Update stack entries count label & name label
-                        txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                        txtStackName.Text = stackDescription + " [ID: " + Convert.ToString(stackID) + "]";
-                
-                        ActivateStack(stackID, stackDescription);
+                        //txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+                        //txtStackName.Text = stackDescription + " [ID: " + Convert.ToString(stackID) + "]";
+
+                        // Call method to save stack out to MSE
+                        ActivateStack(stackID, stackDescription, stackElementsCollection, stackElements);
                     }
+
                 }
 
                 // Set status strip
                 toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
-            //    toolStripStatusLabel.Text = "Status Logging Message: Stack saved out to database and activated";
+                // toolStripStatusLabel.Text = "Status Logging Message: Stack saved out to database and activated";
                 toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack {0} saved out to database and activated", stackID);
             }
                     
@@ -1262,14 +1326,14 @@ namespace GUILayer.Forms
                 log.Error("Exception occurred while trying to save and activate group: " + ex.Message);
             }
         }
+
         /// <summary>
-        /// Mathod to Activate Stack
+        /// Mathod to activate the specified stack (can be working stack or selected stack)
         /// </summary>
-        private void ActivateStack(int stack_ID, string stack_Description)
+        private void ActivateStack(int stack_ID, string stack_Description, StackElementsCollection _stackElementsCollection, BindingList<StackElementModel> _stackElements)
         {
             try
-            {
-                    
+            {    
                     // MSE OPERATION
                     string groupSelfLink = string.Empty;
 
@@ -1278,17 +1342,17 @@ namespace GUILayer.Forms
 
                     // Set the top-level group metadata to be saved out to the DB
                     // Instantiate a new top-level stack metadata model
-                    StackModel stackMetadata = new StackModel();
+                    //StackModel stackMetadata = new StackModel();
 
                     // Set the top-level stack metadata & save out the stack to the DB; data will be updated if stack (group) already exists
-                    stackMetadata.ixStackID = stack_ID;
-                    stackMetadata.StackName = stack_Description;
-                    stackMetadata.StackType = 0;
-                    stackMetadata.ShowName = currentShowName;
-                    stackMetadata.ConceptID = conceptID;
-                    stackMetadata.ConceptName = conceptName;
-                    stackMetadata.Notes = "Not currently used";
-                    stacksCollection.SaveStack(stackMetadata);
+                    //stackMetadata.ixStackID = stack_ID;
+                    //stackMetadata.StackName = stack_Description;
+                    //stackMetadata.StackType = 0;
+                    //stackMetadata.ShowName = currentShowName;
+                    //stackMetadata.ConceptID = conceptID;
+                    //stackMetadata.ConceptName = conceptName;
+                    //stackMetadata.Notes = "Not currently used";
+                    //stacksCollection.SaveStack(stackMetadata);
 
                     // Iterate through the races in the stack to build the preview collection, then call methods to create group containing elements
                     // Clear out the existing race preview collection
@@ -1300,13 +1364,10 @@ namespace GUILayer.Forms
                     string BOPHeader = String.Empty;
                     
                     // Build the Race Preview collection - contains strings for each race in the group/stack
-                    // Iterate through each race in the stack to build the race preview command strings collection
-                    
-                    for (int i = 0; i < stackElements.Count; ++i)
+                    // Iterate through each race in the stack to build the race preview command strings collection                    
+                    for (int i = 0; i < _stackElements.Count; ++i)
                     {
-
-                
-                        switch (stackElements[i].Stack_Element_Type)
+                        switch (_stackElements[i].Stack_Element_Type)
                         {
                             case (Int16)StackElementTypes.Race_Board_1_Way:
                                 raceBoardTypeDescription = "1-Way Board";                                                                                                                                  
@@ -1408,12 +1469,11 @@ namespace GUILayer.Forms
                         RacePreviewModel newRacePreviewElement = new RacePreviewModel();
 
                         switch (dataType)
-                        {
-                            
+                        {                            
                             case (Int16)DataTypes.Race_Boards:
 
                                 // Request the race data for the element in the stack - updates raceData binding list
-                                GetRaceData(stackElements[i].State_Number, stackElements[i].Race_Office, stackElements[i].CD, stackElements[i].Election_Type, candidatesToReturn);
+                                GetRaceData(_stackElements[i].State_Number, _stackElements[i].Race_Office, _stackElements[i].CD, _stackElements[i].Election_Type, candidatesToReturn);
 
                                 // Check for data returned for race
                                 if (raceData.Count > 0)
@@ -1422,14 +1482,14 @@ namespace GUILayer.Forms
                                     //RacePreviewModel newRacePreviewElement = new RacePreviewModel();
 
                                     // Set the name of the element for the group
-                                    newRacePreviewElement.Raceboard_Description = stackElements[i].Listbox_Description + " - " + raceBoardTypeDescription;
+                                    newRacePreviewElement.Raceboard_Description = _stackElements[i].Listbox_Description + " - " + raceBoardTypeDescription;
                                     //newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + stackElements[i].Listbox_Description;
 
                                     // Set FIELD_TYPE value - stack ID plus stack index
-                                    newRacePreviewElement.Raceboard_Type_Field_Text = stackMetadata.ixStackID.ToString() + "|" + i.ToString();
+                                    newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
 
                                     // Call method to assemble the race data into the required command string for the raceboards scene
-                                    newRacePreviewElement.Raceboard_Preview_Field_Text = GetRacePreviewString(stackElements[i], candidatesToReturn);
+                                    newRacePreviewElement.Raceboard_Preview_Field_Text = GetRacePreviewString(_stackElements[i], candidatesToReturn);
 
                                     // Append the preview element to the race preview collection
                                     racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
@@ -1437,19 +1497,19 @@ namespace GUILayer.Forms
                                 break;
 
                             case (Int16)DataTypes.Exit_Polls:
-                                
-                                string epType = stackElements[i].Race_RecordType[0].ToString();
-                                Int32 epID = stackElements[i].ExitPoll_mxID;
-                                string st = stackElements[i].State_Mnemonic;
-                                string ofc = stackElements[i].Office_Code;
-                                Int32 jCde = stackElements[i].County_Number;
-                                Int16 rowNum = stackElements[i].ExitPoll_xRow;
-                                Int32 subID = stackElements[i].ExitPoll_SubsetID;
-                                string eType = stackElements[i].Election_Type;
-                                string q = stackElements[i].ExitPoll_ShortMxLabel;
+
+                                string epType = _stackElements[i].Race_RecordType[0].ToString();
+                                Int32 epID = _stackElements[i].ExitPoll_mxID;
+                                string st = _stackElements[i].State_Mnemonic;
+                                string ofc = _stackElements[i].Office_Code;
+                                Int32 jCde = _stackElements[i].County_Number;
+                                Int16 rowNum = _stackElements[i].ExitPoll_xRow;
+                                Int32 subID = _stackElements[i].ExitPoll_SubsetID;
+                                string eType = _stackElements[i].Election_Type;
+                                string q = _stackElements[i].ExitPoll_ShortMxLabel;
 
                                 StackElementModel stElement = new StackElementModel();
-                                stElement = stackElements[i];
+                                stElement = _stackElements[i];
 
                                 // Setup the referendums collection
                                 var records = ExitPollDataCollection.GetExitPollDataCollection(ElectionsDBConnectionString, epType, epID, st, ofc, (short)jCde, rowNum, (short)subID, eType);
@@ -1459,10 +1519,10 @@ namespace GUILayer.Forms
                                 {
 
                                     // Set the name of the element for the group
-                                    newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + stackElements[i].Listbox_Description;
+                                    newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
 
                                     // Set FIELD_TYPE value - stack ID plus stack index
-                                    newRacePreviewElement.Raceboard_Type_Field_Text = stackMetadata.ixStackID.ToString() + "|" + i.ToString();
+                                    newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
 
                                     // Call method to assemble the race data into the required command string for the raceboards scene
                                     newRacePreviewElement.Raceboard_Preview_Field_Text = GetExitPollPreviewString(records, stElement);
@@ -1476,13 +1536,13 @@ namespace GUILayer.Forms
 
                                 
                                 // Set the name of the element for the group
-                                newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + stackElements[i].Listbox_Description;
+                                newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
 
                                 // Set FIELD_TYPE value - stack ID plus stack index
-                                newRacePreviewElement.Raceboard_Type_Field_Text = stackMetadata.ixStackID.ToString() + "|" + i;
+                                newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i;
 
                                 // Call method to assemble the race data into the required command string for the raceboards scene
-                                newRacePreviewElement.Raceboard_Preview_Field_Text = GetBOPPreviewString(stackElements[i], BOPHeader);
+                                newRacePreviewElement.Raceboard_Preview_Field_Text = GetBOPPreviewString(_stackElements[i], BOPHeader);
                                 
                                 // Append the preview element to the race preview collection
                                 racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
@@ -1494,7 +1554,7 @@ namespace GUILayer.Forms
                                 // Setup the referendums collection
                                 this.referendumsDataCollection  = new ReferendumsDataCollection();
                                 this.referendumsDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
-                                referendumsData = referendumsDataCollection.GetReferendumsDataCollection(stackElements[i].State_Number, stackElements[i].Race_Office);
+                                referendumsData = referendumsDataCollection.GetReferendumsDataCollection(_stackElements[i].State_Number, _stackElements[i].Race_Office);
 
                                 ReferendumDataModel refData = new ReferendumDataModel();
 
@@ -1505,10 +1565,10 @@ namespace GUILayer.Forms
                                     refData = referendumsData[1];
 
                                     // Set the name of the element for the group
-                                    newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + stackElements[i].Listbox_Description;
+                                    newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
 
                                     // Set FIELD_TYPE value - stack ID plus stack index
-                                    newRacePreviewElement.Raceboard_Type_Field_Text = stackMetadata.ixStackID.ToString() + "|" + i.ToString();
+                                    newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
 
                                     // Call method to assemble the race data into the required command string for the raceboards scene
                                     newRacePreviewElement.Raceboard_Preview_Field_Text = GetReferendumPreviewString(refData);
@@ -1577,7 +1637,7 @@ namespace GUILayer.Forms
 
                                 // Add the element to the group
                                 //Get the info for the current race
-                                StackElementModel selectedStackElement = stackElementsCollection.GetStackElement(stackElements, i);
+                                StackElementModel selectedStackElement = _stackElementsCollection.GetStackElement(_stackElements, i);
 
                                 //Set template ID
                                 string templateID = selectedStackElement.Stack_Element_TemplateID;
@@ -1659,7 +1719,7 @@ namespace GUILayer.Forms
 
                     // SQL DB OPERATION - SAVE OUT THE STACK ELEMENTS
                     // Save out the stack elements out to the database; specify stack ID, and set flag to delete existing elements before adding
-                    stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
+                    //stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
 
                     // Cleanup once stack is saved out - refresh list and clear UI widgets
                     // Refresh the list of available stacks
@@ -1670,7 +1730,7 @@ namespace GUILayer.Forms
                     //stackDescription = string.Empty;
 
                     // Update stack entries count label
-                    txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+                    //txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
                 }
             
             catch (Exception ex)
@@ -2832,7 +2892,5 @@ namespace GUILayer.Forms
         }
 
         #endregion
-
-
     }
 }

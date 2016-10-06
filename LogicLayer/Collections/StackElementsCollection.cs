@@ -224,12 +224,8 @@ namespace LogicLayer.Collections
                     //Instantiate the data access object to save out the dataTable
                     StackElementAccess stackElementAccess = new StackElementAccess();
                     stackElementAccess.MainDBConnectionString = MainDBConnectionString;
-                    // Call method ot save each element out to the DB individually - need to debug use of table-value parameters
-                    //stackElementAccess.SaveStackElementsDiscrete(dataTable);
+                    // Call method to save each element
                     stackElementAccess.SaveStackElements(dataTable, stackID, clearStackBeforeAdding);
-
-                    // Clear out the collection
-                    //stackElements.Clear();
                 }
             }
             catch (Exception ex)

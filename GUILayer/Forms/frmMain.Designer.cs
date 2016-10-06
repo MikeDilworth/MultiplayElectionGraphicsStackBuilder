@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +87,18 @@
             this.availableRacesGrid = new System.Windows.Forms.DataGridView();
             this.Race_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Race_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpExitPolls = new System.Windows.Forms.TabPage();
+            this.gbExitPolls = new System.Windows.Forms.GroupBox();
+            this.rbEPAuto = new System.Windows.Forms.RadioButton();
+            this.rbEPMan = new System.Windows.Forms.RadioButton();
+            this.availableExitPollsGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddExitPoll = new System.Windows.Forms.Button();
             this.tpBalanceOfPower = new System.Windows.Forms.TabPage();
             this.BOPdataGridView = new System.Windows.Forms.DataGridView();
             this.eType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,15 +109,6 @@
             this.btnAddReferendum = new System.Windows.Forms.Button();
             this.ReferendumsGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tpExitPolls = new System.Windows.Forms.TabPage();
-            this.availableExitPollsGrid = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddExitPoll = new System.Windows.Forms.Button();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -119,10 +122,11 @@
             this.cbGraphicConcept = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cbPromptForInfo = new System.Windows.Forms.CheckBox();
             this.btnClearStack = new System.Windows.Forms.Button();
             this.btnDeleteStackElement = new System.Windows.Forms.Button();
             this.btnLoadStack = new System.Windows.Forms.Button();
-            this.btnActivateStack = new System.Windows.Forms.Button();
+            this.btnSaveActivateStack = new System.Windows.Forms.Button();
             this.btnSaveStack = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnStackElementDown = new System.Windows.Forms.Button();
@@ -138,10 +142,6 @@
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.rbEPMan = new System.Windows.Forms.RadioButton();
-            this.gbExitPolls = new System.Windows.Forms.GroupBox();
-            this.rbEPAuto = new System.Windows.Forms.RadioButton();
-            this.cbPromptForOverwrite = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -156,18 +156,18 @@
             this.gbROF.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.availableRacesGrid)).BeginInit();
+            this.tpExitPolls.SuspendLayout();
+            this.gbExitPolls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).BeginInit();
             this.tpBalanceOfPower.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BOPdataGridView)).BeginInit();
             this.tpReferendums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReferendumsGrid)).BeginInit();
-            this.tpExitPolls.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).BeginInit();
             this.gbTime.SuspendLayout();
             this.pnlStack.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).BeginInit();
-            this.gbExitPolls.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -245,7 +245,7 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 796);
+            this.statusStrip.Location = new System.Drawing.Point(0, 862);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1423, 22);
             this.statusStrip.TabIndex = 53;
@@ -329,7 +329,7 @@
             this.dataModeSelect.Location = new System.Drawing.Point(12, 68);
             this.dataModeSelect.Name = "dataModeSelect";
             this.dataModeSelect.SelectedIndex = 0;
-            this.dataModeSelect.Size = new System.Drawing.Size(686, 720);
+            this.dataModeSelect.Size = new System.Drawing.Size(686, 791);
             this.dataModeSelect.TabIndex = 93;
             this.dataModeSelect.SelectedIndexChanged += new System.EventHandler(this.dataModeSelect_SelectedIndexChanged);
             // 
@@ -349,7 +349,7 @@
             this.tpRaces.Location = new System.Drawing.Point(4, 25);
             this.tpRaces.Name = "tpRaces";
             this.tpRaces.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRaces.Size = new System.Drawing.Size(678, 691);
+            this.tpRaces.Size = new System.Drawing.Size(678, 762);
             this.tpRaces.TabIndex = 0;
             this.tpRaces.Text = "Races";
             // 
@@ -410,12 +410,12 @@
             this.rbNone.AutoSize = true;
             this.rbNone.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.rbNone.Checked = true;
-            this.rbNone.Location = new System.Drawing.Point(540, 18);
+            this.rbNone.Location = new System.Drawing.Point(531, 18);
             this.rbNone.Name = "rbNone";
-            this.rbNone.Size = new System.Drawing.Size(117, 21);
+            this.rbNone.Size = new System.Drawing.Size(126, 21);
             this.rbNone.TabIndex = 9;
             this.rbNone.TabStop = true;
-            this.rbNone.Text = "Show All(12)";
+            this.rbNone.Text = "Show All(F12)";
             this.rbNone.UseVisualStyleBackColor = false;
             this.rbNone.CheckedChanged += new System.EventHandler(this.rbNone_CheckedChanged);
             // 
@@ -445,9 +445,9 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox1.Controls.Add(this.btnAddAll);
-            this.groupBox1.Location = new System.Drawing.Point(424, 586);
+            this.groupBox1.Location = new System.Drawing.Point(424, 649);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(248, 100);
+            this.groupBox1.Size = new System.Drawing.Size(248, 110);
             this.groupBox1.TabIndex = 119;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quick Add";
@@ -455,7 +455,7 @@
             // btnAddAll
             // 
             this.btnAddAll.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddAll.Location = new System.Drawing.Point(67, 28);
+            this.btnAddAll.Location = new System.Drawing.Point(67, 33);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(117, 55);
             this.btnAddAll.TabIndex = 70;
@@ -468,9 +468,9 @@
             this.groupBox5.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox5.Controls.Add(this.btnAddRace4Way);
             this.groupBox5.Controls.Add(this.btnSelect4);
-            this.groupBox5.Location = new System.Drawing.Point(424, 486);
+            this.groupBox5.Location = new System.Drawing.Point(424, 533);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(248, 88);
+            this.groupBox5.Size = new System.Drawing.Size(248, 112);
             this.groupBox5.TabIndex = 69;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "4 - Way";
@@ -481,7 +481,7 @@
             this.btnAddRace4Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRace4Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace4Way.Image")));
             this.btnAddRace4Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace4Way.Location = new System.Drawing.Point(11, 21);
+            this.btnAddRace4Way.Location = new System.Drawing.Point(11, 33);
             this.btnAddRace4Way.Name = "btnAddRace4Way";
             this.btnAddRace4Way.Size = new System.Drawing.Size(100, 55);
             this.btnAddRace4Way.TabIndex = 67;
@@ -494,7 +494,7 @@
             this.btnSelect4.BackColor = System.Drawing.SystemColors.Control;
             this.btnSelect4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelect4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelect4.Location = new System.Drawing.Point(139, 21);
+            this.btnSelect4.Location = new System.Drawing.Point(139, 33);
             this.btnSelect4.Name = "btnSelect4";
             this.btnSelect4.Size = new System.Drawing.Size(100, 55);
             this.btnSelect4.TabIndex = 66;
@@ -507,9 +507,9 @@
             this.groupBox4.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox4.Controls.Add(this.btnAddRace3WaySelect);
             this.groupBox4.Controls.Add(this.btnAddRace3Way);
-            this.groupBox4.Location = new System.Drawing.Point(424, 385);
+            this.groupBox4.Location = new System.Drawing.Point(424, 417);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(248, 88);
+            this.groupBox4.Size = new System.Drawing.Size(248, 112);
             this.groupBox4.TabIndex = 68;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "3 - Way";
@@ -520,7 +520,7 @@
             this.btnAddRace3WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRace3WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace3WaySelect.Image")));
             this.btnAddRace3WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace3WaySelect.Location = new System.Drawing.Point(139, 21);
+            this.btnAddRace3WaySelect.Location = new System.Drawing.Point(139, 33);
             this.btnAddRace3WaySelect.Name = "btnAddRace3WaySelect";
             this.btnAddRace3WaySelect.Size = new System.Drawing.Size(100, 55);
             this.btnAddRace3WaySelect.TabIndex = 65;
@@ -534,7 +534,7 @@
             this.btnAddRace3Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRace3Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace3Way.Image")));
             this.btnAddRace3Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace3Way.Location = new System.Drawing.Point(11, 21);
+            this.btnAddRace3Way.Location = new System.Drawing.Point(11, 33);
             this.btnAddRace3Way.Name = "btnAddRace3Way";
             this.btnAddRace3Way.Size = new System.Drawing.Size(100, 55);
             this.btnAddRace3Way.TabIndex = 62;
@@ -562,7 +562,7 @@
             this.rbAll.AutoSize = true;
             this.rbAll.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.rbAll.Checked = true;
-            this.rbAll.Location = new System.Drawing.Point(540, 18);
+            this.rbAll.Location = new System.Drawing.Point(531, 18);
             this.rbAll.Name = "rbAll";
             this.rbAll.Size = new System.Drawing.Size(117, 21);
             this.rbAll.TabIndex = 9;
@@ -610,9 +610,9 @@
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox3.Controls.Add(this.btnAddRace2WaySelect);
             this.groupBox3.Controls.Add(this.btnAddRace2Way);
-            this.groupBox3.Location = new System.Drawing.Point(424, 285);
+            this.groupBox3.Location = new System.Drawing.Point(424, 301);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(248, 88);
+            this.groupBox3.Size = new System.Drawing.Size(248, 112);
             this.groupBox3.TabIndex = 67;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "2 - Way";
@@ -623,7 +623,7 @@
             this.btnAddRace2WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRace2WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace2WaySelect.Image")));
             this.btnAddRace2WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace2WaySelect.Location = new System.Drawing.Point(139, 21);
+            this.btnAddRace2WaySelect.Location = new System.Drawing.Point(139, 33);
             this.btnAddRace2WaySelect.Name = "btnAddRace2WaySelect";
             this.btnAddRace2WaySelect.Size = new System.Drawing.Size(100, 55);
             this.btnAddRace2WaySelect.TabIndex = 64;
@@ -637,7 +637,7 @@
             this.btnAddRace2Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRace2Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace2Way.Image")));
             this.btnAddRace2Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace2Way.Location = new System.Drawing.Point(11, 21);
+            this.btnAddRace2Way.Location = new System.Drawing.Point(11, 33);
             this.btnAddRace2Way.Name = "btnAddRace2Way";
             this.btnAddRace2Way.Size = new System.Drawing.Size(100, 55);
             this.btnAddRace2Way.TabIndex = 61;
@@ -665,7 +665,7 @@
             // 
             this.rbShowAll.AutoSize = true;
             this.rbShowAll.Checked = true;
-            this.rbShowAll.Location = new System.Drawing.Point(540, 18);
+            this.rbShowAll.Location = new System.Drawing.Point(531, 18);
             this.rbShowAll.Name = "rbShowAll";
             this.rbShowAll.Size = new System.Drawing.Size(117, 21);
             this.rbShowAll.TabIndex = 9;
@@ -724,9 +724,9 @@
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox2.Controls.Add(this.btnAddRace1Way);
             this.groupBox2.Controls.Add(this.btnAddRace1WaySelect);
-            this.groupBox2.Location = new System.Drawing.Point(424, 186);
+            this.groupBox2.Location = new System.Drawing.Point(424, 185);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(248, 88);
+            this.groupBox2.Size = new System.Drawing.Size(248, 112);
             this.groupBox2.TabIndex = 66;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "1 - Way";
@@ -737,7 +737,7 @@
             this.btnAddRace1Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRace1Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace1Way.Image")));
             this.btnAddRace1Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace1Way.Location = new System.Drawing.Point(12, 21);
+            this.btnAddRace1Way.Location = new System.Drawing.Point(11, 33);
             this.btnAddRace1Way.Name = "btnAddRace1Way";
             this.btnAddRace1Way.Size = new System.Drawing.Size(100, 55);
             this.btnAddRace1Way.TabIndex = 64;
@@ -751,7 +751,7 @@
             this.btnAddRace1WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRace1WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace1WaySelect.Image")));
             this.btnAddRace1WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace1WaySelect.Location = new System.Drawing.Point(139, 21);
+            this.btnAddRace1WaySelect.Location = new System.Drawing.Point(139, 33);
             this.btnAddRace1WaySelect.Name = "btnAddRace1WaySelect";
             this.btnAddRace1WaySelect.Size = new System.Drawing.Size(100, 55);
             this.btnAddRace1WaySelect.TabIndex = 63;
@@ -777,7 +777,7 @@
             this.availableRacesGrid.RowHeadersWidth = 15;
             this.availableRacesGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.availableRacesGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.availableRacesGrid.Size = new System.Drawing.Size(412, 502);
+            this.availableRacesGrid.Size = new System.Drawing.Size(412, 574);
             this.availableRacesGrid.TabIndex = 57;
             this.availableRacesGrid.DoubleClick += new System.EventHandler(this.availableRacesGrid_DoubleClick);
             // 
@@ -797,120 +797,6 @@
             this.Race_Description.ReadOnly = true;
             this.Race_Description.Width = 302;
             // 
-            // tpBalanceOfPower
-            // 
-            this.tpBalanceOfPower.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tpBalanceOfPower.Controls.Add(this.BOPdataGridView);
-            this.tpBalanceOfPower.Controls.Add(this.btnAddBalanceOfPower);
-            this.tpBalanceOfPower.Location = new System.Drawing.Point(4, 25);
-            this.tpBalanceOfPower.Name = "tpBalanceOfPower";
-            this.tpBalanceOfPower.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBalanceOfPower.Size = new System.Drawing.Size(678, 691);
-            this.tpBalanceOfPower.TabIndex = 2;
-            this.tpBalanceOfPower.Text = "Balance of Power";
-            // 
-            // BOPdataGridView
-            // 
-            this.BOPdataGridView.AllowUserToAddRows = false;
-            this.BOPdataGridView.AllowUserToDeleteRows = false;
-            this.BOPdataGridView.AllowUserToResizeColumns = false;
-            this.BOPdataGridView.AllowUserToResizeRows = false;
-            this.BOPdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.BOPdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.eType,
-            this.Branch,
-            this.Session});
-            this.BOPdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.BOPdataGridView.Location = new System.Drawing.Point(100, 59);
-            this.BOPdataGridView.Name = "BOPdataGridView";
-            this.BOPdataGridView.RowHeadersWidth = 15;
-            this.BOPdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.BOPdataGridView.Size = new System.Drawing.Size(473, 360);
-            this.BOPdataGridView.TabIndex = 2;
-            this.BOPdataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BOPdataGridView_CellDoubleClick);
-            // 
-            // eType
-            // 
-            this.eType.HeaderText = "eType";
-            this.eType.Name = "eType";
-            this.eType.Width = 70;
-            // 
-            // Branch
-            // 
-            this.Branch.HeaderText = "Branch";
-            this.Branch.Name = "Branch";
-            this.Branch.Width = 200;
-            // 
-            // Session
-            // 
-            this.Session.HeaderText = "Session";
-            this.Session.Name = "Session";
-            this.Session.Width = 200;
-            // 
-            // btnAddBalanceOfPower
-            // 
-            this.btnAddBalanceOfPower.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
-            this.btnAddBalanceOfPower.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddBalanceOfPower.Location = new System.Drawing.Point(230, 461);
-            this.btnAddBalanceOfPower.Name = "btnAddBalanceOfPower";
-            this.btnAddBalanceOfPower.Size = new System.Drawing.Size(219, 60);
-            this.btnAddBalanceOfPower.TabIndex = 1;
-            this.btnAddBalanceOfPower.Text = "Add Balance of Power";
-            this.btnAddBalanceOfPower.UseVisualStyleBackColor = true;
-            this.btnAddBalanceOfPower.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // tpReferendums
-            // 
-            this.tpReferendums.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.tpReferendums.Controls.Add(this.btnAddReferendum);
-            this.tpReferendums.Controls.Add(this.ReferendumsGrid);
-            this.tpReferendums.Location = new System.Drawing.Point(4, 25);
-            this.tpReferendums.Name = "tpReferendums";
-            this.tpReferendums.Padding = new System.Windows.Forms.Padding(3);
-            this.tpReferendums.Size = new System.Drawing.Size(678, 691);
-            this.tpReferendums.TabIndex = 3;
-            this.tpReferendums.Text = "Referendums";
-            // 
-            // btnAddReferendum
-            // 
-            this.btnAddReferendum.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
-            this.btnAddReferendum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddReferendum.Location = new System.Drawing.Point(258, 582);
-            this.btnAddReferendum.Name = "btnAddReferendum";
-            this.btnAddReferendum.Size = new System.Drawing.Size(172, 60);
-            this.btnAddReferendum.TabIndex = 2;
-            this.btnAddReferendum.Text = "Add Referendum";
-            this.btnAddReferendum.UseVisualStyleBackColor = true;
-            this.btnAddReferendum.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // ReferendumsGrid
-            // 
-            this.ReferendumsGrid.AllowUserToAddRows = false;
-            this.ReferendumsGrid.AllowUserToDeleteRows = false;
-            this.ReferendumsGrid.AllowUserToResizeColumns = false;
-            this.ReferendumsGrid.AllowUserToResizeRows = false;
-            this.ReferendumsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.ReferendumsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ReferendumsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6});
-            this.ReferendumsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.ReferendumsGrid.Location = new System.Drawing.Point(7, 59);
-            this.ReferendumsGrid.MultiSelect = false;
-            this.ReferendumsGrid.Name = "ReferendumsGrid";
-            this.ReferendumsGrid.RowHeadersWidth = 15;
-            this.ReferendumsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ReferendumsGrid.Size = new System.Drawing.Size(665, 482);
-            this.ReferendumsGrid.TabIndex = 1;
-            this.ReferendumsGrid.DoubleClick += new System.EventHandler(this.ReferendumsGrid_DoubleClick);
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "race_Description";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Referendum Description";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 700;
-            // 
             // tpExitPolls
             // 
             this.tpExitPolls.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -919,9 +805,42 @@
             this.tpExitPolls.Controls.Add(this.btnAddExitPoll);
             this.tpExitPolls.Location = new System.Drawing.Point(4, 25);
             this.tpExitPolls.Name = "tpExitPolls";
-            this.tpExitPolls.Size = new System.Drawing.Size(678, 691);
+            this.tpExitPolls.Size = new System.Drawing.Size(678, 762);
             this.tpExitPolls.TabIndex = 1;
             this.tpExitPolls.Text = "Exit Polls";
+            // 
+            // gbExitPolls
+            // 
+            this.gbExitPolls.Controls.Add(this.rbEPAuto);
+            this.gbExitPolls.Controls.Add(this.rbEPMan);
+            this.gbExitPolls.Location = new System.Drawing.Point(6, 10);
+            this.gbExitPolls.Name = "gbExitPolls";
+            this.gbExitPolls.Size = new System.Drawing.Size(663, 60);
+            this.gbExitPolls.TabIndex = 131;
+            this.gbExitPolls.TabStop = false;
+            this.gbExitPolls.Text = "Exit Polls";
+            // 
+            // rbEPAuto
+            // 
+            this.rbEPAuto.AutoSize = true;
+            this.rbEPAuto.Location = new System.Drawing.Point(191, 21);
+            this.rbEPAuto.Name = "rbEPAuto";
+            this.rbEPAuto.Size = new System.Drawing.Size(57, 20);
+            this.rbEPAuto.TabIndex = 130;
+            this.rbEPAuto.Text = "Auto";
+            this.rbEPAuto.UseVisualStyleBackColor = true;
+            this.rbEPAuto.CheckedChanged += new System.EventHandler(this.rbEPAuto_CheckedChanged);
+            // 
+            // rbEPMan
+            // 
+            this.rbEPMan.AutoSize = true;
+            this.rbEPMan.Location = new System.Drawing.Point(366, 22);
+            this.rbEPMan.Name = "rbEPMan";
+            this.rbEPMan.Size = new System.Drawing.Size(76, 20);
+            this.rbEPMan.TabIndex = 130;
+            this.rbEPMan.Text = "Manual";
+            this.rbEPMan.UseVisualStyleBackColor = true;
+            this.rbEPMan.CheckedChanged += new System.EventHandler(this.rbEPMan_CheckedChanged);
             // 
             // availableExitPollsGrid
             // 
@@ -1008,6 +927,120 @@
             this.btnAddExitPoll.UseVisualStyleBackColor = true;
             this.btnAddExitPoll.Click += new System.EventHandler(this.btnAddExitPoll_Click);
             // 
+            // tpBalanceOfPower
+            // 
+            this.tpBalanceOfPower.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tpBalanceOfPower.Controls.Add(this.BOPdataGridView);
+            this.tpBalanceOfPower.Controls.Add(this.btnAddBalanceOfPower);
+            this.tpBalanceOfPower.Location = new System.Drawing.Point(4, 25);
+            this.tpBalanceOfPower.Name = "tpBalanceOfPower";
+            this.tpBalanceOfPower.Padding = new System.Windows.Forms.Padding(3);
+            this.tpBalanceOfPower.Size = new System.Drawing.Size(678, 762);
+            this.tpBalanceOfPower.TabIndex = 2;
+            this.tpBalanceOfPower.Text = "Balance of Power";
+            // 
+            // BOPdataGridView
+            // 
+            this.BOPdataGridView.AllowUserToAddRows = false;
+            this.BOPdataGridView.AllowUserToDeleteRows = false;
+            this.BOPdataGridView.AllowUserToResizeColumns = false;
+            this.BOPdataGridView.AllowUserToResizeRows = false;
+            this.BOPdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BOPdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.eType,
+            this.Branch,
+            this.Session});
+            this.BOPdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.BOPdataGridView.Location = new System.Drawing.Point(100, 59);
+            this.BOPdataGridView.Name = "BOPdataGridView";
+            this.BOPdataGridView.RowHeadersWidth = 15;
+            this.BOPdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.BOPdataGridView.Size = new System.Drawing.Size(473, 360);
+            this.BOPdataGridView.TabIndex = 2;
+            this.BOPdataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BOPdataGridView_CellDoubleClick);
+            // 
+            // eType
+            // 
+            this.eType.HeaderText = "eType";
+            this.eType.Name = "eType";
+            this.eType.Width = 70;
+            // 
+            // Branch
+            // 
+            this.Branch.HeaderText = "Branch";
+            this.Branch.Name = "Branch";
+            this.Branch.Width = 200;
+            // 
+            // Session
+            // 
+            this.Session.HeaderText = "Session";
+            this.Session.Name = "Session";
+            this.Session.Width = 200;
+            // 
+            // btnAddBalanceOfPower
+            // 
+            this.btnAddBalanceOfPower.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
+            this.btnAddBalanceOfPower.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddBalanceOfPower.Location = new System.Drawing.Point(230, 461);
+            this.btnAddBalanceOfPower.Name = "btnAddBalanceOfPower";
+            this.btnAddBalanceOfPower.Size = new System.Drawing.Size(219, 60);
+            this.btnAddBalanceOfPower.TabIndex = 1;
+            this.btnAddBalanceOfPower.Text = "Add Balance of Power";
+            this.btnAddBalanceOfPower.UseVisualStyleBackColor = true;
+            this.btnAddBalanceOfPower.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // tpReferendums
+            // 
+            this.tpReferendums.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.tpReferendums.Controls.Add(this.btnAddReferendum);
+            this.tpReferendums.Controls.Add(this.ReferendumsGrid);
+            this.tpReferendums.Location = new System.Drawing.Point(4, 25);
+            this.tpReferendums.Name = "tpReferendums";
+            this.tpReferendums.Padding = new System.Windows.Forms.Padding(3);
+            this.tpReferendums.Size = new System.Drawing.Size(678, 762);
+            this.tpReferendums.TabIndex = 3;
+            this.tpReferendums.Text = "Referendums";
+            // 
+            // btnAddReferendum
+            // 
+            this.btnAddReferendum.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
+            this.btnAddReferendum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddReferendum.Location = new System.Drawing.Point(258, 582);
+            this.btnAddReferendum.Name = "btnAddReferendum";
+            this.btnAddReferendum.Size = new System.Drawing.Size(172, 60);
+            this.btnAddReferendum.TabIndex = 2;
+            this.btnAddReferendum.Text = "Add Referendum";
+            this.btnAddReferendum.UseVisualStyleBackColor = true;
+            this.btnAddReferendum.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // ReferendumsGrid
+            // 
+            this.ReferendumsGrid.AllowUserToAddRows = false;
+            this.ReferendumsGrid.AllowUserToDeleteRows = false;
+            this.ReferendumsGrid.AllowUserToResizeColumns = false;
+            this.ReferendumsGrid.AllowUserToResizeRows = false;
+            this.ReferendumsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.ReferendumsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ReferendumsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6});
+            this.ReferendumsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.ReferendumsGrid.Location = new System.Drawing.Point(7, 59);
+            this.ReferendumsGrid.MultiSelect = false;
+            this.ReferendumsGrid.Name = "ReferendumsGrid";
+            this.ReferendumsGrid.RowHeadersWidth = 15;
+            this.ReferendumsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ReferendumsGrid.Size = new System.Drawing.Size(665, 482);
+            this.ReferendumsGrid.TabIndex = 1;
+            this.ReferendumsGrid.DoubleClick += new System.EventHandler(this.ReferendumsGrid_DoubleClick);
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "race_Description";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Referendum Description";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 700;
+            // 
             // Type
             // 
             this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -1093,7 +1126,7 @@
             this.pnlStack.Controls.Add(this.stackGrid);
             this.pnlStack.Location = new System.Drawing.Point(700, 95);
             this.pnlStack.Name = "pnlStack";
-            this.pnlStack.Size = new System.Drawing.Size(711, 693);
+            this.pnlStack.Size = new System.Drawing.Size(711, 762);
             this.pnlStack.TabIndex = 120;
             // 
             // cbGraphicConcept
@@ -1119,16 +1152,29 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel3.Controls.Add(this.cbPromptForOverwrite);
+            this.panel3.Controls.Add(this.cbPromptForInfo);
             this.panel3.Controls.Add(this.btnClearStack);
             this.panel3.Controls.Add(this.btnDeleteStackElement);
             this.panel3.Controls.Add(this.btnLoadStack);
-            this.panel3.Controls.Add(this.btnActivateStack);
+            this.panel3.Controls.Add(this.btnSaveActivateStack);
             this.panel3.Controls.Add(this.btnSaveStack);
-            this.panel3.Location = new System.Drawing.Point(12, 542);
+            this.panel3.Location = new System.Drawing.Point(12, 599);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(632, 138);
+            this.panel3.Size = new System.Drawing.Size(632, 157);
             this.panel3.TabIndex = 129;
+            // 
+            // cbPromptForInfo
+            // 
+            this.cbPromptForInfo.AutoSize = true;
+            this.cbPromptForInfo.Checked = true;
+            this.cbPromptForInfo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPromptForInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPromptForInfo.Location = new System.Drawing.Point(437, 121);
+            this.cbPromptForInfo.Name = "cbPromptForInfo";
+            this.cbPromptForInfo.Size = new System.Drawing.Size(127, 20);
+            this.cbPromptForInfo.TabIndex = 137;
+            this.cbPromptForInfo.Text = "Prompt for Info";
+            this.cbPromptForInfo.UseVisualStyleBackColor = true;
             // 
             // btnClearStack
             // 
@@ -1136,9 +1182,9 @@
             this.btnClearStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearStack.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
             this.btnClearStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClearStack.Location = new System.Drawing.Point(19, 84);
+            this.btnClearStack.Location = new System.Drawing.Point(18, 86);
             this.btnClearStack.Name = "btnClearStack";
-            this.btnClearStack.Size = new System.Drawing.Size(180, 40);
+            this.btnClearStack.Size = new System.Drawing.Size(180, 55);
             this.btnClearStack.TabIndex = 136;
             this.btnClearStack.Text = "Clear Stack";
             this.btnClearStack.UseVisualStyleBackColor = false;
@@ -1150,9 +1196,9 @@
             this.btnDeleteStackElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteStackElement.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
             this.btnDeleteStackElement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteStackElement.Location = new System.Drawing.Point(19, 16);
+            this.btnDeleteStackElement.Location = new System.Drawing.Point(18, 18);
             this.btnDeleteStackElement.Name = "btnDeleteStackElement";
-            this.btnDeleteStackElement.Size = new System.Drawing.Size(180, 40);
+            this.btnDeleteStackElement.Size = new System.Drawing.Size(180, 55);
             this.btnDeleteStackElement.TabIndex = 135;
             this.btnDeleteStackElement.Text = "Delete Element";
             this.btnDeleteStackElement.UseVisualStyleBackColor = false;
@@ -1164,27 +1210,27 @@
             this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
             this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLoadStack.Location = new System.Drawing.Point(228, 16);
+            this.btnLoadStack.Location = new System.Drawing.Point(228, 18);
             this.btnLoadStack.Name = "btnLoadStack";
-            this.btnLoadStack.Size = new System.Drawing.Size(180, 40);
+            this.btnLoadStack.Size = new System.Drawing.Size(180, 55);
             this.btnLoadStack.TabIndex = 133;
-            this.btnLoadStack.Text = "Recall Stacks";
+            this.btnLoadStack.Text = "Recall Stack";
             this.btnLoadStack.UseVisualStyleBackColor = false;
             this.btnLoadStack.Click += new System.EventHandler(this.btnLoadStack_Click);
             // 
-            // btnActivateStack
+            // btnSaveActivateStack
             // 
-            this.btnActivateStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
-            this.btnActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActivateStack.Location = new System.Drawing.Point(437, 16);
-            this.btnActivateStack.Name = "btnActivateStack";
-            this.btnActivateStack.Size = new System.Drawing.Size(180, 82);
-            this.btnActivateStack.TabIndex = 132;
-            this.btnActivateStack.Text = "  Save && Activate Stack";
-            this.btnActivateStack.UseVisualStyleBackColor = false;
-            this.btnActivateStack.Click += new System.EventHandler(this.btnActivateStack_Click);
+            this.btnSaveActivateStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSaveActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+            this.btnSaveActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveActivateStack.Location = new System.Drawing.Point(437, 18);
+            this.btnSaveActivateStack.Name = "btnSaveActivateStack";
+            this.btnSaveActivateStack.Size = new System.Drawing.Size(180, 100);
+            this.btnSaveActivateStack.TabIndex = 132;
+            this.btnSaveActivateStack.Text = "Save && Activate Stack";
+            this.btnSaveActivateStack.UseVisualStyleBackColor = false;
+            this.btnSaveActivateStack.Click += new System.EventHandler(this.btnSaveActivateStack_Click);
             // 
             // btnSaveStack
             // 
@@ -1192,9 +1238,9 @@
             this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Closed_16xLG;
             this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveStack.Location = new System.Drawing.Point(228, 84);
+            this.btnSaveStack.Location = new System.Drawing.Point(228, 86);
             this.btnSaveStack.Name = "btnSaveStack";
-            this.btnSaveStack.Size = new System.Drawing.Size(180, 40);
+            this.btnSaveStack.Size = new System.Drawing.Size(180, 55);
             this.btnSaveStack.TabIndex = 129;
             this.btnSaveStack.Text = "Save Stack Only";
             this.btnSaveStack.UseVisualStyleBackColor = false;
@@ -1205,7 +1251,7 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel1.Controls.Add(this.btnStackElementDown);
             this.panel1.Controls.Add(this.btnStackElementUp);
-            this.panel1.Location = new System.Drawing.Point(653, 212);
+            this.panel1.Location = new System.Drawing.Point(652, 240);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(50, 161);
             this.panel1.TabIndex = 127;
@@ -1285,37 +1331,35 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
-            this.stackGrid.MaximumSize = new System.Drawing.Size(800, 495);
-            this.stackGrid.MinimumSize = new System.Drawing.Size(558, 300);
             this.stackGrid.MultiSelect = false;
             this.stackGrid.Name = "stackGrid";
             this.stackGrid.ReadOnly = true;
             this.stackGrid.RowHeadersVisible = false;
             this.stackGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.stackGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.stackGrid.Size = new System.Drawing.Size(633, 479);
+            this.stackGrid.Size = new System.Drawing.Size(633, 538);
             this.stackGrid.TabIndex = 118;
             this.stackGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.stackGrid_CellFormatting);
             // 
@@ -1376,58 +1420,12 @@
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
             // 
-            // rbEPMan
-            // 
-            this.rbEPMan.AutoSize = true;
-            this.rbEPMan.Location = new System.Drawing.Point(366, 22);
-            this.rbEPMan.Name = "rbEPMan";
-            this.rbEPMan.Size = new System.Drawing.Size(76, 20);
-            this.rbEPMan.TabIndex = 130;
-            this.rbEPMan.Text = "Manual";
-            this.rbEPMan.UseVisualStyleBackColor = true;
-            this.rbEPMan.CheckedChanged += new System.EventHandler(this.rbEPMan_CheckedChanged);
-            // 
-            // gbExitPolls
-            // 
-            this.gbExitPolls.Controls.Add(this.rbEPAuto);
-            this.gbExitPolls.Controls.Add(this.rbEPMan);
-            this.gbExitPolls.Location = new System.Drawing.Point(6, 10);
-            this.gbExitPolls.Name = "gbExitPolls";
-            this.gbExitPolls.Size = new System.Drawing.Size(663, 60);
-            this.gbExitPolls.TabIndex = 131;
-            this.gbExitPolls.TabStop = false;
-            this.gbExitPolls.Text = "Exit Polls";
-            // 
-            // rbEPAuto
-            // 
-            this.rbEPAuto.AutoSize = true;
-            this.rbEPAuto.Location = new System.Drawing.Point(191, 21);
-            this.rbEPAuto.Name = "rbEPAuto";
-            this.rbEPAuto.Size = new System.Drawing.Size(57, 20);
-            this.rbEPAuto.TabIndex = 130;
-            this.rbEPAuto.Text = "Auto";
-            this.rbEPAuto.UseVisualStyleBackColor = true;
-            this.rbEPAuto.CheckedChanged += new System.EventHandler(this.rbEPAuto_CheckedChanged);
-            // 
-            // cbPromptForOverwrite
-            // 
-            this.cbPromptForOverwrite.AutoSize = true;
-            this.cbPromptForOverwrite.Checked = true;
-            this.cbPromptForOverwrite.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPromptForOverwrite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPromptForOverwrite.Location = new System.Drawing.Point(435, 105);
-            this.cbPromptForOverwrite.Name = "cbPromptForOverwrite";
-            this.cbPromptForOverwrite.Size = new System.Drawing.Size(167, 20);
-            this.cbPromptForOverwrite.TabIndex = 137;
-            this.cbPromptForOverwrite.Text = "Prompt for Overwrite";
-            this.cbPromptForOverwrite.UseVisualStyleBackColor = true;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1423, 818);
+            this.ClientSize = new System.Drawing.Size(1423, 884);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblHostName);
             this.Controls.Add(this.lblIpAddress);
@@ -1469,12 +1467,14 @@
             this.gbROF.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.availableRacesGrid)).EndInit();
+            this.tpExitPolls.ResumeLayout(false);
+            this.gbExitPolls.ResumeLayout(false);
+            this.gbExitPolls.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).EndInit();
             this.tpBalanceOfPower.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BOPdataGridView)).EndInit();
             this.tpReferendums.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ReferendumsGrid)).EndInit();
-            this.tpExitPolls.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.availableExitPollsGrid)).EndInit();
             this.gbTime.ResumeLayout(false);
             this.pnlStack.ResumeLayout(false);
             this.pnlStack.PerformLayout();
@@ -1482,8 +1482,6 @@
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).EndInit();
-            this.gbExitPolls.ResumeLayout(false);
-            this.gbExitPolls.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1551,7 +1549,7 @@
         private System.Windows.Forms.Panel pnlStack;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnLoadStack;
-        private System.Windows.Forms.Button btnActivateStack;
+        private System.Windows.Forms.Button btnSaveActivateStack;
         private System.Windows.Forms.Button btnSaveStack;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnStackElementDown;
@@ -1600,7 +1598,7 @@
         private System.Windows.Forms.RadioButton rbEPMan;
         private System.Windows.Forms.GroupBox gbExitPolls;
         private System.Windows.Forms.RadioButton rbEPAuto;
-        private System.Windows.Forms.CheckBox cbPromptForOverwrite;
+        private System.Windows.Forms.CheckBox cbPromptForInfo;
     }
 }
 

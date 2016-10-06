@@ -148,6 +148,7 @@ namespace GUILayer.Forms
             }
         }
 
+        // Handler for Delete Stack button
         private void btnDeleteStack_Click(object sender, EventArgs e)
         {
             try
@@ -173,43 +174,45 @@ namespace GUILayer.Forms
         
         }
 
-        private void availableStacksGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // Handler for Cancel Stack Load button
+        private void btnCancelStackLoad_Click(object sender, EventArgs e)
         {
-            //Get the selected stack list object
-            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
-            
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
-        private void availableStacksGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //Get the selected stack list object
-            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
-            
-        }
-
-        private void availableStacksGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //Get the selected stack list object
-            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
-        
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        // Handler for Activate Stack button
+        private void btnActivateStack_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
+        // Handler for click on grid - change currently selected stack
+        private void availableStacksGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Get the selected stack list object
+            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;            
+        }
+
+        // Handler for double-click on grid - change currently selected stack
+        private void availableStacksGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Get the selected stack list object
+            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;            
+        }
+
+        // Handler for click on grid - change currently selected stack
+        private void availableStacksGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Get the selected stack list object
+            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;        
+        }
     }
 }

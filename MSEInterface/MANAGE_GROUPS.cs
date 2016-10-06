@@ -106,7 +106,7 @@ namespace MSEInterface
                     // Walk through each playlist and check for match by title
                     foreach (XElement group in groupNames)
                     {
-                        string groupName = group.Element(Atom + "title").Value;
+                        string groupName = group.Element(Atom + "summary").Value;
 
                         // If the group name matches, get the self-link to the playlist
                         if (groupName == deleteGroupName)

@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnActivateStack = new System.Windows.Forms.Button();
             this.btnLoadStack = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.availableStacksGrid = new System.Windows.Forms.DataGridView();
@@ -38,23 +38,22 @@
             this.ShowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDeleteStack = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelStackLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.availableStacksGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btnActivateStack
             // 
-            this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(123, 671);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 40);
-            this.button1.TabIndex = 117;
-            this.button1.Text = "Activate Stack";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+            this.btnActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActivateStack.Location = new System.Drawing.Point(197, 593);
+            this.btnActivateStack.Name = "btnActivateStack";
+            this.btnActivateStack.Size = new System.Drawing.Size(165, 40);
+            this.btnActivateStack.TabIndex = 117;
+            this.btnActivateStack.Text = "Activate Stack";
+            this.btnActivateStack.UseVisualStyleBackColor = true;
+            this.btnActivateStack.Click += new System.EventHandler(this.btnActivateStack_Click);
             // 
             // btnLoadStack
             // 
@@ -62,7 +61,7 @@
             this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
             this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLoadStack.Location = new System.Drawing.Point(38, 614);
+            this.btnLoadStack.Location = new System.Drawing.Point(12, 593);
             this.btnLoadStack.Name = "btnLoadStack";
             this.btnLoadStack.Size = new System.Drawing.Size(165, 40);
             this.btnLoadStack.TabIndex = 116;
@@ -74,7 +73,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(40, 29);
+            this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 16);
             this.label3.TabIndex = 115;
@@ -99,7 +98,7 @@
             this.ixStackID,
             this.ShowName,
             this.StackName});
-            this.availableStacksGrid.Location = new System.Drawing.Point(40, 48);
+            this.availableStacksGrid.Location = new System.Drawing.Point(12, 28);
             this.availableStacksGrid.MaximumSize = new System.Drawing.Size(370, 577);
             this.availableStacksGrid.MinimumSize = new System.Drawing.Size(350, 500);
             this.availableStacksGrid.MultiSelect = false;
@@ -153,7 +152,7 @@
             this.btnDeleteStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteStack.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
             this.btnDeleteStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteStack.Location = new System.Drawing.Point(223, 614);
+            this.btnDeleteStack.Location = new System.Drawing.Point(12, 650);
             this.btnDeleteStack.Name = "btnDeleteStack";
             this.btnDeleteStack.Size = new System.Drawing.Size(165, 40);
             this.btnDeleteStack.TabIndex = 113;
@@ -161,26 +160,26 @@
             this.btnDeleteStack.UseVisualStyleBackColor = true;
             this.btnDeleteStack.Click += new System.EventHandler(this.btnDeleteStack_Click);
             // 
-            // button2
+            // btnCancelStackLoad
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(123, 727);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(165, 40);
-            this.button2.TabIndex = 118;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancelStackLoad.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelStackLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelStackLoad.Location = new System.Drawing.Point(197, 650);
+            this.btnCancelStackLoad.Name = "btnCancelStackLoad";
+            this.btnCancelStackLoad.Size = new System.Drawing.Size(165, 40);
+            this.btnCancelStackLoad.TabIndex = 118;
+            this.btnCancelStackLoad.Text = "Cancel";
+            this.btnCancelStackLoad.UseVisualStyleBackColor = true;
+            this.btnCancelStackLoad.Click += new System.EventHandler(this.btnCancelStackLoad_Click);
             // 
             // frmLoadStack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(433, 779);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(373, 708);
+            this.Controls.Add(this.btnCancelStackLoad);
+            this.Controls.Add(this.btnActivateStack);
             this.Controls.Add(this.btnLoadStack);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.availableStacksGrid);
@@ -197,7 +196,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnActivateStack;
         private System.Windows.Forms.Button btnLoadStack;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView availableStacksGrid;
@@ -205,6 +204,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ShowName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StackName;
         private System.Windows.Forms.Button btnDeleteStack;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancelStackLoad;
     }
 }
