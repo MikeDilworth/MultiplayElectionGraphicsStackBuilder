@@ -36,10 +36,15 @@ namespace GUILayer.Forms
             InitializeComponent();
             RefreshStacksList();
 
+            // Enable handling of function keys
+            KeyPreview = true;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
+
             txtStackID.Text = Convert.ToString(stID);
             txtStackDescription.Text = stackDesc;
             txtStackID.Focus();
         }
+
         #region Logger instantiation - uses reflection to get module name
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         #endregion
@@ -109,7 +114,7 @@ namespace GUILayer.Forms
             
         }
 
-        private void btnLoadStack_Click(object sender, EventArgs e)
+        private void btnSaveStack_Click(object sender, EventArgs e)
         {
             //Will be replaced on save
             // check if txtStackID has a valid number entered
@@ -120,7 +125,7 @@ namespace GUILayer.Forms
             // Check to see that a non-zero ID was specified if not in default mode; if so, alert operator and dump out
             if (stackId == 0)
             {
-                MessageBox.Show("If the playlist is not being saved as the default stack, a non-zero Playlist ID must be specified.", "Error",
+                MessageBox.Show("A non-zero Playlist ID must be specified.", "Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -128,7 +133,7 @@ namespace GUILayer.Forms
             // Check to see that a stack description was specified if not in default mode; if so, alert operator and dump out
             if ((txtStackDescription.Text.Trim() == string.Empty))
             {
-                MessageBox.Show("If the playlist is not being saved as the default stack, a Playlist Description must be specified.", "Error",
+                MessageBox.Show("A Playlist Description must be specified.", "Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -175,14 +180,23 @@ namespace GUILayer.Forms
                 }                        
         }
 
-        private void txtStackID_TextChanged(object sender, EventArgs e)
+        // Method to handle function keys
+        private void KeyEvent(object sender, KeyEventArgs e)
         {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
+            switch (e.KeyCode)
+            {
+                case Keys.S:
+                    if (e.Control == true)
+                        btnSaveStack_Click(sender, e);
+                    break;
+                case Keys.C:
+                    if (e.Control == true)
+                    {
+                        this.DialogResult = DialogResult.Cancel;
+                        this.Close();
+                    }
+                    break;
+            }
         }
     }
 }

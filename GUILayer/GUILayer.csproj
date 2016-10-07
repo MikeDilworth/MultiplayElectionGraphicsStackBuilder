@@ -207,14 +207,17 @@
     <Content Include="Properties\Resources\AddDataItem.png" />
     <Content Include="Properties\Resources\arrow_Down_16xLG.png" />
     <Content Include="Properties\Resources\arrow_Up_16xLG.png" />
+    <Content Include="Properties\Resources\Bitmap1.bmp" />
     <Content Include="Properties\Resources\Close_16xLG.png" />
     <Content Include="Properties\Resources\fnc.ico" />
     <Content Include="Properties\Resources\folder_Closed_16xLG.png" />
     <Content Include="Properties\Resources\folder_Open_16xLG.png" />
     <Content Include="Properties\Resources\Image1.png" />
+    <Content Include="Properties\Resources\PendingAdd_13303_32.bmp" />
     <Content Include="Properties\Resources\refresh_16xLG.png" />
     <Content Include="Properties\Resources\StatusAnnotations_Blocked_16xLG_color.png" />
     <Content Include="Properties\Resources\StatusAnnotations_Complete_and_ok_16xLG_color.png" />
+    <None Include="Resources\AddDataItem1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

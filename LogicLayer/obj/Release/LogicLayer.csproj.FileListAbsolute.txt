@@ -2,8 +2,8 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\bin\Release\LogicLayer.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\bin\Release\DataInterface.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\bin\Release\log4net.dll
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\bin\Release\DataInterface.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\bin\Release\log4net.xml
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\obj\Release\LogicLayer.csprojResolveAssemblyReference.cache
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\obj\Release\LogicLayer.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\obj\Release\LogicLayer.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\LogicLayer\bin\Release\DataInterface.pdb

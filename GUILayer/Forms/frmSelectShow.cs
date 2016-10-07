@@ -46,6 +46,10 @@ namespace GUILayer.Forms
 
                 showNames = getShowList.GetListOfShows(Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory);
 
+                // Enable handling of function keys
+                KeyPreview = true;
+                this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
+
                 // Setup the available stacks grid
                 availableShowsGrid.AutoGenerateColumns = false;
                 var availableShowsGridDataSource = new BindingSource(showNames, null);
@@ -105,5 +109,18 @@ namespace GUILayer.Forms
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        // Method to handle function keys for race boards
+        private void KeyEvent(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.S:
+                    if (e.Control == true)
+                        btnSelectShow_Click(sender, e);
+                    break;
+            }
+        }
+
     }
 }

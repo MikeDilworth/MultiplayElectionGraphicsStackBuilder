@@ -4,3 +4,4 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\bin\Release\log4net.xml
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Release\DataInterface.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Release\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Release\DataInterface.csprojResolveAssemblyReference.cache

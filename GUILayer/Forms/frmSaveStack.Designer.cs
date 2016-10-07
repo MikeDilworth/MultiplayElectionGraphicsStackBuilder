@@ -31,33 +31,32 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.availableStacksGrid = new System.Windows.Forms.DataGridView();
+            this.ixStackID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSaveStack = new System.Windows.Forms.Button();
             this.txtStackDescription = new System.Windows.Forms.TextBox();
             this.lblStackDescription = new System.Windows.Forms.Label();
             this.lblStackID = new System.Windows.Forms.Label();
             this.txtStackID = new System.Windows.Forms.TextBox();
-            this.ixStackID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.availableStacksGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // btnCancel
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(330, 623);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(154, 65);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(330, 623);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(154, 65);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancel\r\n(Ctrl-C)";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -116,19 +115,43 @@
             this.availableStacksGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableStacksGrid_CellClick);
             this.availableStacksGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableStacksGrid_CellContentClick);
             // 
+            // ixStackID
+            // 
+            this.ixStackID.DataPropertyName = "ixStackID";
+            this.ixStackID.HeaderText = "ID";
+            this.ixStackID.Name = "ixStackID";
+            this.ixStackID.ReadOnly = true;
+            this.ixStackID.Width = 75;
+            // 
+            // ShowName
+            // 
+            this.ShowName.DataPropertyName = "ShowName";
+            this.ShowName.HeaderText = "Show Name";
+            this.ShowName.Name = "ShowName";
+            this.ShowName.ReadOnly = true;
+            this.ShowName.Width = 200;
+            // 
+            // StackName
+            // 
+            this.StackName.DataPropertyName = "StackName";
+            this.StackName.HeaderText = "Stack Name";
+            this.StackName.Name = "StackName";
+            this.StackName.ReadOnly = true;
+            this.StackName.Width = 300;
+            // 
             // btnSaveStack
             // 
             this.btnSaveStack.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
             this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSaveStack.Location = new System.Drawing.Point(140, 623);
             this.btnSaveStack.Name = "btnSaveStack";
             this.btnSaveStack.Size = new System.Drawing.Size(154, 65);
             this.btnSaveStack.TabIndex = 2;
-            this.btnSaveStack.Text = "Save Stack";
+            this.btnSaveStack.Text = "Save Stack\r\n(Ctrl-S)";
             this.btnSaveStack.UseVisualStyleBackColor = true;
-            this.btnSaveStack.Click += new System.EventHandler(this.btnLoadStack_Click);
+            this.btnSaveStack.Click += new System.EventHandler(this.btnSaveStack_Click);
             // 
             // txtStackDescription
             // 
@@ -168,31 +191,6 @@
             this.txtStackID.Name = "txtStackID";
             this.txtStackID.Size = new System.Drawing.Size(69, 22);
             this.txtStackID.TabIndex = 0;
-            this.txtStackID.TextChanged += new System.EventHandler(this.txtStackID_TextChanged);
-            // 
-            // ixStackID
-            // 
-            this.ixStackID.DataPropertyName = "ixStackID";
-            this.ixStackID.HeaderText = "ID";
-            this.ixStackID.Name = "ixStackID";
-            this.ixStackID.ReadOnly = true;
-            this.ixStackID.Width = 75;
-            // 
-            // ShowName
-            // 
-            this.ShowName.DataPropertyName = "ShowName";
-            this.ShowName.HeaderText = "Show Name";
-            this.ShowName.Name = "ShowName";
-            this.ShowName.ReadOnly = true;
-            this.ShowName.Width = 200;
-            // 
-            // StackName
-            // 
-            this.StackName.DataPropertyName = "StackName";
-            this.StackName.HeaderText = "Stack Name";
-            this.StackName.Name = "StackName";
-            this.StackName.ReadOnly = true;
-            this.StackName.Width = 300;
             // 
             // FrmSaveStack
             // 
@@ -204,7 +202,7 @@
             this.Controls.Add(this.lblStackDescription);
             this.Controls.Add(this.lblStackID);
             this.Controls.Add(this.txtStackID);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSaveStack);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.availableStacksGrid);
@@ -220,7 +218,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSaveStack;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView availableStacksGrid;

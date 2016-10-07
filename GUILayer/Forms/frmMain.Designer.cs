@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,19 +62,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddAll = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnAddRace4Way = new System.Windows.Forms.Button();
-            this.btnSelect4 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnAddRace3WaySelect = new System.Windows.Forms.Button();
-            this.btnAddRace3Way = new System.Windows.Forms.Button();
             this.gbRCF = new System.Windows.Forms.GroupBox();
             this.rbAll = new System.Windows.Forms.RadioButton();
             this.rbCalled = new System.Windows.Forms.RadioButton();
             this.rbJustCalled = new System.Windows.Forms.RadioButton();
             this.rbTCTC = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnAddRace2WaySelect = new System.Windows.Forms.Button();
-            this.btnAddRace2Way = new System.Windows.Forms.Button();
             this.gbROF = new System.Windows.Forms.GroupBox();
             this.rbShowAll = new System.Windows.Forms.RadioButton();
             this.rbGovernor = new System.Windows.Forms.RadioButton();
@@ -82,8 +76,6 @@
             this.rbSenate = new System.Windows.Forms.RadioButton();
             this.rbPresident = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnAddRace1Way = new System.Windows.Forms.Button();
-            this.btnAddRace1WaySelect = new System.Windows.Forms.Button();
             this.availableRacesGrid = new System.Windows.Forms.DataGridView();
             this.Race_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Race_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,15 +90,12 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddExitPoll = new System.Windows.Forms.Button();
             this.tpBalanceOfPower = new System.Windows.Forms.TabPage();
             this.BOPdataGridView = new System.Windows.Forms.DataGridView();
             this.eType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Session = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddBalanceOfPower = new System.Windows.Forms.Button();
             this.tpReferendums = new System.Windows.Forms.TabPage();
-            this.btnAddReferendum = new System.Windows.Forms.Button();
             this.ReferendumsGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -123,14 +112,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cbPromptForInfo = new System.Windows.Forms.CheckBox();
-            this.btnClearStack = new System.Windows.Forms.Button();
-            this.btnDeleteStackElement = new System.Windows.Forms.Button();
-            this.btnLoadStack = new System.Windows.Forms.Button();
-            this.btnSaveActivateStack = new System.Windows.Forms.Button();
-            this.btnSaveStack = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnStackElementDown = new System.Windows.Forms.Button();
-            this.btnStackElementUp = new System.Windows.Forms.Button();
             this.txtStackName = new System.Windows.Forms.Label();
             this.txtStackEntriesCount = new System.Windows.Forms.Label();
             this.lblStackEntriesCount = new System.Windows.Forms.Label();
@@ -142,6 +124,24 @@
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnClearStack = new System.Windows.Forms.Button();
+            this.btnDeleteStackElement = new System.Windows.Forms.Button();
+            this.btnLoadStack = new System.Windows.Forms.Button();
+            this.btnSaveActivateStack = new System.Windows.Forms.Button();
+            this.btnSaveStack = new System.Windows.Forms.Button();
+            this.btnStackElementDown = new System.Windows.Forms.Button();
+            this.btnStackElementUp = new System.Windows.Forms.Button();
+            this.btnAddRace4Way = new System.Windows.Forms.Button();
+            this.btnSelect4 = new System.Windows.Forms.Button();
+            this.btnAddRace3WaySelect = new System.Windows.Forms.Button();
+            this.btnAddRace3Way = new System.Windows.Forms.Button();
+            this.btnAddRace2WaySelect = new System.Windows.Forms.Button();
+            this.btnAddRace2Way = new System.Windows.Forms.Button();
+            this.btnAddRace1Way = new System.Windows.Forms.Button();
+            this.btnAddRace1WaySelect = new System.Windows.Forms.Button();
+            this.btnAddExitPoll = new System.Windows.Forms.Button();
+            this.btnAddBalanceOfPower = new System.Windows.Forms.Button();
+            this.btnAddReferendum = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -455,11 +455,14 @@
             // btnAddAll
             // 
             this.btnAddAll.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddAll.Location = new System.Drawing.Point(67, 33);
+            this.btnAddAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddAll.Image = global::GUILayer.Properties.Resources.AddDataItem;
+            this.btnAddAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddAll.Location = new System.Drawing.Point(50, 38);
             this.btnAddAll.Name = "btnAddAll";
-            this.btnAddAll.Size = new System.Drawing.Size(117, 55);
+            this.btnAddAll.Size = new System.Drawing.Size(152, 55);
             this.btnAddAll.TabIndex = 70;
-            this.btnAddAll.Text = "All  (CTRL A)";
+            this.btnAddAll.Text = "All\r\n(Ctrl-A)";
             this.btnAddAll.UseVisualStyleBackColor = false;
             this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
             // 
@@ -475,33 +478,6 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "4 - Way";
             // 
-            // btnAddRace4Way
-            // 
-            this.btnAddRace4Way.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddRace4Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRace4Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace4Way.Image")));
-            this.btnAddRace4Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace4Way.Location = new System.Drawing.Point(11, 33);
-            this.btnAddRace4Way.Name = "btnAddRace4Way";
-            this.btnAddRace4Way.Size = new System.Drawing.Size(100, 55);
-            this.btnAddRace4Way.TabIndex = 67;
-            this.btnAddRace4Way.Text = "Top";
-            this.btnAddRace4Way.UseVisualStyleBackColor = false;
-            this.btnAddRace4Way.Click += new System.EventHandler(this.btnAddRace4Way_Click);
-            // 
-            // btnSelect4
-            // 
-            this.btnSelect4.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSelect4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelect4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelect4.Location = new System.Drawing.Point(139, 33);
-            this.btnSelect4.Name = "btnSelect4";
-            this.btnSelect4.Size = new System.Drawing.Size(100, 55);
-            this.btnSelect4.TabIndex = 66;
-            this.btnSelect4.Text = "Select";
-            this.btnSelect4.UseVisualStyleBackColor = false;
-            this.btnSelect4.Click += new System.EventHandler(this.btnSelect4_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -513,34 +489,6 @@
             this.groupBox4.TabIndex = 68;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "3 - Way";
-            // 
-            // btnAddRace3WaySelect
-            // 
-            this.btnAddRace3WaySelect.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddRace3WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRace3WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace3WaySelect.Image")));
-            this.btnAddRace3WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace3WaySelect.Location = new System.Drawing.Point(139, 33);
-            this.btnAddRace3WaySelect.Name = "btnAddRace3WaySelect";
-            this.btnAddRace3WaySelect.Size = new System.Drawing.Size(100, 55);
-            this.btnAddRace3WaySelect.TabIndex = 65;
-            this.btnAddRace3WaySelect.Text = "Select";
-            this.btnAddRace3WaySelect.UseVisualStyleBackColor = false;
-            this.btnAddRace3WaySelect.Click += new System.EventHandler(this.btnSelect3_Click);
-            // 
-            // btnAddRace3Way
-            // 
-            this.btnAddRace3Way.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddRace3Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRace3Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace3Way.Image")));
-            this.btnAddRace3Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace3Way.Location = new System.Drawing.Point(11, 33);
-            this.btnAddRace3Way.Name = "btnAddRace3Way";
-            this.btnAddRace3Way.Size = new System.Drawing.Size(100, 55);
-            this.btnAddRace3Way.TabIndex = 62;
-            this.btnAddRace3Way.Text = "Top";
-            this.btnAddRace3Way.UseVisualStyleBackColor = false;
-            this.btnAddRace3Way.Click += new System.EventHandler(this.btnAddRace3Way_Click);
             // 
             // gbRCF
             // 
@@ -616,34 +564,6 @@
             this.groupBox3.TabIndex = 67;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "2 - Way";
-            // 
-            // btnAddRace2WaySelect
-            // 
-            this.btnAddRace2WaySelect.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddRace2WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRace2WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace2WaySelect.Image")));
-            this.btnAddRace2WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace2WaySelect.Location = new System.Drawing.Point(139, 33);
-            this.btnAddRace2WaySelect.Name = "btnAddRace2WaySelect";
-            this.btnAddRace2WaySelect.Size = new System.Drawing.Size(100, 55);
-            this.btnAddRace2WaySelect.TabIndex = 64;
-            this.btnAddRace2WaySelect.Text = "Select";
-            this.btnAddRace2WaySelect.UseVisualStyleBackColor = false;
-            this.btnAddRace2WaySelect.Click += new System.EventHandler(this.btnSelect2_Click);
-            // 
-            // btnAddRace2Way
-            // 
-            this.btnAddRace2Way.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddRace2Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRace2Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace2Way.Image")));
-            this.btnAddRace2Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace2Way.Location = new System.Drawing.Point(11, 33);
-            this.btnAddRace2Way.Name = "btnAddRace2Way";
-            this.btnAddRace2Way.Size = new System.Drawing.Size(100, 55);
-            this.btnAddRace2Way.TabIndex = 61;
-            this.btnAddRace2Way.Text = "  Top";
-            this.btnAddRace2Way.UseVisualStyleBackColor = false;
-            this.btnAddRace2Way.Click += new System.EventHandler(this.btnAddRace2Way_Click);
             // 
             // gbROF
             // 
@@ -730,34 +650,6 @@
             this.groupBox2.TabIndex = 66;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "1 - Way";
-            // 
-            // btnAddRace1Way
-            // 
-            this.btnAddRace1Way.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddRace1Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRace1Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace1Way.Image")));
-            this.btnAddRace1Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace1Way.Location = new System.Drawing.Point(11, 33);
-            this.btnAddRace1Way.Name = "btnAddRace1Way";
-            this.btnAddRace1Way.Size = new System.Drawing.Size(100, 55);
-            this.btnAddRace1Way.TabIndex = 64;
-            this.btnAddRace1Way.Text = "Top";
-            this.btnAddRace1Way.UseVisualStyleBackColor = false;
-            this.btnAddRace1Way.Click += new System.EventHandler(this.btnAddRace1Way_Click);
-            // 
-            // btnAddRace1WaySelect
-            // 
-            this.btnAddRace1WaySelect.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddRace1WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRace1WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace1WaySelect.Image")));
-            this.btnAddRace1WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRace1WaySelect.Location = new System.Drawing.Point(139, 33);
-            this.btnAddRace1WaySelect.Name = "btnAddRace1WaySelect";
-            this.btnAddRace1WaySelect.Size = new System.Drawing.Size(100, 55);
-            this.btnAddRace1WaySelect.TabIndex = 63;
-            this.btnAddRace1WaySelect.Text = "Select";
-            this.btnAddRace1WaySelect.UseVisualStyleBackColor = false;
-            this.btnAddRace1WaySelect.Click += new System.EventHandler(this.btnSelect1_Click);
             // 
             // availableRacesGrid
             // 
@@ -915,18 +807,6 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Width = 81;
             // 
-            // btnAddExitPoll
-            // 
-            this.btnAddExitPoll.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
-            this.btnAddExitPoll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddExitPoll.Location = new System.Drawing.Point(229, 608);
-            this.btnAddExitPoll.Name = "btnAddExitPoll";
-            this.btnAddExitPoll.Size = new System.Drawing.Size(219, 60);
-            this.btnAddExitPoll.TabIndex = 2;
-            this.btnAddExitPoll.Text = "Add Exit Poll";
-            this.btnAddExitPoll.UseVisualStyleBackColor = true;
-            this.btnAddExitPoll.Click += new System.EventHandler(this.btnAddExitPoll_Click);
-            // 
             // tpBalanceOfPower
             // 
             this.tpBalanceOfPower.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -977,18 +857,6 @@
             this.Session.Name = "Session";
             this.Session.Width = 200;
             // 
-            // btnAddBalanceOfPower
-            // 
-            this.btnAddBalanceOfPower.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
-            this.btnAddBalanceOfPower.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddBalanceOfPower.Location = new System.Drawing.Point(230, 461);
-            this.btnAddBalanceOfPower.Name = "btnAddBalanceOfPower";
-            this.btnAddBalanceOfPower.Size = new System.Drawing.Size(219, 60);
-            this.btnAddBalanceOfPower.TabIndex = 1;
-            this.btnAddBalanceOfPower.Text = "Add Balance of Power";
-            this.btnAddBalanceOfPower.UseVisualStyleBackColor = true;
-            this.btnAddBalanceOfPower.Click += new System.EventHandler(this.button2_Click);
-            // 
             // tpReferendums
             // 
             this.tpReferendums.BackColor = System.Drawing.Color.LightSkyBlue;
@@ -1000,18 +868,6 @@
             this.tpReferendums.Size = new System.Drawing.Size(678, 762);
             this.tpReferendums.TabIndex = 3;
             this.tpReferendums.Text = "Referendums";
-            // 
-            // btnAddReferendum
-            // 
-            this.btnAddReferendum.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
-            this.btnAddReferendum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddReferendum.Location = new System.Drawing.Point(258, 582);
-            this.btnAddReferendum.Name = "btnAddReferendum";
-            this.btnAddReferendum.Size = new System.Drawing.Size(172, 60);
-            this.btnAddReferendum.TabIndex = 2;
-            this.btnAddReferendum.Text = "Add Referendum";
-            this.btnAddReferendum.UseVisualStyleBackColor = true;
-            this.btnAddReferendum.Click += new System.EventHandler(this.button1_Click);
             // 
             // ReferendumsGrid
             // 
@@ -1176,76 +1032,6 @@
             this.cbPromptForInfo.Text = "Prompt for Info";
             this.cbPromptForInfo.UseVisualStyleBackColor = true;
             // 
-            // btnClearStack
-            // 
-            this.btnClearStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnClearStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearStack.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
-            this.btnClearStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClearStack.Location = new System.Drawing.Point(18, 86);
-            this.btnClearStack.Name = "btnClearStack";
-            this.btnClearStack.Size = new System.Drawing.Size(180, 55);
-            this.btnClearStack.TabIndex = 136;
-            this.btnClearStack.Text = "Clear Stack";
-            this.btnClearStack.UseVisualStyleBackColor = false;
-            this.btnClearStack.Click += new System.EventHandler(this.btnClearStack_Click_1);
-            // 
-            // btnDeleteStackElement
-            // 
-            this.btnDeleteStackElement.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDeleteStackElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteStackElement.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
-            this.btnDeleteStackElement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteStackElement.Location = new System.Drawing.Point(18, 18);
-            this.btnDeleteStackElement.Name = "btnDeleteStackElement";
-            this.btnDeleteStackElement.Size = new System.Drawing.Size(180, 55);
-            this.btnDeleteStackElement.TabIndex = 135;
-            this.btnDeleteStackElement.Text = "Delete Element";
-            this.btnDeleteStackElement.UseVisualStyleBackColor = false;
-            this.btnDeleteStackElement.Click += new System.EventHandler(this.btnDeleteStackElement_Click);
-            // 
-            // btnLoadStack
-            // 
-            this.btnLoadStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
-            this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLoadStack.Location = new System.Drawing.Point(228, 18);
-            this.btnLoadStack.Name = "btnLoadStack";
-            this.btnLoadStack.Size = new System.Drawing.Size(180, 55);
-            this.btnLoadStack.TabIndex = 133;
-            this.btnLoadStack.Text = "Recall Stack";
-            this.btnLoadStack.UseVisualStyleBackColor = false;
-            this.btnLoadStack.Click += new System.EventHandler(this.btnLoadStack_Click);
-            // 
-            // btnSaveActivateStack
-            // 
-            this.btnSaveActivateStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSaveActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
-            this.btnSaveActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveActivateStack.Location = new System.Drawing.Point(437, 18);
-            this.btnSaveActivateStack.Name = "btnSaveActivateStack";
-            this.btnSaveActivateStack.Size = new System.Drawing.Size(180, 100);
-            this.btnSaveActivateStack.TabIndex = 132;
-            this.btnSaveActivateStack.Text = "Save && Activate Stack";
-            this.btnSaveActivateStack.UseVisualStyleBackColor = false;
-            this.btnSaveActivateStack.Click += new System.EventHandler(this.btnSaveActivateStack_Click);
-            // 
-            // btnSaveStack
-            // 
-            this.btnSaveStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Closed_16xLG;
-            this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveStack.Location = new System.Drawing.Point(228, 86);
-            this.btnSaveStack.Name = "btnSaveStack";
-            this.btnSaveStack.Size = new System.Drawing.Size(180, 55);
-            this.btnSaveStack.TabIndex = 129;
-            this.btnSaveStack.Text = "Save Stack Only";
-            this.btnSaveStack.UseVisualStyleBackColor = false;
-            this.btnSaveStack.Click += new System.EventHandler(this.btnSaveStack_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -1255,34 +1041,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(50, 161);
             this.panel1.TabIndex = 127;
-            // 
-            // btnStackElementDown
-            // 
-            this.btnStackElementDown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnStackElementDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStackElementDown.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementDown.Image")));
-            this.btnStackElementDown.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnStackElementDown.Location = new System.Drawing.Point(5, 94);
-            this.btnStackElementDown.Name = "btnStackElementDown";
-            this.btnStackElementDown.Size = new System.Drawing.Size(42, 60);
-            this.btnStackElementDown.TabIndex = 73;
-            this.btnStackElementDown.Text = "DN";
-            this.btnStackElementDown.UseVisualStyleBackColor = false;
-            this.btnStackElementDown.Click += new System.EventHandler(this.btnStackElementDown_Click);
-            // 
-            // btnStackElementUp
-            // 
-            this.btnStackElementUp.BackColor = System.Drawing.SystemColors.Control;
-            this.btnStackElementUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStackElementUp.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementUp.Image")));
-            this.btnStackElementUp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnStackElementUp.Location = new System.Drawing.Point(5, 9);
-            this.btnStackElementUp.Name = "btnStackElementUp";
-            this.btnStackElementUp.Size = new System.Drawing.Size(42, 60);
-            this.btnStackElementUp.TabIndex = 72;
-            this.btnStackElementUp.Text = "UP";
-            this.btnStackElementUp.UseVisualStyleBackColor = false;
-            this.btnStackElementUp.Click += new System.EventHandler(this.btnStackElementUp_Click);
             // 
             // txtStackName
             // 
@@ -1331,27 +1089,27 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle6;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
             this.stackGrid.MultiSelect = false;
             this.stackGrid.Name = "stackGrid";
@@ -1419,6 +1177,252 @@
             this.label3.Size = new System.Drawing.Size(97, 16);
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
+            // 
+            // btnClearStack
+            // 
+            this.btnClearStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClearStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearStack.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
+            this.btnClearStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClearStack.Location = new System.Drawing.Point(18, 86);
+            this.btnClearStack.Name = "btnClearStack";
+            this.btnClearStack.Size = new System.Drawing.Size(180, 55);
+            this.btnClearStack.TabIndex = 136;
+            this.btnClearStack.Text = "Clear Stack\r\n(Ctrl-X)";
+            this.btnClearStack.UseVisualStyleBackColor = false;
+            this.btnClearStack.Click += new System.EventHandler(this.btnClearStack_Click_1);
+            // 
+            // btnDeleteStackElement
+            // 
+            this.btnDeleteStackElement.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteStackElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteStackElement.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
+            this.btnDeleteStackElement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteStackElement.Location = new System.Drawing.Point(18, 18);
+            this.btnDeleteStackElement.Name = "btnDeleteStackElement";
+            this.btnDeleteStackElement.Size = new System.Drawing.Size(180, 55);
+            this.btnDeleteStackElement.TabIndex = 135;
+            this.btnDeleteStackElement.Text = "Delete Element\r\n(Ctrl-D)";
+            this.btnDeleteStackElement.UseVisualStyleBackColor = false;
+            this.btnDeleteStackElement.Click += new System.EventHandler(this.btnDeleteStackElement_Click);
+            // 
+            // btnLoadStack
+            // 
+            this.btnLoadStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
+            this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLoadStack.Location = new System.Drawing.Point(228, 18);
+            this.btnLoadStack.Name = "btnLoadStack";
+            this.btnLoadStack.Size = new System.Drawing.Size(180, 55);
+            this.btnLoadStack.TabIndex = 133;
+            this.btnLoadStack.Text = "Recall Stack\r\n(Ctrl-R)";
+            this.btnLoadStack.UseVisualStyleBackColor = false;
+            this.btnLoadStack.Click += new System.EventHandler(this.btnLoadStack_Click);
+            // 
+            // btnSaveActivateStack
+            // 
+            this.btnSaveActivateStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSaveActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+            this.btnSaveActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveActivateStack.Location = new System.Drawing.Point(437, 18);
+            this.btnSaveActivateStack.Name = "btnSaveActivateStack";
+            this.btnSaveActivateStack.Size = new System.Drawing.Size(180, 100);
+            this.btnSaveActivateStack.TabIndex = 132;
+            this.btnSaveActivateStack.Text = "Save && Activate\r\nStack\r\n(Ctrl-S)";
+            this.btnSaveActivateStack.UseVisualStyleBackColor = false;
+            this.btnSaveActivateStack.Click += new System.EventHandler(this.btnSaveActivateStack_Click);
+            // 
+            // btnSaveStack
+            // 
+            this.btnSaveStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Closed_16xLG;
+            this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveStack.Location = new System.Drawing.Point(228, 86);
+            this.btnSaveStack.Name = "btnSaveStack";
+            this.btnSaveStack.Size = new System.Drawing.Size(180, 55);
+            this.btnSaveStack.TabIndex = 129;
+            this.btnSaveStack.Text = "Save Stack Only\r\n(Ctrl-O)";
+            this.btnSaveStack.UseVisualStyleBackColor = false;
+            this.btnSaveStack.Click += new System.EventHandler(this.btnSaveStack_Click);
+            // 
+            // btnStackElementDown
+            // 
+            this.btnStackElementDown.BackColor = System.Drawing.SystemColors.Control;
+            this.btnStackElementDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStackElementDown.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementDown.Image")));
+            this.btnStackElementDown.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnStackElementDown.Location = new System.Drawing.Point(5, 94);
+            this.btnStackElementDown.Name = "btnStackElementDown";
+            this.btnStackElementDown.Size = new System.Drawing.Size(42, 60);
+            this.btnStackElementDown.TabIndex = 73;
+            this.btnStackElementDown.Text = "DN";
+            this.btnStackElementDown.UseVisualStyleBackColor = false;
+            this.btnStackElementDown.Click += new System.EventHandler(this.btnStackElementDown_Click);
+            // 
+            // btnStackElementUp
+            // 
+            this.btnStackElementUp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnStackElementUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStackElementUp.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementUp.Image")));
+            this.btnStackElementUp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnStackElementUp.Location = new System.Drawing.Point(5, 9);
+            this.btnStackElementUp.Name = "btnStackElementUp";
+            this.btnStackElementUp.Size = new System.Drawing.Size(42, 60);
+            this.btnStackElementUp.TabIndex = 72;
+            this.btnStackElementUp.Text = "UP";
+            this.btnStackElementUp.UseVisualStyleBackColor = false;
+            this.btnStackElementUp.Click += new System.EventHandler(this.btnStackElementUp_Click);
+            // 
+            // btnAddRace4Way
+            // 
+            this.btnAddRace4Way.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace4Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace4Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace4Way.Image")));
+            this.btnAddRace4Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace4Way.Location = new System.Drawing.Point(11, 33);
+            this.btnAddRace4Way.Name = "btnAddRace4Way";
+            this.btnAddRace4Way.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace4Way.TabIndex = 67;
+            this.btnAddRace4Way.Text = "Top\r\n(Ctrl-4)";
+            this.btnAddRace4Way.UseVisualStyleBackColor = false;
+            this.btnAddRace4Way.Click += new System.EventHandler(this.btnAddRace4Way_Click);
+            // 
+            // btnSelect4
+            // 
+            this.btnSelect4.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSelect4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelect4.Image = global::GUILayer.Properties.Resources.AddDataItem;
+            this.btnSelect4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelect4.Location = new System.Drawing.Point(139, 33);
+            this.btnSelect4.Name = "btnSelect4";
+            this.btnSelect4.Size = new System.Drawing.Size(100, 55);
+            this.btnSelect4.TabIndex = 66;
+            this.btnSelect4.Text = "Select\r\n(Alt-4)";
+            this.btnSelect4.UseVisualStyleBackColor = false;
+            this.btnSelect4.Click += new System.EventHandler(this.btnSelect4_Click);
+            // 
+            // btnAddRace3WaySelect
+            // 
+            this.btnAddRace3WaySelect.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace3WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace3WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace3WaySelect.Image")));
+            this.btnAddRace3WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace3WaySelect.Location = new System.Drawing.Point(139, 33);
+            this.btnAddRace3WaySelect.Name = "btnAddRace3WaySelect";
+            this.btnAddRace3WaySelect.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace3WaySelect.TabIndex = 65;
+            this.btnAddRace3WaySelect.Text = "Select\r\n(Alt-3)";
+            this.btnAddRace3WaySelect.UseVisualStyleBackColor = false;
+            this.btnAddRace3WaySelect.Click += new System.EventHandler(this.btnSelect3_Click);
+            // 
+            // btnAddRace3Way
+            // 
+            this.btnAddRace3Way.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace3Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace3Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace3Way.Image")));
+            this.btnAddRace3Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace3Way.Location = new System.Drawing.Point(11, 33);
+            this.btnAddRace3Way.Name = "btnAddRace3Way";
+            this.btnAddRace3Way.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace3Way.TabIndex = 62;
+            this.btnAddRace3Way.Text = "Top\r\n(Ctrl-3)";
+            this.btnAddRace3Way.UseVisualStyleBackColor = false;
+            this.btnAddRace3Way.Click += new System.EventHandler(this.btnAddRace3Way_Click);
+            // 
+            // btnAddRace2WaySelect
+            // 
+            this.btnAddRace2WaySelect.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace2WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace2WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace2WaySelect.Image")));
+            this.btnAddRace2WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace2WaySelect.Location = new System.Drawing.Point(139, 33);
+            this.btnAddRace2WaySelect.Name = "btnAddRace2WaySelect";
+            this.btnAddRace2WaySelect.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace2WaySelect.TabIndex = 64;
+            this.btnAddRace2WaySelect.Text = "Select\r\n(Alt-2)";
+            this.btnAddRace2WaySelect.UseVisualStyleBackColor = false;
+            this.btnAddRace2WaySelect.Click += new System.EventHandler(this.btnSelect2_Click);
+            // 
+            // btnAddRace2Way
+            // 
+            this.btnAddRace2Way.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace2Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace2Way.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace2Way.Image")));
+            this.btnAddRace2Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace2Way.Location = new System.Drawing.Point(11, 33);
+            this.btnAddRace2Way.Name = "btnAddRace2Way";
+            this.btnAddRace2Way.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace2Way.TabIndex = 61;
+            this.btnAddRace2Way.Text = "Top\r\n(Ctrl-2)";
+            this.btnAddRace2Way.UseVisualStyleBackColor = false;
+            this.btnAddRace2Way.Click += new System.EventHandler(this.btnAddRace2Way_Click);
+            // 
+            // btnAddRace1Way
+            // 
+            this.btnAddRace1Way.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace1Way.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace1Way.Image = global::GUILayer.Properties.Resources.AddDataItem;
+            this.btnAddRace1Way.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace1Way.Location = new System.Drawing.Point(11, 33);
+            this.btnAddRace1Way.Name = "btnAddRace1Way";
+            this.btnAddRace1Way.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace1Way.TabIndex = 64;
+            this.btnAddRace1Way.Text = "Top\r\n(Ctrl-1)";
+            this.btnAddRace1Way.UseVisualStyleBackColor = false;
+            this.btnAddRace1Way.Click += new System.EventHandler(this.btnAddRace1Way_Click);
+            // 
+            // btnAddRace1WaySelect
+            // 
+            this.btnAddRace1WaySelect.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddRace1WaySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRace1WaySelect.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRace1WaySelect.Image")));
+            this.btnAddRace1WaySelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRace1WaySelect.Location = new System.Drawing.Point(139, 33);
+            this.btnAddRace1WaySelect.Name = "btnAddRace1WaySelect";
+            this.btnAddRace1WaySelect.Size = new System.Drawing.Size(100, 55);
+            this.btnAddRace1WaySelect.TabIndex = 63;
+            this.btnAddRace1WaySelect.Text = "Select\r\n(Alt-1)";
+            this.btnAddRace1WaySelect.UseVisualStyleBackColor = false;
+            this.btnAddRace1WaySelect.Click += new System.EventHandler(this.btnSelect1_Click);
+            // 
+            // btnAddExitPoll
+            // 
+            this.btnAddExitPoll.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
+            this.btnAddExitPoll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddExitPoll.Location = new System.Drawing.Point(229, 608);
+            this.btnAddExitPoll.Name = "btnAddExitPoll";
+            this.btnAddExitPoll.Size = new System.Drawing.Size(219, 60);
+            this.btnAddExitPoll.TabIndex = 2;
+            this.btnAddExitPoll.Text = "Add Exit Poll";
+            this.btnAddExitPoll.UseVisualStyleBackColor = true;
+            this.btnAddExitPoll.Click += new System.EventHandler(this.btnAddExitPoll_Click);
+            // 
+            // btnAddBalanceOfPower
+            // 
+            this.btnAddBalanceOfPower.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
+            this.btnAddBalanceOfPower.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddBalanceOfPower.Location = new System.Drawing.Point(230, 461);
+            this.btnAddBalanceOfPower.Name = "btnAddBalanceOfPower";
+            this.btnAddBalanceOfPower.Size = new System.Drawing.Size(219, 60);
+            this.btnAddBalanceOfPower.TabIndex = 1;
+            this.btnAddBalanceOfPower.Text = "Add Balance of Power";
+            this.btnAddBalanceOfPower.UseVisualStyleBackColor = true;
+            this.btnAddBalanceOfPower.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnAddReferendum
+            // 
+            this.btnAddReferendum.Image = global::GUILayer.Properties.Resources.action_add_16xLG;
+            this.btnAddReferendum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddReferendum.Location = new System.Drawing.Point(258, 582);
+            this.btnAddReferendum.Name = "btnAddReferendum";
+            this.btnAddReferendum.Size = new System.Drawing.Size(172, 60);
+            this.btnAddReferendum.TabIndex = 2;
+            this.btnAddReferendum.Text = "Add Referendum";
+            this.btnAddReferendum.UseVisualStyleBackColor = true;
+            this.btnAddReferendum.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmMain
             // 

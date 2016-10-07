@@ -172,7 +172,6 @@ namespace GUILayer.Forms
         #endregion
 
         #region Main form init, activation & close
-
         /// <summary>
         /// Main form init, activation and close
         /// </summary>
@@ -971,13 +970,57 @@ namespace GUILayer.Forms
                     if (e.Control == true)
                         btnAddAll_Click(sender, e);
                     break;
+                // Check for 1 -> 4 way boards (horse-raced)
+                case Keys.D1:
+                    if (e.Control == true)
+                        btnAddRace1Way_Click(sender, e);
+                    else if (e.Alt == true)
+                        btnSelect1_Click(sender, e);
+                    break;
+                case Keys.D2:
+                    if (e.Control == true)
+                        btnAddRace2Way_Click(sender, e);
+                    else if (e.Alt == true)
+                        btnSelect2_Click(sender, e);
+                    break;
+                case Keys.D3:
+                    if (e.Control == true)
+                        btnAddRace3Way_Click(sender, e);
+                    else if (e.Alt == true)
+                        btnSelect3_Click(sender, e);
+                    break;
+                case Keys.D4:
+                    if (e.Control == true)
+                        btnAddRace4Way_Click(sender, e);
+                    else if (e.Alt == true)
+                        btnSelect4_Click(sender, e);
+                    break;
+                // Stack operations
+                case Keys.R:
+                    if (e.Control == true)
+                        btnLoadStack_Click(sender, e);
+                    break;
+                case Keys.S:
+                    if (e.Control == true)
+                        btnSaveActivateStack_Click(sender, e);
+                    break;
+                case Keys.D:
+                    if (e.Control == true)
+                        btnDeleteStackElement_Click(sender, e);
+                    break;
+                case Keys.X:
+                    if (e.Control == true)
+                        btnClearStack_Click_1(sender, e);
+                    break;
+                case Keys.O:
+                    if (e.Control == true)
+                        btnSaveStack_Click(sender, e);
+                    break;
                 default:
                     rbShowAll.Checked = true;
                     break;
             }
         }
-
-
         #endregion
 
         #region Stack manipulation methods
@@ -1167,12 +1210,12 @@ namespace GUILayer.Forms
             try
             {               
                 //Refresh the list of available stacks
-                RefreshStacksList();
+                //RefreshStacksList();
                 Int32 stackIndex = 0;
 
                 // Setup dialog to load stack
                 DialogResult dr = new DialogResult();               
-                frmLoadStack selectStack = new frmLoadStack();
+                FrmLoadStack selectStack = new FrmLoadStack();
                 selectStack.StackCollectionCount = stackElements.Count;
 
                 dr = selectStack.ShowDialog();
@@ -1182,7 +1225,7 @@ namespace GUILayer.Forms
                 {
                     // Set candidateID's
                     stackIndex = selectStack.StackIndex;
-                    stackID = selectStack.StackID;
+                    stackID = selectStack.StackId;
                     stackDescription = selectStack.StackDesc;
                          
                     // Clear the collection
@@ -1246,7 +1289,7 @@ namespace GUILayer.Forms
                 {
                     // Set candidateID's
                     stackIndex = selectStack.StackIndex;
-                    stackID = selectStack.StackID;
+                    stackID = selectStack.StackId;
                     stackDescription = selectStack.StackDesc;
 
                     // Clear the collection
@@ -1267,8 +1310,8 @@ namespace GUILayer.Forms
             catch (Exception ex)
             {
                 // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
+                log.Error("frmMain Exception occurred during stack load: " + ex.Message);
+                log.Debug("frmMain Exception occurred during stack load", ex);
             }
         }
 

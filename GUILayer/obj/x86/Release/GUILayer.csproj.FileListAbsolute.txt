@@ -5,7 +5,6 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\log4net.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\LogicLayer.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\MSEInterface.dll
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\DataInterface.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\LogicLayer.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\MSEInterface.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\log4net.xml
@@ -20,3 +19,4 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\GUILayer.csproj.GenerateResource.Cache
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\MultiPlayStackBuilder.exe
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\MultiPlayStackBuilder.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\DataInterface.pdb

@@ -93,6 +93,16 @@ namespace GUILayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap AddDataItem {
+            get {
+                object obj = ResourceManager.GetObject("AddDataItem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Close_16xLG {
             get {
                 object obj = ResourceManager.GetObject("Close_16xLG", resourceCulture);
