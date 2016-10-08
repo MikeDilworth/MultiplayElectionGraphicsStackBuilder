@@ -10,7 +10,6 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\log4net.xml
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\GUILayer.csprojResolveAssemblyReference.cache
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\GUILayer.Forms.FrmSaveStack.resources
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\GUILayer.Forms.frmLoadStack.resources
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\GUILayer.Forms.FrmCandidateSelect.resources
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\GUILayer.Forms.frmAbout.resources
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\GUILayer.Forms.frmMain.resources
@@ -20,3 +19,4 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\MultiPlayStackBuilder.exe
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Release\MultiPlayStackBuilder.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Release\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Release\GUILayer.Forms.frmLoadStack.resources

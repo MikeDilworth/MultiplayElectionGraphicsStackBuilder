@@ -77,17 +77,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\frmLoadStack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLoadStack.designer.cs">
+      <DependentUpon>frmLoadStack.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmSaveStack.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmSaveStack.Designer.cs">
       <DependentUpon>frmSaveStack.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmLoadStack.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmLoadStack.Designer.cs">
-      <DependentUpon>frmLoadStack.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmCandidateSelect.cs">
       <SubType>Form</SubType>
@@ -115,11 +115,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\frmSaveStack.resx">
-      <DependentUpon>frmSaveStack.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLoadStack.resx">
       <DependentUpon>frmLoadStack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSaveStack.resx">
+      <DependentUpon>frmSaveStack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCandidateSelect.resx">
       <DependentUpon>frmCandidateSelect.cs</DependentUpon>

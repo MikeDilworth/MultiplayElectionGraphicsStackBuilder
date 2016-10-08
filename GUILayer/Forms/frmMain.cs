@@ -47,7 +47,7 @@ namespace GUILayer.Forms
 
         Int16 conceptID;
         string conceptName;
-        string templateName;
+        //string templateName;
 
         private Boolean manualEPQuestions = false;
         #endregion
@@ -89,7 +89,7 @@ namespace GUILayer.Forms
         BindingList<ExitPollQuestionsModel> exitPollQuestions;
 
         // Define the collection object for the list of Exit Poll questions
-        private ExitPollDataCollection exitPollDataCollection;
+        //private ExitPollDataCollection exitPollDataCollection;
         //BindingList<ExitPollDataCollection> exitPollData;
 
         // Define the collection used for storing candidate data for a specific race
@@ -1215,19 +1215,20 @@ namespace GUILayer.Forms
 
                 // Setup dialog to load stack
                 DialogResult dr = new DialogResult();               
-                FrmLoadStack selectStack = new FrmLoadStack();
-                selectStack.StackCollectionCount = stackElements.Count;
+                frmLoadStack loadStack = new frmLoadStack();
+                loadStack.StackCollectionCount = stackElements.Count;
 
-                dr = selectStack.ShowDialog();
+                dr = loadStack.ShowDialog();
 
+                // Process result from dialog
                 // Check for Load Stack operation
                 if (dr == DialogResult.OK)
                 {
                     // Set candidateID's
-                    stackIndex = selectStack.StackIndex;
-                    stackID = selectStack.StackId;
-                    stackDescription = selectStack.StackDesc;
-                         
+                    stackIndex = loadStack.StackIndex;
+                    stackID = loadStack.StackID;
+                    stackDescription = loadStack.StackDesc;
+
                     // Clear the collection
                     stackElements.Clear();
 
@@ -1243,14 +1244,13 @@ namespace GUILayer.Forms
                     txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
                     txtStackName.Text = selectedStack.StackName + " [ID: " + Convert.ToString(selectedStack.ixStackID) + "]";
                 }
-
                 // Check for Delete Stack operation
                 else if (dr == DialogResult.Abort)
                 {
-                    stackIndex = selectStack.StackIndex;
+                    stackIndex = loadStack.StackIndex;
                     if (stacks.Count > 0)
                     {
-                       
+
                         // Operator didn't cancel out, so delete the stack
                         int currentStackIndex = stackIndex;
 
@@ -1278,34 +1278,32 @@ namespace GUILayer.Forms
                                 group.DeleteGroup(groupSelfLink);
                             }
                         }
+                        // Check for Activate Stack operation
+                        else if (dr == DialogResult.Yes)
+                        {
+                            // Set candidateID's
+                            stackIndex = loadStack.StackIndex;
+                            stackID = loadStack.StackID;
+                            stackDescription = loadStack.StackDesc;
+
+                            // Clear the collection
+                            activateStackElements.Clear();
+
+                            // Get the stack ID and load the selected collection
+                            StackModel selectedActivateStack = stacksCollection.GetStackMetadata(stacks, stackIndex);
+
+                            // Load the collection
+                            activateStackElementsCollection.GetStackElementsCollection(selectedActivateStack.ixStackID);
+                            activateStackElements = activateStackElementsCollection.stackElements;
+
+                            // Activate the specified stack
+                            ActivateStack(stackID, stackDescription, activateStackElementsCollection, activateStackElements);
+                        }
 
                         //Refresh the list of available stacks
                         RefreshStacksList();
                     }
                 }
-
-                // Check for Activate Stack operation
-                else if (dr == DialogResult.Yes)
-                {
-                    // Set candidateID's
-                    stackIndex = selectStack.StackIndex;
-                    stackID = selectStack.StackId;
-                    stackDescription = selectStack.StackDesc;
-
-                    // Clear the collection
-                    activateStackElements.Clear();
-
-                    // Get the stack ID and load the selected collection
-                    StackModel selectedStack = stacksCollection.GetStackMetadata(stacks, stackIndex);
-
-                    // Load the collection
-                    activateStackElementsCollection.GetStackElementsCollection(selectedStack.ixStackID);
-                    activateStackElements = activateStackElementsCollection.stackElements; 
-                    
-                    // Activate the specified stack
-                    ActivateStack(stackID, stackDescription, activateStackElementsCollection, activateStackElements);                    
-                }
-
             }
             catch (Exception ex)
             {
