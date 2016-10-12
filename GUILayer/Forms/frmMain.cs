@@ -307,6 +307,10 @@ namespace GUILayer.Forms
                     "",
                     System.DateTime.Now
                 );
+
+                // Set version number
+                var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                this.Text = String.Format("Election Graphics Stack Builder Application  Version {0}", version);
             }
             catch (Exception ex)
             {

@@ -23,18 +23,19 @@ namespace GUILayer
         {
             try
             {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
                 // Need to call this in the main loop to init the logger
                 log4net.Config.XmlConfigurator.Configure();
 
                 // Set the unhandled exception mode to force all Windows Forms errors to go through our handler.
                 Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-
                 // This code is used to support logging to the status bar - registers frmMain with IAppender interface from log4net
                 var mainForm = new frmMain();
                 ((log4net.Repository.Hierarchy.Hierarchy)log4net.LogManager.GetRepository()).Root.AddAppender(mainForm);
+                Application.EnableVisualStyles();
                 Application.Run(mainForm);
 
                 // Register this event to capture and log unhandled exceptions
