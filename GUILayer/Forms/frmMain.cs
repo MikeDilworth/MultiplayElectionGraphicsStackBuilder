@@ -1953,6 +1953,11 @@ namespace GUILayer.Forms
                         {
                             previewField = previewField + "1";
                         }
+                        // Modified 10/13/2016 to support Libertarian candidates
+                        else if (raceData[i].CandidatePartyID.ToUpper() == "LIB")
+                        {
+                            previewField = previewField + "3";
+                        }
                         else
                         {
                             previewField = previewField + "2";
