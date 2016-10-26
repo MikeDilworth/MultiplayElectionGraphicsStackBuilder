@@ -54,6 +54,14 @@ namespace GUILayer.Forms
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
 
             RefreshStacksList();
+
+            // Select first stack in list as default
+            if (stacks.Count > 0)
+            {
+                stackIndex = 0;
+                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+            }
         }
 
         #region Logger instantiation - uses reflection to get module name
@@ -85,6 +93,7 @@ namespace GUILayer.Forms
         }
         #endregion
         
+        // Method to refresh the stacks list
         private void RefreshStacksList()
         {
             try
@@ -106,10 +115,13 @@ namespace GUILayer.Forms
                 log.Debug("FrmLoadStack Exception occurred during stacks list refresh", ex);
             }
         }
+
+        // Handler for Load Stack button       
         private void btnLoadStack_Click(object sender, EventArgs e)
         {
             LoadSelectedStack();
         }
+        // Handler for double-click in grid - loads selected stack
         private void availableStacksGrid_DoubleClick(object sender, EventArgs e)
         {
             LoadSelectedStack();
@@ -152,6 +164,7 @@ namespace GUILayer.Forms
             }
         }
 
+        // Handler for Delete Stack button
         private void btnDeleteStack_Click(object sender, EventArgs e)
         {
             try
@@ -162,7 +175,7 @@ namespace GUILayer.Forms
                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result1 != DialogResult.Yes)
                     {
-                        this.DialogResult = DialogResult.Abort;
+                        this.DialogResult = DialogResult.Cancel;
                         this.Close();
                     }
 
@@ -177,37 +190,56 @@ namespace GUILayer.Forms
         
         }
 
+        // Handlers to change grid selection based on operator GUI actions
         private void availableStacksGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Get the selected stack list object
-            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
-            
+            if (availableStacksGrid.CurrentCell != null)
+            {
+                stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+            }
         }
-
         private void availableStacksGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //Get the selected stack list object
-            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
-            
+            if (availableStacksGrid.CurrentCell != null)
+            {
+                stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+            }          
         }
-
         private void availableStacksGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //Get the selected stack list object
-            stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-            stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
-
+            if (availableStacksGrid.CurrentCell != null)
+            {
+                stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+            }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void availableStacksGrid_Scroll(object sender, ScrollEventArgs e)
         {
-            this.DialogResult = DialogResult.Yes;
-            this.Close();
+            //Get the selected stack list object
+            if (availableStacksGrid.CurrentCell != null)
+            {
+                stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+            }
+        }
+        private void availableStacksGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+            //Get the selected stack list object
+            if (availableStacksGrid.CurrentCell != null)
+            {
+                stackIndex = availableStacksGrid.CurrentCell.RowIndex;
+                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+            }
         }
 
         // Method to handle function keys
@@ -240,6 +272,24 @@ namespace GUILayer.Forms
                     }
                     break;
             }
+        }
+
+        // Event Handler here to prevent grid from going to next row when Enter key is pressed
+        private void availableStacksGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                e.Handled = true;
+
+                // Default to Load Stack function on Enter key
+                btnLoadStack_Click(sender, e);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Yes;
+            this.Close();
         }
     }
 }

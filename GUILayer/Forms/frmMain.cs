@@ -45,6 +45,9 @@ namespace GUILayer.Forms
         Int32 stackID;
         string stackDescription;
 
+        Boolean insertNext;
+        Int32 insertPoint;
+
         Int16 conceptID;
         string conceptName;
         //string templateName;
@@ -762,7 +765,14 @@ namespace GUILayer.Forms
         {
             Int16 seType = (short)StackElementTypes.Race_Board_1_Way;
             string seDescription = "Race Board (1-Way)";
-            AddRaceBoardToStack(seType, seDescription);
+
+            if (insertNext == true)
+            {
+                AddRaceBoardToStack(seType, seDescription);
+            }
+            else
+            {
+            }
         }
 
         // Handler for Add 2-Way race board button
@@ -882,6 +892,21 @@ namespace GUILayer.Forms
                 AddRaceBoardToStack(seType, seDescription);
                 i++;
             }
+        }
+
+        // Handler for insert button
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            if (stackGrid.CurrentCell.RowIndex < 0)
+            {
+                insertPoint = 0;
+            }
+            else
+            {
+                insertPoint = stackGrid.CurrentCell.RowIndex;
+            }
+            // Set flag
+            insertNext = true;
         }
 
         #endregion
@@ -1012,7 +1037,7 @@ namespace GUILayer.Forms
                     if (e.Control == true)
                         btnDeleteStackElement_Click(sender, e);
                     break;
-                case Keys.X:
+                case Keys.C:
                     if (e.Control == true)
                         btnClearStack_Click_1(sender, e);
                     break;
@@ -1249,7 +1274,7 @@ namespace GUILayer.Forms
                     txtStackName.Text = selectedStack.StackName + " [ID: " + Convert.ToString(selectedStack.ixStackID) + "]";
                 }
                 // Check for Delete Stack operation
-                else if (dr == DialogResult.Abort)
+                else if (dr == DialogResult.Ignore)
                 {
                     stackIndex = loadStack.StackIndex;
                     if (stacks.Count > 0)
@@ -1282,32 +1307,35 @@ namespace GUILayer.Forms
                                 group.DeleteGroup(groupSelfLink);
                             }
                         }
-                        // Check for Activate Stack operation
-                        else if (dr == DialogResult.Yes)
-                        {
-                            // Set candidateID's
-                            stackIndex = loadStack.StackIndex;
-                            stackID = loadStack.StackID;
-                            stackDescription = loadStack.StackDesc;
-
-                            // Clear the collection
-                            activateStackElements.Clear();
-
-                            // Get the stack ID and load the selected collection
-                            StackModel selectedActivateStack = stacksCollection.GetStackMetadata(stacks, stackIndex);
-
-                            // Load the collection
-                            activateStackElementsCollection.GetStackElementsCollection(selectedActivateStack.ixStackID);
-                            activateStackElements = activateStackElementsCollection.stackElements;
-
-                            // Activate the specified stack
-                            ActivateStack(stackID, stackDescription, activateStackElementsCollection, activateStackElements);
-                        }
-
-                        //Refresh the list of available stacks
-                        RefreshStacksList();
                     }
                 }
+                // Check for Activate Stack operation
+                else if (dr == DialogResult.Yes)
+                {
+                    stackIndex = loadStack.StackIndex;
+                    if (stacks.Count > 0)
+                    {
+                        // Set candidateID's
+                        stackIndex = loadStack.StackIndex;
+                        stackID = loadStack.StackID;
+                        stackDescription = loadStack.StackDesc;
+
+                        // Clear the collection
+                        activateStackElements.Clear();
+
+                        // Get the stack ID and load the selected collection
+                        StackModel selectedActivateStack = stacksCollection.GetStackMetadata(stacks, stackIndex);
+
+                        // Load the collection
+                        activateStackElementsCollection.GetStackElementsCollection(selectedActivateStack.ixStackID);
+                        activateStackElements = activateStackElementsCollection.stackElements;
+
+                        // Activate the specified stack
+                        ActivateStack(stackID, stackDescription, activateStackElementsCollection, activateStackElements);
+                    }
+                }
+                //Refresh the list of available stacks
+                RefreshStacksList();
             }
             catch (Exception ex)
             {
@@ -2981,5 +3009,6 @@ namespace GUILayer.Forms
         }
 
         #endregion
+
     }
 }

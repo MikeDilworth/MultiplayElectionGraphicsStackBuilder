@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,6 +142,7 @@
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnInsert = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -445,6 +446,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox1.Controls.Add(this.btnAddAll);
+            this.groupBox1.Controls.Add(this.btnInsert);
             this.groupBox1.Location = new System.Drawing.Point(424, 649);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(248, 110);
@@ -458,7 +460,7 @@
             this.btnAddAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAll.Image = global::GUILayer.Properties.Resources.AddDataItem;
             this.btnAddAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddAll.Location = new System.Drawing.Point(50, 38);
+            this.btnAddAll.Location = new System.Drawing.Point(43, 32);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(152, 55);
             this.btnAddAll.TabIndex = 70;
@@ -1190,7 +1192,7 @@
             this.btnClearStack.Name = "btnClearStack";
             this.btnClearStack.Size = new System.Drawing.Size(180, 55);
             this.btnClearStack.TabIndex = 136;
-            this.btnClearStack.Text = "Clear Stack\r\n(Ctrl-X)";
+            this.btnClearStack.Text = "Clear Stack\r\n(Ctrl-C)";
             this.btnClearStack.UseVisualStyleBackColor = false;
             this.btnClearStack.Click += new System.EventHandler(this.btnClearStack_Click_1);
             // 
@@ -1424,6 +1426,19 @@
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
             // 
+            // btnInsert
+            // 
+            this.btnInsert.BackColor = System.Drawing.SystemColors.Control;
+            this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
+            this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInsert.Location = new System.Drawing.Point(73, 38);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(91, 46);
+            this.btnInsert.TabIndex = 71;
+            this.btnInsert.Text = "Insert\r\n(Ctrl-I)";
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1603,6 +1618,7 @@
         private System.Windows.Forms.GroupBox gbExitPolls;
         private System.Windows.Forms.RadioButton rbEPAuto;
         private System.Windows.Forms.CheckBox cbPromptForInfo;
+        private System.Windows.Forms.Button btnInsert;
     }
 }
 
