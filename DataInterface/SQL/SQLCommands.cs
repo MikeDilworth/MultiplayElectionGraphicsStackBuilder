@@ -47,9 +47,9 @@ namespace DataInterface.SQL
         public static readonly string sqlDeleteStack = "DELETE FROM MSE_Stacks WHERE ixStackID = @StackID";
 
         /// <summary>
-        /// Sql to delete the specified stack
+        /// Sql to check for an existing stack with the same name
         /// </summary>
-        public static readonly string sqlCheckIfStackExists = "SELECT * FROM MSE_Stacks WHERE ixStackID = @StackID";
+        public static readonly string sqlCheckIfStackExists = "SELECT * FROM MSE_Stacks WHERE StackName = @StackName";
 
         /// <summary>
         /// Sql to save the stack elements - takes table-valued parameter

@@ -40,7 +40,7 @@ namespace LogicLayer.Collections
         /// <summary>
         /// Get the MSE Stack elements list from the SQL DB; clears out existing collection first
         /// </summary>
-        public BindingList<StackElementModel> GetStackElementsCollection(long stackID)
+        public BindingList<StackElementModel> GetStackElementsCollection(Double stackID)
         {
             DataTable dataTable;
 
@@ -58,7 +58,7 @@ namespace LogicLayer.Collections
                     var newStackElement = new StackElementModel()
                     {
                         // Stack metadata
-                        fkey_StackID = Convert.ToInt64(row["fkey_StackID"] ?? 0),
+                        fkey_StackID = Convert.ToDouble(row["fkey_StackID"] ?? 0),
                         Stack_Element_ID = Convert.ToInt64(row["Stack_Element_ID"] ?? 0),
                         Stack_Element_Type = Convert.ToInt16(row["Stack_Element_Type"] ?? 0),
                         Stack_Element_Description = row["Stack_Element_Description"].ToString() ?? "",
@@ -121,7 +121,7 @@ namespace LogicLayer.Collections
         /// <summary>
         /// Convert the stack elements collection to a data table object and save it out
         /// </summary>
-        public void SaveStackElementsCollection(Int32 stackID, Boolean clearStackBeforeAdding)
+        public void SaveStackElementsCollection(Double stackID, Boolean clearStackBeforeAdding)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace LogicLayer.Collections
                     DataTable dataTable = new DataTable();
 
                     // Stack metadata
-                    dataTable.Columns.Add("fkey_StackID", typeof(Int64));
+                    dataTable.Columns.Add("fkey_StackID", typeof(Double));
                     dataTable.Columns.Add("Stack_Element_ID", typeof(Int64));
                     dataTable.Columns.Add("Stack_Element_Type", typeof(Int16));
                     dataTable.Columns.Add("Stack_Element_Description", typeof(String));

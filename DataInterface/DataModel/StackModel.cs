@@ -8,7 +8,7 @@ namespace DataInterface.DataModel
 {
     public class StackModel
     {
-        public Int32 ixStackID { get; set; }
+        public Double ixStackID { get; set; }
         public string StackName { get; set; }
         public Int16 StackType { get; set; }
         public string ShowName { get; set; }

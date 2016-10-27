@@ -24,14 +24,14 @@ namespace GUILayer.Forms
         // Read in database connection strings
         string GraphicsDBConnectionString = Properties.Settings.Default.GraphicsDBConnectionString;
         
-        private Int32 stackId;
-        public Int32 StackId { get; set; }
+        //private Double stackId;
+        public Double StackId { get; set; }
 
         //private string stackDescription;
         //public string StackDescription { get { return stackDescription; } set { StackDescription = stackDescription; } }
         public string StackDescription { get; set; }
 
-        public FrmSaveStack(int stID, string stackDesc)
+        public FrmSaveStack(Double stID, string stackDesc)
         {
             InitializeComponent();
             RefreshStacksList();
@@ -40,9 +40,10 @@ namespace GUILayer.Forms
             KeyPreview = true;
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
 
-            txtStackID.Text = Convert.ToString(stID);
+            //txtStackID.Text = Convert.ToString(stID);
             txtStackDescription.Text = stackDesc;
-            txtStackID.Focus();
+            //txtStackID.Focus();
+            txtStackDescription.Focus();
         }
 
         #region Logger instantiation - uses reflection to get module name
@@ -101,7 +102,7 @@ namespace GUILayer.Forms
             //Get the selected stack list object
             
             int stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            txtStackID.Text = Convert.ToString(availableStacksGrid[0, stackIndex].Value);
+            //txtStackID.Text = Convert.ToString(availableStacksGrid[0, stackIndex].Value);
             txtStackDescription.Text = (string)availableStacksGrid[2, stackIndex].Value;
         }
 
@@ -109,27 +110,13 @@ namespace GUILayer.Forms
         {
             //Get the selected stack list object
             int stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-            txtStackID.Text = Convert.ToString(availableStacksGrid[0, stackIndex].Value);
+            //txtStackID.Text = Convert.ToString(availableStacksGrid[0, stackIndex].Value);
             txtStackDescription.Text = (string)availableStacksGrid[2, stackIndex].Value;
             
         }
 
         private void btnSaveStack_Click(object sender, EventArgs e)
         {
-            //Will be replaced on save
-            // check if txtStackID has a valid number entered
-            bool inputOk = Int32.TryParse(txtStackID.Text, out stackId);
-            if (inputOk == false)
-                stackId = 0;
- 
-            // Check to see that a non-zero ID was specified if not in default mode; if so, alert operator and dump out
-            if (stackId == 0)
-            {
-                MessageBox.Show("A non-zero Playlist ID must be specified.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             // Check to see that a stack description was specified if not in default mode; if so, alert operator and dump out
             if ((txtStackDescription.Text.Trim() == string.Empty))
             {
@@ -138,46 +125,47 @@ namespace GUILayer.Forms
                 return;
             }
             
-                //Check if playlist already exists in database; if prompt for overwrite not checked, skip step
-                try
+            //Check if playlist already exists in database; if prompt for overwrite not checked, skip step
+            try
+            {
+                Double stackExistsID = stacksCollection.CheckIfStackExists_DB(txtStackDescription.Text.Trim());
+                if (stackExistsID != -1)
                 {
-                    Boolean stackExists = stacksCollection.CheckIfStackExists_DB(stackId);
-                    if (stackExists)
+                    // Check to see if the sublist already exists in the database; if so, prompt for overwrite
+                    DialogResult result1 =
+                        MessageBox.Show(
+                            "A playlist with the specified name already exists in the database. Do you wish to proceed and overwrite it?",
+                            "Confirmation",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result1 == DialogResult.Yes)
                     {
-                        // Check to see if the sublist already exists in the database; if so, prompt for overwrite
-                        DialogResult result1 =
-                            MessageBox.Show(
-                                "A playlist with the specified ID already exists in the database. Do you wish to proceed and overwrite it?",
-                                "Confirmation",
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result1 == DialogResult.Yes)
-                        {
-                            StackId = stackId;
-                            StackDescription = txtStackDescription.Text.Trim();
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                        else
-                        {
-                            this.DialogResult = DialogResult.Cancel;
-                            this.Close();
-                        }
-                    }
-                    else
-                    {
-                        StackId = stackId;
+                        StackId = stackExistsID;
                         StackDescription = txtStackDescription.Text.Trim();
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }
-
+                    else
+                    {
+                        this.DialogResult = DialogResult.Cancel;
+                        this.Close();
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    // Log error
-                    log.Error("frmMain Exception occurred: " + ex.Message);
-                    log.Debug("frmMain Exception occurred", ex);
-                }                        
+                    // Set a new stack ID
+                    StackId = Math.Truncate(Convert.ToDouble(DateTime.Now.ToString("yyyyMMddHHmmss")));
+                    StackDescription = txtStackDescription.Text.Trim();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                log.Error("frmMain Exception occurred: " + ex.Message);
+                log.Debug("frmMain Exception occurred", ex);
+            }                        
         }
 
         // Method to handle function keys

@@ -12,7 +12,7 @@ namespace DataInterface.DataModel
     public class StackElementModel
     {
         // Stack metadata
-        public Int64 fkey_StackID { get; set; }
+        public Double fkey_StackID { get; set; }
         public Int64 Stack_Element_ID { get; set; }
         public Int16 Stack_Element_Type { get; set; }
         public string Stack_Element_Description { get; set; }

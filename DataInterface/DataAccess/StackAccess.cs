@@ -97,7 +97,7 @@ namespace DataInterface.DataAccess
                                 //Specify base command
                                 cmd.CommandText = SQLCommands.sqlSaveStack;
                                 //Set parameters
-                                cmd.Parameters.Add("@ixStackID", SqlDbType.Int).Value = stackMetadata.ixStackID;
+                                cmd.Parameters.Add("@ixStackID", SqlDbType.Float).Value = stackMetadata.ixStackID;
                                 cmd.Parameters.Add("@StackName", SqlDbType.Text).Value = stackMetadata.StackName;
                                 cmd.Parameters.Add("@StackType", SqlDbType.Int).Value = stackMetadata.StackType;
                                 cmd.Parameters.Add("@ShowName", SqlDbType.Text).Value = stackMetadata.ShowName;
@@ -135,7 +135,7 @@ namespace DataInterface.DataAccess
         /// <summary>
         /// Method to get the list of existing MSE Stacks and pass it back to the logic layer as a DataTable
         /// </summary>
-        public void DeleteStack_DB(Int32 stackID)
+        public void DeleteStack_DB(Double stackID)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace DataInterface.DataAccess
                                 //Specify base command
                                 cmd.CommandText = SQLCommands.sqlDeleteStack;
                                 //Set parameters
-                                cmd.Parameters.Add("@StackID", SqlDbType.Int).Value = stackID;
+                                cmd.Parameters.Add("@StackID", SqlDbType.Float).Value = stackID;
 
                                 sqlDataAdapter.SelectCommand = cmd;
                                 sqlDataAdapter.SelectCommand.Connection = connection;
@@ -195,10 +195,10 @@ namespace DataInterface.DataAccess
         /// <summary>
         /// Check for an existing stack by ID
         /// </summary>
-        public Boolean CheckIfStackExists_DB(Int32 stackID)
+        public Double CheckIfStackExists_DB(String stackName)
         {
             DataTable dataTable = new DataTable();
-            Boolean stackFound = false;
+            Double stackID = -1;
 
             try
             {
@@ -212,7 +212,7 @@ namespace DataInterface.DataAccess
                         {
                             cmd.CommandText = SQLCommands.sqlCheckIfStackExists;
                             //Set parameters
-                            cmd.Parameters.Add("@StackID", SqlDbType.Int).Value = stackID;
+                            cmd.Parameters.Add("@StackName", SqlDbType.NVarChar).Value = stackName;
 
                             sqlDataAdapter.SelectCommand = cmd;
                             sqlDataAdapter.SelectCommand.Connection = connection;
@@ -223,8 +223,10 @@ namespace DataInterface.DataAccess
 
                             if (dataTable.Rows.Count > 0)
                             {
-                                stackFound = true;
+                                DataRow row = dataTable.Rows[0];
+                                stackID = Convert.ToDouble(row["ixStackID"] ?? 0);
                             }
+
                         }
                     }
                 }
@@ -235,7 +237,7 @@ namespace DataInterface.DataAccess
                 log.Error("StackAccess Exception occurred: " + ex.Message);
                 log.Debug("StackAccess Exception occurred", ex);
             }
-            return stackFound;
+            return stackID;
         }
         #endregion
     }

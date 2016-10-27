@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +61,7 @@
             this.rbBattleground = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddAll = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnAddRace4Way = new System.Windows.Forms.Button();
             this.btnSelect4 = new System.Windows.Forms.Button();
@@ -136,13 +137,12 @@
             this.lblStackEntriesCount = new System.Windows.Forms.Label();
             this.lblStackHeader = new System.Windows.Forms.Label();
             this.stackGrid = new System.Windows.Forms.DataGridView();
-            this.Element_Type_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stack_Entry_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnInsert = new System.Windows.Forms.Button();
+            this.Element_Type_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stack_Entry_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -467,6 +467,19 @@
             this.btnAddAll.Text = "All\r\n(Ctrl-A)";
             this.btnAddAll.UseVisualStyleBackColor = false;
             this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.BackColor = System.Drawing.SystemColors.Control;
+            this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
+            this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInsert.Location = new System.Drawing.Point(73, 38);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(91, 46);
+            this.btnInsert.TabIndex = 71;
+            this.btnInsert.Text = "Insert\r\n(Ctrl-I)";
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // groupBox5
             // 
@@ -1369,33 +1382,6 @@
             this.stackGrid.TabIndex = 118;
             this.stackGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.stackGrid_CellFormatting);
             // 
-            // Element_Type_Description
-            // 
-            this.Element_Type_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Element_Type_Description.DataPropertyName = "Stack_Element_Description";
-            this.Element_Type_Description.HeaderText = "Entry Type";
-            this.Element_Type_Description.Name = "Element_Type_Description";
-            this.Element_Type_Description.ReadOnly = true;
-            this.Element_Type_Description.Width = 160;
-            // 
-            // TemplateID
-            // 
-            this.TemplateID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TemplateID.DataPropertyName = "Stack_Element_TemplateID";
-            this.TemplateID.HeaderText = "TID";
-            this.TemplateID.Name = "TemplateID";
-            this.TemplateID.ReadOnly = true;
-            this.TemplateID.Width = 185;
-            // 
-            // Stack_Entry_Description
-            // 
-            this.Stack_Entry_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Stack_Entry_Description.DataPropertyName = "Listbox_Description";
-            this.Stack_Entry_Description.HeaderText = "Entry Description";
-            this.Stack_Entry_Description.Name = "Stack_Entry_Description";
-            this.Stack_Entry_Description.ReadOnly = true;
-            this.Stack_Entry_Description.Width = 280;
-            // 
             // lblIpAddress
             // 
             this.lblIpAddress.AutoSize = true;
@@ -1426,18 +1412,32 @@
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
             // 
-            // btnInsert
+            // Element_Type_Description
             // 
-            this.btnInsert.BackColor = System.Drawing.SystemColors.Control;
-            this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
-            this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInsert.Location = new System.Drawing.Point(73, 38);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(91, 46);
-            this.btnInsert.TabIndex = 71;
-            this.btnInsert.Text = "Insert\r\n(Ctrl-I)";
-            this.btnInsert.UseVisualStyleBackColor = false;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            this.Element_Type_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Element_Type_Description.DataPropertyName = "Stack_Element_Description";
+            this.Element_Type_Description.HeaderText = "Entry Type";
+            this.Element_Type_Description.Name = "Element_Type_Description";
+            this.Element_Type_Description.ReadOnly = true;
+            this.Element_Type_Description.Width = 160;
+            // 
+            // TemplateID
+            // 
+            this.TemplateID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TemplateID.DataPropertyName = "Stack_Element_TemplateID";
+            this.TemplateID.HeaderText = "Template Name";
+            this.TemplateID.Name = "TemplateID";
+            this.TemplateID.ReadOnly = true;
+            this.TemplateID.Width = 185;
+            // 
+            // Stack_Entry_Description
+            // 
+            this.Stack_Entry_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Stack_Entry_Description.DataPropertyName = "Listbox_Description";
+            this.Stack_Entry_Description.HeaderText = "Entry Description";
+            this.Stack_Entry_Description.Name = "Stack_Entry_Description";
+            this.Stack_Entry_Description.ReadOnly = true;
+            this.Stack_Entry_Description.Width = 280;
             // 
             // frmMain
             // 
@@ -1596,9 +1596,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Race_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Race_Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Element_Type_Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TemplateID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Stack_Entry_Description;
         private System.Windows.Forms.Button btnClearStack;
         private System.Windows.Forms.Button btnDeleteStackElement;
         private System.Windows.Forms.Label lblIpAddress;
@@ -1619,6 +1616,9 @@
         private System.Windows.Forms.RadioButton rbEPAuto;
         private System.Windows.Forms.CheckBox cbPromptForInfo;
         private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Element_Type_Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TemplateID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Stack_Entry_Description;
     }
 }
 

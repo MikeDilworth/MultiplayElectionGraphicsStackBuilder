@@ -31,8 +31,8 @@ namespace GUILayer.Forms
         private Int32 stackIndex;
         public Int32 StackIndex { get { return stackIndex; } set { StackIndex = stackIndex; } }
 
-        private Int32 stackID;
-        public Int32 StackID { get { return stackID; } set { StackID = stackID; } }
+        private Double stackID;
+        public Double StackID { get { return stackID; } set { StackID = stackID; } }
 
         private string stackDesc;
         public string StackDesc { get { return stackDesc; } set { StackDesc = stackDesc; } }
@@ -59,8 +59,8 @@ namespace GUILayer.Forms
             if (stacks.Count > 0)
             {
                 stackIndex = 0;
-                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+                stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
             }
         }
 
@@ -150,6 +150,7 @@ namespace GUILayer.Forms
                     }
                 }
                 // No elements in stack, so don't prompt operator
+                else
                 {
                     this.DialogResult = DialogResult.OK;
                     this.Close();                   
@@ -197,8 +198,8 @@ namespace GUILayer.Forms
             if (availableStacksGrid.CurrentCell != null)
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+                stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
             }
         }
         private void availableStacksGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -207,8 +208,8 @@ namespace GUILayer.Forms
             if (availableStacksGrid.CurrentCell != null)
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+                stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
             }          
         }
         private void availableStacksGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -217,8 +218,8 @@ namespace GUILayer.Forms
             if (availableStacksGrid.CurrentCell != null)
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+                stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
             }
         }
         private void availableStacksGrid_Scroll(object sender, ScrollEventArgs e)
@@ -227,8 +228,8 @@ namespace GUILayer.Forms
             if (availableStacksGrid.CurrentCell != null)
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+                stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
             }
         }
         private void availableStacksGrid_CurrentCellChanged(object sender, EventArgs e)
@@ -237,8 +238,8 @@ namespace GUILayer.Forms
             if (availableStacksGrid.CurrentCell != null)
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
-                stackID = Convert.ToInt32(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
+                stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
+                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
             }
         }
 
@@ -290,6 +291,11 @@ namespace GUILayer.Forms
         {
             this.DialogResult = DialogResult.Yes;
             this.Close();
+        }
+
+        private void btnCancelStackLoad_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

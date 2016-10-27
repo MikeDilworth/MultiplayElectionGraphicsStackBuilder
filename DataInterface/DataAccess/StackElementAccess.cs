@@ -30,7 +30,7 @@ namespace DataInterface.DataAccess
         /// <summary>
         /// Method to get the list of sublist elements from the SQL DB and pass it back to the logic layer as a DataTable
         /// </summary>
-        public DataTable GetStackElements(long stackID)
+        public DataTable GetStackElements(Double stackID)
         {
             DataTable dataTable = new DataTable();
 
@@ -45,7 +45,7 @@ namespace DataInterface.DataAccess
                         using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter())
                         {
                             cmd.CommandText = SQLCommands.sqlGetStackElements;
-                            cmd.Parameters.Add("@StackID", SqlDbType.BigInt).Value = stackID;
+                            cmd.Parameters.Add("@StackID", SqlDbType.Float).Value = stackID;
                             sqlDataAdapter.SelectCommand = cmd;
                             sqlDataAdapter.SelectCommand.Connection = connection;
                             sqlDataAdapter.SelectCommand.CommandType = CommandType.Text;
@@ -69,7 +69,7 @@ namespace DataInterface.DataAccess
         /// <summary>
         /// Method to save playlist elements for a specified playlist to the DB
         /// </summary>
-        public void SaveStackElements(DataTable stackElements, Int32 stackID, Boolean clearStackBeforeAdding)
+        public void SaveStackElements(DataTable stackElements, Double stackID, Boolean clearStackBeforeAdding)
         {
             if (stackElements.Rows.Count > 0)
             {
@@ -110,7 +110,7 @@ namespace DataInterface.DataAccess
                                     tableParam.Value = stackElements;
                                     tableParam.TypeName = "dbo.UDTT_MSE_Stack_Elements";
 
-                                    cmd.Parameters.Add("@StackID", SqlDbType.BigInt).Value = stackID;
+                                    cmd.Parameters.Add("@StackID", SqlDbType.Float).Value = stackID;
                                     cmd.Parameters.Add("@ClearStackBeforeAdding", SqlDbType.Bit).Value = clearStackBeforeAdding;
 
                                     sqlDataAdapter.SelectCommand = cmd;
@@ -178,7 +178,7 @@ namespace DataInterface.DataAccess
                                         //Specify base command
                                         cmd.CommandText = SQLCommands.sqlSaveStackElementsDiscrete;
                                         //Set parameters
-                                        cmd.Parameters.Add("@fkey_StackID", SqlDbType.BigInt).Value = row["fkey_StackID"];
+                                        cmd.Parameters.Add("@fkey_StackID", SqlDbType.Float).Value = row["fkey_StackID"];
                                         cmd.Parameters.Add("@Stack_Element_ID", SqlDbType.BigInt).Value = row["Stack_Element_ID"];
                                         cmd.Parameters.Add("@Stack_Element_Type", SqlDbType.SmallInt).Value = row["Stack_Element_Type"];
                                         cmd.Parameters.Add("@Stack_Element_Description", SqlDbType.Text).Value = row["Stack_Element_Description"];

@@ -42,9 +42,11 @@ namespace GUILayer.Forms
         string elementCollectionURIPlaylist;
         string templateModel;
 
-        Int32 stackID;
+        // Specify stackID as double - will use encoded date/time string converted to float
+        Double stackID = -1;
         string stackDescription;
 
+        // For future use
         Boolean insertNext;
         Int32 insertPoint;
 
@@ -1177,8 +1179,8 @@ namespace GUILayer.Forms
                         stackElements.Clear();
                     }
 
-                    // Clear out current settings
-                    stackID = 0;
+                    // Clear out current stack settings
+                    stackID = -1;
                     txtStackName.Text = "None Selected";
 
                     // Update stack entries count label
@@ -1239,7 +1241,6 @@ namespace GUILayer.Forms
             try
             {               
                 //Refresh the list of available stacks
-                //RefreshStacksList();
                 Int32 stackIndex = 0;
 
                 // Setup dialog to load stack
@@ -1271,7 +1272,8 @@ namespace GUILayer.Forms
                     stackElementsCollection.GetStackElementsCollection(selectedStack.ixStackID);
                     // Update stack entries count label
                     txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                    txtStackName.Text = selectedStack.StackName + " [ID: " + Convert.ToString(selectedStack.ixStackID) + "]";
+                    //txtStackName.Text = selectedStack.StackName + " [ID: " + Convert.ToString(selectedStack.ixStackID) + "]";
+                    txtStackName.Text = selectedStack.StackName;
                 }
                 // Check for Delete Stack operation
                 else if (dr == DialogResult.Ignore)
@@ -1315,10 +1317,9 @@ namespace GUILayer.Forms
                     stackIndex = loadStack.StackIndex;
                     if (stacks.Count > 0)
                     {
-                        // Set candidateID's
                         stackIndex = loadStack.StackIndex;
-                        stackID = loadStack.StackID;
-                        stackDescription = loadStack.StackDesc;
+                        Double stackID = loadStack.StackID;
+                        String stackDescription = loadStack.StackDesc;
 
                         // Clear the collection
                         activateStackElements.Clear();
@@ -1385,7 +1386,8 @@ namespace GUILayer.Forms
 
                             // Update stack entries count label & name label
                             txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                            txtStackName.Text = stackDescription + " [ID: " + Convert.ToString(stackID) + "]";
+                            //txtStackName.Text = stackDescription + " [ID: " + Convert.ToString(stackID) + "]";
+                            txtStackName.Text = stackDescription;
 
                             // Call method to save stack out to MSE
                             ActivateStack(stackID, stackDescription, stackElementsCollection, stackElements);
@@ -1424,7 +1426,7 @@ namespace GUILayer.Forms
                 // Set status strip
                 toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
                 // toolStripStatusLabel.Text = "Status Logging Message: Stack saved out to database and activated";
-                toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack {0} saved out to database and activated", stackID);
+                toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack \"{0}\" saved out to database and activated", stackDescription);
             }
                     
             catch (Exception ex)
@@ -1437,7 +1439,7 @@ namespace GUILayer.Forms
         /// <summary>
         /// Mathod to activate the specified stack (can be working stack or selected stack)
         /// </summary>
-        private void ActivateStack(int stack_ID, string stack_Description, StackElementsCollection _stackElementsCollection, BindingList<StackElementModel> _stackElements)
+        private void ActivateStack(Double stack_ID, string stack_Description, StackElementsCollection _stackElementsCollection, BindingList<StackElementModel> _stackElements)
         {
             try
             {    
@@ -1823,21 +1825,6 @@ namespace GUILayer.Forms
                         log.Error("Could not resolve Playlist Down link");
                         log.Debug("Could not resolve Playlist Down link");
                     }
-
-                    // SQL DB OPERATION - SAVE OUT THE STACK ELEMENTS
-                    // Save out the stack elements out to the database; specify stack ID, and set flag to delete existing elements before adding
-                    //stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
-
-                    // Cleanup once stack is saved out - refresh list and clear UI widgets
-                    // Refresh the list of available stacks
-                    //RefreshStacksList();
-
-                    // Clear out the stack save text controls
-                    //stackID = 0;
-                    //stackDescription = string.Empty;
-
-                    // Update stack entries count label
-                    //txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
                 }
             
             catch (Exception ex)

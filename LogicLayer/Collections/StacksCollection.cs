@@ -53,7 +53,7 @@ namespace LogicLayer.Collections
                 {
                     var newStack = new StackModel()
                     {
-                        ixStackID = Convert.ToInt32(row["ixStackID"] ?? 0),
+                        ixStackID = Convert.ToDouble(row["ixStackID"] ?? 0),
                         StackName = row["StackName"].ToString() ?? "",
                         StackType = Convert.ToInt16(row["StackType"] ?? 0),
                         ShowName = row["ShowName"].ToString() ?? "",
@@ -98,7 +98,7 @@ namespace LogicLayer.Collections
         /// <summary>
         /// Delete the specified stack from the SQL DB; deleting top-level stack cascades to delete stack elements
         /// </summary>
-        public void DeleteStack(Int32 stackID)
+        public void DeleteStack(Double stackID)
         {
             try
             {
@@ -136,16 +136,16 @@ namespace LogicLayer.Collections
         }
 
         /// <summary>
-        /// Check if the stack with the specified ID already exists in the SQL DB
+        /// Check if the stack with the specified stack already exists in the SQL DB (checks by name)
         /// </summary>
-        public Boolean CheckIfStackExists_DB(Int32 stackID)
+        public Double CheckIfStackExists_DB(String stackName)
         {
-            Boolean stackExists = false;
+            Double stackID = -1;
             try
             {
                 StackAccess stackAccess = new StackAccess();
                 stackAccess.MainDBConnectionString = MainDBConnectionString;
-                stackExists = stackAccess.CheckIfStackExists_DB(stackID);
+                stackID = stackAccess.CheckIfStackExists_DB(stackName);
             }
             catch (Exception ex)
             {
@@ -154,7 +154,7 @@ namespace LogicLayer.Collections
                 log.Debug("StacksCollection Exception occurred", ex);
             }
 
-            return stackExists;
+            return stackID;
         }
         
         #endregion
