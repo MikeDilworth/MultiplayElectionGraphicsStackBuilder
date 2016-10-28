@@ -133,7 +133,7 @@ namespace DataInterface.DataAccess
         }
 
         /// <summary>
-        /// Method to get the list of existing MSE Stacks and pass it back to the logic layer as a DataTable
+        /// Method to delete a stack from the database - uses a cascade delete constraint on the stack elements table
         /// </summary>
         public void DeleteStack_DB(Double stackID)
         {

@@ -37,8 +37,6 @@ namespace GUILayer.Forms
         private string stackDesc;
         public string StackDesc { get { return stackDesc; } set { StackDesc = stackDesc; } }
 
-        public Int32 StackCollectionCount { get; set; }
-
         //string topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory;
         //string currentShowName = Properties.Settings.Default.CurrentShowName;
         //string currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
@@ -131,11 +129,11 @@ namespace GUILayer.Forms
         {
             try
             {
-                if ((stackIndex >= 0) && (StackCollectionCount > 0))
+                if ((stackIndex >= 0) && (availableStacksGrid.RowCount > 0))
                 {
                     DialogResult result1 =
                         MessageBox.Show(
-                            "Are you sure you want to clear the current contents of the stack and load the specified stack from the database?",
+                            "Are you sure you want to clear any current contents of the stack and load the specified stack from the database?",
                             "Confirmation",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result1 == DialogResult.Yes)
@@ -199,7 +197,7 @@ namespace GUILayer.Forms
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
                 stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
             }
         }
         private void availableStacksGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -209,7 +207,7 @@ namespace GUILayer.Forms
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
                 stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
             }          
         }
         private void availableStacksGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -219,7 +217,7 @@ namespace GUILayer.Forms
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
                 stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
             }
         }
         private void availableStacksGrid_Scroll(object sender, ScrollEventArgs e)
@@ -229,7 +227,7 @@ namespace GUILayer.Forms
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
                 stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
             }
         }
         private void availableStacksGrid_CurrentCellChanged(object sender, EventArgs e)
@@ -239,7 +237,7 @@ namespace GUILayer.Forms
             {
                 stackIndex = availableStacksGrid.CurrentCell.RowIndex;
                 stackID = Convert.ToDouble(availableStacksGrid[0, stackIndex].Value);
-                stackDesc = (string)availableStacksGrid[1, stackIndex].Value;
+                stackDesc = (string)availableStacksGrid[2, stackIndex].Value;
             }
         }
 

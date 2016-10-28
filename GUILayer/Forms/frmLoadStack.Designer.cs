@@ -38,6 +38,7 @@
             this.btnDeleteStack = new System.Windows.Forms.Button();
             this.btnCancelStackLoad = new System.Windows.Forms.Button();
             this.ixStackID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.availableStacksGrid)).BeginInit();
             this.SuspendLayout();
@@ -97,6 +98,7 @@
             this.availableStacksGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.availableStacksGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ixStackID,
+            this.ShowName,
             this.StackName});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -165,7 +167,16 @@
             this.ixStackID.HeaderText = "ID";
             this.ixStackID.Name = "ixStackID";
             this.ixStackID.ReadOnly = true;
+            this.ixStackID.Visible = false;
             this.ixStackID.Width = 125;
+            // 
+            // ShowName
+            // 
+            this.ShowName.DataPropertyName = "ShowName";
+            this.ShowName.HeaderText = "Show Name";
+            this.ShowName.Name = "ShowName";
+            this.ShowName.ReadOnly = true;
+            this.ShowName.Width = 175;
             // 
             // StackName
             // 
@@ -173,7 +184,7 @@
             this.StackName.HeaderText = "Stack Name";
             this.StackName.Name = "StackName";
             this.StackName.ReadOnly = true;
-            this.StackName.Width = 367;
+            this.StackName.Width = 327;
             // 
             // frmLoadStack
             // 
@@ -208,6 +219,7 @@
         private System.Windows.Forms.Button btnDeleteStack;
         private System.Windows.Forms.Button btnCancelStackLoad;
         private System.Windows.Forms.DataGridViewTextBoxColumn ixStackID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShowName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StackName;
     }
 }

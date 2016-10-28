@@ -137,12 +137,12 @@
             this.lblStackEntriesCount = new System.Windows.Forms.Label();
             this.lblStackHeader = new System.Windows.Forms.Label();
             this.stackGrid = new System.Windows.Forms.DataGridView();
-            this.lblIpAddress = new System.Windows.Forms.Label();
-            this.lblHostName = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.Element_Type_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stack_Entry_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblIpAddress = new System.Windows.Forms.Label();
+            this.lblHostName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -1382,6 +1382,33 @@
             this.stackGrid.TabIndex = 118;
             this.stackGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.stackGrid_CellFormatting);
             // 
+            // Element_Type_Description
+            // 
+            this.Element_Type_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Element_Type_Description.DataPropertyName = "Stack_Element_Description";
+            this.Element_Type_Description.HeaderText = "Entry Type";
+            this.Element_Type_Description.Name = "Element_Type_Description";
+            this.Element_Type_Description.ReadOnly = true;
+            this.Element_Type_Description.Width = 160;
+            // 
+            // TemplateID
+            // 
+            this.TemplateID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TemplateID.DataPropertyName = "Stack_Element_TemplateID";
+            this.TemplateID.HeaderText = "Template Name";
+            this.TemplateID.Name = "TemplateID";
+            this.TemplateID.ReadOnly = true;
+            this.TemplateID.Width = 185;
+            // 
+            // Stack_Entry_Description
+            // 
+            this.Stack_Entry_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Stack_Entry_Description.DataPropertyName = "Listbox_Description";
+            this.Stack_Entry_Description.HeaderText = "Entry Description";
+            this.Stack_Entry_Description.Name = "Stack_Entry_Description";
+            this.Stack_Entry_Description.ReadOnly = true;
+            this.Stack_Entry_Description.Width = 280;
+            // 
             // lblIpAddress
             // 
             this.lblIpAddress.AutoSize = true;
@@ -1412,33 +1439,6 @@
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
             // 
-            // Element_Type_Description
-            // 
-            this.Element_Type_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Element_Type_Description.DataPropertyName = "Stack_Element_Description";
-            this.Element_Type_Description.HeaderText = "Entry Type";
-            this.Element_Type_Description.Name = "Element_Type_Description";
-            this.Element_Type_Description.ReadOnly = true;
-            this.Element_Type_Description.Width = 160;
-            // 
-            // TemplateID
-            // 
-            this.TemplateID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TemplateID.DataPropertyName = "Stack_Element_TemplateID";
-            this.TemplateID.HeaderText = "Template Name";
-            this.TemplateID.Name = "TemplateID";
-            this.TemplateID.ReadOnly = true;
-            this.TemplateID.Width = 185;
-            // 
-            // Stack_Entry_Description
-            // 
-            this.Stack_Entry_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Stack_Entry_Description.DataPropertyName = "Listbox_Description";
-            this.Stack_Entry_Description.HeaderText = "Entry Description";
-            this.Stack_Entry_Description.Name = "Stack_Entry_Description";
-            this.Stack_Entry_Description.ReadOnly = true;
-            this.Stack_Entry_Description.Width = 280;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1466,6 +1466,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmMain_KeyPress);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip.ResumeLayout(false);

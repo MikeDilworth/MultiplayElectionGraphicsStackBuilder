@@ -276,7 +276,7 @@ namespace GUILayer.Forms
                 // Load the BOP Grid
                 LoadBOPDGV();
 
-                // Enable handling of function keys
+                // Enable handling of function keys; setup method for function keys and assign delegate
                 KeyPreview = true;
                 this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
 
@@ -1052,6 +1052,42 @@ namespace GUILayer.Forms
                     break;
             }
         }
+
+        // Method to handle key press events (letters a-z as shortcuts to states in available races list)
+        private void frmMain_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for alpha character
+            if (((e.KeyChar >= 'a') && (e.KeyChar <= 'z')) || ((e.KeyChar >= 'A') && (e.KeyChar <= 'Z')))
+            {
+                // Check for available races
+                if (availableRaces.Count > 0)
+                {
+                    Boolean foundMatch = false;
+                    Int16 searchIndex = 0;
+
+                    do
+                    {
+                        AvailableRaceModel availableRace = null;
+                        availableRace = availableRaces[searchIndex];
+                        String stateName = availableRace.State_Mnemonic.Trim();
+                        if ((stateName[0] == e.KeyChar) || (stateName[0] == Char.ToUpper(e.KeyChar)))
+                        {
+                            foundMatch = true;
+
+                            availableRacesGrid.FirstDisplayedScrollingRowIndex = searchIndex;
+                            availableRacesGrid.Refresh();
+
+                            availableRacesGrid.CurrentCell = availableRacesGrid.Rows[searchIndex].Cells[0];
+
+                            availableRacesGrid.Rows[searchIndex].Selected = true;
+                        }
+                        searchIndex++;
+                    }
+                    while ((foundMatch == false) && (searchIndex < availableRaces.Count));
+                }
+            }
+        }
+
         #endregion
 
         #region Stack manipulation methods
@@ -1208,13 +1244,14 @@ namespace GUILayer.Forms
                     //Delete the item from the collection
                     stackElements.RemoveAt(currentStackIndex);
                 }
+
                 // Update stack entries count label
                 txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
 
                 // Clear out current settings if no entries left in stack
                 if (stackElements.Count == 0)
                 {
-                    stackID = 0;
+                    stackID = -1;
                     txtStackName.Text = "None Selected";
                 }
             }
@@ -1246,7 +1283,8 @@ namespace GUILayer.Forms
                 // Setup dialog to load stack
                 DialogResult dr = new DialogResult();               
                 frmLoadStack loadStack = new frmLoadStack();
-                loadStack.StackCollectionCount = stackElements.Count;
+
+                RefreshStacksList();
 
                 dr = loadStack.ShowDialog();
 
@@ -1278,35 +1316,68 @@ namespace GUILayer.Forms
                 // Check for Delete Stack operation
                 else if (dr == DialogResult.Ignore)
                 {
+                    Boolean okToGo = true;
+
                     stackIndex = loadStack.StackIndex;
                     if (stacks.Count > 0)
                     {
-
-                        // Operator didn't cancel out, so delete the stack
+                        // Get the stack index from the dialog
                         int currentStackIndex = stackIndex;
 
-                        // Delete from database
+                        // Get the metadata for the stack
                         StackModel selectedStack = stacksCollection.GetStackMetadata(stacks, currentStackIndex);
-                        stacksCollection.DeleteStack(selectedStack.ixStackID);
 
-                        // Delete from MSE
-                        string groupSelfLink = string.Empty;
-
-                        // Get playlists directory URI based on current show
-                        string showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI + "/", currentShowName);
-
-                        // Check for a playlist (group) in the VDOM with the specified name & return the Alt link
-                        // Delete the group so it can be re-created
-                        string playlistDownLink = playlist.GetPlaylistDownLink(showPlaylistsDirectoryURI, currentPlaylistName);
-                        if (playlistDownLink != string.Empty)
+                        // Check if operator is trying the delete the currently loaded stack and prompt
+                        if (selectedStack.StackName == stackDescription)
                         {
-                            // Get the self link to the specified group
-                            groupSelfLink = group.GetGroupSelfLink(playlistDownLink, selectedStack.StackName);
-
-                            // Delete the group if it exists
-                            if (groupSelfLink != string.Empty)
+                            DialogResult result1 =
+                                MessageBox.Show(
+                                    "The stack you are deleting is currently loaded. If you proceed, the stack will also be cleared. Are you sure you want to proceed?",
+                                    "Confirmation",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
                             {
-                                group.DeleteGroup(groupSelfLink);
+                                // Clear the stack elements collection
+                                if (stackGrid.RowCount > 0)
+                                {
+                                    //Clear the collection
+                                    stackElements.Clear();
+                                }
+
+                                // Clear out current stack settings
+                                stackID = -1;
+                                txtStackName.Text = "None Selected";
+
+                                // Update stack entries count label
+                                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);                             
+                            }
+                            else okToGo = false;
+                        }
+
+                        // Proceed as long as operater did not opt out
+                        if (okToGo)
+                        {
+                            stacksCollection.DeleteStack(selectedStack.ixStackID);
+
+                            // Delete from MSE
+                            string groupSelfLink = string.Empty;
+
+                            // Get playlists directory URI based on current show
+                            string showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI + "/", currentShowName);
+
+                            // Check for a playlist (group) in the VDOM with the specified name & return the Alt link
+                            // Delete the group so it can be re-created
+                            string playlistDownLink = playlist.GetPlaylistDownLink(showPlaylistsDirectoryURI, currentPlaylistName);
+                            if (playlistDownLink != string.Empty)
+                            {
+                                // Get the self link to the specified group
+                                groupSelfLink = group.GetGroupSelfLink(playlistDownLink, selectedStack.StackName);
+
+                                // Delete the group if it exists
+                                if (groupSelfLink != string.Empty)
+                                {
+                                    group.DeleteGroup(groupSelfLink);
+                                }
                             }
                         }
                     }
@@ -1448,20 +1519,6 @@ namespace GUILayer.Forms
 
                     // Get playlists directory URI based on current show
                     string showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI, currentShowName);
-
-                    // Set the top-level group metadata to be saved out to the DB
-                    // Instantiate a new top-level stack metadata model
-                    //StackModel stackMetadata = new StackModel();
-
-                    // Set the top-level stack metadata & save out the stack to the DB; data will be updated if stack (group) already exists
-                    //stackMetadata.ixStackID = stack_ID;
-                    //stackMetadata.StackName = stack_Description;
-                    //stackMetadata.StackType = 0;
-                    //stackMetadata.ShowName = currentShowName;
-                    //stackMetadata.ConceptID = conceptID;
-                    //stackMetadata.ConceptName = conceptName;
-                    //stackMetadata.Notes = "Not currently used";
-                    //stacksCollection.SaveStack(stackMetadata);
 
                     // Iterate through the races in the stack to build the preview collection, then call methods to create group containing elements
                     // Clear out the existing race preview collection
