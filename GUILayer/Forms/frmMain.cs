@@ -42,6 +42,7 @@ namespace GUILayer.Forms
         string elementCollectionURIPlaylist;
         string templateModel;
 
+        // Parameters for current (working) stack
         // Specify stackID as double - will use encoded date/time string converted to float
         Double stackID = -1;
         string stackDescription;
@@ -52,9 +53,10 @@ namespace GUILayer.Forms
 
         Int16 conceptID;
         string conceptName;
-        //string templateName;
 
         private Boolean manualEPQuestions = false;
+        public Boolean enableShowSelectControls = false;
+
         #endregion
 
         #region Collection & binding list definitions
@@ -230,6 +232,20 @@ namespace GUILayer.Forms
                 else
                 {
                     tpReferendums.Enabled = false;
+                }
+
+                // Setup show controls
+                if (Properties.Settings.Default.EnableShowSelectControls)
+                    enableShowSelectControls = true;
+                else
+                    enableShowSelectControls = false;
+                if (enableShowSelectControls)
+                {
+                    miSelectDefaultShow.Enabled = true;
+                }
+                else
+                {
+                    miSelectDefaultShow.Enabled = false;
                 }
 
                 // Update status
@@ -1047,9 +1063,9 @@ namespace GUILayer.Forms
                     if (e.Control == true)
                         btnSaveStack_Click(sender, e);
                     break;
-                default:
-                    rbShowAll.Checked = true;
-                    break;
+                //default:
+                //    rbShowAll.Checked = true;
+                //    break;
             }
         }
 
@@ -1284,6 +1300,8 @@ namespace GUILayer.Forms
                 DialogResult dr = new DialogResult();               
                 frmLoadStack loadStack = new frmLoadStack();
 
+                loadStack.EnableShowControls = enableShowSelectControls;
+
                 RefreshStacksList();
 
                 dr = loadStack.ShowDialog();
@@ -1429,6 +1447,9 @@ namespace GUILayer.Forms
                     {
                         DialogResult dr = new DialogResult();
                         FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
+
+                        saveStack.EnableShowControls = enableShowSelectControls;
+
                         dr = saveStack.ShowDialog();
 
                         // Will only get here if Prompt for Info checkbox is checked
@@ -1780,7 +1801,7 @@ namespace GUILayer.Forms
                     if (playlistDownLink != string.Empty)
                     {
                         // Get the self link to the specified group
-                        groupSelfLink = group.GetGroupSelfLink(playlistDownLink, stackDescription);
+                        groupSelfLink = group.GetGroupSelfLink(playlistDownLink, stack_Description);
 
                         // Delete the group if it exists
                         if (groupSelfLink != string.Empty)
@@ -1789,7 +1810,7 @@ namespace GUILayer.Forms
                         }
 
                         // Create the group
-                        REST_RESPONSE restResponse = group.CreateGroup(playlistDownLink, stackDescription);
+                        REST_RESPONSE restResponse = group.CreateGroup(playlistDownLink, stack_Description);
 
                         // Check for elements in collection and add to group
                         if (racePreview.Count > 0)
@@ -1866,7 +1887,7 @@ namespace GUILayer.Forms
                                 // NOTE: Currently hard-wired for race boards - will need to be extended to support varying data types
                                 Dictionary<string, string> nameValuePairs =
                                     new Dictionary<string, string> { { TemplateFieldNames.RaceBoard_Template_Preview_Field, racePreviewElement.Raceboard_Preview_Field_Text }, 
-                                                                         { TemplateFieldNames.RaceBoard_Template_Type_Field, stackID.ToString() + "|" + pageNumber } };
+                                                                         { TemplateFieldNames.RaceBoard_Template_Type_Field, stack_ID.ToString() + "|" + pageNumber } };
 
                                 // Instance the element management class
                                 MANAGE_ELEMENTS element = new MANAGE_ELEMENTS();

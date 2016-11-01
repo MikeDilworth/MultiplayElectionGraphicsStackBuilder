@@ -37,11 +37,17 @@ namespace GUILayer.Forms
         private string stackDesc;
         public string StackDesc { get { return stackDesc; } set { StackDesc = stackDesc; } }
 
+        public Boolean EnableShowControls { get; set;}
+
         //string topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory;
         //string currentShowName = Properties.Settings.Default.CurrentShowName;
         //string currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
         //string currentShowName = "MAIN_WALL";
         //string currentPlaylistName = "GRAPHICS";
+
+        //public delegate void DelDeleteStack(frmLoadStack sender, Double stackID, String );
+
+        //public event DelDeleteStack DeleteStack;
 
         public frmLoadStack()
         {
@@ -52,6 +58,15 @@ namespace GUILayer.Forms
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
 
             RefreshStacksList();
+
+            if (EnableShowControls)
+            {
+                this.availableStacksGrid.Columns[1].Visible = true;
+            }
+            else
+            {
+                this.availableStacksGrid.Columns[1].Visible = false;
+            }
 
             // Select first stack in list as default
             if (stacks.Count > 0)
@@ -129,30 +144,31 @@ namespace GUILayer.Forms
         {
             try
             {
-                if ((stackIndex >= 0) && (availableStacksGrid.RowCount > 0))
-                {
-                    DialogResult result1 =
-                        MessageBox.Show(
-                            "Are you sure you want to clear any current contents of the stack and load the specified stack from the database?",
-                            "Confirmation",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result1 == DialogResult.Yes)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                    else
-                    {
-                        this.DialogResult = DialogResult.Cancel;
-                        this.Close();
-                    }
-                }
+                // Disable confirmation dialog for 2016 election
+                //if ((stackIndex >= 0) && (availableStacksGrid.RowCount > 0))
+                //{
+                    //DialogResult result1 =
+                    //    MessageBox.Show(
+                    //        "Are you sure you want to clear any current contents of the stack and load the specified stack from the database?",
+                    //        "Confirmation",
+                    //        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //if (result1 == DialogResult.Yes)
+                    //{
+                    //    this.DialogResult = DialogResult.OK;
+                    //    this.Close();
+                    //}
+                    //else
+                    //{
+                    //    this.DialogResult = DialogResult.Cancel;
+                    //    this.Close();
+                    //}
+                //}
                 // No elements in stack, so don't prompt operator
-                else
-                {
+                //else
+                //{
                     this.DialogResult = DialogResult.OK;
                     this.Close();                   
-                }
+                //}
 
             }
             catch (Exception ex)

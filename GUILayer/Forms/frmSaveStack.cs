@@ -31,10 +31,21 @@ namespace GUILayer.Forms
         //public string StackDescription { get { return stackDescription; } set { StackDescription = stackDescription; } }
         public string StackDescription { get; set; }
 
+        public Boolean EnableShowControls { get; set; }
+
         public FrmSaveStack(Double stID, string stackDesc)
         {
             InitializeComponent();
             RefreshStacksList();
+
+            if (EnableShowControls)
+            {
+                this.availableStacksGrid.Columns[1].Visible = true;
+            }
+            else
+            {
+                this.availableStacksGrid.Columns[1].Visible = false;
+            }
 
             // Enable handling of function keys
             KeyPreview = true;

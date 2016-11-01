@@ -184,7 +184,7 @@
             this.StackName.HeaderText = "Stack Name";
             this.StackName.Name = "StackName";
             this.StackName.ReadOnly = true;
-            this.StackName.Width = 327;
+            this.StackName.Width = 500;
             // 
             // frmLoadStack
             // 
