@@ -1059,10 +1059,11 @@ namespace GUILayer.Forms
                     if (e.Control == true)
                         btnClearStack_Click_1(sender, e);
                     break;
-                case Keys.O:
-                    if (e.Control == true)
-                        btnSaveStack_Click(sender, e);
-                    break;
+                // Save to database only disabled for 2016 election
+                //case Keys.O:
+                //    if (e.Control == true)
+                //        btnSaveStack_Click(sender, e);
+                //    break;
                 //default:
                 //    rbShowAll.Checked = true;
                 //    break;
