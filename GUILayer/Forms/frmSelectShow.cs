@@ -32,7 +32,7 @@ namespace GUILayer.Forms
         public string selectedShow { get; set; }
         #endregion
 
-        public frmSelectShow()
+        public frmSelectShow(string mediaSequencerEndPoint)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace GUILayer.Forms
                 //Read in values from the config file
                 GraphicsDBConnectionString = Properties.Settings.Default.GraphicsDBConnectionString;
 
-                showNames = getShowList.GetListOfShows(Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory);
+                showNames = getShowList.GetListOfShows(mediaSequencerEndPoint + Properties.Settings.Default.TopLevelShowsDirectory);
 
                 // Enable handling of function keys
                 KeyPreview = true;

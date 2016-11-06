@@ -130,6 +130,18 @@ namespace GUILayer.Forms
         MANAGE_ELEMENTS element = new MANAGE_ELEMENTS();
 
         // Read in MSE settings from config file and set default directories and parameters
+        Boolean usingPrimaryMediaSequencer = true;
+        Boolean mseEndpoint1_Enable = false;
+        string mseEndpoint1 = string.Empty;
+        Boolean mseEndpoint2_Enable = false;
+        string mseEndpoint2 = string.Empty;
+        string topLevelShowsDirectoryURI = string.Empty;
+        string masterPlaylistsDirectoryURI = string.Empty;
+        string profilesURI = string.Empty;
+        string currentShowName = string.Empty;
+        string currentPlaylistName = string.Empty;
+
+        /*
         Boolean mseEndpoint1_Enable = Properties.Settings.Default.MSEEndpoint1_Enable;
         string mseEndpoint1 = Properties.Settings.Default.MSEEndpoint1;
         Boolean mseEndpoint2_Enable = Properties.Settings.Default.MSEEndpoint2_Enable;
@@ -139,6 +151,7 @@ namespace GUILayer.Forms
         string profilesURI = Properties.Settings.Default.MSEEndpoint1 + "profiles";
         string currentShowName = Properties.Settings.Default.CurrentShowName;
         string currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
+        */
 
         // Read in database connection strings
         string GraphicsDBConnectionString = Properties.Settings.Default.GraphicsDBConnectionString;
@@ -349,8 +362,25 @@ namespace GUILayer.Forms
         // Handler for main form load
         private void frmMain_Load(object sender, EventArgs e)
         {
+            // Read in config settings - default to Media Sequencer #1
+            mseEndpoint1 = Properties.Settings.Default.MSEEndpoint1;
+            mseEndpoint2 = Properties.Settings.Default.MSEEndpoint2;
+            mseEndpoint1_Enable = Properties.Settings.Default.MSEEndpoint1_Enable;
+            mseEndpoint2_Enable = Properties.Settings.Default.MSEEndpoint2_Enable;
+            topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory;
+            masterPlaylistsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.MasterPlaylistsDirectory;
+            profilesURI = Properties.Settings.Default.MSEEndpoint1 + "profiles";
+            currentShowName = Properties.Settings.Default.CurrentShowName;
+            currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
+            usingPrimaryMediaSequencer = true;
+
             // Log application start
             log.Info("Starting Stack Builder application");
+
+            lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER: " + Convert.ToString(Properties.Settings.Default.MSEEndpoint1);
+            lblMediaSequencer.BackColor = System.Drawing.Color.White;
+            usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
+            useBackupMediaSequencerToolStripMenuItem.Checked = false;
         }
 
         // Handler for main menu program exit button click
@@ -753,7 +783,16 @@ namespace GUILayer.Forms
         private void miSelectDefaultShow_Click(object sender, EventArgs e)
         {
             DialogResult dr = new DialogResult();
-            frmSelectShow selectShow = new frmSelectShow();
+            string mseEndpoint = string.Empty;
+            if (usingPrimaryMediaSequencer)
+            {
+                mseEndpoint = mseEndpoint1;
+            }
+            else
+            {
+                mseEndpoint = mseEndpoint2;
+            }
+            frmSelectShow selectShow = new frmSelectShow(mseEndpoint);
             dr = selectShow.ShowDialog();
             if (dr == DialogResult.OK)
             {
@@ -3076,5 +3115,73 @@ namespace GUILayer.Forms
 
         #endregion
 
+        #region Methods for switching between media sequencers
+        // Go to primary media sequencer
+        private void usePrimaryMediaSequencerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (usePrimaryMediaSequencerToolStripMenuItem.Checked == false)
+            {
+                if (mseEndpoint2_Enable)
+                {
+                    usingPrimaryMediaSequencer = false;
+                    topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint2 + Properties.Settings.Default.TopLevelShowsDirectory;
+                    masterPlaylistsDirectoryURI = Properties.Settings.Default.MSEEndpoint2 + Properties.Settings.Default.MasterPlaylistsDirectory;
+
+                    lblMediaSequencer.Text = "USING BACKUP MEDIA SEQUENCER: " + mseEndpoint2;
+                    lblMediaSequencer.BackColor = System.Drawing.Color.Yellow;
+                    usePrimaryMediaSequencerToolStripMenuItem.Checked = false;
+                    useBackupMediaSequencerToolStripMenuItem.Checked = true;
+                }
+            }
+            else
+            {
+                if (mseEndpoint1_Enable)
+                {
+                    usingPrimaryMediaSequencer = true;
+                    topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory;
+                    masterPlaylistsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.MasterPlaylistsDirectory;
+
+                    lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER: " + mseEndpoint1;
+                    lblMediaSequencer.BackColor = System.Drawing.Color.White;
+                    usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
+                    useBackupMediaSequencerToolStripMenuItem.Checked = false;
+                }
+            }
+        }
+
+        // Go to backup media sequencer
+        private void useBackupMediaSequencerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (useBackupMediaSequencerToolStripMenuItem.Checked == false)
+            {
+                if (mseEndpoint1_Enable)
+                {
+                    usingPrimaryMediaSequencer = true;
+                    topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory;
+                    masterPlaylistsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.MasterPlaylistsDirectory;
+
+                    lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER: " + mseEndpoint1;
+                    lblMediaSequencer.BackColor = System.Drawing.Color.White;
+                    usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
+                    useBackupMediaSequencerToolStripMenuItem.Checked = false;
+                }
+
+            }
+            else
+            {
+                if (mseEndpoint2_Enable)
+                {
+                    usingPrimaryMediaSequencer = false;
+                    topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint2 + Properties.Settings.Default.TopLevelShowsDirectory;
+                    masterPlaylistsDirectoryURI = Properties.Settings.Default.MSEEndpoint2 + Properties.Settings.Default.MasterPlaylistsDirectory;
+
+                    lblMediaSequencer.Text = "USING BACKUP MEDIA SEQUENCER: " + mseEndpoint2;
+                    lblMediaSequencer.BackColor = System.Drawing.Color.Yellow;
+                    usePrimaryMediaSequencerToolStripMenuItem.Checked = false;
+                    useBackupMediaSequencerToolStripMenuItem.Checked = true;
+                }
+            }
+        }
+        #endregion
     }
 }

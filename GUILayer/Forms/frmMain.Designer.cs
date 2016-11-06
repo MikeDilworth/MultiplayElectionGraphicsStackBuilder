@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,6 +143,10 @@
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblMediaSequencer = new System.Windows.Forms.Label();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.usePrimaryMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useBackupMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -203,7 +207,10 @@
             this.utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miSelectDefaultShow,
             this.toolStripMenuItem1,
-            this.resetStatusBarToolStripMenuItem});
+            this.resetStatusBarToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.usePrimaryMediaSequencerToolStripMenuItem,
+            this.useBackupMediaSequencerToolStripMenuItem});
             this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
             this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.utilitiesToolStripMenuItem.Text = "&Utilities";
@@ -211,19 +218,19 @@
             // miSelectDefaultShow
             // 
             this.miSelectDefaultShow.Name = "miSelectDefaultShow";
-            this.miSelectDefaultShow.Size = new System.Drawing.Size(170, 22);
+            this.miSelectDefaultShow.Size = new System.Drawing.Size(216, 22);
             this.miSelectDefaultShow.Text = "&Select Default Show";
             this.miSelectDefaultShow.Click += new System.EventHandler(this.miSelectDefaultShow_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(167, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
             // 
             // resetStatusBarToolStripMenuItem
             // 
             this.resetStatusBarToolStripMenuItem.Name = "resetStatusBarToolStripMenuItem";
-            this.resetStatusBarToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.resetStatusBarToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.resetStatusBarToolStripMenuItem.Text = "&Reset Status Bar";
             this.resetStatusBarToolStripMenuItem.Click += new System.EventHandler(this.resetStatusBarToolStripMenuItem_Click);
             // 
@@ -1351,27 +1358,27 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle6;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
             this.stackGrid.MultiSelect = false;
             this.stackGrid.Name = "stackGrid";
@@ -1440,12 +1447,45 @@
             this.label3.TabIndex = 123;
             this.label3.Text = "Host PC Info:";
             // 
+            // lblMediaSequencer
+            // 
+            this.lblMediaSequencer.BackColor = System.Drawing.Color.White;
+            this.lblMediaSequencer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMediaSequencer.Location = new System.Drawing.Point(702, 68);
+            this.lblMediaSequencer.Name = "lblMediaSequencer";
+            this.lblMediaSequencer.Size = new System.Drawing.Size(708, 23);
+            this.lblMediaSequencer.TabIndex = 124;
+            this.lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER:";
+            this.lblMediaSequencer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
+            // 
+            // usePrimaryMediaSequencerToolStripMenuItem
+            // 
+            this.usePrimaryMediaSequencerToolStripMenuItem.CheckOnClick = true;
+            this.usePrimaryMediaSequencerToolStripMenuItem.Name = "usePrimaryMediaSequencerToolStripMenuItem";
+            this.usePrimaryMediaSequencerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.usePrimaryMediaSequencerToolStripMenuItem.Text = "Use Primary Media Sequencer";
+            this.usePrimaryMediaSequencerToolStripMenuItem.Click += new System.EventHandler(this.usePrimaryMediaSequencerToolStripMenuItem_Click);
+            // 
+            // useBackupMediaSequencerToolStripMenuItem
+            // 
+            this.useBackupMediaSequencerToolStripMenuItem.CheckOnClick = true;
+            this.useBackupMediaSequencerToolStripMenuItem.Name = "useBackupMediaSequencerToolStripMenuItem";
+            this.useBackupMediaSequencerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.useBackupMediaSequencerToolStripMenuItem.Text = "Use Backup Media Sequencer";
+            this.useBackupMediaSequencerToolStripMenuItem.Click += new System.EventHandler(this.useBackupMediaSequencerToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1423, 884);
+            this.Controls.Add(this.lblMediaSequencer);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblHostName);
             this.Controls.Add(this.lblIpAddress);
@@ -1621,6 +1661,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Element_Type_Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stack_Entry_Description;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem usePrimaryMediaSequencerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useBackupMediaSequencerToolStripMenuItem;
+        private System.Windows.Forms.Label lblMediaSequencer;
     }
 }
 
