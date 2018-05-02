@@ -108,3 +108,26 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.GenerateResource.Cache
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.exe
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe.config
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MSEInterface.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MSEInterface.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.xml
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csprojResolveAssemblyReference.cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmLoadStack.resources
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmSaveStack.resources
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmCandidateSelect.resources
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmAbout.resources
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmMain.resources
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmSelectShow.resources
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Properties.Resources.resources
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.GenerateResource.Cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CoreCompileInputs.cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.exe
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb

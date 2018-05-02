@@ -65,7 +65,8 @@ namespace LogicLayer.Collections
                 {
                     var newAvailableRace = new AvailableRaceModel()
                     {
-                        Race_ID = Convert.ToInt16(row["Race_ID"] ?? 0),
+                        //Aruti - Changed to INT32 from INT16 to accomodate the new race IDS
+                        Race_ID = Convert.ToInt32(row["Race_ID"] ?? 0),
                         Election_Type = row["Race_ElectionType"].ToString() ?? "",
                         Race_Description = row["Race_Description"].ToString() ?? "",
                         State_Number = Convert.ToInt16(row["State_ID"] ?? 0),
