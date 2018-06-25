@@ -25,5 +25,13 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.csprojResolveAssemblyReference.cache
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.pdb
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.csproj.CoreCompileInputs.cache
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.csproj.CopyComplete
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\MSEInterface.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\MSEInterface.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\DataInterface.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\log4net.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\DataInterface.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\bin\Debug\log4net.xml
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\obj\Debug\MSEInterface.csprojResolveAssemblyReference.cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\obj\Debug\MSEInterface.csproj.CoreCompileInputs.cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\obj\Debug\MSEInterface.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\MSEInterface\obj\Debug\MSEInterface.pdb

@@ -18,6 +18,11 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\bin\Debug\log4net.xml
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.pdb
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.csproj.CoreCompileInputs.cache
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.csproj.CopyComplete
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.csprojResolveAssemblyReference.cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\bin\Debug\DataInterface.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\bin\Debug\DataInterface.pdb
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.xml
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csprojResolveAssemblyReference.cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.CoreCompileInputs.cache
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.dll
+C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.pdb

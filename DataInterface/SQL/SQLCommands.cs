@@ -106,7 +106,8 @@ namespace DataInterface.SQL
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Sql to get the list of available races
-        /// </summary>
+        /// </summary>\
+        /// Aruti - 4/30 - changed from getVDSRaceList to getRaceList
         public static readonly string sqlGetAvailableRacesList = "getRaceList";
 
         public static readonly string sqlGetCalledRaceList = "getVDSCalledRaceList";
