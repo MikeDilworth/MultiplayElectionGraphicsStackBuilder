@@ -25,3 +25,5 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.csprojResolveAssemblyReference.cache
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.csproj.CoreCompileInputs.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\MSEInterface\obj\Debug\MSEInterface.csproj.CopyComplete

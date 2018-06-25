@@ -9,7 +9,7 @@ namespace DataInterface.DataModel
     // Class for available races
     public class AvailableRaceModel
     {
-        public Int16 Race_ID { get; set; }
+        public Int32 Race_ID { get; set; }
         public string Election_Type { get; set; }
         public string Race_Description { get; set; }
         public Int16 State_Number { get; set; }
