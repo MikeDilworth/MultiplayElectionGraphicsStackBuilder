@@ -107,7 +107,7 @@ namespace DataInterface.SQL
         /// <summary>
         /// Sql to get the list of available races
         /// </summary>
-        public static readonly string sqlGetAvailableRacesList = "getVDSRaceList";
+        public static readonly string sqlGetAvailableRacesList = "getRaceList";
 
         public static readonly string sqlGetCalledRaceList = "getVDSCalledRaceList";
 
