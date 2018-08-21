@@ -35,3 +35,13 @@ C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\LogicLayer\obj\Debug\Lo
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.dll
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\X\electiongraphicsstackbuilder\LogicLayer\bin\Debug\LogicLayer.dll
+C:\X\electiongraphicsstackbuilder\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\X\electiongraphicsstackbuilder\LogicLayer\bin\Debug\DataInterface.dll
+C:\X\electiongraphicsstackbuilder\LogicLayer\bin\Debug\log4net.dll
+C:\X\electiongraphicsstackbuilder\LogicLayer\bin\Debug\DataInterface.pdb
+C:\X\electiongraphicsstackbuilder\LogicLayer\bin\Debug\log4net.xml
+C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csprojResolveAssemblyReference.cache
+C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.dll
+C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.pdb

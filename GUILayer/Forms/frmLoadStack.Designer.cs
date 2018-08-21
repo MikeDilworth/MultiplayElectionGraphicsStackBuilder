@@ -35,11 +35,11 @@
             this.btnLoadStack = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.availableStacksGrid = new System.Windows.Forms.DataGridView();
-            this.btnDeleteStack = new System.Windows.Forms.Button();
-            this.btnCancelStackLoad = new System.Windows.Forms.Button();
             this.ixStackID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDeleteStack = new System.Windows.Forms.Button();
+            this.btnCancelStackLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.availableStacksGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,6 +133,31 @@
             this.availableStacksGrid.DoubleClick += new System.EventHandler(this.availableStacksGrid_DoubleClick);
             this.availableStacksGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.availableStacksGrid_KeyDown);
             // 
+            // ixStackID
+            // 
+            this.ixStackID.DataPropertyName = "ixStackID";
+            this.ixStackID.HeaderText = "ID";
+            this.ixStackID.Name = "ixStackID";
+            this.ixStackID.ReadOnly = true;
+            this.ixStackID.Visible = false;
+            this.ixStackID.Width = 125;
+            // 
+            // ShowName
+            // 
+            this.ShowName.DataPropertyName = "ShowName";
+            this.ShowName.HeaderText = "Show Name";
+            this.ShowName.Name = "ShowName";
+            this.ShowName.ReadOnly = true;
+            this.ShowName.Width = 175;
+            // 
+            // StackName
+            // 
+            this.StackName.DataPropertyName = "StackName";
+            this.StackName.HeaderText = "Stack Name";
+            this.StackName.Name = "StackName";
+            this.StackName.ReadOnly = true;
+            this.StackName.Width = 500;
+            // 
             // btnDeleteStack
             // 
             this.btnDeleteStack.DialogResult = System.Windows.Forms.DialogResult.Ignore;
@@ -161,31 +186,6 @@
             this.btnCancelStackLoad.UseVisualStyleBackColor = true;
             this.btnCancelStackLoad.Click += new System.EventHandler(this.btnCancelStackLoad_Click);
             // 
-            // ixStackID
-            // 
-            this.ixStackID.DataPropertyName = "ixStackID";
-            this.ixStackID.HeaderText = "ID";
-            this.ixStackID.Name = "ixStackID";
-            this.ixStackID.ReadOnly = true;
-            this.ixStackID.Visible = false;
-            this.ixStackID.Width = 125;
-            // 
-            // ShowName
-            // 
-            this.ShowName.DataPropertyName = "ShowName";
-            this.ShowName.HeaderText = "Show Name";
-            this.ShowName.Name = "ShowName";
-            this.ShowName.ReadOnly = true;
-            this.ShowName.Width = 175;
-            // 
-            // StackName
-            // 
-            this.StackName.DataPropertyName = "StackName";
-            this.StackName.HeaderText = "Stack Name";
-            this.StackName.Name = "StackName";
-            this.StackName.ReadOnly = true;
-            this.StackName.Width = 500;
-            // 
             // frmLoadStack
             // 
             this.AcceptButton = this.btnLoadStack;
@@ -193,7 +193,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.CancelButton = this.btnCancelStackLoad;
-            this.ClientSize = new System.Drawing.Size(538, 754);
+            this.ClientSize = new System.Drawing.Size(896, 754);
             this.Controls.Add(this.btnCancelStackLoad);
             this.Controls.Add(this.btnActivateStack);
             this.Controls.Add(this.btnLoadStack);

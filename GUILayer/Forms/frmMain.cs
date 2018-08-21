@@ -41,7 +41,6 @@ namespace GUILayer.Forms
         string templateCollectionURIShow;
         string elementCollectionURIPlaylist;
         string templateModel;
-
         // Parameters for current (working) stack
         // Specify stackID as double - will use encoded date/time string converted to float
         Double stackID = -1;
@@ -51,11 +50,18 @@ namespace GUILayer.Forms
         Boolean insertNext;
         Int32 insertPoint;
 
+        // For no use what so ever
+        ulong useless = 0;
+
         Int16 conceptID;
         string conceptName;
 
         private Boolean manualEPQuestions = false;
         public Boolean enableShowSelectControls = false;
+        public List<EngineModel> vizEngines = new List<EngineModel>();
+        public bool builderOnlyMode = false;
+
+
 
         #endregion
 
@@ -372,6 +378,112 @@ namespace GUILayer.Forms
             profilesURI = Properties.Settings.Default.MSEEndpoint1 + "profiles";
             currentShowName = Properties.Settings.Default.CurrentShowName;
             currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
+            string sceneDescription = Properties.Settings.Default.Scene_Name;
+            var useSceneName = Properties.Settings.Default[sceneDescription];
+            builderOnlyMode = Properties.Settings.Default.builderOnly;
+
+            this.Size = new Size(1439, 923);
+            connectionPanel.Visible = false;
+
+            if (builderOnlyMode == false)
+            {
+
+                // Enlarge form
+                this.Size = new Size(1456, 1019);
+                connectionPanel.Visible = true;
+
+                // get viz engine info
+
+                int i = 0;
+                bool done = false;
+                string engineParam;
+                var engineInfo = Properties.Settings.Default["Engine1_IPAddress"];
+
+                // read engine info until no more engines found
+                while (done == false)
+                {
+                    EngineModel viz = new EngineModel();
+                    i++;
+                    engineParam = $"Engine{i}_IPAddress";
+
+                    try
+                    {
+                        engineInfo = Properties.Settings.Default[engineParam];
+                        viz.IPAddress = (string)engineInfo;
+
+                        engineParam = $"Engine{i}_Port";
+                        engineInfo = Properties.Settings.Default[engineParam];
+                        viz.Port = (int)engineInfo;
+
+                        engineParam = $"Engine{i}_Enable";
+                        engineInfo = Properties.Settings.Default[engineParam];
+                        viz.enable = (bool)engineInfo;
+
+                        viz.id = i;
+                        
+                        vizEngines.Add(viz);
+
+                        // set viz address labels
+                        switch (i)
+                        {
+                            case 1:
+                                gbIPlbl1.Text = viz.IPAddress;
+                                gbPortlbl1.Text = viz.Port.ToString();
+                                gbViz1.Visible = true;
+                                gbViz1.Enabled = viz.enable;
+                                break;
+
+                            case 2:
+                                gbIPlbl2.Text = viz.IPAddress;
+                                gbPortlbl2.Text = viz.Port.ToString();
+                                gbViz2.Visible = true;
+                                gbViz2.Enabled = viz.enable;
+                                break;
+
+                            case 3:
+                                gbIPlbl3.Text = viz.IPAddress;
+                                gbPortlbl3.Text = viz.Port.ToString();
+                                gbViz3.Visible = true;
+                                gbViz3.Enabled = viz.enable;
+                                break;
+
+                            case 4:
+                                gbIPlbl4.Text = viz.IPAddress;
+                                gbPortlbl4.Text = viz.Port.ToString();
+                                gbViz4.Visible = true;
+                                gbViz4.Enabled = viz.enable;
+                                break;
+
+                            case 5:
+                                gbIPlbl5.Text = viz.IPAddress;
+                                gbPortlbl5.Text = viz.Port.ToString();
+                                gbViz5.Visible = true;
+                                gbViz5.Enabled = viz.enable;
+                                break;
+
+                            case 6:
+                                gbIPlbl6.Text = viz.IPAddress;
+                                gbPortlbl6.Text = viz.Port.ToString();
+                                gbViz6.Visible = true;
+                                gbViz6.Enabled = viz.enable;
+                                break;
+
+                        }
+
+                        if (i == 6)
+                            done = true;
+                    }
+                    catch
+                    {
+                        // Next engine not found
+                        done = true;
+                    }
+                }
+
+            }
+
+
+
             usingPrimaryMediaSequencer = true;
 
             // Log application start
@@ -381,7 +493,37 @@ namespace GUILayer.Forms
             lblMediaSequencer.BackColor = System.Drawing.Color.White;
             usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
             useBackupMediaSequencerToolStripMenuItem.Checked = false;
+            
         }
+        public void ConnectToVizEngines()
+        {
+            
+            for (int i = 0; i < vizEngines.Count; i++)
+            {
+                // Instantiate and setup the client sockets
+                // Establish the remote endpoints for the sockets
+                System.Net.IPAddress TRIpAddress = System.Net.IPAddress.Parse(IPAddress);
+                TRClientSocket = new ClientSocket(TRIpAddress, Convert.ToInt32(Port));
+
+                // Initialize event handlers for the sockets
+                TRClientSocket.DataReceived += TRDataReceived;
+                TRClientSocket.ConnectionStatusChanged += TRConnectionStatusChanged;
+
+                // Connect to the TRClientSocket; call-backs for connection status will indicate status of client sockets
+                TRClientSocket.AutoReconnect = true;
+                TRClientSocket.Connect();
+
+                System.Threading.Thread.Sleep(1000);
+                if (TRConnected == true)
+                {
+                    pictureBox2.Visible = true;
+                }
+
+            }
+
+
+        }
+
 
         // Handler for main menu program exit button click
         private void miExit_Click(object sender, EventArgs e)
@@ -3183,5 +3325,15 @@ namespace GUILayer.Forms
             }
         }
         #endregion
+
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +39,9 @@
             this.miSelectDefaultShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.resetStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.usePrimaryMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useBackupMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miAboutBox = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -144,9 +147,43 @@
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblMediaSequencer = new System.Windows.Forms.Label();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.usePrimaryMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useBackupMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectionPanel = new System.Windows.Forms.Panel();
+            this.gbViz6 = new System.Windows.Forms.GroupBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.gbLEDOn6 = new System.Windows.Forms.PictureBox();
+            this.gbLEDOff6 = new System.Windows.Forms.PictureBox();
+            this.gbPortlbl6 = new System.Windows.Forms.Label();
+            this.gbIPlbl6 = new System.Windows.Forms.Label();
+            this.gbViz5 = new System.Windows.Forms.GroupBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.gbLEDOn5 = new System.Windows.Forms.PictureBox();
+            this.gbLEDOff5 = new System.Windows.Forms.PictureBox();
+            this.gbPortlbl5 = new System.Windows.Forms.Label();
+            this.gbIPlbl5 = new System.Windows.Forms.Label();
+            this.gbViz4 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.gbLEDOn4 = new System.Windows.Forms.PictureBox();
+            this.gbLEDOff4 = new System.Windows.Forms.PictureBox();
+            this.gbPortlbl4 = new System.Windows.Forms.Label();
+            this.gbIPlbl4 = new System.Windows.Forms.Label();
+            this.gbViz3 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.gbLEDOn3 = new System.Windows.Forms.PictureBox();
+            this.gbLEDOff3 = new System.Windows.Forms.PictureBox();
+            this.gbPortlbl3 = new System.Windows.Forms.Label();
+            this.gbIPlbl3 = new System.Windows.Forms.Label();
+            this.gbViz2 = new System.Windows.Forms.GroupBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.gbLEDOn2 = new System.Windows.Forms.PictureBox();
+            this.gbLEDOff2 = new System.Windows.Forms.PictureBox();
+            this.gbPortlbl2 = new System.Windows.Forms.Label();
+            this.gbIPlbl2 = new System.Windows.Forms.Label();
+            this.gbViz1 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.gbLEDOn1 = new System.Windows.Forms.PictureBox();
+            this.gbLEDOff1 = new System.Windows.Forms.PictureBox();
+            this.gbPortlbl1 = new System.Windows.Forms.Label();
+            this.gbIPlbl1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -173,6 +210,31 @@
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).BeginInit();
+            this.connectionPanel.SuspendLayout();
+            this.gbViz6.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff6)).BeginInit();
+            this.gbViz5.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff5)).BeginInit();
+            this.gbViz4.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff4)).BeginInit();
+            this.gbViz3.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff3)).BeginInit();
+            this.gbViz2.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff2)).BeginInit();
+            this.gbViz1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -183,7 +245,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1423, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1440, 24);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -192,7 +254,7 @@
             this.programToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miExit});
             this.programToolStripMenuItem.Name = "programToolStripMenuItem";
-            this.programToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.programToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.programToolStripMenuItem.Text = "&Program";
             // 
             // miExit
@@ -212,40 +274,61 @@
             this.usePrimaryMediaSequencerToolStripMenuItem,
             this.useBackupMediaSequencerToolStripMenuItem});
             this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
-            this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.utilitiesToolStripMenuItem.Text = "&Utilities";
             // 
             // miSelectDefaultShow
             // 
             this.miSelectDefaultShow.Name = "miSelectDefaultShow";
-            this.miSelectDefaultShow.Size = new System.Drawing.Size(216, 22);
+            this.miSelectDefaultShow.Size = new System.Drawing.Size(231, 22);
             this.miSelectDefaultShow.Text = "&Select Default Show";
             this.miSelectDefaultShow.Click += new System.EventHandler(this.miSelectDefaultShow_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(228, 6);
             // 
             // resetStatusBarToolStripMenuItem
             // 
             this.resetStatusBarToolStripMenuItem.Name = "resetStatusBarToolStripMenuItem";
-            this.resetStatusBarToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.resetStatusBarToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.resetStatusBarToolStripMenuItem.Text = "&Reset Status Bar";
             this.resetStatusBarToolStripMenuItem.Click += new System.EventHandler(this.resetStatusBarToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(228, 6);
+            // 
+            // usePrimaryMediaSequencerToolStripMenuItem
+            // 
+            this.usePrimaryMediaSequencerToolStripMenuItem.CheckOnClick = true;
+            this.usePrimaryMediaSequencerToolStripMenuItem.Name = "usePrimaryMediaSequencerToolStripMenuItem";
+            this.usePrimaryMediaSequencerToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.usePrimaryMediaSequencerToolStripMenuItem.Text = "Use Primary Media Sequencer";
+            this.usePrimaryMediaSequencerToolStripMenuItem.Click += new System.EventHandler(this.usePrimaryMediaSequencerToolStripMenuItem_Click);
+            // 
+            // useBackupMediaSequencerToolStripMenuItem
+            // 
+            this.useBackupMediaSequencerToolStripMenuItem.CheckOnClick = true;
+            this.useBackupMediaSequencerToolStripMenuItem.Name = "useBackupMediaSequencerToolStripMenuItem";
+            this.useBackupMediaSequencerToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.useBackupMediaSequencerToolStripMenuItem.Text = "Use Backup Media Sequencer";
+            this.useBackupMediaSequencerToolStripMenuItem.Click += new System.EventHandler(this.useBackupMediaSequencerToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miAboutBox});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // miAboutBox
             // 
             this.miAboutBox.Name = "miAboutBox";
-            this.miAboutBox.Size = new System.Drawing.Size(103, 22);
+            this.miAboutBox.Size = new System.Drawing.Size(107, 22);
             this.miAboutBox.Text = "&About";
             this.miAboutBox.Click += new System.EventHandler(this.miAboutBox_Click);
             // 
@@ -253,9 +336,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 862);
+            this.statusStrip.Location = new System.Drawing.Point(0, 958);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1423, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1440, 22);
             this.statusStrip.TabIndex = 53;
             this.statusStrip.Text = "statusStrip";
             // 
@@ -264,7 +347,7 @@
             this.toolStripStatusLabel.ActiveLinkColor = System.Drawing.SystemColors.AppWorkspace;
             this.toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(25, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 17);
             this.toolStripStatusLabel.Text = "N/A";
             // 
             // lblCurrentShow
@@ -899,7 +982,7 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "questionType";
             this.dataGridViewTextBoxColumn1.HeaderText = "Type";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 69;
+            this.dataGridViewTextBoxColumn1.Width = 67;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -907,7 +990,7 @@
             this.dataGridViewTextBoxColumn2.DataPropertyName = "stateOffice";
             this.dataGridViewTextBoxColumn2.HeaderText = "mxID/st/ofc";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 110;
+            this.dataGridViewTextBoxColumn2.Width = 108;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -915,7 +998,7 @@
             this.dataGridViewTextBoxColumn3.DataPropertyName = "shortMXLabel";
             this.dataGridViewTextBoxColumn3.HeaderText = "Category";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 96;
+            this.dataGridViewTextBoxColumn3.Width = 94;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -923,7 +1006,7 @@
             this.dataGridViewTextBoxColumn4.DataPropertyName = "fullMXLabel";
             this.dataGridViewTextBoxColumn4.HeaderText = "Question";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 94;
+            this.dataGridViewTextBoxColumn4.Width = 92;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -931,7 +1014,7 @@
             this.dataGridViewTextBoxColumn5.DataPropertyName = "rowText";
             this.dataGridViewTextBoxColumn5.HeaderText = "rowText";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 87;
+            this.dataGridViewTextBoxColumn5.Width = 85;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -939,7 +1022,7 @@
             this.dataGridViewTextBoxColumn7.DataPropertyName = "subsetName";
             this.dataGridViewTextBoxColumn7.HeaderText = "Subset";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 81;
+            this.dataGridViewTextBoxColumn7.Width = 79;
             // 
             // btnAddExitPoll
             // 
@@ -1131,7 +1214,7 @@
             this.gbTime.Controls.Add(this.timeLabel);
             this.gbTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTime.Location = new System.Drawing.Point(1149, 27);
+            this.gbTime.Location = new System.Drawing.Point(1168, 23);
             this.gbTime.Name = "gbTime";
             this.gbTime.Size = new System.Drawing.Size(260, 42);
             this.gbTime.TabIndex = 119;
@@ -1152,14 +1235,14 @@
             this.pnlStack.Controls.Add(this.stackGrid);
             this.pnlStack.Location = new System.Drawing.Point(700, 95);
             this.pnlStack.Name = "pnlStack";
-            this.pnlStack.Size = new System.Drawing.Size(711, 762);
+            this.pnlStack.Size = new System.Drawing.Size(732, 762);
             this.pnlStack.TabIndex = 120;
             // 
             // cbGraphicConcept
             // 
             this.cbGraphicConcept.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbGraphicConcept.FormattingEnabled = true;
-            this.cbGraphicConcept.Location = new System.Drawing.Point(497, 25);
+            this.cbGraphicConcept.Location = new System.Drawing.Point(512, 27);
             this.cbGraphicConcept.Name = "cbGraphicConcept";
             this.cbGraphicConcept.Size = new System.Drawing.Size(148, 24);
             this.cbGraphicConcept.TabIndex = 132;
@@ -1169,7 +1252,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(364, 30);
+            this.label2.Location = new System.Drawing.Point(378, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 16);
             this.label2.TabIndex = 131;
@@ -1186,7 +1269,7 @@
             this.panel3.Controls.Add(this.btnSaveStack);
             this.panel3.Location = new System.Drawing.Point(12, 599);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(632, 157);
+            this.panel3.Size = new System.Drawing.Size(648, 157);
             this.panel3.TabIndex = 129;
             // 
             // cbPromptForInfo
@@ -1195,7 +1278,7 @@
             this.cbPromptForInfo.Checked = true;
             this.cbPromptForInfo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPromptForInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPromptForInfo.Location = new System.Drawing.Point(437, 121);
+            this.cbPromptForInfo.Location = new System.Drawing.Point(445, 121);
             this.cbPromptForInfo.Name = "cbPromptForInfo";
             this.cbPromptForInfo.Size = new System.Drawing.Size(127, 20);
             this.cbPromptForInfo.TabIndex = 137;
@@ -1250,7 +1333,7 @@
             this.btnSaveActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
             this.btnSaveActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveActivateStack.Location = new System.Drawing.Point(437, 18);
+            this.btnSaveActivateStack.Location = new System.Drawing.Point(445, 18);
             this.btnSaveActivateStack.Name = "btnSaveActivateStack";
             this.btnSaveActivateStack.Size = new System.Drawing.Size(180, 100);
             this.btnSaveActivateStack.TabIndex = 132;
@@ -1278,7 +1361,7 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel1.Controls.Add(this.btnStackElementDown);
             this.panel1.Controls.Add(this.btnStackElementUp);
-            this.panel1.Location = new System.Drawing.Point(652, 240);
+            this.panel1.Location = new System.Drawing.Point(670, 240);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(50, 161);
             this.panel1.TabIndex = 127;
@@ -1358,27 +1441,27 @@
             this.stackGrid.AllowUserToResizeColumns = false;
             this.stackGrid.AllowUserToResizeRows = false;
             this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Element_Type_Description,
             this.TemplateID,
             this.Stack_Entry_Description});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.stackGrid.Location = new System.Drawing.Point(12, 57);
             this.stackGrid.MultiSelect = false;
             this.stackGrid.Name = "stackGrid";
@@ -1386,7 +1469,7 @@
             this.stackGrid.RowHeadersVisible = false;
             this.stackGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.stackGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.stackGrid.Size = new System.Drawing.Size(633, 538);
+            this.stackGrid.Size = new System.Drawing.Size(648, 538);
             this.stackGrid.TabIndex = 118;
             this.stackGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.stackGrid_CellFormatting);
             // 
@@ -1451,40 +1534,444 @@
             // 
             this.lblMediaSequencer.BackColor = System.Drawing.Color.White;
             this.lblMediaSequencer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMediaSequencer.Location = new System.Drawing.Point(702, 68);
+            this.lblMediaSequencer.Location = new System.Drawing.Point(700, 68);
             this.lblMediaSequencer.Name = "lblMediaSequencer";
-            this.lblMediaSequencer.Size = new System.Drawing.Size(708, 23);
+            this.lblMediaSequencer.Size = new System.Drawing.Size(732, 23);
             this.lblMediaSequencer.TabIndex = 124;
             this.lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER:";
             this.lblMediaSequencer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // toolStripMenuItem2
+            // connectionPanel
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
+            this.connectionPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.connectionPanel.Controls.Add(this.gbViz6);
+            this.connectionPanel.Controls.Add(this.gbViz5);
+            this.connectionPanel.Controls.Add(this.gbViz4);
+            this.connectionPanel.Controls.Add(this.gbViz3);
+            this.connectionPanel.Controls.Add(this.gbViz2);
+            this.connectionPanel.Controls.Add(this.gbViz1);
+            this.connectionPanel.Location = new System.Drawing.Point(12, 865);
+            this.connectionPanel.Name = "connectionPanel";
+            this.connectionPanel.Size = new System.Drawing.Size(1420, 88);
+            this.connectionPanel.TabIndex = 125;
             // 
-            // usePrimaryMediaSequencerToolStripMenuItem
+            // gbViz6
             // 
-            this.usePrimaryMediaSequencerToolStripMenuItem.CheckOnClick = true;
-            this.usePrimaryMediaSequencerToolStripMenuItem.Name = "usePrimaryMediaSequencerToolStripMenuItem";
-            this.usePrimaryMediaSequencerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.usePrimaryMediaSequencerToolStripMenuItem.Text = "Use Primary Media Sequencer";
-            this.usePrimaryMediaSequencerToolStripMenuItem.Click += new System.EventHandler(this.usePrimaryMediaSequencerToolStripMenuItem_Click);
+            this.gbViz6.Controls.Add(this.groupBox12);
+            this.gbViz6.Controls.Add(this.gbPortlbl6);
+            this.gbViz6.Controls.Add(this.gbIPlbl6);
+            this.gbViz6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.gbViz6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbViz6.Location = new System.Drawing.Point(1185, 9);
+            this.gbViz6.Name = "gbViz6";
+            this.gbViz6.Size = new System.Drawing.Size(225, 70);
+            this.gbViz6.TabIndex = 5;
+            this.gbViz6.TabStop = false;
+            this.gbViz6.Text = "Viz  6";
+            this.gbViz6.Visible = false;
             // 
-            // useBackupMediaSequencerToolStripMenuItem
+            // groupBox12
             // 
-            this.useBackupMediaSequencerToolStripMenuItem.CheckOnClick = true;
-            this.useBackupMediaSequencerToolStripMenuItem.Name = "useBackupMediaSequencerToolStripMenuItem";
-            this.useBackupMediaSequencerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.useBackupMediaSequencerToolStripMenuItem.Text = "Use Backup Media Sequencer";
-            this.useBackupMediaSequencerToolStripMenuItem.Click += new System.EventHandler(this.useBackupMediaSequencerToolStripMenuItem_Click);
+            this.groupBox12.Controls.Add(this.gbLEDOn6);
+            this.groupBox12.Controls.Add(this.gbLEDOff6);
+            this.groupBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox12.Location = new System.Drawing.Point(128, 15);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(90, 48);
+            this.groupBox12.TabIndex = 178;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Connected";
+            // 
+            // gbLEDOn6
+            // 
+            this.gbLEDOn6.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOn6.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOn6.Image")));
+            this.gbLEDOn6.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOn6.Name = "gbLEDOn6";
+            this.gbLEDOn6.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOn6.TabIndex = 164;
+            this.gbLEDOn6.TabStop = false;
+            this.gbLEDOn6.Visible = false;
+            // 
+            // gbLEDOff6
+            // 
+            this.gbLEDOff6.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOff6.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOff6.Image")));
+            this.gbLEDOff6.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOff6.Name = "gbLEDOff6";
+            this.gbLEDOff6.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOff6.TabIndex = 163;
+            this.gbLEDOff6.TabStop = false;
+            // 
+            // gbPortlbl6
+            // 
+            this.gbPortlbl6.AutoSize = true;
+            this.gbPortlbl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPortlbl6.Location = new System.Drawing.Point(4, 46);
+            this.gbPortlbl6.Name = "gbPortlbl6";
+            this.gbPortlbl6.Size = new System.Drawing.Size(74, 17);
+            this.gbPortlbl6.TabIndex = 1;
+            this.gbPortlbl6.Text = "Port: 6100";
+            this.gbPortlbl6.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // gbIPlbl6
+            // 
+            this.gbIPlbl6.AutoSize = true;
+            this.gbIPlbl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbIPlbl6.Location = new System.Drawing.Point(4, 26);
+            this.gbIPlbl6.Name = "gbIPlbl6";
+            this.gbIPlbl6.Size = new System.Drawing.Size(112, 17);
+            this.gbIPlbl6.TabIndex = 0;
+            this.gbIPlbl6.Text = "IP: 10.232.86.84";
+            // 
+            // gbViz5
+            // 
+            this.gbViz5.Controls.Add(this.groupBox11);
+            this.gbViz5.Controls.Add(this.gbPortlbl5);
+            this.gbViz5.Controls.Add(this.gbIPlbl5);
+            this.gbViz5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.gbViz5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbViz5.Location = new System.Drawing.Point(950, 9);
+            this.gbViz5.Name = "gbViz5";
+            this.gbViz5.Size = new System.Drawing.Size(225, 70);
+            this.gbViz5.TabIndex = 4;
+            this.gbViz5.TabStop = false;
+            this.gbViz5.Text = "Viz  5";
+            this.gbViz5.Visible = false;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.gbLEDOn5);
+            this.groupBox11.Controls.Add(this.gbLEDOff5);
+            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox11.Location = new System.Drawing.Point(128, 15);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(90, 48);
+            this.groupBox11.TabIndex = 178;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Connected";
+            // 
+            // gbLEDOn5
+            // 
+            this.gbLEDOn5.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOn5.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOn5.Image")));
+            this.gbLEDOn5.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOn5.Name = "gbLEDOn5";
+            this.gbLEDOn5.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOn5.TabIndex = 164;
+            this.gbLEDOn5.TabStop = false;
+            this.gbLEDOn5.Visible = false;
+            // 
+            // gbLEDOff5
+            // 
+            this.gbLEDOff5.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOff5.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOff5.Image")));
+            this.gbLEDOff5.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOff5.Name = "gbLEDOff5";
+            this.gbLEDOff5.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOff5.TabIndex = 163;
+            this.gbLEDOff5.TabStop = false;
+            // 
+            // gbPortlbl5
+            // 
+            this.gbPortlbl5.AutoSize = true;
+            this.gbPortlbl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPortlbl5.Location = new System.Drawing.Point(4, 46);
+            this.gbPortlbl5.Name = "gbPortlbl5";
+            this.gbPortlbl5.Size = new System.Drawing.Size(74, 17);
+            this.gbPortlbl5.TabIndex = 1;
+            this.gbPortlbl5.Text = "Port: 6100";
+            // 
+            // gbIPlbl5
+            // 
+            this.gbIPlbl5.AutoSize = true;
+            this.gbIPlbl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbIPlbl5.Location = new System.Drawing.Point(4, 26);
+            this.gbIPlbl5.Name = "gbIPlbl5";
+            this.gbIPlbl5.Size = new System.Drawing.Size(112, 17);
+            this.gbIPlbl5.TabIndex = 0;
+            this.gbIPlbl5.Text = "IP: 10.232.86.84";
+            // 
+            // gbViz4
+            // 
+            this.gbViz4.Controls.Add(this.groupBox10);
+            this.gbViz4.Controls.Add(this.gbPortlbl4);
+            this.gbViz4.Controls.Add(this.gbIPlbl4);
+            this.gbViz4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.gbViz4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbViz4.Location = new System.Drawing.Point(715, 9);
+            this.gbViz4.Name = "gbViz4";
+            this.gbViz4.Size = new System.Drawing.Size(225, 70);
+            this.gbViz4.TabIndex = 3;
+            this.gbViz4.TabStop = false;
+            this.gbViz4.Text = "Viz  4";
+            this.gbViz4.Visible = false;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.gbLEDOn4);
+            this.groupBox10.Controls.Add(this.gbLEDOff4);
+            this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox10.Location = new System.Drawing.Point(128, 15);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(90, 48);
+            this.groupBox10.TabIndex = 178;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Connected";
+            // 
+            // gbLEDOn4
+            // 
+            this.gbLEDOn4.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOn4.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOn4.Image")));
+            this.gbLEDOn4.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOn4.Name = "gbLEDOn4";
+            this.gbLEDOn4.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOn4.TabIndex = 164;
+            this.gbLEDOn4.TabStop = false;
+            this.gbLEDOn4.Visible = false;
+            // 
+            // gbLEDOff4
+            // 
+            this.gbLEDOff4.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOff4.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOff4.Image")));
+            this.gbLEDOff4.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOff4.Name = "gbLEDOff4";
+            this.gbLEDOff4.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOff4.TabIndex = 163;
+            this.gbLEDOff4.TabStop = false;
+            // 
+            // gbPortlbl4
+            // 
+            this.gbPortlbl4.AutoSize = true;
+            this.gbPortlbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPortlbl4.Location = new System.Drawing.Point(4, 46);
+            this.gbPortlbl4.Name = "gbPortlbl4";
+            this.gbPortlbl4.Size = new System.Drawing.Size(74, 17);
+            this.gbPortlbl4.TabIndex = 1;
+            this.gbPortlbl4.Text = "Port: 6100";
+            // 
+            // gbIPlbl4
+            // 
+            this.gbIPlbl4.AutoSize = true;
+            this.gbIPlbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbIPlbl4.Location = new System.Drawing.Point(4, 26);
+            this.gbIPlbl4.Name = "gbIPlbl4";
+            this.gbIPlbl4.Size = new System.Drawing.Size(112, 17);
+            this.gbIPlbl4.TabIndex = 0;
+            this.gbIPlbl4.Text = "IP: 10.232.86.84";
+            // 
+            // gbViz3
+            // 
+            this.gbViz3.Controls.Add(this.groupBox8);
+            this.gbViz3.Controls.Add(this.gbPortlbl3);
+            this.gbViz3.Controls.Add(this.gbIPlbl3);
+            this.gbViz3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.gbViz3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbViz3.Location = new System.Drawing.Point(480, 9);
+            this.gbViz3.Name = "gbViz3";
+            this.gbViz3.Size = new System.Drawing.Size(225, 70);
+            this.gbViz3.TabIndex = 2;
+            this.gbViz3.TabStop = false;
+            this.gbViz3.Text = "Viz  3";
+            this.gbViz3.Visible = false;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.gbLEDOn3);
+            this.groupBox8.Controls.Add(this.gbLEDOff3);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Location = new System.Drawing.Point(128, 15);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(90, 48);
+            this.groupBox8.TabIndex = 178;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Connected";
+            // 
+            // gbLEDOn3
+            // 
+            this.gbLEDOn3.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOn3.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOn3.Image")));
+            this.gbLEDOn3.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOn3.Name = "gbLEDOn3";
+            this.gbLEDOn3.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOn3.TabIndex = 164;
+            this.gbLEDOn3.TabStop = false;
+            this.gbLEDOn3.Visible = false;
+            // 
+            // gbLEDOff3
+            // 
+            this.gbLEDOff3.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOff3.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOff3.Image")));
+            this.gbLEDOff3.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOff3.Name = "gbLEDOff3";
+            this.gbLEDOff3.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOff3.TabIndex = 163;
+            this.gbLEDOff3.TabStop = false;
+            // 
+            // gbPortlbl3
+            // 
+            this.gbPortlbl3.AutoSize = true;
+            this.gbPortlbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPortlbl3.Location = new System.Drawing.Point(4, 46);
+            this.gbPortlbl3.Name = "gbPortlbl3";
+            this.gbPortlbl3.Size = new System.Drawing.Size(74, 17);
+            this.gbPortlbl3.TabIndex = 1;
+            this.gbPortlbl3.Text = "Port: 6100";
+            // 
+            // gbIPlbl3
+            // 
+            this.gbIPlbl3.AutoSize = true;
+            this.gbIPlbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbIPlbl3.Location = new System.Drawing.Point(4, 26);
+            this.gbIPlbl3.Name = "gbIPlbl3";
+            this.gbIPlbl3.Size = new System.Drawing.Size(112, 17);
+            this.gbIPlbl3.TabIndex = 0;
+            this.gbIPlbl3.Text = "IP: 10.232.86.84";
+            // 
+            // gbViz2
+            // 
+            this.gbViz2.Controls.Add(this.groupBox9);
+            this.gbViz2.Controls.Add(this.gbPortlbl2);
+            this.gbViz2.Controls.Add(this.gbIPlbl2);
+            this.gbViz2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.gbViz2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbViz2.Location = new System.Drawing.Point(245, 9);
+            this.gbViz2.Name = "gbViz2";
+            this.gbViz2.Size = new System.Drawing.Size(225, 70);
+            this.gbViz2.TabIndex = 1;
+            this.gbViz2.TabStop = false;
+            this.gbViz2.Text = "Viz  2";
+            this.gbViz2.Visible = false;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.gbLEDOn2);
+            this.groupBox9.Controls.Add(this.gbLEDOff2);
+            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox9.Location = new System.Drawing.Point(128, 15);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(90, 48);
+            this.groupBox9.TabIndex = 178;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Connected";
+            // 
+            // gbLEDOn2
+            // 
+            this.gbLEDOn2.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOn2.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOn2.Image")));
+            this.gbLEDOn2.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOn2.Name = "gbLEDOn2";
+            this.gbLEDOn2.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOn2.TabIndex = 164;
+            this.gbLEDOn2.TabStop = false;
+            this.gbLEDOn2.Visible = false;
+            // 
+            // gbLEDOff2
+            // 
+            this.gbLEDOff2.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOff2.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOff2.Image")));
+            this.gbLEDOff2.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOff2.Name = "gbLEDOff2";
+            this.gbLEDOff2.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOff2.TabIndex = 163;
+            this.gbLEDOff2.TabStop = false;
+            // 
+            // gbPortlbl2
+            // 
+            this.gbPortlbl2.AutoSize = true;
+            this.gbPortlbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPortlbl2.Location = new System.Drawing.Point(4, 46);
+            this.gbPortlbl2.Name = "gbPortlbl2";
+            this.gbPortlbl2.Size = new System.Drawing.Size(74, 17);
+            this.gbPortlbl2.TabIndex = 1;
+            this.gbPortlbl2.Text = "Port: 6100";
+            // 
+            // gbIPlbl2
+            // 
+            this.gbIPlbl2.AutoSize = true;
+            this.gbIPlbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbIPlbl2.Location = new System.Drawing.Point(4, 26);
+            this.gbIPlbl2.Name = "gbIPlbl2";
+            this.gbIPlbl2.Size = new System.Drawing.Size(112, 17);
+            this.gbIPlbl2.TabIndex = 0;
+            this.gbIPlbl2.Text = "IP: 10.232.86.84";
+            // 
+            // gbViz1
+            // 
+            this.gbViz1.Controls.Add(this.groupBox7);
+            this.gbViz1.Controls.Add(this.gbPortlbl1);
+            this.gbViz1.Controls.Add(this.gbIPlbl1);
+            this.gbViz1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.gbViz1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbViz1.Location = new System.Drawing.Point(10, 9);
+            this.gbViz1.Name = "gbViz1";
+            this.gbViz1.Size = new System.Drawing.Size(225, 70);
+            this.gbViz1.TabIndex = 0;
+            this.gbViz1.TabStop = false;
+            this.gbViz1.Text = "Viz  1";
+            this.gbViz1.Visible = false;
+            this.gbViz1.Enter += new System.EventHandler(this.groupBox6_Enter);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.gbLEDOn1);
+            this.groupBox7.Controls.Add(this.gbLEDOff1);
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(128, 15);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(90, 48);
+            this.groupBox7.TabIndex = 178;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Connected";
+            // 
+            // gbLEDOn1
+            // 
+            this.gbLEDOn1.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOn1.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOn1.Image")));
+            this.gbLEDOn1.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOn1.Name = "gbLEDOn1";
+            this.gbLEDOn1.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOn1.TabIndex = 164;
+            this.gbLEDOn1.TabStop = false;
+            this.gbLEDOn1.Visible = false;
+            // 
+            // gbLEDOff1
+            // 
+            this.gbLEDOff1.BackColor = System.Drawing.Color.Transparent;
+            this.gbLEDOff1.Image = ((System.Drawing.Image)(resources.GetObject("gbLEDOff1.Image")));
+            this.gbLEDOff1.Location = new System.Drawing.Point(43, 21);
+            this.gbLEDOff1.Name = "gbLEDOff1";
+            this.gbLEDOff1.Size = new System.Drawing.Size(16, 16);
+            this.gbLEDOff1.TabIndex = 163;
+            this.gbLEDOff1.TabStop = false;
+            // 
+            // gbPortlbl1
+            // 
+            this.gbPortlbl1.AutoSize = true;
+            this.gbPortlbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPortlbl1.Location = new System.Drawing.Point(4, 46);
+            this.gbPortlbl1.Name = "gbPortlbl1";
+            this.gbPortlbl1.Size = new System.Drawing.Size(74, 17);
+            this.gbPortlbl1.TabIndex = 1;
+            this.gbPortlbl1.Text = "Port: 6100";
+            // 
+            // gbIPlbl1
+            // 
+            this.gbIPlbl1.AutoSize = true;
+            this.gbIPlbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbIPlbl1.Location = new System.Drawing.Point(4, 26);
+            this.gbIPlbl1.Name = "gbIPlbl1";
+            this.gbIPlbl1.Size = new System.Drawing.Size(112, 17);
+            this.gbIPlbl1.TabIndex = 0;
+            this.gbIPlbl1.Text = "IP: 10.232.86.84";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1423, 884);
+            this.ClientSize = new System.Drawing.Size(1440, 980);
+            this.Controls.Add(this.connectionPanel);
             this.Controls.Add(this.lblMediaSequencer);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblHostName);
@@ -1543,6 +2030,37 @@
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).EndInit();
+            this.connectionPanel.ResumeLayout(false);
+            this.gbViz6.ResumeLayout(false);
+            this.gbViz6.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff6)).EndInit();
+            this.gbViz5.ResumeLayout(false);
+            this.gbViz5.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff5)).EndInit();
+            this.gbViz4.ResumeLayout(false);
+            this.gbViz4.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff4)).EndInit();
+            this.gbViz3.ResumeLayout(false);
+            this.gbViz3.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff3)).EndInit();
+            this.gbViz2.ResumeLayout(false);
+            this.gbViz2.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff2)).EndInit();
+            this.gbViz1.ResumeLayout(false);
+            this.gbViz1.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1665,6 +2183,43 @@
         private System.Windows.Forms.ToolStripMenuItem usePrimaryMediaSequencerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useBackupMediaSequencerToolStripMenuItem;
         private System.Windows.Forms.Label lblMediaSequencer;
+        private System.Windows.Forms.Panel connectionPanel;
+        private System.Windows.Forms.GroupBox gbViz1;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.PictureBox gbLEDOn1;
+        private System.Windows.Forms.PictureBox gbLEDOff1;
+        private System.Windows.Forms.Label gbPortlbl1;
+        private System.Windows.Forms.Label gbIPlbl1;
+        private System.Windows.Forms.GroupBox gbViz2;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.PictureBox gbLEDOn2;
+        private System.Windows.Forms.PictureBox gbLEDOff2;
+        private System.Windows.Forms.Label gbPortlbl2;
+        private System.Windows.Forms.Label gbIPlbl2;
+        private System.Windows.Forms.GroupBox gbViz6;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.PictureBox gbLEDOn6;
+        private System.Windows.Forms.PictureBox gbLEDOff6;
+        private System.Windows.Forms.Label gbPortlbl6;
+        private System.Windows.Forms.Label gbIPlbl6;
+        private System.Windows.Forms.GroupBox gbViz5;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.PictureBox gbLEDOn5;
+        private System.Windows.Forms.PictureBox gbLEDOff5;
+        private System.Windows.Forms.Label gbPortlbl5;
+        private System.Windows.Forms.Label gbIPlbl5;
+        private System.Windows.Forms.GroupBox gbViz4;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.PictureBox gbLEDOn4;
+        private System.Windows.Forms.PictureBox gbLEDOff4;
+        private System.Windows.Forms.Label gbPortlbl4;
+        private System.Windows.Forms.Label gbIPlbl4;
+        private System.Windows.Forms.GroupBox gbViz3;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.PictureBox gbLEDOn3;
+        private System.Windows.Forms.PictureBox gbLEDOff3;
+        private System.Windows.Forms.Label gbPortlbl3;
+        private System.Windows.Forms.Label gbIPlbl3;
     }
 }
 
