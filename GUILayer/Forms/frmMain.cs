@@ -5,6 +5,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -18,6 +19,8 @@ using LogicLayer.Collections;
 using LogicLayer.CommonClasses;
 using MSEInterface;
 using MSEInterface.Constants;
+using AsyncClientSocket;
+
 // Required for implementing logging to status bar
 
 //
@@ -61,6 +64,8 @@ namespace GUILayer.Forms
         public List<EngineModel> vizEngines = new List<EngineModel>();
         public bool builderOnlyMode = false;
 
+        //public static AsyncClientSocket.ClientSocket VizControl;
+        public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
 
 
         #endregion
@@ -382,15 +387,37 @@ namespace GUILayer.Forms
             var useSceneName = Properties.Settings.Default[sceneDescription];
             builderOnlyMode = Properties.Settings.Default.builderOnly;
 
-            this.Size = new Size(1439, 923);
+            this.Size = new Size(1462, 928);
             connectionPanel.Visible = false;
-
+            listBox1.Visible = false;
+            panel3.Size = new Size(648, 155);
+            panel3.Location = new Point(8, 549);
+            StackPanel.Location = new Point(3, 8);
+            SaveActivatePanel.Location = new Point(424, 8);
+            stackGrid.Size = new Size(648, 536);
+            LockPanel.Visible = false;
+            TakePanel.Visible = false;
+            SaveActivatePanel.Visible = true;
+            pnlUpDn.Location = new Point(676, 250);
+            
             if (builderOnlyMode == false)
             {
 
                 // Enlarge form
-                this.Size = new Size(1456, 1019);
+                this.Size = new Size(1462, 1061);
                 connectionPanel.Visible = true;
+                listBox1.Visible = true;
+                stackGrid.Size = new Size(648, 468);
+                panel3.Size = new Size(648, 221);
+                panel3.Location = new Point(8, 483);
+                StackPanel.Location = new Point(1, 78);
+                LockPanel.Visible = true;
+                TakePanel.Visible = true;
+                SaveActivatePanel.Visible = false;
+                SaveActivatePanel.Location = new Point(424, 3);
+                btnSaveStack.Enabled = true;
+                pnlUpDn.Location = new Point(676, 216);
+
 
                 // get viz engine info
 
@@ -420,50 +447,57 @@ namespace GUILayer.Forms
                         viz.enable = (bool)engineInfo;
 
                         viz.id = i;
-                        
+                        viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
+
+
                         vizEngines.Add(viz);
+
+                        vizClientSockets.Add(new ClientSocket(viz.systemIP, viz.Port));
+                        vizClientSockets[i-1].DataReceived += vizDataReceived;
+                        vizClientSockets[i-1].ConnectionStatusChanged += vizConnectionStatusChanged;
+
 
                         // set viz address labels
                         switch (i)
                         {
                             case 1:
-                                gbIPlbl1.Text = viz.IPAddress;
-                                gbPortlbl1.Text = viz.Port.ToString();
+                                gbIPlbl1.Text = "IP: " + viz.IPAddress;
+                                gbPortlbl1.Text = "Port: " + viz.Port.ToString();
                                 gbViz1.Visible = true;
                                 gbViz1.Enabled = viz.enable;
                                 break;
 
                             case 2:
-                                gbIPlbl2.Text = viz.IPAddress;
-                                gbPortlbl2.Text = viz.Port.ToString();
+                                gbIPlbl2.Text = "IP: " + viz.IPAddress;
+                                gbPortlbl2.Text = "Port: " + viz.Port.ToString();
                                 gbViz2.Visible = true;
                                 gbViz2.Enabled = viz.enable;
                                 break;
 
                             case 3:
-                                gbIPlbl3.Text = viz.IPAddress;
-                                gbPortlbl3.Text = viz.Port.ToString();
+                                gbIPlbl3.Text = "IP: " + viz.IPAddress;
+                                gbPortlbl3.Text = "Port: " + viz.Port.ToString();
                                 gbViz3.Visible = true;
                                 gbViz3.Enabled = viz.enable;
                                 break;
 
                             case 4:
-                                gbIPlbl4.Text = viz.IPAddress;
-                                gbPortlbl4.Text = viz.Port.ToString();
+                                gbIPlbl4.Text = "IP: " + viz.IPAddress;
+                                gbPortlbl4.Text = "Port: " + viz.Port.ToString();
                                 gbViz4.Visible = true;
                                 gbViz4.Enabled = viz.enable;
                                 break;
 
                             case 5:
-                                gbIPlbl5.Text = viz.IPAddress;
-                                gbPortlbl5.Text = viz.Port.ToString();
+                                gbIPlbl5.Text = "IP: " + viz.IPAddress;
+                                gbPortlbl5.Text = "Port: " + viz.Port.ToString();
                                 gbViz5.Visible = true;
                                 gbViz5.Enabled = viz.enable;
                                 break;
 
                             case 6:
-                                gbIPlbl6.Text = viz.IPAddress;
-                                gbPortlbl6.Text = viz.Port.ToString();
+                                gbIPlbl6.Text = "IP: " + viz.IPAddress;
+                                gbPortlbl6.Text = "Port: " + viz.Port.ToString();
                                 gbViz6.Visible = true;
                                 gbViz6.Enabled = viz.enable;
                                 break;
@@ -500,30 +534,107 @@ namespace GUILayer.Forms
             
             for (int i = 0; i < vizEngines.Count; i++)
             {
-                // Instantiate and setup the client sockets
-                // Establish the remote endpoints for the sockets
-                System.Net.IPAddress TRIpAddress = System.Net.IPAddress.Parse(IPAddress);
-                TRClientSocket = new ClientSocket(TRIpAddress, Convert.ToInt32(Port));
-
-                // Initialize event handlers for the sockets
-                TRClientSocket.DataReceived += TRDataReceived;
-                TRClientSocket.ConnectionStatusChanged += TRConnectionStatusChanged;
-
-                // Connect to the TRClientSocket; call-backs for connection status will indicate status of client sockets
-                TRClientSocket.AutoReconnect = true;
-                TRClientSocket.Connect();
-
-                System.Threading.Thread.Sleep(1000);
-                if (TRConnected == true)
-                {
-                    pictureBox2.Visible = true;
-                }
-
+                // Connect to the ClientSocket; call-backs for connection status will indicate status of client sockets
+                vizClientSockets[i].AutoReconnect = true;
+                vizClientSockets[i].Connect();
             }
+        }
 
+        private void vizDataReceived(ClientSocket sender, byte[] data)
+        {
+            // receive the data and determine the type
+            //string vizIP = sender.Ip;
+            System.Net.IPAddress IP = sender.Ip;
+            int port = sender.Port;
+            int i = GetVizEngineNumber(IP, port);
+            listBox1.Items.Add(System.Text.Encoding.Default.GetString(data));
 
         }
 
+        public int GetVizEngineNumber(System.Net.IPAddress IP, int port)
+        {
+            for (int i = 0; i < vizEngines.Count; i++)
+            {
+                if (vizEngines[i].systemIP == IP && vizEngines[i].Port == port)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        // Handler for source & destination MSE connection status change
+        public void vizConnectionStatusChanged(ClientSocket sender, ClientSocket.ConnectionStatus status)
+        {
+
+            System.Net.IPAddress IP = sender.Ip;
+            int port = sender.Port;
+            int i = GetVizEngineNumber(IP, port);
+
+            // Set status
+            if (status == ClientSocket.ConnectionStatus.Connected)
+            {
+                vizEngines[i].connected = true;
+            }
+            else
+            {
+                vizEngines[i].connected = false;
+            }
+            SetConnectionLED(i);
+            // Send to log - DEBUG ONLY
+            log.Debug($"Viz Engine {i + 1}: {status}");
+        }
+
+        public void SetConnectionLED(int i)
+        {
+            bool connected = vizEngines[i].connected;
+            switch (i + 1)
+            {
+                case 1:
+                    if (connected)
+                        gbLEDOn1.Visible = true;
+                    else
+                        gbLEDOn1.Visible = false;
+                    break;
+
+                case 2:
+                    if (connected)
+                        gbLEDOn2.Visible = true;
+                    else
+                        gbLEDOn2.Visible = false;
+                    break;
+
+                case 3:
+                    if (connected)
+                        gbLEDOn3.Visible = true;
+                    else
+                        gbLEDOn3.Visible = false;
+                    break;
+
+                case 4:
+                    if (connected)
+                        gbLEDOn4.Visible = true;
+                    else
+                        gbLEDOn4.Visible = false;
+                    break;
+
+                case 5:
+                    if (connected)
+                        gbLEDOn5.Visible = true;
+                    else
+                        gbLEDOn5.Visible = false;
+                    break;
+
+                case 6:
+                    if (connected)
+                        gbLEDOn6.Visible = true;
+                    else
+                        gbLEDOn6.Visible = false;
+                    break;
+
+            }
+
+        }
 
         // Handler for main menu program exit button click
         private void miExit_Click(object sender, EventArgs e)
@@ -3334,6 +3445,35 @@ namespace GUILayer.Forms
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbPromptForInfo_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTake_Click(object sender, EventArgs e)
+        {
+            if (stackGrid.Rows.Count > 0)
+            {
+                DataTable rd = new DataTable();
+
+                //Get the selected race list object
+                int currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+                //short stateNumber = (short)stackGrid.Rows[currentRaceIndex].Cells["State_Number"].Value;
+                short stateNumber = (short)stackGrid.Rows[currentRaceIndex].Cells[7].Value;
+                //short cd = (short)stackGrid.Rows[currentRaceIndex].Cells["CD"].Value;
+                short cd = (short)stackGrid.Rows[currentRaceIndex].Cells[9].Value;
+                //string raceOffice = stackGrid.Rows[currentRaceIndex].Cells["Office_Code"].Value.ToString();
+                string raceOffice = stackGrid.Rows[currentRaceIndex].Cells[6].Value.ToString();
+                //string electionType = stackGrid.Rows[currentRaceIndex].Cells["Election_Type"].Value.ToString();
+                string electionType = stackGrid.Rows[currentRaceIndex].Cells[5].Value.ToString();
+                RaceDataAccess rda = new RaceDataAccess();
+                rd = rda.GetRaceData(stateNumber, raceOffice, cd, electionType);
+
+                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
+
+            }
         }
     }
 }

@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,26 +121,6 @@
             this.timerStatusUpdate = new System.Windows.Forms.Timer(this.components);
             this.gbTime = new System.Windows.Forms.GroupBox();
             this.pnlStack = new System.Windows.Forms.Panel();
-            this.cbGraphicConcept = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.cbPromptForInfo = new System.Windows.Forms.CheckBox();
-            this.btnClearStack = new System.Windows.Forms.Button();
-            this.btnDeleteStackElement = new System.Windows.Forms.Button();
-            this.btnLoadStack = new System.Windows.Forms.Button();
-            this.btnSaveActivateStack = new System.Windows.Forms.Button();
-            this.btnSaveStack = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnStackElementDown = new System.Windows.Forms.Button();
-            this.btnStackElementUp = new System.Windows.Forms.Button();
-            this.txtStackName = new System.Windows.Forms.Label();
-            this.txtStackEntriesCount = new System.Windows.Forms.Label();
-            this.lblStackEntriesCount = new System.Windows.Forms.Label();
-            this.lblStackHeader = new System.Windows.Forms.Label();
-            this.stackGrid = new System.Windows.Forms.DataGridView();
-            this.Element_Type_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stack_Entry_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblIpAddress = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -184,6 +162,37 @@
             this.gbLEDOff1 = new System.Windows.Forms.PictureBox();
             this.gbPortlbl1 = new System.Windows.Forms.Label();
             this.gbIPlbl1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.cbGraphicConcept = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtStackName = new System.Windows.Forms.Label();
+            this.txtStackEntriesCount = new System.Windows.Forms.Label();
+            this.lblStackEntriesCount = new System.Windows.Forms.Label();
+            this.lblStackHeader = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.TakePanel = new System.Windows.Forms.Panel();
+            this.cbAutoCalledRaces = new System.Windows.Forms.CheckBox();
+            this.cbLooping = new System.Windows.Forms.CheckBox();
+            this.btnTake = new System.Windows.Forms.Button();
+            this.LockPanel = new System.Windows.Forms.Panel();
+            this.btnLock = new System.Windows.Forms.Button();
+            this.btnUnlock = new System.Windows.Forms.Button();
+            this.SaveActivatePanel = new System.Windows.Forms.Panel();
+            this.cbPromptForInfo = new System.Windows.Forms.CheckBox();
+            this.btnSaveActivateStack = new System.Windows.Forms.Button();
+            this.StackPanel = new System.Windows.Forms.Panel();
+            this.btnClearStack = new System.Windows.Forms.Button();
+            this.btnDeleteStackElement = new System.Windows.Forms.Button();
+            this.btnLoadStack = new System.Windows.Forms.Button();
+            this.btnSaveStack = new System.Windows.Forms.Button();
+            this.stackGrid = new System.Windows.Forms.DataGridView();
+            this.Element_Type_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stack_Entry_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlUpDn = new System.Windows.Forms.Panel();
+            this.btnStackElementDown = new System.Windows.Forms.Button();
+            this.btnStackElementUp = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -207,9 +216,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ReferendumsGrid)).BeginInit();
             this.gbTime.SuspendLayout();
             this.pnlStack.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).BeginInit();
             this.connectionPanel.SuspendLayout();
             this.gbViz6.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -235,6 +241,14 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.TakePanel.SuspendLayout();
+            this.LockPanel.SuspendLayout();
+            this.SaveActivatePanel.SuspendLayout();
+            this.StackPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).BeginInit();
+            this.pnlUpDn.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -245,7 +259,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1440, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1446, 24);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -336,9 +350,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 958);
+            this.statusStrip.Location = new System.Drawing.Point(0, 1000);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1440, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1446, 22);
             this.statusStrip.TabIndex = 53;
             this.statusStrip.Text = "statusStrip";
             // 
@@ -353,6 +367,7 @@
             // lblCurrentShow
             // 
             this.lblCurrentShow.AutoSize = true;
+            this.lblCurrentShow.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblCurrentShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentShow.Location = new System.Drawing.Point(125, 40);
             this.lblCurrentShow.Name = "lblCurrentShow";
@@ -417,10 +432,10 @@
             this.dataModeSelect.Controls.Add(this.tpBalanceOfPower);
             this.dataModeSelect.Controls.Add(this.tpReferendums);
             this.dataModeSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataModeSelect.Location = new System.Drawing.Point(12, 68);
+            this.dataModeSelect.Location = new System.Drawing.Point(8, 71);
             this.dataModeSelect.Name = "dataModeSelect";
             this.dataModeSelect.SelectedIndex = 0;
-            this.dataModeSelect.Size = new System.Drawing.Size(686, 791);
+            this.dataModeSelect.Size = new System.Drawing.Size(686, 794);
             this.dataModeSelect.TabIndex = 93;
             this.dataModeSelect.SelectedIndexChanged += new System.EventHandler(this.dataModeSelect_SelectedIndexChanged);
             // 
@@ -440,7 +455,7 @@
             this.tpRaces.Location = new System.Drawing.Point(4, 25);
             this.tpRaces.Name = "tpRaces";
             this.tpRaces.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRaces.Size = new System.Drawing.Size(678, 762);
+            this.tpRaces.Size = new System.Drawing.Size(678, 765);
             this.tpRaces.TabIndex = 0;
             this.tpRaces.Text = "Races";
             // 
@@ -1224,281 +1239,18 @@
             // pnlStack
             // 
             this.pnlStack.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlStack.Controls.Add(this.pnlUpDn);
+            this.pnlStack.Controls.Add(this.panel2);
             this.pnlStack.Controls.Add(this.cbGraphicConcept);
             this.pnlStack.Controls.Add(this.label2);
-            this.pnlStack.Controls.Add(this.panel3);
-            this.pnlStack.Controls.Add(this.panel1);
             this.pnlStack.Controls.Add(this.txtStackName);
             this.pnlStack.Controls.Add(this.txtStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackHeader);
-            this.pnlStack.Controls.Add(this.stackGrid);
             this.pnlStack.Location = new System.Drawing.Point(700, 95);
             this.pnlStack.Name = "pnlStack";
-            this.pnlStack.Size = new System.Drawing.Size(732, 762);
+            this.pnlStack.Size = new System.Drawing.Size(732, 769);
             this.pnlStack.TabIndex = 120;
-            // 
-            // cbGraphicConcept
-            // 
-            this.cbGraphicConcept.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbGraphicConcept.FormattingEnabled = true;
-            this.cbGraphicConcept.Location = new System.Drawing.Point(512, 27);
-            this.cbGraphicConcept.Name = "cbGraphicConcept";
-            this.cbGraphicConcept.Size = new System.Drawing.Size(148, 24);
-            this.cbGraphicConcept.TabIndex = 132;
-            this.cbGraphicConcept.SelectedIndexChanged += new System.EventHandler(this.cbGraphicConcept_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(378, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 16);
-            this.label2.TabIndex = 131;
-            this.label2.Text = "Graphic Concept:";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel3.Controls.Add(this.cbPromptForInfo);
-            this.panel3.Controls.Add(this.btnClearStack);
-            this.panel3.Controls.Add(this.btnDeleteStackElement);
-            this.panel3.Controls.Add(this.btnLoadStack);
-            this.panel3.Controls.Add(this.btnSaveActivateStack);
-            this.panel3.Controls.Add(this.btnSaveStack);
-            this.panel3.Location = new System.Drawing.Point(12, 599);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(648, 157);
-            this.panel3.TabIndex = 129;
-            // 
-            // cbPromptForInfo
-            // 
-            this.cbPromptForInfo.AutoSize = true;
-            this.cbPromptForInfo.Checked = true;
-            this.cbPromptForInfo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPromptForInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPromptForInfo.Location = new System.Drawing.Point(445, 121);
-            this.cbPromptForInfo.Name = "cbPromptForInfo";
-            this.cbPromptForInfo.Size = new System.Drawing.Size(127, 20);
-            this.cbPromptForInfo.TabIndex = 137;
-            this.cbPromptForInfo.Text = "Prompt for Info";
-            this.cbPromptForInfo.UseVisualStyleBackColor = true;
-            // 
-            // btnClearStack
-            // 
-            this.btnClearStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnClearStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearStack.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
-            this.btnClearStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClearStack.Location = new System.Drawing.Point(18, 86);
-            this.btnClearStack.Name = "btnClearStack";
-            this.btnClearStack.Size = new System.Drawing.Size(180, 55);
-            this.btnClearStack.TabIndex = 136;
-            this.btnClearStack.Text = "Clear Stack\r\n(Ctrl-C)";
-            this.btnClearStack.UseVisualStyleBackColor = false;
-            this.btnClearStack.Click += new System.EventHandler(this.btnClearStack_Click_1);
-            // 
-            // btnDeleteStackElement
-            // 
-            this.btnDeleteStackElement.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDeleteStackElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteStackElement.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
-            this.btnDeleteStackElement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteStackElement.Location = new System.Drawing.Point(18, 18);
-            this.btnDeleteStackElement.Name = "btnDeleteStackElement";
-            this.btnDeleteStackElement.Size = new System.Drawing.Size(180, 55);
-            this.btnDeleteStackElement.TabIndex = 135;
-            this.btnDeleteStackElement.Text = "Delete Element\r\n(Ctrl-D)";
-            this.btnDeleteStackElement.UseVisualStyleBackColor = false;
-            this.btnDeleteStackElement.Click += new System.EventHandler(this.btnDeleteStackElement_Click);
-            // 
-            // btnLoadStack
-            // 
-            this.btnLoadStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
-            this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLoadStack.Location = new System.Drawing.Point(228, 18);
-            this.btnLoadStack.Name = "btnLoadStack";
-            this.btnLoadStack.Size = new System.Drawing.Size(180, 55);
-            this.btnLoadStack.TabIndex = 133;
-            this.btnLoadStack.Text = "Recall Stack\r\n(Ctrl-R)";
-            this.btnLoadStack.UseVisualStyleBackColor = false;
-            this.btnLoadStack.Click += new System.EventHandler(this.btnLoadStack_Click);
-            // 
-            // btnSaveActivateStack
-            // 
-            this.btnSaveActivateStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSaveActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
-            this.btnSaveActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveActivateStack.Location = new System.Drawing.Point(445, 18);
-            this.btnSaveActivateStack.Name = "btnSaveActivateStack";
-            this.btnSaveActivateStack.Size = new System.Drawing.Size(180, 100);
-            this.btnSaveActivateStack.TabIndex = 132;
-            this.btnSaveActivateStack.Text = "Save && Activate\r\nStack\r\n(Ctrl-S)";
-            this.btnSaveActivateStack.UseVisualStyleBackColor = false;
-            this.btnSaveActivateStack.Click += new System.EventHandler(this.btnSaveActivateStack_Click);
-            // 
-            // btnSaveStack
-            // 
-            this.btnSaveStack.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSaveStack.Enabled = false;
-            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Closed_16xLG;
-            this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveStack.Location = new System.Drawing.Point(228, 86);
-            this.btnSaveStack.Name = "btnSaveStack";
-            this.btnSaveStack.Size = new System.Drawing.Size(180, 55);
-            this.btnSaveStack.TabIndex = 129;
-            this.btnSaveStack.Text = "Save Stack Only\r\n(Ctrl-O)";
-            this.btnSaveStack.UseVisualStyleBackColor = false;
-            this.btnSaveStack.Click += new System.EventHandler(this.btnSaveStack_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.btnStackElementDown);
-            this.panel1.Controls.Add(this.btnStackElementUp);
-            this.panel1.Location = new System.Drawing.Point(670, 240);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(50, 161);
-            this.panel1.TabIndex = 127;
-            // 
-            // btnStackElementDown
-            // 
-            this.btnStackElementDown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnStackElementDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStackElementDown.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementDown.Image")));
-            this.btnStackElementDown.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnStackElementDown.Location = new System.Drawing.Point(5, 94);
-            this.btnStackElementDown.Name = "btnStackElementDown";
-            this.btnStackElementDown.Size = new System.Drawing.Size(42, 60);
-            this.btnStackElementDown.TabIndex = 73;
-            this.btnStackElementDown.Text = "DN";
-            this.btnStackElementDown.UseVisualStyleBackColor = false;
-            this.btnStackElementDown.Click += new System.EventHandler(this.btnStackElementDown_Click);
-            // 
-            // btnStackElementUp
-            // 
-            this.btnStackElementUp.BackColor = System.Drawing.SystemColors.Control;
-            this.btnStackElementUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStackElementUp.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementUp.Image")));
-            this.btnStackElementUp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnStackElementUp.Location = new System.Drawing.Point(5, 9);
-            this.btnStackElementUp.Name = "btnStackElementUp";
-            this.btnStackElementUp.Size = new System.Drawing.Size(42, 60);
-            this.btnStackElementUp.TabIndex = 72;
-            this.btnStackElementUp.Text = "UP";
-            this.btnStackElementUp.UseVisualStyleBackColor = false;
-            this.btnStackElementUp.Click += new System.EventHandler(this.btnStackElementUp_Click);
-            // 
-            // txtStackName
-            // 
-            this.txtStackName.AutoSize = true;
-            this.txtStackName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStackName.Location = new System.Drawing.Point(60, 8);
-            this.txtStackName.Name = "txtStackName";
-            this.txtStackName.Size = new System.Drawing.Size(111, 16);
-            this.txtStackName.TabIndex = 126;
-            this.txtStackName.Text = "None Selected";
-            // 
-            // txtStackEntriesCount
-            // 
-            this.txtStackEntriesCount.AutoSize = true;
-            this.txtStackEntriesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStackEntriesCount.Location = new System.Drawing.Point(161, 30);
-            this.txtStackEntriesCount.Name = "txtStackEntriesCount";
-            this.txtStackEntriesCount.Size = new System.Drawing.Size(16, 16);
-            this.txtStackEntriesCount.TabIndex = 123;
-            this.txtStackEntriesCount.Text = "0";
-            // 
-            // lblStackEntriesCount
-            // 
-            this.lblStackEntriesCount.AutoSize = true;
-            this.lblStackEntriesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStackEntriesCount.Location = new System.Drawing.Point(12, 30);
-            this.lblStackEntriesCount.Name = "lblStackEntriesCount";
-            this.lblStackEntriesCount.Size = new System.Drawing.Size(151, 16);
-            this.lblStackEntriesCount.TabIndex = 122;
-            this.lblStackEntriesCount.Text = "Number of Elements:";
-            // 
-            // lblStackHeader
-            // 
-            this.lblStackHeader.AutoSize = true;
-            this.lblStackHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStackHeader.Location = new System.Drawing.Point(12, 8);
-            this.lblStackHeader.Name = "lblStackHeader";
-            this.lblStackHeader.Size = new System.Drawing.Size(51, 16);
-            this.lblStackHeader.TabIndex = 119;
-            this.lblStackHeader.Text = "Stack:";
-            // 
-            // stackGrid
-            // 
-            this.stackGrid.AllowUserToAddRows = false;
-            this.stackGrid.AllowUserToDeleteRows = false;
-            this.stackGrid.AllowUserToResizeColumns = false;
-            this.stackGrid.AllowUserToResizeRows = false;
-            this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stackGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Element_Type_Description,
-            this.TemplateID,
-            this.Stack_Entry_Description});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stackGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.stackGrid.Location = new System.Drawing.Point(12, 57);
-            this.stackGrid.MultiSelect = false;
-            this.stackGrid.Name = "stackGrid";
-            this.stackGrid.ReadOnly = true;
-            this.stackGrid.RowHeadersVisible = false;
-            this.stackGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.stackGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.stackGrid.Size = new System.Drawing.Size(648, 538);
-            this.stackGrid.TabIndex = 118;
-            this.stackGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.stackGrid_CellFormatting);
-            // 
-            // Element_Type_Description
-            // 
-            this.Element_Type_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Element_Type_Description.DataPropertyName = "Stack_Element_Description";
-            this.Element_Type_Description.HeaderText = "Entry Type";
-            this.Element_Type_Description.Name = "Element_Type_Description";
-            this.Element_Type_Description.ReadOnly = true;
-            this.Element_Type_Description.Width = 160;
-            // 
-            // TemplateID
-            // 
-            this.TemplateID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TemplateID.DataPropertyName = "Stack_Element_TemplateID";
-            this.TemplateID.HeaderText = "Template Name";
-            this.TemplateID.Name = "TemplateID";
-            this.TemplateID.ReadOnly = true;
-            this.TemplateID.Width = 185;
-            // 
-            // Stack_Entry_Description
-            // 
-            this.Stack_Entry_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Stack_Entry_Description.DataPropertyName = "Listbox_Description";
-            this.Stack_Entry_Description.HeaderText = "Entry Description";
-            this.Stack_Entry_Description.Name = "Stack_Entry_Description";
-            this.Stack_Entry_Description.ReadOnly = true;
-            this.Stack_Entry_Description.Width = 280;
             // 
             // lblIpAddress
             // 
@@ -1550,19 +1302,20 @@
             this.connectionPanel.Controls.Add(this.gbViz3);
             this.connectionPanel.Controls.Add(this.gbViz2);
             this.connectionPanel.Controls.Add(this.gbViz1);
-            this.connectionPanel.Location = new System.Drawing.Point(12, 865);
+            this.connectionPanel.Location = new System.Drawing.Point(10, 868);
             this.connectionPanel.Name = "connectionPanel";
-            this.connectionPanel.Size = new System.Drawing.Size(1420, 88);
+            this.connectionPanel.Size = new System.Drawing.Size(1423, 83);
             this.connectionPanel.TabIndex = 125;
             // 
             // gbViz6
             // 
+            this.gbViz6.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gbViz6.Controls.Add(this.groupBox12);
             this.gbViz6.Controls.Add(this.gbPortlbl6);
             this.gbViz6.Controls.Add(this.gbIPlbl6);
             this.gbViz6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz6.Location = new System.Drawing.Point(1185, 9);
+            this.gbViz6.Location = new System.Drawing.Point(1185, 7);
             this.gbViz6.Name = "gbViz6";
             this.gbViz6.Size = new System.Drawing.Size(225, 70);
             this.gbViz6.TabIndex = 5;
@@ -1626,12 +1379,13 @@
             // 
             // gbViz5
             // 
+            this.gbViz5.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gbViz5.Controls.Add(this.groupBox11);
             this.gbViz5.Controls.Add(this.gbPortlbl5);
             this.gbViz5.Controls.Add(this.gbIPlbl5);
             this.gbViz5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz5.Location = new System.Drawing.Point(950, 9);
+            this.gbViz5.Location = new System.Drawing.Point(950, 7);
             this.gbViz5.Name = "gbViz5";
             this.gbViz5.Size = new System.Drawing.Size(225, 70);
             this.gbViz5.TabIndex = 4;
@@ -1694,12 +1448,13 @@
             // 
             // gbViz4
             // 
+            this.gbViz4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gbViz4.Controls.Add(this.groupBox10);
             this.gbViz4.Controls.Add(this.gbPortlbl4);
             this.gbViz4.Controls.Add(this.gbIPlbl4);
             this.gbViz4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz4.Location = new System.Drawing.Point(715, 9);
+            this.gbViz4.Location = new System.Drawing.Point(715, 7);
             this.gbViz4.Name = "gbViz4";
             this.gbViz4.Size = new System.Drawing.Size(225, 70);
             this.gbViz4.TabIndex = 3;
@@ -1762,12 +1517,13 @@
             // 
             // gbViz3
             // 
+            this.gbViz3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gbViz3.Controls.Add(this.groupBox8);
             this.gbViz3.Controls.Add(this.gbPortlbl3);
             this.gbViz3.Controls.Add(this.gbIPlbl3);
             this.gbViz3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz3.Location = new System.Drawing.Point(480, 9);
+            this.gbViz3.Location = new System.Drawing.Point(480, 7);
             this.gbViz3.Name = "gbViz3";
             this.gbViz3.Size = new System.Drawing.Size(225, 70);
             this.gbViz3.TabIndex = 2;
@@ -1830,12 +1586,13 @@
             // 
             // gbViz2
             // 
+            this.gbViz2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gbViz2.Controls.Add(this.groupBox9);
             this.gbViz2.Controls.Add(this.gbPortlbl2);
             this.gbViz2.Controls.Add(this.gbIPlbl2);
             this.gbViz2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz2.Location = new System.Drawing.Point(245, 9);
+            this.gbViz2.Location = new System.Drawing.Point(245, 7);
             this.gbViz2.Name = "gbViz2";
             this.gbViz2.Size = new System.Drawing.Size(225, 70);
             this.gbViz2.TabIndex = 1;
@@ -1898,12 +1655,13 @@
             // 
             // gbViz1
             // 
+            this.gbViz1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gbViz1.Controls.Add(this.groupBox7);
             this.gbViz1.Controls.Add(this.gbPortlbl1);
             this.gbViz1.Controls.Add(this.gbIPlbl1);
             this.gbViz1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz1.Location = new System.Drawing.Point(10, 9);
+            this.gbViz1.Location = new System.Drawing.Point(10, 7);
             this.gbViz1.Name = "gbViz1";
             this.gbViz1.Size = new System.Drawing.Size(225, 70);
             this.gbViz1.TabIndex = 0;
@@ -1965,18 +1723,379 @@
             this.gbIPlbl1.TabIndex = 0;
             this.gbIPlbl1.Text = "IP: 10.232.86.84";
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(10, 954);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(1423, 43);
+            this.listBox1.TabIndex = 126;
+            // 
+            // cbGraphicConcept
+            // 
+            this.cbGraphicConcept.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cbGraphicConcept.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGraphicConcept.FormattingEnabled = true;
+            this.cbGraphicConcept.Location = new System.Drawing.Point(513, 6);
+            this.cbGraphicConcept.Name = "cbGraphicConcept";
+            this.cbGraphicConcept.Size = new System.Drawing.Size(148, 24);
+            this.cbGraphicConcept.TabIndex = 138;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(379, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 16);
+            this.label2.TabIndex = 137;
+            this.label2.Text = "Graphic Concept:";
+            // 
+            // txtStackName
+            // 
+            this.txtStackName.AutoSize = true;
+            this.txtStackName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStackName.Location = new System.Drawing.Point(61, 9);
+            this.txtStackName.Name = "txtStackName";
+            this.txtStackName.Size = new System.Drawing.Size(111, 16);
+            this.txtStackName.TabIndex = 136;
+            this.txtStackName.Text = "None Selected";
+            // 
+            // txtStackEntriesCount
+            // 
+            this.txtStackEntriesCount.AutoSize = true;
+            this.txtStackEntriesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStackEntriesCount.Location = new System.Drawing.Point(162, 31);
+            this.txtStackEntriesCount.Name = "txtStackEntriesCount";
+            this.txtStackEntriesCount.Size = new System.Drawing.Size(16, 16);
+            this.txtStackEntriesCount.TabIndex = 135;
+            this.txtStackEntriesCount.Text = "0";
+            // 
+            // lblStackEntriesCount
+            // 
+            this.lblStackEntriesCount.AutoSize = true;
+            this.lblStackEntriesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStackEntriesCount.Location = new System.Drawing.Point(13, 31);
+            this.lblStackEntriesCount.Name = "lblStackEntriesCount";
+            this.lblStackEntriesCount.Size = new System.Drawing.Size(151, 16);
+            this.lblStackEntriesCount.TabIndex = 134;
+            this.lblStackEntriesCount.Text = "Number of Elements:";
+            // 
+            // lblStackHeader
+            // 
+            this.lblStackHeader.AutoSize = true;
+            this.lblStackHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStackHeader.Location = new System.Drawing.Point(13, 9);
+            this.lblStackHeader.Name = "lblStackHeader";
+            this.lblStackHeader.Size = new System.Drawing.Size(51, 16);
+            this.lblStackHeader.TabIndex = 133;
+            this.lblStackHeader.Text = "Stack:";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Navy;
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.stackGrid);
+            this.panel2.Location = new System.Drawing.Point(5, 54);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(666, 710);
+            this.panel2.TabIndex = 139;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.Controls.Add(this.TakePanel);
+            this.panel3.Controls.Add(this.LockPanel);
+            this.panel3.Controls.Add(this.SaveActivatePanel);
+            this.panel3.Controls.Add(this.StackPanel);
+            this.panel3.Location = new System.Drawing.Point(8, 481);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(648, 221);
+            this.panel3.TabIndex = 143;
+            // 
+            // TakePanel
+            // 
+            this.TakePanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.TakePanel.Controls.Add(this.cbAutoCalledRaces);
+            this.TakePanel.Controls.Add(this.cbLooping);
+            this.TakePanel.Controls.Add(this.btnTake);
+            this.TakePanel.Location = new System.Drawing.Point(426, 2);
+            this.TakePanel.Name = "TakePanel";
+            this.TakePanel.Size = new System.Drawing.Size(220, 215);
+            this.TakePanel.TabIndex = 146;
+            // 
+            // cbAutoCalledRaces
+            // 
+            this.cbAutoCalledRaces.AutoSize = true;
+            this.cbAutoCalledRaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbAutoCalledRaces.Location = new System.Drawing.Point(22, 39);
+            this.cbAutoCalledRaces.Name = "cbAutoCalledRaces";
+            this.cbAutoCalledRaces.Size = new System.Drawing.Size(160, 21);
+            this.cbAutoCalledRaces.TabIndex = 145;
+            this.cbAutoCalledRaces.Text = "Auto Called Races";
+            this.cbAutoCalledRaces.UseVisualStyleBackColor = true;
+            // 
+            // cbLooping
+            // 
+            this.cbLooping.AutoSize = true;
+            this.cbLooping.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbLooping.Location = new System.Drawing.Point(20, 12);
+            this.cbLooping.Name = "cbLooping";
+            this.cbLooping.Size = new System.Drawing.Size(85, 21);
+            this.cbLooping.TabIndex = 144;
+            this.cbLooping.Text = "Looping";
+            this.cbLooping.UseVisualStyleBackColor = true;
+            // 
+            // btnTake
+            // 
+            this.btnTake.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTake.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTake.Image = ((System.Drawing.Image)(resources.GetObject("btnTake.Image")));
+            this.btnTake.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTake.Location = new System.Drawing.Point(20, 66);
+            this.btnTake.Name = "btnTake";
+            this.btnTake.Size = new System.Drawing.Size(180, 139);
+            this.btnTake.TabIndex = 143;
+            this.btnTake.Text = "Take\r\n(Space)";
+            this.btnTake.UseVisualStyleBackColor = false;
+            this.btnTake.Click += new System.EventHandler(this.btnTake_Click);
+            // 
+            // LockPanel
+            // 
+            this.LockPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.LockPanel.Controls.Add(this.btnLock);
+            this.LockPanel.Controls.Add(this.btnUnlock);
+            this.LockPanel.Location = new System.Drawing.Point(1, 1);
+            this.LockPanel.Name = "LockPanel";
+            this.LockPanel.Size = new System.Drawing.Size(420, 76);
+            this.LockPanel.TabIndex = 148;
+            // 
+            // btnLock
+            // 
+            this.btnLock.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLock.Image = ((System.Drawing.Image)(resources.GetObject("btnLock.Image")));
+            this.btnLock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLock.Location = new System.Drawing.Point(15, 14);
+            this.btnLock.Name = "btnLock";
+            this.btnLock.Size = new System.Drawing.Size(180, 55);
+            this.btnLock.TabIndex = 141;
+            this.btnLock.Text = "Lock (Ctrl-L)";
+            this.btnLock.UseVisualStyleBackColor = false;
+            // 
+            // btnUnlock
+            // 
+            this.btnUnlock.BackColor = System.Drawing.SystemColors.Control;
+            this.btnUnlock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnlock.Image = ((System.Drawing.Image)(resources.GetObject("btnUnlock.Image")));
+            this.btnUnlock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUnlock.Location = new System.Drawing.Point(225, 14);
+            this.btnUnlock.Name = "btnUnlock";
+            this.btnUnlock.Size = new System.Drawing.Size(180, 55);
+            this.btnUnlock.TabIndex = 140;
+            this.btnUnlock.Text = "Unlock\r\n(Ctrl-U)";
+            this.btnUnlock.UseVisualStyleBackColor = false;
+            // 
+            // SaveActivatePanel
+            // 
+            this.SaveActivatePanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.SaveActivatePanel.Controls.Add(this.cbPromptForInfo);
+            this.SaveActivatePanel.Controls.Add(this.btnSaveActivateStack);
+            this.SaveActivatePanel.Location = new System.Drawing.Point(423, 80);
+            this.SaveActivatePanel.Name = "SaveActivatePanel";
+            this.SaveActivatePanel.Size = new System.Drawing.Size(224, 139);
+            this.SaveActivatePanel.TabIndex = 145;
+            // 
+            // cbPromptForInfo
+            // 
+            this.cbPromptForInfo.AutoSize = true;
+            this.cbPromptForInfo.Checked = true;
+            this.cbPromptForInfo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPromptForInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPromptForInfo.Location = new System.Drawing.Point(22, 111);
+            this.cbPromptForInfo.Name = "cbPromptForInfo";
+            this.cbPromptForInfo.Size = new System.Drawing.Size(127, 20);
+            this.cbPromptForInfo.TabIndex = 139;
+            this.cbPromptForInfo.Text = "Prompt for Info";
+            this.cbPromptForInfo.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveActivateStack
+            // 
+            this.btnSaveActivateStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSaveActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
+            this.btnSaveActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveActivateStack.Location = new System.Drawing.Point(22, 8);
+            this.btnSaveActivateStack.Name = "btnSaveActivateStack";
+            this.btnSaveActivateStack.Size = new System.Drawing.Size(180, 100);
+            this.btnSaveActivateStack.TabIndex = 138;
+            this.btnSaveActivateStack.Text = "Save && Activate\r\nStack\r\n(Ctrl-S)";
+            this.btnSaveActivateStack.UseVisualStyleBackColor = false;
+            // 
+            // StackPanel
+            // 
+            this.StackPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.StackPanel.Controls.Add(this.btnClearStack);
+            this.StackPanel.Controls.Add(this.btnDeleteStackElement);
+            this.StackPanel.Controls.Add(this.btnLoadStack);
+            this.StackPanel.Controls.Add(this.btnSaveStack);
+            this.StackPanel.Location = new System.Drawing.Point(1, 77);
+            this.StackPanel.Name = "StackPanel";
+            this.StackPanel.Size = new System.Drawing.Size(420, 142);
+            this.StackPanel.TabIndex = 147;
+            // 
+            // btnClearStack
+            // 
+            this.btnClearStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClearStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearStack.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
+            this.btnClearStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClearStack.Location = new System.Drawing.Point(15, 78);
+            this.btnClearStack.Name = "btnClearStack";
+            this.btnClearStack.Size = new System.Drawing.Size(180, 55);
+            this.btnClearStack.TabIndex = 140;
+            this.btnClearStack.Text = "Clear Stack\r\n(Ctrl-C)";
+            this.btnClearStack.UseVisualStyleBackColor = false;
+            // 
+            // btnDeleteStackElement
+            // 
+            this.btnDeleteStackElement.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteStackElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteStackElement.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
+            this.btnDeleteStackElement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteStackElement.Location = new System.Drawing.Point(15, 10);
+            this.btnDeleteStackElement.Name = "btnDeleteStackElement";
+            this.btnDeleteStackElement.Size = new System.Drawing.Size(180, 55);
+            this.btnDeleteStackElement.TabIndex = 139;
+            this.btnDeleteStackElement.Text = "Delete Element\r\n(Ctrl-D)";
+            this.btnDeleteStackElement.UseVisualStyleBackColor = false;
+            // 
+            // btnLoadStack
+            // 
+            this.btnLoadStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
+            this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLoadStack.Location = new System.Drawing.Point(225, 10);
+            this.btnLoadStack.Name = "btnLoadStack";
+            this.btnLoadStack.Size = new System.Drawing.Size(180, 55);
+            this.btnLoadStack.TabIndex = 138;
+            this.btnLoadStack.Text = "Recall Stack\r\n(Ctrl-R)";
+            this.btnLoadStack.UseVisualStyleBackColor = false;
+            // 
+            // btnSaveStack
+            // 
+            this.btnSaveStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSaveStack.Enabled = false;
+            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Closed_16xLG;
+            this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveStack.Location = new System.Drawing.Point(225, 78);
+            this.btnSaveStack.Name = "btnSaveStack";
+            this.btnSaveStack.Size = new System.Drawing.Size(180, 55);
+            this.btnSaveStack.TabIndex = 137;
+            this.btnSaveStack.Text = "Save Stack Only\r\n(Ctrl-O)";
+            this.btnSaveStack.UseVisualStyleBackColor = false;
+            // 
+            // stackGrid
+            // 
+            this.stackGrid.AllowUserToAddRows = false;
+            this.stackGrid.AllowUserToDeleteRows = false;
+            this.stackGrid.AllowUserToResizeColumns = false;
+            this.stackGrid.AllowUserToResizeRows = false;
+            this.stackGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.stackGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stackGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Element_Type_Description,
+            this.TemplateID,
+            this.Stack_Entry_Description});
+            this.stackGrid.Location = new System.Drawing.Point(8, 8);
+            this.stackGrid.MultiSelect = false;
+            this.stackGrid.Name = "stackGrid";
+            this.stackGrid.ReadOnly = true;
+            this.stackGrid.RowHeadersVisible = false;
+            this.stackGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.stackGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.stackGrid.Size = new System.Drawing.Size(648, 465);
+            this.stackGrid.TabIndex = 142;
+            // 
+            // Element_Type_Description
+            // 
+            this.Element_Type_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Element_Type_Description.DataPropertyName = "Stack_Element_Description";
+            this.Element_Type_Description.HeaderText = "Entry Type";
+            this.Element_Type_Description.Name = "Element_Type_Description";
+            this.Element_Type_Description.ReadOnly = true;
+            this.Element_Type_Description.Width = 160;
+            // 
+            // TemplateID
+            // 
+            this.TemplateID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TemplateID.DataPropertyName = "Stack_Element_TemplateID";
+            this.TemplateID.HeaderText = "Template Name";
+            this.TemplateID.Name = "TemplateID";
+            this.TemplateID.ReadOnly = true;
+            this.TemplateID.Width = 185;
+            // 
+            // Stack_Entry_Description
+            // 
+            this.Stack_Entry_Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Stack_Entry_Description.DataPropertyName = "Listbox_Description";
+            this.Stack_Entry_Description.HeaderText = "Entry Description";
+            this.Stack_Entry_Description.Name = "Stack_Entry_Description";
+            this.Stack_Entry_Description.ReadOnly = true;
+            this.Stack_Entry_Description.Width = 280;
+            // 
+            // pnlUpDn
+            // 
+            this.pnlUpDn.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlUpDn.Controls.Add(this.btnStackElementDown);
+            this.pnlUpDn.Controls.Add(this.btnStackElementUp);
+            this.pnlUpDn.Location = new System.Drawing.Point(676, 198);
+            this.pnlUpDn.Name = "pnlUpDn";
+            this.pnlUpDn.Size = new System.Drawing.Size(50, 161);
+            this.pnlUpDn.TabIndex = 140;
+            // 
+            // btnStackElementDown
+            // 
+            this.btnStackElementDown.BackColor = System.Drawing.SystemColors.Control;
+            this.btnStackElementDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStackElementDown.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementDown.Image")));
+            this.btnStackElementDown.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnStackElementDown.Location = new System.Drawing.Point(4, 93);
+            this.btnStackElementDown.Name = "btnStackElementDown";
+            this.btnStackElementDown.Size = new System.Drawing.Size(42, 60);
+            this.btnStackElementDown.TabIndex = 73;
+            this.btnStackElementDown.Text = "DN";
+            this.btnStackElementDown.UseVisualStyleBackColor = false;
+            // 
+            // btnStackElementUp
+            // 
+            this.btnStackElementUp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnStackElementUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStackElementUp.Image = ((System.Drawing.Image)(resources.GetObject("btnStackElementUp.Image")));
+            this.btnStackElementUp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnStackElementUp.Location = new System.Drawing.Point(4, 10);
+            this.btnStackElementUp.Name = "btnStackElementUp";
+            this.btnStackElementUp.Size = new System.Drawing.Size(42, 60);
+            this.btnStackElementUp.TabIndex = 72;
+            this.btnStackElementUp.Text = "UP";
+            this.btnStackElementUp.UseVisualStyleBackColor = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1440, 980);
+            this.ClientSize = new System.Drawing.Size(1446, 1022);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.connectionPanel);
             this.Controls.Add(this.lblMediaSequencer);
+            this.Controls.Add(this.pnlStack);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblHostName);
             this.Controls.Add(this.lblIpAddress);
-            this.Controls.Add(this.pnlStack);
             this.Controls.Add(this.gbTime);
             this.Controls.Add(this.dataModeSelect);
             this.Controls.Add(this.lblTrioChannel);
@@ -2026,10 +2145,6 @@
             this.gbTime.ResumeLayout(false);
             this.pnlStack.ResumeLayout(false);
             this.pnlStack.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).EndInit();
             this.connectionPanel.ResumeLayout(false);
             this.gbViz6.ResumeLayout(false);
             this.gbViz6.PerformLayout();
@@ -2061,6 +2176,16 @@
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.TakePanel.ResumeLayout(false);
+            this.TakePanel.PerformLayout();
+            this.LockPanel.ResumeLayout(false);
+            this.SaveActivatePanel.ResumeLayout(false);
+            this.SaveActivatePanel.PerformLayout();
+            this.StackPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stackGrid)).EndInit();
+            this.pnlUpDn.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2126,18 +2251,6 @@
         private System.Windows.Forms.GroupBox gbTime;
         private System.Windows.Forms.Button btnAddAll;
         private System.Windows.Forms.Panel pnlStack;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnLoadStack;
-        private System.Windows.Forms.Button btnSaveActivateStack;
-        private System.Windows.Forms.Button btnSaveStack;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnStackElementDown;
-        private System.Windows.Forms.Button btnStackElementUp;
-        private System.Windows.Forms.Label txtStackName;
-        private System.Windows.Forms.Label txtStackEntriesCount;
-        private System.Windows.Forms.Label lblStackEntriesCount;
-        private System.Windows.Forms.Label lblStackHeader;
-        private System.Windows.Forms.DataGridView stackGrid;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox gbSpF;
         private System.Windows.Forms.RadioButton rbNone;
@@ -2152,12 +2265,8 @@
         private System.Windows.Forms.DataGridView ReferendumsGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.Button btnAddReferendum;
-        private System.Windows.Forms.ComboBox cbGraphicConcept;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Race_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Race_Description;
-        private System.Windows.Forms.Button btnClearStack;
-        private System.Windows.Forms.Button btnDeleteStackElement;
         private System.Windows.Forms.Label lblIpAddress;
         private System.Windows.Forms.Label lblHostName;
         private System.Windows.Forms.Label label3;
@@ -2174,11 +2283,7 @@
         private System.Windows.Forms.RadioButton rbEPMan;
         private System.Windows.Forms.GroupBox gbExitPolls;
         private System.Windows.Forms.RadioButton rbEPAuto;
-        private System.Windows.Forms.CheckBox cbPromptForInfo;
         private System.Windows.Forms.Button btnInsert;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Element_Type_Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TemplateID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Stack_Entry_Description;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem usePrimaryMediaSequencerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useBackupMediaSequencerToolStripMenuItem;
@@ -2220,6 +2325,37 @@
         private System.Windows.Forms.PictureBox gbLEDOff3;
         private System.Windows.Forms.Label gbPortlbl3;
         private System.Windows.Forms.Label gbIPlbl3;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel TakePanel;
+        private System.Windows.Forms.CheckBox cbAutoCalledRaces;
+        private System.Windows.Forms.CheckBox cbLooping;
+        private System.Windows.Forms.Button btnTake;
+        private System.Windows.Forms.Panel LockPanel;
+        private System.Windows.Forms.Button btnLock;
+        private System.Windows.Forms.Button btnUnlock;
+        private System.Windows.Forms.Panel SaveActivatePanel;
+        private System.Windows.Forms.CheckBox cbPromptForInfo;
+        private System.Windows.Forms.Button btnSaveActivateStack;
+        private System.Windows.Forms.Panel StackPanel;
+        private System.Windows.Forms.Button btnClearStack;
+        private System.Windows.Forms.Button btnDeleteStackElement;
+        private System.Windows.Forms.Button btnLoadStack;
+        private System.Windows.Forms.Button btnSaveStack;
+        private System.Windows.Forms.DataGridView stackGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Element_Type_Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TemplateID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Stack_Entry_Description;
+        private System.Windows.Forms.ComboBox cbGraphicConcept;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label txtStackName;
+        private System.Windows.Forms.Label txtStackEntriesCount;
+        private System.Windows.Forms.Label lblStackEntriesCount;
+        private System.Windows.Forms.Label lblStackHeader;
+        private System.Windows.Forms.Panel pnlUpDn;
+        private System.Windows.Forms.Button btnStackElementDown;
+        private System.Windows.Forms.Button btnStackElementUp;
     }
 }
 

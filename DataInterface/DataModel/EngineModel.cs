@@ -10,6 +10,8 @@ namespace DataInterface.DataModel
         public bool enable { get; set; }
         public bool connected { get; set; }
         public int id { get; set; }
+        public System.Net.IPAddress systemIP { get; set; }
 
-	}
+
+    }
 }

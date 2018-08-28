@@ -154,3 +154,5 @@ C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.Generat
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CoreCompileInputs.cache
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.exe
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
+C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\AsyncClientSocket.dll
+C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\AsyncClientSocket.pdb

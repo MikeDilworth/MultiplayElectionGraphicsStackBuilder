@@ -2,6 +2,8 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Collections.Generic;
+
 
 // Wrapper for TCP client
 // Rev: 08/01/16
@@ -35,7 +37,10 @@ namespace AsyncClientSocket
         private readonly System.Timers.Timer _tmrSendTimeout = new System.Timers.Timer();
         private readonly System.Timers.Timer _tmrConnectTimeout = new System.Timers.Timer();
 
-        public delegate void DelDataReceived(ClientSocket sender, object data);
+        //public delegate void DelDataReceived(ClientSocket sender, object data);
+        public delegate void DelDataReceived(ClientSocket sender, byte[] data);
+        //public delegate void DelDataReceived(ClientSocket sender, List<byte> data);
+        public int bufLen = 0;
 
         public event DelDataReceived DataReceived;
 
@@ -70,7 +75,7 @@ namespace AsyncClientSocket
             SendTimeout = Defaulttimeout;
             ConnectTimeout = Defaulttimeout;
             ReconnectInterval = Reconnectinterval;
-            _tmrReceiveTimeout.AutoReset = false;
+            _tmrReceiveTimeout.AutoReset = true;
             _tmrReceiveTimeout.Elapsed += tmrReceiveTimeout_Elapsed;
             _tmrConnectTimeout.AutoReset = false;
             _tmrConnectTimeout.Elapsed += tmrConnectTimeout_Elapsed;
@@ -160,7 +165,11 @@ namespace AsyncClientSocket
             try
             {
                 if (ConnectionState != ConnectionStatus.Connected)
-                    return;
+                    
+                return;
+
+                _tmrReceiveTimeout.Stop();
+
                 _client.Client.BeginDisconnect(true, CbDisconnectComplete, _client.Client);
             }
             catch (Exception ex)
@@ -175,7 +184,7 @@ namespace AsyncClientSocket
         /// Try sending a string to the remote host
         /// </summary>
         /// <param name="data">The data to send</param>
-        public void Send(string data)
+        public void Send(byte[] data)
         {
             try
             {
@@ -184,11 +193,16 @@ namespace AsyncClientSocket
                     ConnectionState = ConnectionStatus.SendFailNotConnected;
                     return;
                 }
-                var bytes = _encode.GetBytes(data);
+                //var bytes = _encode.GetBytes(data);
                 SocketError err;
                 _tmrSendTimeout.Start();
-                _client.Client.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, out err, CbSendComplete,
+                //_client.Client.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, out err, CbSendComplete,
+                //    _client.Client);
+
+                _client.Client.BeginSend(data , 0, data.Length , SocketFlags.None, out err, CbSendComplete,
                     _client.Client);
+
+
                 if (err != SocketError.Success)
                 {
                     Action doDcHost = DisconnectByHost;
@@ -207,7 +221,9 @@ namespace AsyncClientSocket
         /// Try sending byte data to the remote host
         /// </summary>
         /// <param name="data">The data to send</param>
-        public void Send(byte[] data)
+
+        /*
+          public void Send(byte[] data)
         {
             try
             {
@@ -228,7 +244,7 @@ namespace AsyncClientSocket
                 Log.Debug("ClientSocket Exception occurred while attempting to send data (byte array)", ex);
             }
         }
-
+        */
         // Implement IDisposable; do not make this method virtual; a derived class should not be able to override this method
         public void Dispose()
         {
@@ -292,7 +308,8 @@ namespace AsyncClientSocket
             {
                 _tmrConnectTimeout.Stop();
                 ConnectionState = ConnectionStatus.Connected;
-                _client.Client.BeginReceive(_dataBuffer, 0, _dataBuffer.Length, SocketFlags.None, CbDataReceived, _client.Client);
+                //_client.Client.BeginReceive(_dataBuffer, 0, _dataBuffer.Length, SocketFlags.None, CbDataReceived, _client.Client);
+                _client.Client.BeginReceive(_dataBuffer, 0, _dataBuffer.Length  , SocketFlags.None, CbDataReceived, _client.Client);
             }
             else
             {
@@ -310,6 +327,7 @@ namespace AsyncClientSocket
             {
                 Action doConnect = Connect;
                 doConnect.Invoke();
+           
             }
         }
 
@@ -381,12 +399,13 @@ namespace AsyncClientSocket
                 throw new InvalidOperationException("Invalid IASyncResult - Could not interpret as a socket");
             SocketError err;
             int bytes = sock.EndReceive(result, out err);
+            bufLen = bytes;
             if (bytes == 0 || err != SocketError.Success)
             {
                 lock (SyncLock)
                 {
                     _tmrReceiveTimeout.Start();
-                    return;
+                    return ;
                 }
             }
             else
@@ -397,17 +416,21 @@ namespace AsyncClientSocket
                 }
             }
             if (DataReceived != null)
-                DataReceived.BeginInvoke(this, _encode.GetString(_dataBuffer, 0, bytes), CbDataRecievedCallbackComplete, this);
+                DataReceived.BeginInvoke(this, _dataBuffer, CbDataRecievedCallbackComplete, this);
+            //    DataReceived.BeginInvoke(this, _encode.GetString(_dataBuffer, 0, bytes), CbDataRecievedCallbackComplete, this);
+            return ;
         }
 
         private void CbDataRecievedCallbackComplete(IAsyncResult result)
         {
+            
             var r = result.AsyncState as ClientSocket;
             if (r == null)
                 throw new InvalidOperationException("Invalid IAsyncResult - Could not interpret as EDTC object");
             r.DataReceived.EndInvoke(result);
             SocketError err;
             _client.Client.BeginReceive(_dataBuffer, 0, _dataBuffer.Length, SocketFlags.None, out err, CbDataReceived, _client.Client);
+            //_client.Client.BeginReceive(_dataBuffer, 0, bufLen, SocketFlags.None, out err, CbDataReceived, _client.Client);
             if (err != SocketError.Success)
             {
                 Action doDcHost = DisconnectByHost;
@@ -422,7 +445,9 @@ namespace AsyncClientSocket
         private readonly IPAddress _ip;
         private ConnectionStatus _conStat;
         private readonly TcpClient _client;
-        private readonly byte[] _dataBuffer = new byte[5000];
+        private readonly byte[] _dataBuffer = new byte[200000];
+        //private readonly byte[] _dataBuffer = new byte[5000];
+        //private readonly List<byte> _dataBuffer = new List<byte>();
         private readonly int _port;
         private Encoding _encode = Encoding.Default;
         private readonly object _syncLock = new object();

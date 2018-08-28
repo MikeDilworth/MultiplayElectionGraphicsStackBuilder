@@ -182,6 +182,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AsyncClientSocket\ClientSocket.csproj">
+      <Project>{6a71627c-fcc3-44b1-8206-9d5057684759}</Project>
+      <Name>ClientSocket</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataInterface\DataInterface.csproj">
       <Project>{24a8cef0-cff0-447b-80f9-5399ba0354f1}</Project>
       <Name>DataInterface</Name>

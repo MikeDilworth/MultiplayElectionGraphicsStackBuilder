@@ -8,11 +8,15 @@ namespace DataInterface.DataModel
 {
     public class RaceDataModel
     {
+
+        public string Office { get; set; }
         public string OfficeName { get; set; }
         public string StateName { get; set; }
-        public string StateMnemonic { get; set; }
+        public string StateAbbv { get; set; }
         public Boolean IsAtLargeHouseState { get; set; }
+        public string cntyName { get; set; }
         public Int16 CD { get; set; }
+        public string eType { get; set; }
         public Int32 TotalPrecincts { get; set; }
         public Int32 PrecinctsReporting { get; set; }
         public float PercentExpectedVote { get; set; }
@@ -20,6 +24,7 @@ namespace DataInterface.DataModel
         public string FoxID { get; set; }
         public string CandidateLastName { get; set; }
         public string LastNameAir { get; set; }
+        public string CandidateFirstName { get; set; }
         public Boolean UseHeadshotFNC { get; set; }
         public string HeadshotPathFNC { get; set; }
         public Boolean UseHeadshotFBN { get; set; }

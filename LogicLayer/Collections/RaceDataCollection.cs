@@ -72,9 +72,10 @@ namespace LogicLayer.Collections
                         var newRaceCandidateData = new RaceDataModel()
                         {
                             // Data for 1 candidate in the race
+                            Office = row["ofc"].ToString() ?? "",
                             OfficeName = row["ofcName"].ToString() ?? "",
                             StateName = row["jName"].ToString() ?? "",
-                            StateMnemonic = row["stateAbbv"].ToString() ?? "",
+                            StateAbbv = row["stateAbbv"].ToString() ?? "",
                             IsAtLargeHouseState = Convert.ToBoolean(row["IsAtLargeHouseState"] ?? 0),
                             CD = Convert.ToInt16(row["jCde"] ?? 0),
                             TotalPrecincts = Convert.ToInt32(row["totPcts"] ?? 0),
@@ -84,6 +85,7 @@ namespace LogicLayer.Collections
                             FoxID = row["FoxID"].ToString() ?? "",
                             CandidateLastName = row["candLastName"].ToString() ?? "",
                             LastNameAir = row["LastNameAir"].ToString() ?? "",
+                            CandidateFirstName = row["candFirstName"].ToString() ?? "",
                             UseHeadshotFNC = Convert.ToBoolean(row["UseHeadshot"] ?? 0),
                             HeadshotPathFNC = row["HeadshotPath"].ToString() ?? "",
                             UseHeadshotFBN = Convert.ToBoolean(row["UseHeadshot_FBN"] ?? 0),
