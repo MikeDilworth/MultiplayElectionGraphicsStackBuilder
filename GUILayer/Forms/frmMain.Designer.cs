@@ -1997,6 +1997,7 @@
             this.btnSaveStack.TabIndex = 137;
             this.btnSaveStack.Text = "Save Stack Only\r\n(Ctrl-O)";
             this.btnSaveStack.UseVisualStyleBackColor = false;
+            this.btnSaveStack.Click += new System.EventHandler(this.btnSaveStack_Click_1);
             // 
             // stackGrid
             // 

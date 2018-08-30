@@ -3456,24 +3456,69 @@ namespace GUILayer.Forms
         {
             if (stackGrid.Rows.Count > 0)
             {
-                DataTable rd = new DataTable();
+                //RaceDataModel rd = new RaceDataModel();
+                //DataTable rd = new DataTable();
+                BindingList<RaceDataModel> rd = new BindingList<RaceDataModel>();
 
                 //Get the selected race list object
                 int currentRaceIndex = stackGrid.CurrentCell.RowIndex;
-                //short stateNumber = (short)stackGrid.Rows[currentRaceIndex].Cells["State_Number"].Value;
-                short stateNumber = (short)stackGrid.Rows[currentRaceIndex].Cells[7].Value;
-                //short cd = (short)stackGrid.Rows[currentRaceIndex].Cells["CD"].Value;
-                short cd = (short)stackGrid.Rows[currentRaceIndex].Cells[9].Value;
-                //string raceOffice = stackGrid.Rows[currentRaceIndex].Cells["Office_Code"].Value.ToString();
-                string raceOffice = stackGrid.Rows[currentRaceIndex].Cells[6].Value.ToString();
-                //string electionType = stackGrid.Rows[currentRaceIndex].Cells["Election_Type"].Value.ToString();
-                string electionType = stackGrid.Rows[currentRaceIndex].Cells[5].Value.ToString();
-                RaceDataAccess rda = new RaceDataAccess();
-                rd = rda.GetRaceData(stateNumber, raceOffice, cd, electionType);
+                short stateNumber = stackElements[currentRaceIndex].State_Number;
+                short cd = stackElements[currentRaceIndex].CD;
+                string raceOffice = stackElements[currentRaceIndex].Office_Code;
+                string electionType = stackElements[currentRaceIndex].Election_Type;
+                int ctr = (int)stackElements[currentRaceIndex].Stack_Element_Type;
 
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
+                ctr = (ctr + 1) / 2 ;
+                rd = GetRaceData (stateNumber, raceOffice, cd, electionType, (short)ctr);
+                string outStr = GetRaceBoardMapkeyStr(rd);
+                
+            }
+        }
+
+        private void btnSaveStack_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        public string GetRaceBoardMapkeyStr(BindingList<RaceDataModel> raceData)
+        {
+            //Example of a 2 way raceboard with the Dem candidate winning and adding a gain
+
+            //USGOV99991 ^ USGOV99992 ~state = New York; race = CD02; precincts = 10; office = house; racemode = 1 ~
+            //name = candidate1; party = 0; incum = 0; vote = 3000; percent = 23.4; check = 0; gain = 0; imagePath = George_Bush | 
+            //name = candidate2; party = 1; incum = 0; vote = 5000; percent = 33.4; check = 1; gain = 1; imagePath = barack_obama
+
+            string mapKeyStr = "";
+
+            RaceBoardModel raceBoardData = new RaceBoardModel();
+
+            raceBoardData.state = raceData[0].StateName.Trim();
+            raceBoardData.office = raceData[0].OfficeName.Trim();
+            raceBoardData.cd = raceData[0].CD.ToString();
+            raceBoardData.pctsReporting = raceData[0].PercentExpectedVote.ToString();
+            bool called = raceData[0].RaceWinnerCalled;
+            TimeSpan fifteenMinutes = 
+
+            if (called)
+            {
+                DateTime callTime = raceData[0].RaceWinnerCallTime;
+                DateTime pollClosingTime = raceData[0].RacePollClosingTime;
+                DateTime timeNow = TimeFunctions.GetTime();
+                if (callTime < pollClosingTime)
+                    callTime = pollClosingTime;
+                if ((timeNow - callTime) < 
+            }
+
+
+            for (int i = 0; i < raceData.Count; i++)
+            {
+
+
+
 
             }
+            return mapKeyStr;
+
         }
     }
 }

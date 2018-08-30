@@ -85,7 +85,7 @@ namespace LogicLayer.Collections
                             FoxID = row["FoxID"].ToString() ?? "",
                             CandidateLastName = row["candLastName"].ToString() ?? "",
                             LastNameAir = row["LastNameAir"].ToString() ?? "",
-                            CandidateFirstName = row["candFirstName"].ToString() ?? "",
+                            //CandidateFirstName = row["candFirstName"].ToString() ?? "",
                             UseHeadshotFNC = Convert.ToBoolean(row["UseHeadshot"] ?? 0),
                             HeadshotPathFNC = row["HeadshotPath"].ToString() ?? "",
                             UseHeadshotFBN = Convert.ToBoolean(row["UseHeadshot_FBN"] ?? 0),
