@@ -12,13 +12,14 @@ namespace DataInterface.DataModel
         public string office { get; set; }
         public string cd { get; set; }
         public string pctsReporting { get; set; }
-        public string mode { get; set; }
+        public int mode { get; set; }
         public List<candidateData_RB> candData = new List<candidateData_RB>();
 
     }
 
     public class candidateData_RB
     {
+        public string firstName { get; set; }
         public string lastName { get; set; }
         public string votes { get; set; }
         public string percent { get; set; }

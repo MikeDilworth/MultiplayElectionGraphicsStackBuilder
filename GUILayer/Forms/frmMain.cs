@@ -3488,31 +3488,96 @@ namespace GUILayer.Forms
             //name = candidate1; party = 0; incum = 0; vote = 3000; percent = 23.4; check = 0; gain = 0; imagePath = George_Bush | 
             //name = candidate2; party = 1; incum = 0; vote = 5000; percent = 33.4; check = 1; gain = 1; imagePath = barack_obama
 
+            //“raceMode” – 0 (not called), 1(race called), 2 (just called), 3(too close to call), 4 (runoff), 5 (race to watch)
+
             string mapKeyStr = "";
 
             RaceBoardModel raceBoardData = new RaceBoardModel();
 
             raceBoardData.state = raceData[0].StateName.Trim();
-            raceBoardData.office = raceData[0].OfficeName.Trim();
             raceBoardData.cd = raceData[0].CD.ToString();
             raceBoardData.pctsReporting = raceData[0].PercentExpectedVote.ToString();
             bool called = raceData[0].RaceWinnerCalled;
-            TimeSpan fifteenMinutes = 
+            TimeSpan fifteenMinutes = new TimeSpan(0, 15, 0);
 
+            // Set board mode 
             if (called)
             {
                 DateTime callTime = raceData[0].RaceWinnerCallTime;
                 DateTime pollClosingTime = raceData[0].RacePollClosingTime;
+                
+                // Gets either simulated or actual time based on flag
                 DateTime timeNow = TimeFunctions.GetTime();
+                // if race is called before the polls are closed time then use poll closing time as the race call time
                 if (callTime < pollClosingTime)
                     callTime = pollClosingTime;
-                if ((timeNow - callTime) < 
+
+                // if race is called within 15 minutes 
+                if ((timeNow - callTime) < fifteenMinutes)
+                    // then Just Called
+                    raceBoardData.mode = (int)BoardModes.Race_Board_Just_Called;
+                else
+                    // Race Called
+                    raceBoardData.mode = (int)BoardModes.Race_Board_Race_Called;
             }
+            else if (raceData[0].RaceTooCloseToCall)
+             {
+                // RaceTooCloseToCall flag is set
+                raceBoardData.mode = (int)BoardModes.Race_Board_To_Close_To_Call;
+            }
+            else
+            {
+                // Not called and not TCTC
+                raceBoardData.mode = (int)BoardModes.Race_Board_Normal;
+            }
+
+
+
+            string ofc = raceData[0].Office;
+
+            // get office strings
+            raceBoardData.office = raceData[0].OfficeName.Trim();
+
+
+
+            //USGOV99991 ^ USGOV99992 ~state = New York; race = CD02; precincts = 10; office = house; racemode = 1 ~
+            //name = candidate1; party = 0; incum = 0; vote = 3000; percent = 23.4; check = 0; gain = 0; imagePath = George_Bush | 
+            //name = candidate2; party = 1; incum = 0; vote = 5000; percent = 33.4; check = 1; gain = 1; imagePath = barack_obama
+
+            //USGOV99991^ USGOV99992 ~ state=New York; race=CD02;precincts=10 ; office=house; racemode=1 ~ name=candidate1; party=0; incum=0; vote=3000; percent=23.4 ; check=0; gain=0; imagePath= George_Bush |name=candidate2; party=1; incum=0; vote=5000; percent=33.4 ; check=1; gain=1; imagePath= barack_obama
 
 
             for (int i = 0; i < raceData.Count; i++)
             {
+                mapKeyStr += raceData[i].FoxID;
+                if (i < raceData.Count - 1)
+                    mapKeyStr += " ^ ";
 
+                raceBoardData.candData[i].lastName = raceData[i].CandidateLastName;
+                raceBoardData.candData[i].firstName = raceData[i].CandidateFirstName;
+
+                // Format vote count as string with commas
+                if (raceData[i].CandidateVoteCount > 0)
+                    raceBoardData.candData[i].votes = string.Format("{0:n0}", raceData[i].CandidateVoteCount);
+                else
+                    raceBoardData.candData[i].votes = " ";
+
+                raceBoardData.candData[i].percent = GetCandPercent(raceData[i]);
+                raceBoardData.candData[i].party = GetCandParty(raceData[i]);
+                raceBoardData.candData[i].incumbent = raceData[i].IsIncumbentFlag == "Y" ? "1" : "0";
+                raceBoardData.candData[i].gain = raceData[i].InIncumbentPartyFlag;
+
+            }
+            // Set candidate incumbent flag
+            //var candidateIncumbentFlagStr = raceData[i].IsIncumbentFlag == "Y" ? "1" : "0";
+
+            string raceblock = $" ~state = {raceBoardData.state}; race =  {raceBoardData.cd}; precincts = {raceBoardData.pctsReporting}; office = {raceBoardData.office}; racemode = {raceBoardData.mode} ~";
+
+            mapKeyStr += raceblock;
+
+            for (int i = 0; i < raceData.Count; i++)
+            {
+                mapKeyStr += $" name = {r}"
 
 
 
@@ -3520,5 +3585,49 @@ namespace GUILayer.Forms
             return mapKeyStr;
 
         }
+
+        private string GetCandPercent(RaceDataModel rd)
+        {
+            string pct = "";
+            double pctVote;
+            Boolean ShowTenths = ApplicationSettingsFlagsCollection.ShowTenthsofPercent;
+
+            if (rd.CandidateVoteCount > 0)
+            {
+                pctVote = (rd.CandidateVoteCount * 100) / rd.TotalVoteCount;
+
+                if (pctVote < 1.0)
+                {
+                    pct = "<1";
+                }
+                else if (ShowTenths)
+                    // showing tenths
+                    pct = string.Format("{0:0.0}", pctVote);
+                else
+                    // show no decimal 
+                    pct = string.Format("{0:0}", Math.Round(pctVote, MidpointRounding.AwayFromZero));
+
+            }
+            else
+                pct = " ";
+
+            return pct;
+        }
+        private string GetCandParty(RaceDataModel rd)
+        {
+            string party = " ";
+            if (rd.CandidatePartyID == "Rep")
+                party = "0";
+            else if (rd.cntyName == "Dem")
+                party = "1";
+            else if (rd.cntyName == "Lib")
+                party = "3";
+            else
+                party = "2";
+
+            return party;
+
+        }
     }
+    
 }

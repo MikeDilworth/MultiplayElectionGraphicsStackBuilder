@@ -25,6 +25,7 @@ namespace LogicLayer.Collections
         public string ElectionsDBConnectionString { get; set; }
         public static Boolean UseSimulatedTime { get; set; }
         public static Boolean ShowRacesBeforePollClosing { get; set; }
+        public static Boolean ShowTenthsofPercent { get; set; }
         #endregion
 
         #region Public Methods
@@ -88,6 +89,7 @@ namespace LogicLayer.Collections
             flags = applicationFlags[0];
             UseSimulatedTime = flags.UseSimulatedElectionDayTime;
             ShowRacesBeforePollClosing = flags.OptionalFlag1;
+            ShowTenthsofPercent = flags.UseTenthsOfPercent;
 
 
             // Return 
