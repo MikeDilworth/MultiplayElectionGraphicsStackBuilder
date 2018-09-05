@@ -90,7 +90,7 @@ namespace LogicLayer.Collections
             UseSimulatedTime = flags.UseSimulatedElectionDayTime;
             ShowRacesBeforePollClosing = flags.OptionalFlag1;
             ShowTenthsofPercent = flags.UseTenthsOfPercent;
-
+            
 
             // Return 
             return applicationFlags;

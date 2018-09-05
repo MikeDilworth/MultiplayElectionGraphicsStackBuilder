@@ -101,8 +101,8 @@ namespace GUILayer.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=enygdb1;Initial Catalog=ElectionProd2016;Persist Security Info=True;U" +
-            "ser ID=gfxuser;Password=elect2018")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=enygdb1;Initial Catalog=ElectionProd;Persist Security Info=True;User " +
+            "ID=gfxuser;Password=elect2018")]
         public string ElectionsDBConnectionString {
             get {
                 return ((string)(this["ElectionsDBConnectionString"]));
@@ -218,7 +218,7 @@ namespace GUILayer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.232.86.69")]
         public string Engine1_IPAddress {
             get {
                 return ((string)(this["Engine1_IPAddress"]));
@@ -290,7 +290,7 @@ namespace GUILayer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Engine3_Enable {
             get {
                 return ((bool)(this["Engine3_Enable"]));
@@ -366,6 +366,15 @@ namespace GUILayer.Properties {
         public bool builderOnly {
             get {
                 return ((bool)(this["builderOnly"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FNC")]
+        public string Network {
+            get {
+                return ((string)(this["Network"]));
             }
         }
     }

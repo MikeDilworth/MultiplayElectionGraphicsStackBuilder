@@ -63,6 +63,8 @@ namespace GUILayer.Forms
         public Boolean enableShowSelectControls = false;
         public List<EngineModel> vizEngines = new List<EngineModel>();
         public bool builderOnlyMode = false;
+        public bool isNonPresidentialPrimary = false;
+        public string Network = "";
 
         //public static AsyncClientSocket.ClientSocket VizControl;
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
@@ -386,6 +388,7 @@ namespace GUILayer.Forms
             string sceneDescription = Properties.Settings.Default.Scene_Name;
             var useSceneName = Properties.Settings.Default[sceneDescription];
             builderOnlyMode = Properties.Settings.Default.builderOnly;
+            Network = Properties.Settings.Default.Network;
 
             this.Size = new Size(1462, 928);
             connectionPanel.Visible = false;
@@ -465,6 +468,8 @@ namespace GUILayer.Forms
                                 gbPortlbl1.Text = "Port: " + viz.Port.ToString();
                                 gbViz1.Visible = true;
                                 gbViz1.Enabled = viz.enable;
+                                if (viz.enable)
+                                    vizClientSockets[i - 1].Connect();
                                 break;
 
                             case 2:
@@ -472,6 +477,8 @@ namespace GUILayer.Forms
                                 gbPortlbl2.Text = "Port: " + viz.Port.ToString();
                                 gbViz2.Visible = true;
                                 gbViz2.Enabled = viz.enable;
+                                if (viz.enable)
+                                    vizClientSockets[i - 1].Connect();
                                 break;
 
                             case 3:
@@ -479,6 +486,8 @@ namespace GUILayer.Forms
                                 gbPortlbl3.Text = "Port: " + viz.Port.ToString();
                                 gbViz3.Visible = true;
                                 gbViz3.Enabled = viz.enable;
+                                if (viz.enable)
+                                    vizClientSockets[i - 1].Connect();
                                 break;
 
                             case 4:
@@ -486,6 +495,8 @@ namespace GUILayer.Forms
                                 gbPortlbl4.Text = "Port: " + viz.Port.ToString();
                                 gbViz4.Visible = true;
                                 gbViz4.Enabled = viz.enable;
+                                if (viz.enable)
+                                    vizClientSockets[i - 1].Connect();
                                 break;
 
                             case 5:
@@ -493,6 +504,8 @@ namespace GUILayer.Forms
                                 gbPortlbl5.Text = "Port: " + viz.Port.ToString();
                                 gbViz5.Visible = true;
                                 gbViz5.Enabled = viz.enable;
+                                if (viz.enable)
+                                    vizClientSockets[i - 1].Connect();
                                 break;
 
                             case 6:
@@ -500,6 +513,8 @@ namespace GUILayer.Forms
                                 gbPortlbl6.Text = "Port: " + viz.Port.ToString();
                                 gbViz6.Visible = true;
                                 gbViz6.Enabled = viz.enable;
+                                if (viz.enable)
+                                    vizClientSockets[i - 1].Connect();
                                 break;
 
                         }
@@ -513,6 +528,7 @@ namespace GUILayer.Forms
                         done = true;
                     }
                 }
+                //ConnectToVizEngines();
 
             }
 
@@ -535,8 +551,12 @@ namespace GUILayer.Forms
             for (int i = 0; i < vizEngines.Count; i++)
             {
                 // Connect to the ClientSocket; call-backs for connection status will indicate status of client sockets
-                vizClientSockets[i].AutoReconnect = true;
-                vizClientSockets[i].Connect();
+                if (vizEngines[i].enable)
+                {
+                    vizClientSockets[i].AutoReconnect = true;
+                    vizClientSockets[i].Connect();
+                }
+                
             }
         }
 
@@ -3470,17 +3490,65 @@ namespace GUILayer.Forms
 
                 ctr = (ctr + 1) / 2 ;
                 rd = GetRaceData (stateNumber, raceOffice, cd, electionType, (short)ctr);
-                string outStr = GetRaceBoardMapkeyStr(rd);
+                string outStr = GetRaceBoardMapkeyStr(rd, ctr);
                 
             }
         }
 
         private void btnSaveStack_Click_1(object sender, EventArgs e)
         {
+            try
+            {
+                if (stackElements.Count > 0)
+                {
+
+                    DialogResult dr = new DialogResult();
+                    FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
+                    dr = saveStack.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        // Instantiate a new top-level stack metadata model
+                        StackModel stackMetadata = new StackModel();
+
+                        stackID = saveStack.StackId;
+                        stackDescription = saveStack.StackDescription;
+                        stackMetadata.ixStackID = stackID;
+                        stackMetadata.StackName = stackDescription;
+
+                        stackMetadata.StackType = 0;
+                        stackMetadata.ShowName = currentShowName;
+                        stackMetadata.ConceptID = conceptID;
+                        stackMetadata.ConceptName = conceptName;
+                        stackMetadata.Notes = "Not currently used";
+                        stacksCollection.SaveStack(stackMetadata);
+
+                        // Save out stack elements; specify stack ID, and set flag to delete existing elements before adding
+                        stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
+
+
+                        // Update stack entries count label & name label
+                        txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+                        txtStackName.Text = stackDescription;
+                    }
+                }
+
+                // Set status strip
+                toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
+                //toolStripStatusLabel.Text = "Status Logging Message: Stack successfully saved out to database";
+                toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack {0} saved out to database", stackID);
+
+
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                log.Error("frmMain Exception occurred: " + ex.Message);
+                log.Debug("frmMain Exception occurred", ex);
+            }
 
         }
 
-        public string GetRaceBoardMapkeyStr(BindingList<RaceDataModel> raceData)
+        public string GetRaceBoardMapkeyStr(BindingList<RaceDataModel> raceData, int numCand)
         {
             //Example of a 2 way raceboard with the Dem candidate winning and adding a gain
 
@@ -3493,27 +3561,123 @@ namespace GUILayer.Forms
             string mapKeyStr = "";
 
             RaceBoardModel raceBoardData = new RaceBoardModel();
-
+            
             raceBoardData.state = raceData[0].StateName.Trim();
             raceBoardData.cd = raceData[0].CD.ToString();
             raceBoardData.pctsReporting = raceData[0].PercentExpectedVote.ToString();
-            bool called = raceData[0].RaceWinnerCalled;
+            bool raceCalled = raceData[0].RaceWinnerCalled;
             TimeSpan fifteenMinutes = new TimeSpan(0, 15, 0);
+            bool candidateCalledWinner = false;
+            DateTime raceCallTime = raceData[0].RaceWinnerCallTime;
+
+            // get office strings
+            raceBoardData.office = GetOfficeStr(raceData[0]);
+
+
+            for (int i = 0; i < numCand; i++)
+            {
+                candidateData_RB candidate = new candidateData_RB();
+                mapKeyStr += raceData[i].FoxID;
+                if (i < numCand - 1)
+                    mapKeyStr += " ^ ";
+
+                candidate.lastName = raceData[i].CandidateLastName;
+                candidate.firstName = raceData[i].CandidateFirstName;
+
+                if (Network == "FNC")
+                {
+                    if (raceData[i].UseHeadshotFNC)
+                    {
+                        candidate.headshot = raceData[i].HeadshotPathFNC;
+                    }
+                }
+                else if(Network == "FBN")
+                {
+                    if (raceData[i].UseHeadshotFBN)
+                    {
+                        candidate.headshot = raceData[i].HeadshotPathFBN;
+                    }
+
+                }
+
+                // Format vote count as string with commas
+                if (raceData[i].CandidateVoteCount > 0)
+                    candidate.votes = string.Format("{0:n0}", raceData[i].CandidateVoteCount);
+                else
+                    candidate.votes = " ";
+
+                // get candidate percent str
+                candidate.percent = GetCandPercent(raceData[i]);
+                // Get scene Party Id number from party str
+                candidate.party = GetCandParty(raceData[i]);
+
+                // Set candidate incumbent flag
+                candidate.incumbent = raceData[i].IsIncumbentFlag == "Y" ? "1" : "0";
+                var winnerCandidateId = 0;
+
+                //Check for AP race call
+                if (raceData[i].RaceUseAPRaceCall)
+                {
+                    //Check for AP called winner
+                    if (raceData[i].cStat.ToUpper() == "W")
+                    {
+                        raceCalled = true;
+                        candidateCalledWinner = true;
+                        var raceCallTimeStr = raceData[i].estTS;
+
+                        raceCallTime = GetApRaceCallDateTime(raceCallTimeStr);
+                    }
+                    else
+                    {
+                        candidateCalledWinner = false;
+                    }
+                }
+                //Check for Fox race call
+                else
+                {
+                    winnerCandidateId = raceData[i].RaceWinnerCandidateID;
+                    if (raceData[i].RaceWinnerCalled)
+                    {
+                        raceCalled = true;
+
+                        // If the race was not called by AP, use the Race_WinnerCallTime from the DB
+                        raceCallTime = raceData[i].RaceWinnerCallTime;
+                        candidateCalledWinner = (winnerCandidateId == raceData[i].RaceWinnerCandidateID);
+                    }
+                    else
+                    {
+                        candidateCalledWinner = false;
+                    }
+                }
+
+                if (winnerCandidateId == raceData[i].CandidateID)
+                {
+                    candidate.winner  = "1";
+                    candidate.gain  = GetGainFlag(raceData[i]);
+                }
+                else
+                {
+                    candidate.winner = "0";
+                    candidate.gain = "0";
+
+                }
+                raceBoardData.candData.Add(candidate);
+
+            }
 
             // Set board mode 
-            if (called)
+            if (raceCalled)
             {
-                DateTime callTime = raceData[0].RaceWinnerCallTime;
                 DateTime pollClosingTime = raceData[0].RacePollClosingTime;
                 
                 // Gets either simulated or actual time based on flag
                 DateTime timeNow = TimeFunctions.GetTime();
                 // if race is called before the polls are closed time then use poll closing time as the race call time
-                if (callTime < pollClosingTime)
-                    callTime = pollClosingTime;
+                if (raceCallTime < pollClosingTime)
+                    raceCallTime = pollClosingTime;
 
                 // if race is called within 15 minutes 
-                if ((timeNow - callTime) < fifteenMinutes)
+                if ((timeNow - raceCallTime) < fifteenMinutes)
                     // then Just Called
                     raceBoardData.mode = (int)BoardModes.Race_Board_Just_Called;
                 else
@@ -3533,10 +3697,6 @@ namespace GUILayer.Forms
 
 
 
-            string ofc = raceData[0].Office;
-
-            // get office strings
-            raceBoardData.office = raceData[0].OfficeName.Trim();
 
 
 
@@ -3547,39 +3707,18 @@ namespace GUILayer.Forms
             //USGOV99991^ USGOV99992 ~ state=New York; race=CD02;precincts=10 ; office=house; racemode=1 ~ name=candidate1; party=0; incum=0; vote=3000; percent=23.4 ; check=0; gain=0; imagePath= George_Bush |name=candidate2; party=1; incum=0; vote=5000; percent=33.4 ; check=1; gain=1; imagePath= barack_obama
 
 
-            for (int i = 0; i < raceData.Count; i++)
-            {
-                mapKeyStr += raceData[i].FoxID;
-                if (i < raceData.Count - 1)
-                    mapKeyStr += " ^ ";
-
-                raceBoardData.candData[i].lastName = raceData[i].CandidateLastName;
-                raceBoardData.candData[i].firstName = raceData[i].CandidateFirstName;
-
-                // Format vote count as string with commas
-                if (raceData[i].CandidateVoteCount > 0)
-                    raceBoardData.candData[i].votes = string.Format("{0:n0}", raceData[i].CandidateVoteCount);
-                else
-                    raceBoardData.candData[i].votes = " ";
-
-                raceBoardData.candData[i].percent = GetCandPercent(raceData[i]);
-                raceBoardData.candData[i].party = GetCandParty(raceData[i]);
-                raceBoardData.candData[i].incumbent = raceData[i].IsIncumbentFlag == "Y" ? "1" : "0";
-                raceBoardData.candData[i].gain = raceData[i].InIncumbentPartyFlag;
-
-            }
-            // Set candidate incumbent flag
-            //var candidateIncumbentFlagStr = raceData[i].IsIncumbentFlag == "Y" ? "1" : "0";
-
+            
             string raceblock = $" ~state = {raceBoardData.state}; race =  {raceBoardData.cd}; precincts = {raceBoardData.pctsReporting}; office = {raceBoardData.office}; racemode = {raceBoardData.mode} ~";
 
             mapKeyStr += raceblock;
 
-            for (int i = 0; i < raceData.Count; i++)
+            for (int i = 0; i < numCand; i++)
             {
-                mapKeyStr += $" name = {r}"
-
-
+                mapKeyStr += $" name = {raceBoardData.candData[i].firstName} {raceBoardData.candData[i].lastName}; party = {raceBoardData.candData[i].party}; incum = {raceBoardData.candData[i].incumbent};  ";
+                mapKeyStr += $" vote = {raceBoardData.candData[i].votes}; percent = {raceBoardData.candData[i].percent}; check = {raceBoardData.candData[i].winner}; gain = {raceBoardData.candData[i].gain}; ";
+                mapKeyStr += $" imagePath = {raceBoardData.candData[i].headshot}";
+                if (i < numCand - 1)
+                    mapKeyStr += "|";
 
             }
             return mapKeyStr;
@@ -3628,6 +3767,219 @@ namespace GUILayer.Forms
             return party;
 
         }
+        private string GetOfficeStr(RaceDataModel rd)
+        {
+
+            string raceOfficeStr = " ";
+            // Add race descriptor
+            // 05/03/2018 Modified to support non-presidential primary
+            if (isNonPresidentialPrimary)
+            {
+                // 05/02/2018 Added support for non-presidential primary - concatenate state + office
+                if (rd.Office == "G")
+                {
+                    raceOfficeStr = "GOVERNOR";
+                }
+                else if (rd.Office == "L")
+                {
+                    raceOfficeStr = "LT. GOVERNOR";
+                }
+                else if ((rd.Office == "S") | (rd.Office == "S2"))
+                {
+                    raceOfficeStr = "SENATE";
+                }
+                else if (rd.Office == "H")
+                {
+                    if (rd.IsAtLargeHouseState)
+                    {
+                        raceOfficeStr = "HOUSE AT LARGE";
+                    }
+                    else
+                    {
+                        //MD Modified 03/05/2018 to support 2018 primaries
+                        //raceOfficeStr = "U.S. House CD " + RaceDistrict.ToString();
+                        raceOfficeStr = "HOUSE CD " + rd.CD.ToString();
+                    }
+                }
+            }
+            else
+            {
+                //Dem primary
+                if (rd.eType == "D")
+                {
+                    raceOfficeStr = "DEMOCRATIC PRIMARY";
+                }
+                //Rep primary
+                else if (rd.eType == "R")
+                {
+                    raceOfficeStr = "REPUBLICAN PRIMARY";
+                }
+                //Dem caucuses
+                else if (rd.eType == "E")
+                {
+                    raceOfficeStr = "DEMOCRATIC CAUCUSES";
+                }
+                //Rep caucuses
+                else if (rd.eType == "S")
+                {
+                    raceOfficeStr = "REPUBLICAN CAUCUSES";
+                }
+                // Not a primary or caucus event - build string based on office type
+                else
+                {
+                    if (rd.Office == "P")
+                    {
+                        raceOfficeStr = "President";
+                    }
+                    else if (rd.Office == "G")
+                    {
+                        raceOfficeStr = "Governor";
+                    }
+                    else if (rd.Office == "L")
+                    {
+                        raceOfficeStr = "Lt. Governor";
+                    }
+                    else if ((rd.Office == "S") | (rd.Office == "S2"))
+                    {
+                        raceOfficeStr = "Senate";
+                    }
+                    else if (rd.Office == "H")
+                    {
+                        if (rd.IsAtLargeHouseState)
+                        {
+                            raceOfficeStr = "House At Large";
+                        }
+                        else
+                        {
+                            //MD Modified 03/05/2018 to support 2018 primaries
+                            //raceOfficeStr = "U.S. House CD " + RaceDistrict.ToString();
+                            raceOfficeStr = "HOUSE CD " + rd.CD.ToString();
+                        }
+                    }
+                }
+            }
+            return raceOfficeStr;
+        }
+
+        private string GetGainFlag(RaceDataModel rd)
+        {
+            bool gainFlag = false;
+            // Do gain flag
+            if (!rd.RaceIgnoreGain)
+            {
+                if ((rd.InIncumbentPartyFlag == "N") && ((rd.Office.Trim() == "H") || (rd.Office.Trim() == "S") || (rd.Office.Trim() == "S2")))
+                {
+                    gainFlag = true;
+                }
+                else
+                {
+                    gainFlag = false;
+                }
+            }
+            else
+            {
+                gainFlag = false;
+            }
+            if (gainFlag)
+                return "1";
+            else
+                return "0";
+        }
+        /// <summary>
+        /// Method to convert the AP race call time from a string to a datetime value
+        /// </summary>
+        public static DateTime GetApRaceCallDateTime(String dateTimeStr)
+        {
+            DateTime apRaceCallDateTimeStr = new DateTime();
+
+            try
+            {
+                // Convert formatted string to date time
+                apRaceCallDateTimeStr = DateTime.ParseExact(dateTimeStr, "yyyyMMdd HHmmtt", null);
+            }
+            catch (Exception ex)
+            {
+                log.Error("SimulatedDateTimeAccess Exception occurred while trying to convert string to DateTime value: " + ex.Message);
+                log.Debug("SimulatedDateTimeAccess Exception occurred while trying to convert string to DateTime value", ex);
+            }
+            return apRaceCallDateTimeStr;
+        }
+
+        private void btnClearStack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (stackElements.Count > 0)
+                {
+                    DialogResult result1 = MessageBox.Show("Are you sure you want to clear all entries from the stack?", "Confirmation",
+                                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result1 != DialogResult.Yes)
+                    {
+                        return;
+                    }
+
+                    // Operator didn't dump out, so proceed
+                    if (stackGrid.RowCount > 0)
+                    {
+                        //Clear the collection
+                        stackElements.Clear();
+                    }
+
+                    // Clear out current stack settings
+                    stackID = -1;
+                    txtStackName.Text = "None Selected";
+
+                    // Update stack entries count label
+                    txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                log.Error("frmMain Exception occurred: " + ex.Message);
+                log.Debug("frmMain Exception occurred", ex);
+            }
+
+        }
+
+        private void btnDeleteStackElement_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (stackGrid.RowCount > 0)
+                {
+                    //Get the delete point
+                    int currentStackIndex = stackGrid.CurrentCell.RowIndex;
+
+                    //Delete the item from the collection
+                    stackElements.RemoveAt(currentStackIndex);
+                }
+
+                // Update stack entries count label
+                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+
+                // Clear out current settings if no entries left in stack
+                if (stackElements.Count == 0)
+                {
+                    stackID = -1;
+                    txtStackName.Text = "None Selected";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                log.Error("frmMain Exception occurred: " + ex.Message);
+                log.Debug("frmMain Exception occurred", ex);
+            }
+
+        }
+
+        private void btnLoadStack_Click_1(object sender, EventArgs e)
+        {
+            LoadSelectedStack();
+
+        }
     }
-    
+
+
 }

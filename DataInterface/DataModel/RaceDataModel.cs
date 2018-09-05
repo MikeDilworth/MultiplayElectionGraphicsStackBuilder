@@ -31,6 +31,7 @@ namespace DataInterface.DataModel
         public string HeadshotPathFBN { get; set; }
         public string CandidatePartyID { get; set; }
         public string cStat { get; set; }
+        public string estTS { get; set; }
         public string InIncumbentPartyFlag { get; set; }
         public string IsIncumbentFlag { get; set; }
         public Int32 CandidateVoteCount { get; set; }
@@ -41,5 +42,6 @@ namespace DataInterface.DataModel
         public Int32 RaceWinnerCandidateID { get; set; }
         public DateTime RacePollClosingTime { get; set; }
         public Boolean RaceUseAPRaceCall { get; set; }
+        public Boolean RaceIgnoreGain { get; set; }
     }
 }
