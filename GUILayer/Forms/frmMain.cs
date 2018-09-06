@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Text;
 using DataInterface.DataAccess;
 using DataInterface.DataModel;
 using DataInterface.Enums;
@@ -50,7 +51,7 @@ namespace GUILayer.Forms
         string stackDescription;
 
         // For future use
-        Boolean insertNext;
+        Boolean insertNext = true;
         Int32 insertPoint;
 
         // For no use what so ever
@@ -65,6 +66,11 @@ namespace GUILayer.Forms
         public bool builderOnlyMode = false;
         public bool isNonPresidentialPrimary = false;
         public string Network = "";
+        public string quot = "\"";
+        public string term = "\0";
+
+        public string RBSceneName = "_ELECTIONS/2018/FNC/MIDTERMS/FINALS/16X9_RACEBOARDS";
+        public string RaceboardCmd = "";
 
         //public static AsyncClientSocket.ClientSocket VizControl;
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
@@ -375,6 +381,7 @@ namespace GUILayer.Forms
         // Handler for main form load
         private void frmMain_Load(object sender, EventArgs e)
         {
+            
             // Read in config settings - default to Media Sequencer #1
             mseEndpoint1 = Properties.Settings.Default.MSEEndpoint1;
             mseEndpoint2 = Properties.Settings.Default.MSEEndpoint2;
@@ -567,7 +574,8 @@ namespace GUILayer.Forms
             System.Net.IPAddress IP = sender.Ip;
             int port = sender.Port;
             int i = GetVizEngineNumber(IP, port);
-            listBox1.Items.Add(System.Text.Encoding.Default.GetString(data));
+            string resp = System.Text.Encoding.Default.GetString(data);
+            //listBox1.Items.Add(resp);
 
         }
 
@@ -600,7 +608,7 @@ namespace GUILayer.Forms
             {
                 vizEngines[i].connected = false;
             }
-            SetConnectionLED(i);
+            //SetConnectionLED(i);
             // Send to log - DEBUG ONLY
             log.Debug($"Viz Engine {i + 1}: {status}");
         }
@@ -1370,6 +1378,10 @@ namespace GUILayer.Forms
                 case Keys.C:
                     if (e.Control == true)
                         btnClearStack_Click_1(sender, e);
+                    break;
+                case Keys.Space:
+                    if (e.Control == true)
+                        btnTake_Click(sender, e);
                     break;
                 // Save to database only disabled for 2016 election
                 //case Keys.O:
@@ -3491,6 +3503,8 @@ namespace GUILayer.Forms
                 ctr = (ctr + 1) / 2 ;
                 rd = GetRaceData (stateNumber, raceOffice, cd, electionType, (short)ctr);
                 string outStr = GetRaceBoardMapkeyStr(rd, ctr);
+
+                SendToViz(outStr, 1);
                 
             }
         }
@@ -3579,7 +3593,7 @@ namespace GUILayer.Forms
                 candidateData_RB candidate = new candidateData_RB();
                 mapKeyStr += raceData[i].FoxID;
                 if (i < numCand - 1)
-                    mapKeyStr += " ^ ";
+                    mapKeyStr += "^";
 
                 candidate.lastName = raceData[i].CandidateLastName;
                 candidate.firstName = raceData[i].CandidateFirstName;
@@ -3708,17 +3722,18 @@ namespace GUILayer.Forms
 
 
             
-            string raceblock = $" ~state = {raceBoardData.state}; race =  {raceBoardData.cd}; precincts = {raceBoardData.pctsReporting}; office = {raceBoardData.office}; racemode = {raceBoardData.mode} ~";
+            string raceblock = $"~state={raceBoardData.state};race={raceBoardData.cd};precincts={raceBoardData.pctsReporting};office={raceBoardData.office};racemode={raceBoardData.mode}~";
 
             mapKeyStr += raceblock;
 
             for (int i = 0; i < numCand; i++)
             {
-                mapKeyStr += $" name = {raceBoardData.candData[i].firstName} {raceBoardData.candData[i].lastName}; party = {raceBoardData.candData[i].party}; incum = {raceBoardData.candData[i].incumbent};  ";
-                mapKeyStr += $" vote = {raceBoardData.candData[i].votes}; percent = {raceBoardData.candData[i].percent}; check = {raceBoardData.candData[i].winner}; gain = {raceBoardData.candData[i].gain}; ";
-                mapKeyStr += $" imagePath = {raceBoardData.candData[i].headshot}";
+                //mapKeyStr += $"name={raceBoardData.candData[i].firstName} {raceBoardData.candData[i].lastName};party={raceBoardData.candData[i].party};incum={raceBoardData.candData[i].incumbent};";
+                mapKeyStr += $"name={raceBoardData.candData[i].lastName};party={raceBoardData.candData[i].party};incum={raceBoardData.candData[i].incumbent};";
+                mapKeyStr += $"vote={raceBoardData.candData[i].votes};percent={raceBoardData.candData[i].percent};check={raceBoardData.candData[i].winner};gain={raceBoardData.candData[i].gain};";
+                mapKeyStr += $"imagePath={raceBoardData.candData[i].headshot}";
                 if (i < numCand - 1)
-                    mapKeyStr += "|";
+                    mapKeyStr += "^";
 
             }
             return mapKeyStr;
@@ -3757,9 +3772,9 @@ namespace GUILayer.Forms
             string party = " ";
             if (rd.CandidatePartyID == "Rep")
                 party = "0";
-            else if (rd.cntyName == "Dem")
+            else if (rd.CandidatePartyID == "Dem")
                 party = "1";
-            else if (rd.cntyName == "Lib")
+            else if (rd.CandidatePartyID == "Lib")
                 party = "3";
             else
                 party = "2";
@@ -3978,6 +3993,22 @@ namespace GUILayer.Forms
         {
             LoadSelectedStack();
 
+        }
+        private void SendToViz(string cmd, int EngineNo)
+        {
+
+            RaceboardCmd = $"SEND SCENE*{RBSceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
+
+            byte[] bCmd = Encoding.UTF8.GetBytes(RaceboardCmd);
+            vizClientSockets[EngineNo - 1].Send(bCmd);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0 ; i < vizEngines.Count; i++)
+            {
+                SetConnectionLED(i);
+            }
         }
     }
 

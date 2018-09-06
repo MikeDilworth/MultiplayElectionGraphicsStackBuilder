@@ -193,6 +193,7 @@
             this.gbPortlbl1 = new System.Windows.Forms.Label();
             this.gbIPlbl1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -2243,6 +2244,12 @@
             this.listBox1.Size = new System.Drawing.Size(2132, 64);
             this.listBox1.TabIndex = 126;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -2517,6 +2524,7 @@
         private System.Windows.Forms.Panel pnlUpDn;
         private System.Windows.Forms.Button btnStackElementDown;
         private System.Windows.Forms.Button btnStackElementUp;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -218,7 +218,7 @@ namespace GUILayer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10.232.86.69")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.232.86.66")]
         public string Engine1_IPAddress {
             get {
                 return ((string)(this["Engine1_IPAddress"]));
