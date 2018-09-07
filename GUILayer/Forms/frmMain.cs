@@ -71,6 +71,8 @@ namespace GUILayer.Forms
 
         public string RBSceneName = "_ELECTIONS/2018/FNC/MIDTERMS/FINALS/16X9_RACEBOARDS";
         public string RaceboardCmd = "";
+        int currentRaceIndex = -1;
+
 
         //public static AsyncClientSocket.ClientSocket VizControl;
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
@@ -192,13 +194,13 @@ namespace GUILayer.Forms
             // Set text on status bar only if logging level is DEBUG or ERROR
             if ((loggingEvent.Level.Name == "ERROR") | (loggingEvent.Level.Name == "DEBUG"))
             {
-                toolStripStatusLabel.BackColor = System.Drawing.Color.Red;
-                toolStripStatusLabel.Text = String.Format("Error Logging Message: {0}: {1}", loggingEvent.Level.Name, loggingEvent.MessageObject.ToString());
+                //toolStripStatusLabel.BackColor = System.Drawing.Color.Red;
+                //toolStripStatusLabel.Text = String.Format("Error Logging Message: {0}: {1}", loggingEvent.Level.Name, loggingEvent.MessageObject.ToString());
             }
             else
             {
-                toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
-                toolStripStatusLabel.Text = String.Format("Status Logging Message: {0}: {1}", loggingEvent.Level.Name, loggingEvent.MessageObject.ToString());
+                //toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
+                //toolStripStatusLabel.Text = String.Format("Status Logging Message: {0}: {1}", loggingEvent.Level.Name, loggingEvent.MessageObject.ToString());
             }
         }
 
@@ -414,7 +416,7 @@ namespace GUILayer.Forms
             {
 
                 // Enlarge form
-                this.Size = new Size(1462, 1061);
+                this.Size = new Size(1462, 1102);
                 connectionPanel.Visible = true;
                 listBox1.Visible = true;
                 stackGrid.Size = new Size(648, 468);
@@ -608,13 +610,26 @@ namespace GUILayer.Forms
             {
                 vizEngines[i].connected = false;
             }
-            //SetConnectionLED(i);
+            SetConnectionLED(i);
             // Send to log - DEBUG ONLY
-            log.Debug($"Viz Engine {i + 1}: {status}");
+            //log.Debug($"Viz Engine {i + 1}: {status}");
         }
+
+        delegate void Invoker(int i);
 
         public void SetConnectionLED(int i)
         {
+
+            if (this.InvokeRequired)
+            {
+                // Execute the same method, but this time on the GUI thread
+                this.BeginInvoke(new Invoker(SetConnectionLED), i);
+
+                // we return immedeately
+                return;
+            }
+
+            
             bool connected = vizEngines[i].connected;
             switch (i + 1)
             {
@@ -927,7 +942,7 @@ namespace GUILayer.Forms
                 this.raceDataCollection = new RaceDataCollection();
                 this.raceDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
                 // Specify state ID = -1 => Don't query database for candidate data until requesting actual race data
-                raceData = this.raceDataCollection.GetRaceDataCollection(-1, "P", 0, "G", 1);
+                raceData = this.raceDataCollection.GetRaceDataCollection(-1, "P", 0, "G", 1, false , 0, 0, 0, 0);
             }
             catch (Exception ex)
             {
@@ -1985,7 +2000,7 @@ namespace GUILayer.Forms
                             case (Int16)DataTypes.Race_Boards:
 
                                 // Request the race data for the element in the stack - updates raceData binding list
-                                GetRaceData(_stackElements[i].State_Number, _stackElements[i].Race_Office, _stackElements[i].CD, _stackElements[i].Election_Type, candidatesToReturn);
+                                GetRaceData(_stackElements[i].State_Number, _stackElements[i].Race_Office, _stackElements[i].CD, _stackElements[i].Election_Type, candidatesToReturn, false, 0, 0, 0, 0);
 
                                 // Check for data returned for race
                                 if (raceData.Count > 0)
@@ -2243,12 +2258,14 @@ namespace GUILayer.Forms
         /// Race data acquisition methods
         /// </summary>
         // Method to get the race data for a specified race
-        private BindingList<RaceDataModel> GetRaceData(Int16 stateNumber, string raceOffice, Int16 cd, string electionType, Int16 candidatesToReturn)
+        private BindingList<RaceDataModel> GetRaceData(Int16 stateNumber, string raceOffice, Int16 cd, string electionType, Int16 candidatesToReturn,
+            bool candidateSelectEnable, int candidateId1, int candidateId2, int candidateId3, int candidateId4)
         {
             // Setup the master race collection & bind to grid
             //this.raceDataCollection = new RaceDataCollection();
             //this.raceDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
-            raceData = this.raceDataCollection.GetRaceDataCollection(stateNumber, raceOffice, cd, electionType, candidatesToReturn);
+            raceData = this.raceDataCollection.GetRaceDataCollection(stateNumber, raceOffice, cd, electionType, candidatesToReturn,
+            candidateSelectEnable, candidateId1, candidateId2, candidateId3, candidateId4);
 
             return raceData;
         }
@@ -3486,10 +3503,23 @@ namespace GUILayer.Forms
 
         private void btnTake_Click(object sender, EventArgs e)
         {
+            //currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+
             if (stackGrid.Rows.Count > 0)
             {
-                //RaceDataModel rd = new RaceDataModel();
-                //DataTable rd = new DataTable();
+                if (currentRaceIndex < stackGrid.RowCount - 1)
+                    currentRaceIndex++;
+                stackGrid.CurrentCell = stackGrid.Rows[currentRaceIndex].Cells[0];
+
+                TakeCurrent();
+
+            }
+        }
+
+        public void TakeCurrent()
+        {
+            if (stackGrid.Rows.Count > 0)
+            {
                 BindingList<RaceDataModel> rd = new BindingList<RaceDataModel>();
 
                 //Get the selected race list object
@@ -3498,14 +3528,33 @@ namespace GUILayer.Forms
                 short cd = stackElements[currentRaceIndex].CD;
                 string raceOffice = stackElements[currentRaceIndex].Office_Code;
                 string electionType = stackElements[currentRaceIndex].Election_Type;
-                int ctr = (int)stackElements[currentRaceIndex].Stack_Element_Type;
+                int candidatesToReturn = (int)stackElements[currentRaceIndex].Stack_Element_Type;
+                bool candidateSelectEnable;
 
-                ctr = (ctr + 1) / 2 ;
-                rd = GetRaceData (stateNumber, raceOffice, cd, electionType, (short)ctr);
-                string outStr = GetRaceBoardMapkeyStr(rd, ctr);
+                if ((int)stackElements[currentRaceIndex].Stack_Element_Type % 2 == 0)
+                    candidateSelectEnable = true;
+                else
+                    candidateSelectEnable = false;
+
+                int cand1 = stackElements[currentRaceIndex].Race_CandidateID_1;
+                int cand2 = stackElements[currentRaceIndex].Race_CandidateID_2;
+                int cand3 = stackElements[currentRaceIndex].Race_CandidateID_3;
+                int cand4 = stackElements[currentRaceIndex].Race_CandidateID_4;
+
+                candidatesToReturn = (candidatesToReturn + 1) / 2;
+                //rd = GetRaceData(stateNumber, raceOffice, cd, electionType, (short)candidatesToReturn);
+                rd = GetRaceData(stateNumber, raceOffice, cd, electionType, (short)candidatesToReturn, candidateSelectEnable, cand1, cand2, cand3, cand4);
+
+                string dataStr = $"{rd[0].StateName} {rd[0].OfficeName} - {rd[0].CandidateLastName} {rd[0].CandidateVoteCount} - {rd[1].CandidateLastName} {rd[1].CandidateVoteCount}";
+                listBox1.Items.Add(dataStr);
+                listBox1.SelectedIndex = listBox1.Items.Count - 1;
+
+                string outStr = GetRaceBoardMapkeyStr(rd, candidatesToReturn);
 
                 SendToViz(outStr, 1);
-                
+                LiveUpdateTimer.Enabled = false;
+                LiveUpdateTimer.Enabled = true;
+
             }
         }
 
@@ -3616,7 +3665,8 @@ namespace GUILayer.Forms
 
                 // Format vote count as string with commas
                 if (raceData[i].CandidateVoteCount > 0)
-                    candidate.votes = string.Format("{0:n0}", raceData[i].CandidateVoteCount);
+                    //candidate.votes = string.Format("{0:n0}", raceData[i].CandidateVoteCount);
+                    candidate.votes = raceData[i].CandidateVoteCount.ToString();
                 else
                     candidate.votes = " ";
 
@@ -4005,10 +4055,30 @@ namespace GUILayer.Forms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            for (int i = 0 ; i < vizEngines.Count; i++)
-            {
-                SetConnectionLED(i);
-            }
+            TakeCurrent();
+        }
+
+        private void btnUnlock_Click(object sender, EventArgs e)
+        {
+            LiveUpdateTimer.Enabled = false;
+        }
+
+        private void stackGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            TakeCurrent();
+        }
+        public void LoadScene(string sceneName, int EngineNo)
+        {
+            string cmd = $"0 RENDERER*MAIN_LAYER SET_OBJECT SCENE*{sceneName}{term}";
+            byte[] bCmd = Encoding.UTF8.GetBytes(cmd);
+            vizClientSockets[EngineNo - 1].Send(bCmd);
+        }
+
+        private void btnLock_Click(object sender, EventArgs e)
+        {
+            LoadScene(RBSceneName, 1);
+            currentRaceIndex = -1;
+            stackGrid.CurrentCell = stackGrid.Rows[0].Cells[0];
         }
     }
 

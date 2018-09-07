@@ -107,7 +107,8 @@ namespace GUILayer.Forms
             {
                 _raceDataCollection = new RaceDataCollection {ElectionsDBConnectionString = _electionsDbConnectionString};
                 // Specify state ID = -1 => Don't query database for candidate data until requesting actual race data
-                _raceData = _raceDataCollection.GetRaceDataCollection(_st, _ofc, Jcde, _eType, 0);
+                //_raceData = _raceDataCollection.GetRaceDataCollection(_st, _ofc, Jcde, _eType, 0);
+                _raceData = _raceDataCollection.GetRaceDataCollection(_st, _ofc, Jcde, _eType, 0, false, 0, 0, 0, 0);
 
                 // Setup the available races grid
                 dgvCand1.AutoGenerateColumns = false;
@@ -132,17 +133,17 @@ namespace GUILayer.Forms
                 CandName1 = (string) dgvCand1[0, _candIndex].Value;
 
                 dgvCand2.Rows[0].Selected = true;
-                _candIndex = dgvCand2.CurrentCell.RowIndex;
+                //_candIndex = dgvCand2.CurrentCell.RowIndex;
                 Cand2 = Convert.ToInt32(dgvCand2[2, _candIndex].Value);
                 CandName2 = (string) dgvCand2[0, _candIndex].Value;
 
                 dgvCand3.Rows[0].Selected = true;
-                _candIndex = dgvCand3.CurrentCell.RowIndex;
+                //_candIndex = dgvCand3.CurrentCell.RowIndex;
                 Cand3 = Convert.ToInt32(dgvCand3[2, _candIndex].Value);
                 CandName3 = (string) dgvCand3[0, _candIndex].Value;
 
                 dgvCand4.Rows[0].Selected = true;
-                _candIndex = dgvCand4.CurrentCell.RowIndex;
+                //_candIndex = dgvCand4.CurrentCell.RowIndex;
                 Cand4 = Convert.ToInt32(dgvCand4[2, _candIndex].Value);
                 CandName4 = (string) dgvCand4[0, _candIndex].Value;
 

@@ -142,7 +142,6 @@ C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.pdb
 C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.pdb
 C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\MSEInterface.pdb
 C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.xml
-C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csprojResolveAssemblyReference.cache
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmLoadStack.resources
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmSaveStack.resources
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmCandidateSelect.resources
@@ -156,3 +155,4 @@ C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.e
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
 C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\AsyncClientSocket.dll
 C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\AsyncClientSocket.pdb
+C:\X\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.csprojResolveAssemblyReference.cache

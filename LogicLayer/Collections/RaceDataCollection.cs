@@ -41,7 +41,9 @@ namespace LogicLayer.Collections
         /// <summary>
         /// Get the MSE Stack elements list from the SQL DB; clears out existing collection first
         /// </summary>
-        public BindingList<RaceDataModel> GetRaceDataCollection(Int16 stateNumber, string raceOffice, Int16 cd, string electionType, Int16 candidatesToReturn)
+        //public BindingList<RaceDataModel> GetRaceDataCollection(Int16 stateNumber, string raceOffice, Int16 cd, string electionType, Int16 candidatesToReturn)
+        public BindingList<RaceDataModel> GetRaceDataCollection(Int16 stateNumber, string raceOffice, Int16 cd, string electionType, Int16 candidatesToReturn,
+            bool candidateSelectEnable, int candidateId1, int candidateId2, int candidateId3, int candidateId4)
         {
             DataTable dataTable;
 
@@ -55,7 +57,7 @@ namespace LogicLayer.Collections
                 // If state ID = -1 => not an actual data request - just initializing collection
                 if (stateNumber != -1)
                 {
-                    dataTable = raceDataAccess.GetRaceData(stateNumber, raceOffice, cd, electionType);
+                    dataTable = raceDataAccess.GetRaceData(stateNumber, raceOffice, cd, electionType, candidateSelectEnable, candidateId1, candidateId2, candidateId3, candidateId4);
 
                     // Init counter & increment
                     Int16 candidateCount = 0;
@@ -86,7 +88,7 @@ namespace LogicLayer.Collections
                             FoxID = row["FoxID"].ToString().Trim() ?? "",
                             CandidateLastName = row["candLastName"].ToString().Trim() ?? "",
                             LastNameAir = row["LastNameAir"].ToString().Trim() ?? "",
-                            //CandidateFirstName = row["candFirstName"].ToString() ?? "",
+                            CandidateFirstName = row["candFirstName"].ToString() ?? "",
                             UseHeadshotFNC = Convert.ToBoolean(row["UseHeadshot"] ?? 0),
                             HeadshotPathFNC = row["HeadshotPath"].ToString().Trim() ?? "",
                             UseHeadshotFBN = Convert.ToBoolean(row["UseHeadshot_FBN"] ?? 0),
