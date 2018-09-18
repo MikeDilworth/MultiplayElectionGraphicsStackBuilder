@@ -162,7 +162,7 @@ namespace DataInterface.SQL
         // Exit Poll data related functions
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Sql to get the BOP data
+        /// Sql to get the Exit Poll questions
         /// </summary>
         public static readonly string sqlGetExitPollQuestions = "getVDSXTabQuestions_P";
 

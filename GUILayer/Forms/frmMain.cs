@@ -21,6 +21,7 @@ using LogicLayer.CommonClasses;
 using MSEInterface;
 using MSEInterface.Constants;
 using AsyncClientSocket;
+using System.Data.SqlClient;
 
 // Required for implementing logging to status bar
 
@@ -71,7 +72,10 @@ namespace GUILayer.Forms
 
         public string RBSceneName = "_ELECTIONS/2018/FNC/MIDTERMS/FINALS/16X9_RACEBOARDS";
         public string RaceboardCmd = "";
-        int currentRaceIndex = -1;
+        public int currentRaceIndex = -1;
+        public bool stackLocked = false;
+        public string computerName = string.Empty;
+        public string configName = string.Empty;
 
 
         //public static AsyncClientSocket.ClientSocket VizControl;
@@ -366,6 +370,16 @@ namespace GUILayer.Forms
                 // Set version number
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 this.Text = String.Format("Election Graphics Stack Builder Application  Version {0}", version);
+
+                DataTable dt = new DataTable();
+                string cmdStr = $"SELECT * FROM FE_Devices WHERE IP_Address = '{ipAddress}'";
+                dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+                
+                DataRow row = dt.Rows[0];
+                computerName = row["Name"].ToString() ?? "";
+                configName = row["Config1"].ToString() ?? "";
+
+
             }
             catch (Exception ex)
             {
@@ -528,7 +542,7 @@ namespace GUILayer.Forms
 
                         }
 
-                        if (i == 6)
+                        if (i == 4)
                             done = true;
                     }
                     catch
@@ -1392,17 +1406,16 @@ namespace GUILayer.Forms
                     break;
                 case Keys.C:
                     if (e.Control == true)
-                        btnClearStack_Click_1(sender, e);
+                        btnClearStack_Click(sender, e);
                     break;
                 case Keys.Space:
                     if (e.Control == true)
                         btnTake_Click(sender, e);
                     break;
-                // Save to database only disabled for 2016 election
-                //case Keys.O:
-                //    if (e.Control == true)
-                //        btnSaveStack_Click(sender, e);
-                //    break;
+                case Keys.O:
+                    if (e.Control == true)
+                        btnSaveStack_Click(sender, e);
+                    break;
                 //default:
                 //    rbShowAll.Checked = true;
                 //    break;
@@ -1551,7 +1564,7 @@ namespace GUILayer.Forms
         }
 
         // Handler for Clear Stack button
-        private void btnClearStack_Click_1(object sender, EventArgs e)
+        private void btnClearStack_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2416,31 +2429,7 @@ namespace GUILayer.Forms
 
 
 
-        // Method to get the Balance of Power preview string
-        private string GetBOPPreviewString(StackElementModel stackElement, string Header)
-        {
-            
-            // Init
-            string previewField = "!"; // Bang
-
-            try
-            {
-            
-                // ex HOUSE^CURRENT| ^ ^ | ^ ^ | ^ ^ |
-                previewField = previewField + Header;
-                previewField = previewField + "| ^ ^ | ^ ^ | ^ ^ |";
-
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
-
-            return previewField;
-        }
-
+        
         // Method to get the Referendum string 
         private string GetReferendumPreviewString(ReferendumDataModel referendumData)
         {
@@ -2540,6 +2529,31 @@ namespace GUILayer.Forms
         {
             AddBOP();
         }
+        // Method to get the Balance of Power preview string
+        private string GetBOPPreviewString(StackElementModel stackElement, string Header)
+        {
+
+            // Init
+            string previewField = "!"; // Bang
+
+            try
+            {
+
+                // ex HOUSE^CURRENT| ^ ^ | ^ ^ | ^ ^ |
+                previewField = previewField + Header;
+                previewField = previewField + "| ^ ^ | ^ ^ | ^ ^ |";
+
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                log.Error("frmMain Exception occurred: " + ex.Message);
+                log.Debug("frmMain Exception occurred", ex);
+            }
+
+            return previewField;
+        }
+
 
         // Loads the BOPdataGridView
         private void LoadBOPDGV()
@@ -3501,10 +3515,15 @@ namespace GUILayer.Forms
 
         }
 
+
+        #region Methods for taking data to air
         private void btnTake_Click(object sender, EventArgs e)
         {
-            //currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+            TakeNext();
+        }
 
+        public void TakeNext()
+        {
             if (stackGrid.Rows.Count > 0)
             {
                 if (currentRaceIndex < stackGrid.RowCount - 1)
@@ -3551,66 +3570,14 @@ namespace GUILayer.Forms
 
                 string outStr = GetRaceBoardMapkeyStr(rd, candidatesToReturn);
 
-                SendToViz(outStr, 1);
+                SendToViz(RBSceneName, outStr, 1);
                 LiveUpdateTimer.Enabled = false;
                 LiveUpdateTimer.Enabled = true;
 
             }
         }
 
-        private void btnSaveStack_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                if (stackElements.Count > 0)
-                {
-
-                    DialogResult dr = new DialogResult();
-                    FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
-                    dr = saveStack.ShowDialog();
-                    if (dr == DialogResult.OK)
-                    {
-                        // Instantiate a new top-level stack metadata model
-                        StackModel stackMetadata = new StackModel();
-
-                        stackID = saveStack.StackId;
-                        stackDescription = saveStack.StackDescription;
-                        stackMetadata.ixStackID = stackID;
-                        stackMetadata.StackName = stackDescription;
-
-                        stackMetadata.StackType = 0;
-                        stackMetadata.ShowName = currentShowName;
-                        stackMetadata.ConceptID = conceptID;
-                        stackMetadata.ConceptName = conceptName;
-                        stackMetadata.Notes = "Not currently used";
-                        stacksCollection.SaveStack(stackMetadata);
-
-                        // Save out stack elements; specify stack ID, and set flag to delete existing elements before adding
-                        stackElementsCollection.SaveStackElementsCollection(stackMetadata.ixStackID, true);
-
-
-                        // Update stack entries count label & name label
-                        txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                        txtStackName.Text = stackDescription;
-                    }
-                }
-
-                // Set status strip
-                toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
-                //toolStripStatusLabel.Text = "Status Logging Message: Stack successfully saved out to database";
-                toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack {0} saved out to database", stackID);
-
-
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
-
-        }
-
+        
         public string GetRaceBoardMapkeyStr(BindingList<RaceDataModel> raceData, int numCand)
         {
             //Example of a 2 way raceboard with the Dem candidate winning and adding a gain
@@ -3970,90 +3937,29 @@ namespace GUILayer.Forms
             return apRaceCallDateTimeStr;
         }
 
-        private void btnClearStack_Click(object sender, EventArgs e)
+                
+        public void LoadScene(string sceneName, int EngineNo)
         {
-            try
-            {
-                if (stackElements.Count > 0)
-                {
-                    DialogResult result1 = MessageBox.Show("Are you sure you want to clear all entries from the stack?", "Confirmation",
-                                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result1 != DialogResult.Yes)
-                    {
-                        return;
-                    }
-
-                    // Operator didn't dump out, so proceed
-                    if (stackGrid.RowCount > 0)
-                    {
-                        //Clear the collection
-                        stackElements.Clear();
-                    }
-
-                    // Clear out current stack settings
-                    stackID = -1;
-                    txtStackName.Text = "None Selected";
-
-                    // Update stack entries count label
-                    txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
-
+            string cmd = $"0 RENDERER*MAIN_LAYER SET_OBJECT SCENE*{sceneName}{term}";
+            byte[] bCmd = Encoding.UTF8.GetBytes(cmd);
+            vizClientSockets[EngineNo - 1].Send(bCmd);
         }
-
-        private void btnDeleteStackElement_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                if (stackGrid.RowCount > 0)
-                {
-                    //Get the delete point
-                    int currentStackIndex = stackGrid.CurrentCell.RowIndex;
-
-                    //Delete the item from the collection
-                    stackElements.RemoveAt(currentStackIndex);
-                }
-
-                // Update stack entries count label
-                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
-
-                // Clear out current settings if no entries left in stack
-                if (stackElements.Count == 0)
-                {
-                    stackID = -1;
-                    txtStackName.Text = "None Selected";
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
-            }
-
-        }
-
-        private void btnLoadStack_Click_1(object sender, EventArgs e)
-        {
-            LoadSelectedStack();
-
-        }
-        private void SendToViz(string cmd, int EngineNo)
+        private void SendToViz(string sceneName, string cmd, int EngineNo)
         {
 
-            RaceboardCmd = $"SEND SCENE*{RBSceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
+            string vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
 
-            byte[] bCmd = Encoding.UTF8.GetBytes(RaceboardCmd);
+            byte[] bCmd = Encoding.UTF8.GetBytes(vizCmd);
             vizClientSockets[EngineNo - 1].Send(bCmd);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void LiveUpdateTimer_Tick(object sender, EventArgs e)
+        {
+            TakeCurrent();
+        }
+
+        
+        private void stackGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             TakeCurrent();
         }
@@ -4061,26 +3967,59 @@ namespace GUILayer.Forms
         private void btnUnlock_Click(object sender, EventArgs e)
         {
             LiveUpdateTimer.Enabled = false;
-        }
-
-        private void stackGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            TakeCurrent();
-        }
-        public void LoadScene(string sceneName, int EngineNo)
-        {
-            string cmd = $"0 RENDERER*MAIN_LAYER SET_OBJECT SCENE*{sceneName}{term}";
-            byte[] bCmd = Encoding.UTF8.GetBytes(cmd);
-            vizClientSockets[EngineNo - 1].Send(bCmd);
+            panel2.BackColor = Color.Navy;
+            stackLocked = false;
         }
 
         private void btnLock_Click(object sender, EventArgs e)
         {
-            LoadScene(RBSceneName, 1);
-            currentRaceIndex = -1;
-            stackGrid.CurrentCell = stackGrid.Rows[0].Cells[0];
+            if (stackGrid.Rows.Count > 0)
+            {
+                stackLocked = true;
+                LoadScene(RBSceneName, 1);
+                currentRaceIndex = -1;
+                stackGrid.CurrentCell = stackGrid.Rows[0].Cells[0];
+                panel2.BackColor = Color.Lime;
+            }
         }
-    }
 
+        public static DataTable GetDBData(string cmdStr, string dbConnection)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                // Instantiate the connection
+                using (SqlConnection connection = new SqlConnection(dbConnection))
+                {
+                    // Create the command and set its properties
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter())
+                        {
+                            cmd.CommandText = cmdStr;
+                            //cmd.Parameters.Add("@StackID", SqlDbType.Float).Value = stackID;
+                            sqlDataAdapter.SelectCommand = cmd;
+                            sqlDataAdapter.SelectCommand.Connection = connection;
+                            sqlDataAdapter.SelectCommand.CommandType = CommandType.Text;
+
+                            // Fill the datatable from adapter
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                //log.Error("GetDBData Exception occurred: " + ex.Message);
+                //log.Debug("GetDBData Exception occurred", ex);
+            }
+
+            return dataTable;
+        }
+
+        #endregion
+    }
 
 }
