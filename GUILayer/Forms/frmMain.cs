@@ -76,8 +76,10 @@ namespace GUILayer.Forms
         public bool stackLocked = false;
         public string computerName = string.Empty;
         public string configName = string.Empty;
-
-
+        public string ipAddress = string.Empty;
+        public string hostName = string.Empty;
+        public List<TabDefinitionModel> tabConfig = new List<TabDefinitionModel>();
+        
         //public static AsyncClientSocket.ClientSocket VizControl;
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
 
@@ -165,7 +167,7 @@ namespace GUILayer.Forms
         string profilesURI = string.Empty;
         string currentShowName = string.Empty;
         string currentPlaylistName = string.Empty;
-
+        
         /*
         Boolean mseEndpoint1_Enable = Properties.Settings.Default.MSEEndpoint1_Enable;
         string mseEndpoint1 = Properties.Settings.Default.MSEEndpoint1;
@@ -227,51 +229,7 @@ namespace GUILayer.Forms
 
             try
             {
-                // Set the default to show all for race filters, Auto for exit pool questions
-                rbShowAll.BackColor = Color.Gold;
-                rbShowAll.Checked = true;
-                rbAll.BackColor = Color.Gold;
-                rbAll.Checked = true;
-
-                rbEPAuto.Checked = true;
-                rbEPAuto.BackColor = Color.Gold;
-                rbNone.Checked = true;
-                rbNone.BackColor = Color.Gold;
-
-                // Set enable/disable state of tab pages
-                if (Properties.Settings.Default.TabEnableRaces)
-                {
-                    tpRaces.Enabled = true;   
-                }
-                else
-                {
-                    tpRaces.Enabled = false;   
-                }
-                if (Properties.Settings.Default.TabEnableExitPolls)
-                {
-                    tpExitPolls.Enabled = true;
-                }
-                else
-                {
-                    tpExitPolls.Enabled = false;
-                }
-                if (Properties.Settings.Default.TabEnableBalanceOfPower)
-                {
-                    tpBalanceOfPower.Enabled = true;
-                }
-                else
-                {
-                    tpBalanceOfPower.Enabled = false;
-                }
-                if (Properties.Settings.Default.TabEnableReferendums)
-                {
-                    tpReferendums.Enabled = true;
-                }
-                else
-                {
-                    tpReferendums.Enabled = false;
-                }
-
+                
                 // Setup show controls
                 if (Properties.Settings.Default.EnableShowSelectControls)
                     enableShowSelectControls = true;
@@ -341,8 +299,6 @@ namespace GUILayer.Forms
 
                 // Make entry into applications log
                 ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
-                string ipAddress = string.Empty;
-                string hostName = string.Empty;
                 ipAddress = HostIPNameFunctions.GetLocalIPAddress();
                 hostName = HostIPNameFunctions.GetHostName(ipAddress);
                 lblIpAddress.Text = ipAddress;
@@ -371,14 +327,7 @@ namespace GUILayer.Forms
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 this.Text = String.Format("Election Graphics Stack Builder Application  Version {0}", version);
 
-                DataTable dt = new DataTable();
-                string cmdStr = $"SELECT * FROM FE_Devices WHERE IP_Address = '{ipAddress}'";
-                dt = GetDBData(cmdStr, ElectionsDBConnectionString);
                 
-                DataRow row = dt.Rows[0];
-                computerName = row["Name"].ToString() ?? "";
-                configName = row["Config1"].ToString() ?? "";
-
 
             }
             catch (Exception ex)
@@ -410,8 +359,41 @@ namespace GUILayer.Forms
             currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
             string sceneDescription = Properties.Settings.Default.Scene_Name;
             var useSceneName = Properties.Settings.Default[sceneDescription];
-            builderOnlyMode = Properties.Settings.Default.builderOnly;
-            Network = Properties.Settings.Default.Network;
+
+            //builderOnlyMode = Properties.Settings.Default.builderOnly;
+            //Network = Properties.Settings.Default.Network;
+
+            // get configuration info based on computer's IP Address 
+            DataTable dt = new DataTable();
+            string cmdStr = $"SELECT * FROM FE_Devices WHERE IP_Address = '{ipAddress}'";
+            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+            DataRow row;
+
+            if (dt.Rows.Count > 0)
+            {
+                row = dt.Rows[0];
+                computerName = row["Name"].ToString() ?? "";
+                configName = row["Config1"].ToString() ?? "";
+                if ( configName == null)
+                    configName = "DEFAULT";
+            }
+            else
+                configName = "DEFAULT";
+
+            // get tab enables and mode and network
+            cmdStr = $"SELECT * FROM FE_Tabs WHERE Config = '{configName}'";
+            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+
+            row = dt.Rows[0];
+            bool RBenable = Convert.ToBoolean(row["RaceBoards"] ?? 0);
+            bool VAenable = Convert.ToBoolean(row["VoterAnalysis"] ?? 0);
+            bool BOPenable = Convert.ToBoolean(row["BOP"] ?? 0);
+            bool REFenable = Convert.ToBoolean(row["Referendums"] ?? 0);
+            builderOnlyMode = Convert.ToBoolean(row["StackBuildOnly"] ?? 0);
+            Network = row["Network"].ToString() ?? "";
+
+
+
 
             this.Size = new Size(1462, 928);
             connectionPanel.Visible = false;
@@ -445,12 +427,102 @@ namespace GUILayer.Forms
                 pnlUpDn.Location = new Point(676, 216);
 
 
+
+                // Set the default to show all for race filters, Auto for exit pool questions
+                rbShowAll.BackColor = Color.Gold;
+                rbShowAll.Checked = true;
+                rbAll.BackColor = Color.Gold;
+                rbAll.Checked = true;
+
+                rbEPAuto.Checked = true;
+                rbEPAuto.BackColor = Color.Gold;
+                rbNone.Checked = true;
+                rbNone.BackColor = Color.Gold;
+
+                // Set enable/disable state of tab pages
+                if (RBenable)
+                {
+                    tpRaces.Enabled = true;
+                }
+                else
+                {
+                    tpRaces.Enabled = false;
+                }
+                if (VAenable)
+                {
+                    tpExitPolls.Enabled = true;
+                }
+                else
+                {
+                    tpExitPolls.Enabled = false;
+                }
+                if (BOPenable)
+                {
+                    tpBalanceOfPower.Enabled = true;
+                }
+                else
+                {
+                    tpBalanceOfPower.Enabled = false;
+                }
+                if (REFenable)
+                {
+                    tpReferendums.Enabled = true;
+                }
+                else
+                {
+                    tpReferendums.Enabled = false;
+                }
+
+                /*
+                if (Properties.Settings.Default.TabEnableRaces)
+                {
+                    tpRaces.Enabled = true;
+                }
+                else
+                {
+                    tpRaces.Enabled = false;
+                }
+                if (Properties.Settings.Default.TabEnableExitPolls)
+                {
+                    tpExitPolls.Enabled = true;
+                }
+                else
+                {
+                    tpExitPolls.Enabled = false;
+                }
+                if (Properties.Settings.Default.TabEnableBalanceOfPower)
+                {
+                    tpBalanceOfPower.Enabled = true;
+                }
+                else
+                {
+                    tpBalanceOfPower.Enabled = false;
+                }
+                if (Properties.Settings.Default.TabEnableReferendums)
+                {
+                    tpReferendums.Enabled = true;
+                }
+                else
+                {
+                    tpReferendums.Enabled = false;
+                }
+                */
+
+
+
                 // get viz engine info
+
+                cmdStr = $"SELECT * FROM FE_EngineDefs WHERE Name = '{configName}'";
+                dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+                row = dt.Rows[0];
+                
 
                 int i = 0;
                 bool done = false;
                 string engineParam;
                 var engineInfo = Properties.Settings.Default["Engine1_IPAddress"];
+                string engineData;
+                string engineStr;
 
                 // read engine info until no more engines found
                 while (done == false)
@@ -461,89 +533,110 @@ namespace GUILayer.Forms
 
                     try
                     {
-                        engineInfo = Properties.Settings.Default[engineParam];
-                        viz.IPAddress = (string)engineInfo;
+                        engineStr = $"Eng{i}_";
 
-                        engineParam = $"Engine{i}_Port";
-                        engineInfo = Properties.Settings.Default[engineParam];
-                        viz.Port = (int)engineInfo;
-
-                        engineParam = $"Engine{i}_Enable";
-                        engineInfo = Properties.Settings.Default[engineParam];
-                        viz.enable = (bool)engineInfo;
-
-                        viz.id = i;
-                        viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
-
-
-                        vizEngines.Add(viz);
-
-                        vizClientSockets.Add(new ClientSocket(viz.systemIP, viz.Port));
-                        vizClientSockets[i-1].DataReceived += vizDataReceived;
-                        vizClientSockets[i-1].ConnectionStatusChanged += vizConnectionStatusChanged;
-
-
-                        // set viz address labels
-                        switch (i)
+                        engineData = row[engineStr + "Name"].ToString() ?? "";
+                        if (engineData != null)
                         {
-                            case 1:
-                                gbIPlbl1.Text = "IP: " + viz.IPAddress;
-                                gbPortlbl1.Text = "Port: " + viz.Port.ToString();
-                                gbViz1.Visible = true;
-                                gbViz1.Enabled = viz.enable;
-                                if (viz.enable)
-                                    vizClientSockets[i - 1].Connect();
-                                break;
 
-                            case 2:
-                                gbIPlbl2.Text = "IP: " + viz.IPAddress;
-                                gbPortlbl2.Text = "Port: " + viz.Port.ToString();
-                                gbViz2.Visible = true;
-                                gbViz2.Enabled = viz.enable;
-                                if (viz.enable)
-                                    vizClientSockets[i - 1].Connect();
-                                break;
 
-                            case 3:
-                                gbIPlbl3.Text = "IP: " + viz.IPAddress;
-                                gbPortlbl3.Text = "Port: " + viz.Port.ToString();
-                                gbViz3.Visible = true;
-                                gbViz3.Enabled = viz.enable;
-                                if (viz.enable)
-                                    vizClientSockets[i - 1].Connect();
-                                break;
+                            viz.EngineName = engineData;
+                            viz.IPAddress = GetIP(engineData);
+                            viz.Port = Convert.ToInt32(row[engineStr + "Port"] ?? 0);
+                            viz.enable = Convert.ToBoolean(row[engineStr + "Enable"] ?? 0);
+                            viz.id = i;
+                            viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
 
-                            case 4:
-                                gbIPlbl4.Text = "IP: " + viz.IPAddress;
-                                gbPortlbl4.Text = "Port: " + viz.Port.ToString();
-                                gbViz4.Visible = true;
-                                gbViz4.Enabled = viz.enable;
-                                if (viz.enable)
-                                    vizClientSockets[i - 1].Connect();
-                                break;
 
-                            case 5:
-                                gbIPlbl5.Text = "IP: " + viz.IPAddress;
-                                gbPortlbl5.Text = "Port: " + viz.Port.ToString();
-                                gbViz5.Visible = true;
-                                gbViz5.Enabled = viz.enable;
-                                if (viz.enable)
-                                    vizClientSockets[i - 1].Connect();
-                                break;
+                            /*
+                            engineInfo = Properties.Settings.Default[engineParam];
+                            viz.IPAddress = (string)engineInfo;
 
-                            case 6:
-                                gbIPlbl6.Text = "IP: " + viz.IPAddress;
-                                gbPortlbl6.Text = "Port: " + viz.Port.ToString();
-                                gbViz6.Visible = true;
-                                gbViz6.Enabled = viz.enable;
-                                if (viz.enable)
-                                    vizClientSockets[i - 1].Connect();
-                                break;
+                            engineParam = $"Engine{i}_Port";
+                            engineInfo = Properties.Settings.Default[engineParam];
+                            viz.Port = (int)engineInfo;
 
+                            engineParam = $"Engine{i}_Enable";
+                            engineInfo = Properties.Settings.Default[engineParam];
+                            viz.enable = (bool)engineInfo;
+
+                            viz.id = i;
+                            viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
+                            */
+
+                            vizEngines.Add(viz);
+
+                            vizClientSockets.Add(new ClientSocket(viz.systemIP, viz.Port));
+                            vizClientSockets[i - 1].DataReceived += vizDataReceived;
+                            vizClientSockets[i - 1].ConnectionStatusChanged += vizConnectionStatusChanged;
+
+
+                            // set viz address labels
+                            switch (i)
+                            {
+                                case 1:
+                                    gbNamelbl1.Text = viz.EngineName;
+                                    gbIPlbl1.Text = "IP: " + viz.IPAddress;
+                                    gbPortlbl1.Text = "Port: " + viz.Port.ToString();
+                                    gbViz1.Visible = true;
+                                    gbViz1.Enabled = viz.enable;
+                                    if (viz.enable)
+                                        vizClientSockets[i - 1].Connect();
+                                    break;
+
+                                case 2:
+                                    gbNamelbl2.Text = viz.EngineName;
+                                    gbIPlbl2.Text = "IP: " + viz.IPAddress;
+                                    gbPortlbl2.Text = "Port: " + viz.Port.ToString();
+                                    gbViz2.Visible = true;
+                                    gbViz2.Enabled = viz.enable;
+                                    if (viz.enable)
+                                        vizClientSockets[i - 1].Connect();
+                                    break;
+
+                                case 3:
+                                    gbNamelbl3.Text = viz.EngineName;
+                                    gbIPlbl3.Text = "IP: " + viz.IPAddress;
+                                    gbPortlbl3.Text = "Port: " + viz.Port.ToString();
+                                    gbViz3.Visible = true;
+                                    gbViz3.Enabled = viz.enable;
+                                    if (viz.enable)
+                                        vizClientSockets[i - 1].Connect();
+                                    break;
+
+                                case 4:
+                                    gbNamelbl4.Text = viz.EngineName;
+                                    gbIPlbl4.Text = "IP: " + viz.IPAddress;
+                                    gbPortlbl4.Text = "Port: " + viz.Port.ToString();
+                                    gbViz4.Visible = true;
+                                    gbViz4.Enabled = viz.enable;
+                                    if (viz.enable)
+                                        vizClientSockets[i - 1].Connect();
+                                    break;
+
+                                case 5:
+                                    gbIPlbl5.Text = "IP: " + viz.IPAddress;
+                                    gbPortlbl5.Text = "Port: " + viz.Port.ToString();
+                                    gbViz5.Visible = true;
+                                    gbViz5.Enabled = viz.enable;
+                                    if (viz.enable)
+                                        vizClientSockets[i - 1].Connect();
+                                    break;
+
+                                case 6:
+                                    gbIPlbl6.Text = "IP: " + viz.IPAddress;
+                                    gbPortlbl6.Text = "Port: " + viz.Port.ToString();
+                                    gbViz6.Visible = true;
+                                    gbViz6.Enabled = viz.enable;
+                                    if (viz.enable)
+                                        vizClientSockets[i - 1].Connect();
+                                    break;
+
+                            }
+
+                            if (i == 4)
+                                done = true;
                         }
-
-                        if (i == 4)
-                            done = true;
                     }
                     catch
                     {
@@ -555,7 +648,64 @@ namespace GUILayer.Forms
 
             }
 
+            // get tab enables and mode and network
+            cmdStr = $"SELECT * FROM FE_TabConfig WHERE Config = '{configName}'";
+            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+            string tabName;
+            string sceneCode;
+            int engine;
+            int tabNo;
+            bool enab;
 
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                row = dt.Rows[i];
+                tabName = row["TabName"].ToString() ?? "";
+                engine = Convert.ToInt32(row["EngineNumber"] ?? 0);
+                sceneCode = row["SceneCode"].ToString() ?? "";
+
+                switch (tabName)
+                {
+                    case "RaceBoards":
+                        tabNo = 0;
+                        enab = RBenable;
+                        break;
+                    case "VoterAnalysis":
+                        tabNo = 1;
+                        enab = VAenable;
+                        break;
+                    case "BOP":
+                        tabNo = 2;
+                        enab = BOPenable;
+                        break;
+                    case "Referendums":
+                        tabNo = 3;
+                        enab = REFenable;
+                        break;
+                    default:
+                        tabNo = 0;
+                        enab = RBenable;
+                        break;
+                }
+
+
+                
+                tabConfig[tabNo].tabName = tabName;
+                tabConfig[tabNo].showTab = enab;
+                tabConfig[tabNo].outputEngine[engine] = true;
+
+                TabDefinitionModel.TabOutputDef to = new TabDefinitionModel.TabOutputDef();
+                to.engine = engine;
+                to.sceneCode = sceneCode;
+                to.sceneName = GetScenePath(sceneCode);
+
+                tabConfig[tabNo].TabOutput.Add(to);
+                tabConfig[tabNo].engineSceneDef += $"{engine}: {to.sceneName}; ";
+
+
+
+            }
+            
 
             usingPrimaryMediaSequencer = true;
 
@@ -581,6 +731,27 @@ namespace GUILayer.Forms
                 }
                 
             }
+        }
+
+        public string GetIP(string name)
+        {
+            DataTable dt = new DataTable();
+            string cmdStr = $"SELECT * FROM FE_Devices WHERE Name = '{name}'";
+            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+
+            DataRow row = dt.Rows[0];
+            return  row["IP_Address"].ToString() ?? "";
+            
+        }
+        public string GetScenePath(string sceneCode)
+        {
+            DataTable dt = new DataTable();
+            string cmdStr = $"SELECT * FROM FE_Scenes WHERE SceneCode = '{sceneCode}'";
+            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+
+            DataRow row = dt.Rows[0];
+            return row["ScenePath"].ToString() ?? "";
+
         }
 
         private void vizDataReceived(ClientSocket sender, byte[] data)

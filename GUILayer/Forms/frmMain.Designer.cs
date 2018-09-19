@@ -194,6 +194,10 @@
             this.gbIPlbl1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.LiveUpdateTimer = new System.Windows.Forms.Timer(this.components);
+            this.gbNamelbl1 = new System.Windows.Forms.Label();
+            this.gbNamelbl2 = new System.Windows.Forms.Label();
+            this.gbNamelbl3 = new System.Windows.Forms.Label();
+            this.gbNamelbl4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -1787,7 +1791,7 @@
             this.connectionPanel.Location = new System.Drawing.Point(15, 1335);
             this.connectionPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.connectionPanel.Name = "connectionPanel";
-            this.connectionPanel.Size = new System.Drawing.Size(1422, 128);
+            this.connectionPanel.Size = new System.Drawing.Size(1422, 144);
             this.connectionPanel.TabIndex = 125;
             // 
             // gbViz6
@@ -1948,16 +1952,17 @@
             // gbViz4
             // 
             this.gbViz4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.gbViz4.Controls.Add(this.gbNamelbl4);
             this.gbViz4.Controls.Add(this.groupBox10);
             this.gbViz4.Controls.Add(this.gbPortlbl4);
             this.gbViz4.Controls.Add(this.gbIPlbl4);
             this.gbViz4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz4.Location = new System.Drawing.Point(1072, 11);
+            this.gbViz4.Location = new System.Drawing.Point(1072, 8);
             this.gbViz4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbViz4.Name = "gbViz4";
             this.gbViz4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbViz4.Size = new System.Drawing.Size(338, 108);
+            this.gbViz4.Size = new System.Drawing.Size(338, 128);
             this.gbViz4.TabIndex = 3;
             this.gbViz4.TabStop = false;
             this.gbViz4.Text = "Viz  4";
@@ -1968,7 +1973,7 @@
             this.groupBox10.Controls.Add(this.gbLEDOn4);
             this.groupBox10.Controls.Add(this.gbLEDOff4);
             this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox10.Location = new System.Drawing.Point(192, 23);
+            this.groupBox10.Location = new System.Drawing.Point(192, 27);
             this.groupBox10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -2004,7 +2009,7 @@
             // 
             this.gbPortlbl4.AutoSize = true;
             this.gbPortlbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPortlbl4.Location = new System.Drawing.Point(6, 71);
+            this.gbPortlbl4.Location = new System.Drawing.Point(5, 85);
             this.gbPortlbl4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbPortlbl4.Name = "gbPortlbl4";
             this.gbPortlbl4.Size = new System.Drawing.Size(102, 25);
@@ -2015,7 +2020,7 @@
             // 
             this.gbIPlbl4.AutoSize = true;
             this.gbIPlbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIPlbl4.Location = new System.Drawing.Point(6, 40);
+            this.gbIPlbl4.Location = new System.Drawing.Point(5, 59);
             this.gbIPlbl4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbIPlbl4.Name = "gbIPlbl4";
             this.gbIPlbl4.Size = new System.Drawing.Size(155, 25);
@@ -2025,16 +2030,17 @@
             // gbViz3
             // 
             this.gbViz3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.gbViz3.Controls.Add(this.gbNamelbl3);
             this.gbViz3.Controls.Add(this.groupBox8);
             this.gbViz3.Controls.Add(this.gbPortlbl3);
             this.gbViz3.Controls.Add(this.gbIPlbl3);
             this.gbViz3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz3.Location = new System.Drawing.Point(720, 11);
+            this.gbViz3.Location = new System.Drawing.Point(720, 8);
             this.gbViz3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbViz3.Name = "gbViz3";
             this.gbViz3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbViz3.Size = new System.Drawing.Size(338, 108);
+            this.gbViz3.Size = new System.Drawing.Size(338, 128);
             this.gbViz3.TabIndex = 2;
             this.gbViz3.TabStop = false;
             this.gbViz3.Text = "Viz  3";
@@ -2045,7 +2051,7 @@
             this.groupBox8.Controls.Add(this.gbLEDOn3);
             this.groupBox8.Controls.Add(this.gbLEDOff3);
             this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox8.Location = new System.Drawing.Point(192, 23);
+            this.groupBox8.Location = new System.Drawing.Point(192, 27);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -2081,7 +2087,7 @@
             // 
             this.gbPortlbl3.AutoSize = true;
             this.gbPortlbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPortlbl3.Location = new System.Drawing.Point(6, 71);
+            this.gbPortlbl3.Location = new System.Drawing.Point(5, 85);
             this.gbPortlbl3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbPortlbl3.Name = "gbPortlbl3";
             this.gbPortlbl3.Size = new System.Drawing.Size(102, 25);
@@ -2092,7 +2098,7 @@
             // 
             this.gbIPlbl3.AutoSize = true;
             this.gbIPlbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIPlbl3.Location = new System.Drawing.Point(6, 40);
+            this.gbIPlbl3.Location = new System.Drawing.Point(5, 59);
             this.gbIPlbl3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbIPlbl3.Name = "gbIPlbl3";
             this.gbIPlbl3.Size = new System.Drawing.Size(155, 25);
@@ -2102,16 +2108,17 @@
             // gbViz2
             // 
             this.gbViz2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.gbViz2.Controls.Add(this.gbNamelbl2);
             this.gbViz2.Controls.Add(this.groupBox9);
             this.gbViz2.Controls.Add(this.gbPortlbl2);
             this.gbViz2.Controls.Add(this.gbIPlbl2);
             this.gbViz2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz2.Location = new System.Drawing.Point(368, 11);
+            this.gbViz2.Location = new System.Drawing.Point(368, 8);
             this.gbViz2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbViz2.Name = "gbViz2";
             this.gbViz2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbViz2.Size = new System.Drawing.Size(338, 108);
+            this.gbViz2.Size = new System.Drawing.Size(338, 128);
             this.gbViz2.TabIndex = 1;
             this.gbViz2.TabStop = false;
             this.gbViz2.Text = "Viz  2";
@@ -2122,7 +2129,7 @@
             this.groupBox9.Controls.Add(this.gbLEDOn2);
             this.groupBox9.Controls.Add(this.gbLEDOff2);
             this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox9.Location = new System.Drawing.Point(192, 23);
+            this.groupBox9.Location = new System.Drawing.Point(192, 27);
             this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -2158,7 +2165,7 @@
             // 
             this.gbPortlbl2.AutoSize = true;
             this.gbPortlbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPortlbl2.Location = new System.Drawing.Point(6, 71);
+            this.gbPortlbl2.Location = new System.Drawing.Point(5, 85);
             this.gbPortlbl2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbPortlbl2.Name = "gbPortlbl2";
             this.gbPortlbl2.Size = new System.Drawing.Size(102, 25);
@@ -2169,7 +2176,7 @@
             // 
             this.gbIPlbl2.AutoSize = true;
             this.gbIPlbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIPlbl2.Location = new System.Drawing.Point(6, 40);
+            this.gbIPlbl2.Location = new System.Drawing.Point(5, 59);
             this.gbIPlbl2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbIPlbl2.Name = "gbIPlbl2";
             this.gbIPlbl2.Size = new System.Drawing.Size(155, 25);
@@ -2179,16 +2186,17 @@
             // gbViz1
             // 
             this.gbViz1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.gbViz1.Controls.Add(this.gbNamelbl1);
             this.gbViz1.Controls.Add(this.groupBox7);
             this.gbViz1.Controls.Add(this.gbPortlbl1);
             this.gbViz1.Controls.Add(this.gbIPlbl1);
             this.gbViz1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz1.Location = new System.Drawing.Point(15, 11);
+            this.gbViz1.Location = new System.Drawing.Point(15, 8);
             this.gbViz1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbViz1.Name = "gbViz1";
             this.gbViz1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbViz1.Size = new System.Drawing.Size(338, 108);
+            this.gbViz1.Size = new System.Drawing.Size(338, 128);
             this.gbViz1.TabIndex = 0;
             this.gbViz1.TabStop = false;
             this.gbViz1.Text = "Viz  1";
@@ -2200,7 +2208,7 @@
             this.groupBox7.Controls.Add(this.gbLEDOn1);
             this.groupBox7.Controls.Add(this.gbLEDOff1);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(192, 23);
+            this.groupBox7.Location = new System.Drawing.Point(192, 27);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -2236,7 +2244,7 @@
             // 
             this.gbPortlbl1.AutoSize = true;
             this.gbPortlbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPortlbl1.Location = new System.Drawing.Point(6, 71);
+            this.gbPortlbl1.Location = new System.Drawing.Point(5, 85);
             this.gbPortlbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbPortlbl1.Name = "gbPortlbl1";
             this.gbPortlbl1.Size = new System.Drawing.Size(102, 25);
@@ -2247,7 +2255,7 @@
             // 
             this.gbIPlbl1.AutoSize = true;
             this.gbIPlbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIPlbl1.Location = new System.Drawing.Point(6, 40);
+            this.gbIPlbl1.Location = new System.Drawing.Point(5, 59);
             this.gbIPlbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gbIPlbl1.Name = "gbIPlbl1";
             this.gbIPlbl1.Size = new System.Drawing.Size(155, 25);
@@ -2258,17 +2266,61 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(15, 1468);
+            this.listBox1.Location = new System.Drawing.Point(15, 1488);
             this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox1.Name = "listBox1";
             this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(2132, 124);
+            this.listBox1.Size = new System.Drawing.Size(2132, 104);
             this.listBox1.TabIndex = 126;
             // 
             // LiveUpdateTimer
             // 
             this.LiveUpdateTimer.Interval = 5000;
             this.LiveUpdateTimer.Tick += new System.EventHandler(this.LiveUpdateTimer_Tick);
+            // 
+            // gbNamelbl1
+            // 
+            this.gbNamelbl1.AutoSize = true;
+            this.gbNamelbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl1.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl1.Name = "gbNamelbl1";
+            this.gbNamelbl1.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl1.TabIndex = 179;
+            this.gbNamelbl1.Text = "VIZENG-DEV-05";
+            // 
+            // gbNamelbl2
+            // 
+            this.gbNamelbl2.AutoSize = true;
+            this.gbNamelbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl2.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl2.Name = "gbNamelbl2";
+            this.gbNamelbl2.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl2.TabIndex = 180;
+            this.gbNamelbl2.Text = "VIZENG-DEV-05";
+            // 
+            // gbNamelbl3
+            // 
+            this.gbNamelbl3.AutoSize = true;
+            this.gbNamelbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl3.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl3.Name = "gbNamelbl3";
+            this.gbNamelbl3.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl3.TabIndex = 181;
+            this.gbNamelbl3.Text = "VIZENG-DEV-05";
+            // 
+            // gbNamelbl4
+            // 
+            this.gbNamelbl4.AutoSize = true;
+            this.gbNamelbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl4.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl4.Name = "gbNamelbl4";
+            this.gbNamelbl4.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl4.TabIndex = 182;
+            this.gbNamelbl4.Text = "VIZENG-DEV-05";
             // 
             // frmMain
             // 
@@ -2545,6 +2597,10 @@
         private System.Windows.Forms.Button btnStackElementDown;
         private System.Windows.Forms.Button btnStackElementUp;
         private System.Windows.Forms.Timer LiveUpdateTimer;
+        private System.Windows.Forms.Label gbNamelbl4;
+        private System.Windows.Forms.Label gbNamelbl3;
+        private System.Windows.Forms.Label gbNamelbl2;
+        private System.Windows.Forms.Label gbNamelbl1;
     }
 }
 

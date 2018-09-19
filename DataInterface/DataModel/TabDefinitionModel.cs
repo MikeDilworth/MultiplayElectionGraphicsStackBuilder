@@ -6,25 +6,19 @@ using System.Threading.Tasks;
 
 namespace DataInterface.DataModel
 {
-    class TabDefinitionModel
+    public  class TabDefinitionModel
     {
-        public class TabConfig
-        {
-            public string tabName;
-            public bool showTab;
-            public int[] outputEngine;
-            public int tabType;
-        }
-
+            public static string tabName { get; set; }
+            public static bool showTab { get; set; }
+            public static bool[] outputEngine = new bool[4];
+            public static string engineSceneDef { get; set; }
+            public static List<TabOutputDef> TabOutput = new List<TabOutputDef>();
+        
         public class TabOutputDef
         {
-            public int[] engine;
-            public int[] sceneNo;
-            public string[] sceneName;
-            public string[] sceneName2;
-            public string[] sceneType;
-            public string engineSceneDef;
-
+            public int engine { get; set; }
+            public string sceneCode { get; set; }
+            public string sceneName { get; set; }
         }
     }
 }
