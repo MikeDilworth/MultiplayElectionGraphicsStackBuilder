@@ -169,24 +169,28 @@
             this.gbPortlbl5 = new System.Windows.Forms.Label();
             this.gbIPlbl5 = new System.Windows.Forms.Label();
             this.gbViz4 = new System.Windows.Forms.GroupBox();
+            this.gbNamelbl4 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.gbLEDOn4 = new System.Windows.Forms.PictureBox();
             this.gbLEDOff4 = new System.Windows.Forms.PictureBox();
             this.gbPortlbl4 = new System.Windows.Forms.Label();
             this.gbIPlbl4 = new System.Windows.Forms.Label();
             this.gbViz3 = new System.Windows.Forms.GroupBox();
+            this.gbNamelbl3 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.gbLEDOn3 = new System.Windows.Forms.PictureBox();
             this.gbLEDOff3 = new System.Windows.Forms.PictureBox();
             this.gbPortlbl3 = new System.Windows.Forms.Label();
             this.gbIPlbl3 = new System.Windows.Forms.Label();
             this.gbViz2 = new System.Windows.Forms.GroupBox();
+            this.gbNamelbl2 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.gbLEDOn2 = new System.Windows.Forms.PictureBox();
             this.gbLEDOff2 = new System.Windows.Forms.PictureBox();
             this.gbPortlbl2 = new System.Windows.Forms.Label();
             this.gbIPlbl2 = new System.Windows.Forms.Label();
             this.gbViz1 = new System.Windows.Forms.GroupBox();
+            this.gbNamelbl1 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.gbLEDOn1 = new System.Windows.Forms.PictureBox();
             this.gbLEDOff1 = new System.Windows.Forms.PictureBox();
@@ -194,10 +198,7 @@
             this.gbIPlbl1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.LiveUpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.gbNamelbl1 = new System.Windows.Forms.Label();
-            this.gbNamelbl2 = new System.Windows.Forms.Label();
-            this.gbNamelbl3 = new System.Windows.Forms.Label();
-            this.gbNamelbl4 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -1968,6 +1969,17 @@
             this.gbViz4.Text = "Viz  4";
             this.gbViz4.Visible = false;
             // 
+            // gbNamelbl4
+            // 
+            this.gbNamelbl4.AutoSize = true;
+            this.gbNamelbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl4.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl4.Name = "gbNamelbl4";
+            this.gbNamelbl4.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl4.TabIndex = 182;
+            this.gbNamelbl4.Text = "VIZENG-DEV-05";
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.gbLEDOn4);
@@ -1977,7 +1989,7 @@
             this.groupBox10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox10.Size = new System.Drawing.Size(135, 74);
+            this.groupBox10.Size = new System.Drawing.Size(140, 74);
             this.groupBox10.TabIndex = 178;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Connected";
@@ -2046,6 +2058,17 @@
             this.gbViz3.Text = "Viz  3";
             this.gbViz3.Visible = false;
             // 
+            // gbNamelbl3
+            // 
+            this.gbNamelbl3.AutoSize = true;
+            this.gbNamelbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl3.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl3.Name = "gbNamelbl3";
+            this.gbNamelbl3.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl3.TabIndex = 181;
+            this.gbNamelbl3.Text = "VIZENG-DEV-05";
+            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.gbLEDOn3);
@@ -2055,7 +2078,7 @@
             this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox8.Size = new System.Drawing.Size(135, 74);
+            this.groupBox8.Size = new System.Drawing.Size(140, 74);
             this.groupBox8.TabIndex = 178;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Connected";
@@ -2124,6 +2147,17 @@
             this.gbViz2.Text = "Viz  2";
             this.gbViz2.Visible = false;
             // 
+            // gbNamelbl2
+            // 
+            this.gbNamelbl2.AutoSize = true;
+            this.gbNamelbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl2.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl2.Name = "gbNamelbl2";
+            this.gbNamelbl2.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl2.TabIndex = 180;
+            this.gbNamelbl2.Text = "VIZENG-DEV-05";
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.gbLEDOn2);
@@ -2133,7 +2167,7 @@
             this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox9.Size = new System.Drawing.Size(135, 74);
+            this.groupBox9.Size = new System.Drawing.Size(140, 74);
             this.groupBox9.TabIndex = 178;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Connected";
@@ -2203,6 +2237,17 @@
             this.gbViz1.Visible = false;
             this.gbViz1.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
+            // gbNamelbl1
+            // 
+            this.gbNamelbl1.AutoSize = true;
+            this.gbNamelbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbNamelbl1.Location = new System.Drawing.Point(5, 33);
+            this.gbNamelbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gbNamelbl1.Name = "gbNamelbl1";
+            this.gbNamelbl1.Size = new System.Drawing.Size(162, 25);
+            this.gbNamelbl1.TabIndex = 179;
+            this.gbNamelbl1.Text = "VIZENG-DEV-05";
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.gbLEDOn1);
@@ -2212,7 +2257,7 @@
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox7.Size = new System.Drawing.Size(135, 74);
+            this.groupBox7.Size = new System.Drawing.Size(140, 74);
             this.groupBox7.TabIndex = 178;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Connected";
@@ -2265,12 +2310,13 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(15, 1488);
             this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox1.Name = "listBox1";
             this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(2132, 104);
+            this.listBox1.Size = new System.Drawing.Size(375, 104);
             this.listBox1.TabIndex = 126;
             // 
             // LiveUpdateTimer
@@ -2278,49 +2324,17 @@
             this.LiveUpdateTimer.Interval = 5000;
             this.LiveUpdateTimer.Tick += new System.EventHandler(this.LiveUpdateTimer_Tick);
             // 
-            // gbNamelbl1
+            // listBox2
             // 
-            this.gbNamelbl1.AutoSize = true;
-            this.gbNamelbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbNamelbl1.Location = new System.Drawing.Point(5, 33);
-            this.gbNamelbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gbNamelbl1.Name = "gbNamelbl1";
-            this.gbNamelbl1.Size = new System.Drawing.Size(162, 25);
-            this.gbNamelbl1.TabIndex = 179;
-            this.gbNamelbl1.Text = "VIZENG-DEV-05";
-            // 
-            // gbNamelbl2
-            // 
-            this.gbNamelbl2.AutoSize = true;
-            this.gbNamelbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbNamelbl2.Location = new System.Drawing.Point(5, 33);
-            this.gbNamelbl2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gbNamelbl2.Name = "gbNamelbl2";
-            this.gbNamelbl2.Size = new System.Drawing.Size(162, 25);
-            this.gbNamelbl2.TabIndex = 180;
-            this.gbNamelbl2.Text = "VIZENG-DEV-05";
-            // 
-            // gbNamelbl3
-            // 
-            this.gbNamelbl3.AutoSize = true;
-            this.gbNamelbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbNamelbl3.Location = new System.Drawing.Point(5, 33);
-            this.gbNamelbl3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gbNamelbl3.Name = "gbNamelbl3";
-            this.gbNamelbl3.Size = new System.Drawing.Size(162, 25);
-            this.gbNamelbl3.TabIndex = 181;
-            this.gbNamelbl3.Text = "VIZENG-DEV-05";
-            // 
-            // gbNamelbl4
-            // 
-            this.gbNamelbl4.AutoSize = true;
-            this.gbNamelbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbNamelbl4.Location = new System.Drawing.Point(5, 33);
-            this.gbNamelbl4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gbNamelbl4.Name = "gbNamelbl4";
-            this.gbNamelbl4.Size = new System.Drawing.Size(162, 25);
-            this.gbNamelbl4.TabIndex = 182;
-            this.gbNamelbl4.Text = "VIZENG-DEV-05";
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.HorizontalScrollbar = true;
+            this.listBox2.ItemHeight = 20;
+            this.listBox2.Location = new System.Drawing.Point(398, 1488);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.ScrollAlwaysVisible = true;
+            this.listBox2.Size = new System.Drawing.Size(1777, 104);
+            this.listBox2.TabIndex = 127;
             // 
             // frmMain
             // 
@@ -2328,6 +2342,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(2175, 1631);
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.connectionPanel);
             this.Controls.Add(this.lblMediaSequencer);
@@ -2349,7 +2364,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Election Graphics Stack Builder Application  Version ";
+            this.Text = "Election Graphics Stack Builder Application  Version  1.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -2601,6 +2616,7 @@
         private System.Windows.Forms.Label gbNamelbl3;
         private System.Windows.Forms.Label gbNamelbl2;
         private System.Windows.Forms.Label gbNamelbl1;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 

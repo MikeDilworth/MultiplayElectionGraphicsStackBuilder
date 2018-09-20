@@ -78,9 +78,9 @@ namespace GUILayer.Forms
         public string configName = string.Empty;
         public string ipAddress = string.Empty;
         public string hostName = string.Empty;
+
         public List<TabDefinitionModel> tabConfig = new List<TabDefinitionModel>();
         
-        //public static AsyncClientSocket.ClientSocket VizControl;
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
 
 
@@ -364,14 +364,14 @@ namespace GUILayer.Forms
             //Network = Properties.Settings.Default.Network;
 
             // get configuration info based on computer's IP Address 
-            DataTable dt = new DataTable();
+            DataTable dtComp = new DataTable();
             string cmdStr = $"SELECT * FROM FE_Devices WHERE IP_Address = '{ipAddress}'";
-            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+            dtComp = GetDBData(cmdStr, ElectionsDBConnectionString);
             DataRow row;
 
-            if (dt.Rows.Count > 0)
+            if (dtComp.Rows.Count > 0)
             {
-                row = dt.Rows[0];
+                row = dtComp.Rows[0];
                 computerName = row["Name"].ToString() ?? "";
                 configName = row["Config1"].ToString() ?? "";
                 if ( configName == null)
@@ -381,10 +381,11 @@ namespace GUILayer.Forms
                 configName = "DEFAULT";
 
             // get tab enables and mode and network
+            DataTable dtEnab = new DataTable();
             cmdStr = $"SELECT * FROM FE_Tabs WHERE Config = '{configName}'";
-            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+            dtEnab = GetDBData(cmdStr, ElectionsDBConnectionString);
 
-            row = dt.Rows[0];
+            row = dtEnab.Rows[0];
             bool RBenable = Convert.ToBoolean(row["RaceBoards"] ?? 0);
             bool VAenable = Convert.ToBoolean(row["VoterAnalysis"] ?? 0);
             bool BOPenable = Convert.ToBoolean(row["BOP"] ?? 0);
@@ -392,12 +393,11 @@ namespace GUILayer.Forms
             builderOnlyMode = Convert.ToBoolean(row["StackBuildOnly"] ?? 0);
             Network = row["Network"].ToString() ?? "";
 
-
-
-
+            
             this.Size = new Size(1462, 928);
             connectionPanel.Visible = false;
             listBox1.Visible = false;
+            listBox2.Visible = false;
             panel3.Size = new Size(648, 155);
             panel3.Location = new Point(8, 549);
             StackPanel.Location = new Point(3, 8);
@@ -415,6 +415,7 @@ namespace GUILayer.Forms
                 this.Size = new Size(1462, 1102);
                 connectionPanel.Visible = true;
                 listBox1.Visible = true;
+                listBox2.Visible = true;
                 stackGrid.Size = new Size(648, 468);
                 panel3.Size = new Size(648, 221);
                 panel3.Location = new Point(8, 483);
@@ -447,6 +448,7 @@ namespace GUILayer.Forms
                 else
                 {
                     tpRaces.Enabled = false;
+
                 }
                 if (VAenable)
                 {
@@ -513,8 +515,9 @@ namespace GUILayer.Forms
                 // get viz engine info
 
                 cmdStr = $"SELECT * FROM FE_EngineDefs WHERE Name = '{configName}'";
-                dt = GetDBData(cmdStr, ElectionsDBConnectionString);
-                row = dt.Rows[0];
+                DataTable dtEng = new DataTable();
+                dtEng = GetDBData(cmdStr, ElectionsDBConnectionString);
+                row = dtEng.Rows[0];
                 
 
                 int i = 0;
@@ -649,63 +652,80 @@ namespace GUILayer.Forms
             }
 
             // get tab enables and mode and network
-            cmdStr = $"SELECT * FROM FE_TabConfig WHERE Config = '{configName}'";
-            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+            //cmdStr = $"SELECT * FROM FE_TabConfig WHERE Config = '{configName}'";
+            DataTable dt = new DataTable();
+            //dt = GetDBData(cmdStr, ElectionsDBConnectionString);
             string tabName;
             string sceneCode;
-            int engine;
-            int tabNo;
+            string sceneName = "";
+            int engine = 0;
             bool enab;
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            
+            for (int tabNo = 0; tabNo < 4; tabNo++)
             {
-                row = dt.Rows[i];
-                tabName = row["TabName"].ToString() ?? "";
-                engine = Convert.ToInt32(row["EngineNumber"] ?? 0);
-                sceneCode = row["SceneCode"].ToString() ?? "";
-
-                switch (tabName)
+                switch (tabNo)
                 {
-                    case "RaceBoards":
-                        tabNo = 0;
+                    case 0:
+                        tabName = "RaceBoards";
                         enab = RBenable;
                         break;
-                    case "VoterAnalysis":
-                        tabNo = 1;
+                    case 1:
+                        tabName = "VoterAnalysis";
                         enab = VAenable;
                         break;
-                    case "BOP":
-                        tabNo = 2;
+                    case 2:
+                        tabName = "BOP";
                         enab = BOPenable;
                         break;
-                    case "Referendums":
-                        tabNo = 3;
+                    case 3:
+                        tabName = "Referendums";
                         enab = REFenable;
                         break;
                     default:
-                        tabNo = 0;
+                        tabName = "RaceBoards";
                         enab = RBenable;
                         break;
                 }
 
+                cmdStr = $"SELECT * FROM FE_TabConfig WHERE Config = '{configName}' AND TabName = {tabName}";
+                //DataTable dt = new DataTable();
+                dt = GetDBData(cmdStr, ElectionsDBConnectionString);
 
-                
-                tabConfig[tabNo].tabName = tabName;
-                tabConfig[tabNo].showTab = enab;
-                tabConfig[tabNo].outputEngine[engine] = true;
+                string tabN;
+                TabDefinitionModel td = new TabDefinitionModel();
+                List<TabOutputDef> tod = new List<TabOutputDef>();
 
-                TabDefinitionModel.TabOutputDef to = new TabDefinitionModel.TabOutputDef();
-                to.engine = engine;
-                to.sceneCode = sceneCode;
-                to.sceneName = GetScenePath(sceneCode);
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        row = dt.Rows[i];
 
-                tabConfig[tabNo].TabOutput.Add(to);
-                tabConfig[tabNo].engineSceneDef += $"{engine}: {to.sceneName}; ";
+                        tabN = row["TabName"].ToString() ?? "";
+                        engine = Convert.ToInt32(row["EngineNumber"] ?? 0);
+                        sceneCode = row["SceneCode"].ToString() ?? "";
 
+                        TabOutputDef to = new TabOutputDef();
+                        to.engine = engine;
+                        to.sceneCode = sceneCode;
+                        to.sceneName = GetScenePath(sceneCode);
+                        tod.Add(to);
+                        sceneName = to.sceneName;
+                        tabConfig.Add(td);
 
+                    }
+                    td.tabName = tabName;
+                    td.showTab = enab;
+                    td.outputEngine[engine - 1] = true;
+                    td.engineSceneDef += $"{engine}: {sceneName}; ";
+                    td.TabOutput.AddRange(tod);
+                }
+                else
+                {
+
+                }
 
             }
-            
 
             usingPrimaryMediaSequencer = true;
 
@@ -3735,7 +3755,16 @@ namespace GUILayer.Forms
                 //rd = GetRaceData(stateNumber, raceOffice, cd, electionType, (short)candidatesToReturn);
                 rd = GetRaceData(stateNumber, raceOffice, cd, electionType, (short)candidatesToReturn, candidateSelectEnable, cand1, cand2, cand3, cand4);
 
-                string dataStr = $"{rd[0].StateName} {rd[0].OfficeName} - {rd[0].CandidateLastName} {rd[0].CandidateVoteCount} - {rd[1].CandidateLastName} {rd[1].CandidateVoteCount}";
+                string dataStr = $"{rd[0].StateName} {rd[0].OfficeName}";
+
+
+                for (int i = 0; i < candidatesToReturn; i++)
+                {
+                    dataStr += $" - {rd[i].CandidateLastName} {rd[i].CandidateVoteCount}";
+
+                }
+
+
                 listBox1.Items.Add(dataStr);
                 listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
@@ -4122,6 +4151,9 @@ namespace GUILayer.Forms
 
             byte[] bCmd = Encoding.UTF8.GetBytes(vizCmd);
             vizClientSockets[EngineNo - 1].Send(bCmd);
+            listBox2.Items.Add(vizCmd);
+            listBox2.SelectedIndex = listBox2.Items.Count - 1;
+
         }
 
         private void LiveUpdateTimer_Tick(object sender, EventArgs e)

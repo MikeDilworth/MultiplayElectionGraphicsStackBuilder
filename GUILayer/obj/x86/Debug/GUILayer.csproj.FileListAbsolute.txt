@@ -131,9 +131,6 @@ C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CoreCompileInputs.cache
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.exe
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
-C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe.config
-C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe
-C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.pdb
 C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.dll
 C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.dll
 C:\X\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.dll
@@ -151,8 +148,11 @@ C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmSelec
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Properties.Resources.resources
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.GenerateResource.Cache
 C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CoreCompileInputs.cache
-C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.exe
-C:\X\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
 C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\AsyncClientSocket.dll
 C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\AsyncClientSocket.pdb
 C:\X\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.csprojResolveAssemblyReference.cache
+C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe.config
+C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe
+C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.pdb
+C:\X\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.exe
+C:\X\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.pdb

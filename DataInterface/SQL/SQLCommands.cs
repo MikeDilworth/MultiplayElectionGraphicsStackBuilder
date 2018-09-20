@@ -123,8 +123,8 @@ namespace DataInterface.SQL
         public static readonly string sqlGetTooCloseTooCallRacesByOffice = "getVDSTooCloseToCallRacesByOffice " +
             "@Race_Office ";
 
-        
-        
+
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Race data related functions
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -135,10 +135,17 @@ namespace DataInterface.SQL
             "@State_Number, " +
             "@Race_Office, " +
             "@CD, " +
-            "@Election_Type";
-            // To be enabled for general election
-            //"@Election_Type, " +
-            //"@PrimaryAApplicatioMode";
+            "@Election_Type, " +
+            "@Primary_Application_Code, " +
+            "@candidateSelectEnable, " +
+            "@candidateId1, " +
+            "@candidateId2, " +
+            "@candidateId3, " +
+            "@candidateId4";
+
+        // To be enabled for general election
+        //"@Election_Type, " +
+        //"@PrimaryAApplicatioMode";
 
 
         /// <summary>
