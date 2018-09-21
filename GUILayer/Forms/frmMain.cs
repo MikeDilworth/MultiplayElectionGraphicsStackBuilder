@@ -394,7 +394,7 @@ namespace GUILayer.Forms
             Network = row["Network"].ToString() ?? "";
 
             
-            this.Size = new Size(1462, 928);
+            this.Size = new Size(1462, 991);
             connectionPanel.Visible = false;
             listBox1.Visible = false;
             listBox2.Visible = false;
@@ -410,9 +410,11 @@ namespace GUILayer.Forms
             
             if (builderOnlyMode == false)
             {
-
                 // Enlarge form
-                this.Size = new Size(1462, 1102);
+                this.Size = new Size(1462, 1165);
+
+                lblConfig.Text = configName;
+                lblNetwork.Text = Network;
                 connectionPanel.Visible = true;
                 listBox1.Visible = true;
                 listBox2.Visible = true;
@@ -426,8 +428,6 @@ namespace GUILayer.Forms
                 SaveActivatePanel.Location = new Point(424, 3);
                 btnSaveStack.Enabled = true;
                 pnlUpDn.Location = new Point(676, 216);
-
-
 
                 // Set the default to show all for race filters, Auto for exit pool questions
                 rbShowAll.BackColor = Color.Gold;
@@ -475,42 +475,7 @@ namespace GUILayer.Forms
                     tpReferendums.Enabled = false;
                 }
 
-                /*
-                if (Properties.Settings.Default.TabEnableRaces)
-                {
-                    tpRaces.Enabled = true;
-                }
-                else
-                {
-                    tpRaces.Enabled = false;
-                }
-                if (Properties.Settings.Default.TabEnableExitPolls)
-                {
-                    tpExitPolls.Enabled = true;
-                }
-                else
-                {
-                    tpExitPolls.Enabled = false;
-                }
-                if (Properties.Settings.Default.TabEnableBalanceOfPower)
-                {
-                    tpBalanceOfPower.Enabled = true;
-                }
-                else
-                {
-                    tpBalanceOfPower.Enabled = false;
-                }
-                if (Properties.Settings.Default.TabEnableReferendums)
-                {
-                    tpReferendums.Enabled = true;
-                }
-                else
-                {
-                    tpReferendums.Enabled = false;
-                }
-                */
-
-
+                
 
                 // get viz engine info
 
@@ -583,6 +548,8 @@ namespace GUILayer.Forms
                                     gbPortlbl1.Text = "Port: " + viz.Port.ToString();
                                     gbViz1.Visible = true;
                                     gbViz1.Enabled = viz.enable;
+                                    gbEng1.Visible = true;
+                                    gbEng1.Enabled = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -593,6 +560,8 @@ namespace GUILayer.Forms
                                     gbPortlbl2.Text = "Port: " + viz.Port.ToString();
                                     gbViz2.Visible = true;
                                     gbViz2.Enabled = viz.enable;
+                                    gbEng2.Visible = true;
+                                    gbEng2.Enabled = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -603,6 +572,8 @@ namespace GUILayer.Forms
                                     gbPortlbl3.Text = "Port: " + viz.Port.ToString();
                                     gbViz3.Visible = true;
                                     gbViz3.Enabled = viz.enable;
+                                    gbEng3.Visible = true;
+                                    gbEng3.Enabled = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -613,6 +584,8 @@ namespace GUILayer.Forms
                                     gbPortlbl4.Text = "Port: " + viz.Port.ToString();
                                     gbViz4.Visible = true;
                                     gbViz4.Enabled = viz.enable;
+                                    gbEng4.Visible = true;
+                                    gbEng4.Enabled = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -656,9 +629,6 @@ namespace GUILayer.Forms
             DataTable dt = new DataTable();
             //dt = GetDBData(cmdStr, ElectionsDBConnectionString);
             string tabName;
-            string sceneCode;
-            string sceneName = "";
-            int engine = 0;
             bool enab;
             
             for (int tabNo = 0; tabNo < 4; tabNo++)
@@ -687,13 +657,18 @@ namespace GUILayer.Forms
                         break;
                 }
 
-                cmdStr = $"SELECT * FROM FE_TabConfig WHERE Config = '{configName}' AND TabName = {tabName}";
-                //DataTable dt = new DataTable();
+                
+                cmdStr = $"SELECT * FROM FE_TabConfig WHERE Config = '{configName}' AND TabName = '{tabName}'";
                 dt = GetDBData(cmdStr, ElectionsDBConnectionString);
 
                 string tabN;
                 TabDefinitionModel td = new TabDefinitionModel();
                 List<TabOutputDef> tod = new List<TabOutputDef>();
+
+                string sceneCode;
+                string sceneName = "";
+                int engine = 0;
+                bool[] outEng = new bool[4] { false, false, false, false } ;
 
                 if (dt.Rows.Count > 0)
                 {
@@ -710,22 +685,34 @@ namespace GUILayer.Forms
                         to.sceneCode = sceneCode;
                         to.sceneName = GetScenePath(sceneCode);
                         tod.Add(to);
-                        sceneName = to.sceneName;
-                        tabConfig.Add(td);
-
+                        sceneName += $"{engine}: {GetSceneName(sceneCode)}; ";
+                        outEng[engine - 1] = true;
+                        
                     }
                     td.tabName = tabName;
                     td.showTab = enab;
-                    td.outputEngine[engine - 1] = true;
-                    td.engineSceneDef += $"{engine}: {sceneName}; ";
+                    //td.outputEngine[engine - 1] = true;
+                    td.outputEngine = outEng;
+                    //td.engineSceneDef += $"{engine}: {sceneName}; ";
+                    td.engineSceneDef = sceneName;
                     td.TabOutput.AddRange(tod);
+                    tabConfig.Add(td);
+
                 }
                 else
                 {
+                    //TabOutputDef to = new TabOutputDef();
+                    td.tabName = tabName;
+                    td.showTab = enab;
+                    td.engineSceneDef = "";
+                    td.TabOutput.AddRange(tod);
+                    tabConfig.Add(td);
 
                 }
 
             }
+
+            SetOutput();
 
             usingPrimaryMediaSequencer = true;
 
@@ -763,15 +750,44 @@ namespace GUILayer.Forms
             return  row["IP_Address"].ToString() ?? "";
             
         }
+        public string GetSceneName(string sceneCode)
+        {
+            DataTable dt = new DataTable();
+            string cmdStr = $"SELECT * FROM FE_Scenes WHERE SceneCode = '{sceneCode}'";
+            dt = GetDBData(cmdStr, ElectionsDBConnectionString);
+            string[] sceneNames;
+            string[] strSeparator = new string[] { "/" };
+            string sceneName = "";
+
+            
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                string scenePath = row["ScenePath"].ToString() ?? "";
+                sceneNames = scenePath.Split(strSeparator,StringSplitOptions.None);
+                int i = sceneNames.Length;
+                sceneName = sceneNames[i - 1];
+                return sceneName;
+                //return row["ScenePath"].ToString() ?? "";
+
+            }
+            else
+                return "";
+        }
         public string GetScenePath(string sceneCode)
         {
             DataTable dt = new DataTable();
             string cmdStr = $"SELECT * FROM FE_Scenes WHERE SceneCode = '{sceneCode}'";
             dt = GetDBData(cmdStr, ElectionsDBConnectionString);
-
-            DataRow row = dt.Rows[0];
-            return row["ScenePath"].ToString() ?? "";
-
+            
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                string scenePath = row["ScenePath"].ToString() ?? "";
+                return row["ScenePath"].ToString() ?? "";
+            }
+            else
+                return "";
         }
 
         private void vizDataReceived(ClientSocket sender, byte[] data)
@@ -977,6 +993,9 @@ namespace GUILayer.Forms
                 gbExitPolls.Visible = true;
             else
                 gbExitPolls.Visible = false;
+
+            if (!builderOnlyMode)
+                SetOutput();
         }
 
         #endregion 
@@ -3733,7 +3752,7 @@ namespace GUILayer.Forms
                 BindingList<RaceDataModel> rd = new BindingList<RaceDataModel>();
 
                 //Get the selected race list object
-                int currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+                currentRaceIndex = stackGrid.CurrentCell.RowIndex;
                 short stateNumber = stackElements[currentRaceIndex].State_Number;
                 short cd = stackElements[currentRaceIndex].CD;
                 string raceOffice = stackElements[currentRaceIndex].Office_Code;
@@ -3770,7 +3789,8 @@ namespace GUILayer.Forms
 
                 string outStr = GetRaceBoardMapkeyStr(rd, candidatesToReturn);
 
-                SendToViz(RBSceneName, outStr, 1);
+                //SendToViz(RBSceneName, outStr, 1);
+                SendToViz(outStr);
                 LiveUpdateTimer.Enabled = false;
                 LiveUpdateTimer.Enabled = true;
 
@@ -4144,7 +4164,35 @@ namespace GUILayer.Forms
             byte[] bCmd = Encoding.UTF8.GetBytes(cmd);
             vizClientSockets[EngineNo - 1].Send(bCmd);
         }
-        private void SendToViz(string sceneName, string cmd, int EngineNo)
+        private void SendToViz(string cmd)
+        {
+
+            string vizCmd = "";
+
+            int index = dataModeSelect.SelectedIndex;
+
+            for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
+            {
+                string sceneName = tabConfig[index].TabOutput[i].sceneName;
+                int engine = tabConfig[index].TabOutput[i].engine;
+                vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
+
+                if (vizEngines[engine - 1].enable)
+                {
+                    byte[] bCmd = Encoding.UTF8.GetBytes(vizCmd);
+                    if (vizEngines[engine - 1].enable)
+                        vizClientSockets[engine - 1].Send(bCmd);
+
+                }
+
+            }
+
+            
+            listBox2.Items.Add(vizCmd);
+            listBox2.SelectedIndex = listBox2.Items.Count - 1;
+
+        }
+        private void SendToViz2(string sceneName, string cmd, int EngineNo)
         {
 
             string vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
@@ -4179,10 +4227,20 @@ namespace GUILayer.Forms
             if (stackGrid.Rows.Count > 0)
             {
                 stackLocked = true;
-                LoadScene(RBSceneName, 1);
+                //LoadScene(RBSceneName, 1);
                 currentRaceIndex = -1;
                 stackGrid.CurrentCell = stackGrid.Rows[0].Cells[0];
                 panel2.BackColor = Color.Lime;
+
+                int index = dataModeSelect.SelectedIndex;
+
+                for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
+                {
+                    string scenename = tabConfig[index].TabOutput[i].sceneName;
+                    int engine = tabConfig[index].TabOutput[i].engine;
+                    if (vizEngines[engine - 1].enable)
+                        LoadScene(scenename, engine);
+                }
             }
         }
 
@@ -4222,7 +4280,22 @@ namespace GUILayer.Forms
             return dataTable;
         }
 
+        public void SetOutput()
+        {
+            int index = dataModeSelect.SelectedIndex;
+            gbEngines.Text = $"Engines used for {tabConfig[index].tabName}";
+            pbEng1.Visible = tabConfig[index].outputEngine[0];
+            pbEng2.Visible = tabConfig[index].outputEngine[1];
+            pbEng3.Visible = tabConfig[index].outputEngine[2];
+            pbEng4.Visible = tabConfig[index].outputEngine[3];
+            lblScenes.Text = $"Scenes: {tabConfig[index].engineSceneDef}";
+
+        }
+
+
         #endregion
+
+
     }
 
 }

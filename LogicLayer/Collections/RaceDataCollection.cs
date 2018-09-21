@@ -85,7 +85,7 @@ namespace LogicLayer.Collections
                             PrecinctsReporting = Convert.ToInt32(row["pctsRep"] ?? 0),
                             PercentExpectedVote = Convert.ToSingle(row["pctExpVote"] ?? 0),
                             CandidateID = Convert.ToInt32(row["cID"] ?? 0),
-                            FoxID = row["FoxID"].ToString().Trim() ?? "",
+                            FoxID = row["FoxID"].ToString().Trim() ?? "USGOV999999",
                             CandidateLastName = row["candLastName"].ToString().Trim() ?? "",
                             LastNameAir = row["LastNameAir"].ToString().Trim() ?? "",
                             CandidateFirstName = row["candFirstName"].ToString() ?? "",
@@ -108,6 +108,8 @@ namespace LogicLayer.Collections
                             RaceUseAPRaceCall = Convert.ToBoolean(row["Use_AP_Race_Call"] ?? 0),
                             RaceIgnoreGain = Convert.ToBoolean(row["IgnoreGain"] ?? 0),
                         };
+                        if (newRaceCandidateData.FoxID.Length < 10)
+                            newRaceCandidateData.FoxID = "USGOV999999";
                         raceData.Add(newRaceCandidateData);
                         candidateCount += 1;
 

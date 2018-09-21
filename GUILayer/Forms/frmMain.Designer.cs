@@ -155,6 +155,9 @@
             this.lblHostName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblMediaSequencer = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.LiveUpdateTimer = new System.Windows.Forms.Timer(this.components);
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.connectionPanel = new System.Windows.Forms.Panel();
             this.gbViz6 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -196,9 +199,25 @@
             this.gbLEDOff1 = new System.Windows.Forms.PictureBox();
             this.gbPortlbl1 = new System.Windows.Forms.Label();
             this.gbIPlbl1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.LiveUpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.lblConfig = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblNetwork = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblScenes = new System.Windows.Forms.Label();
+            this.gbEngines = new System.Windows.Forms.GroupBox();
+            this.gbEng4 = new System.Windows.Forms.GroupBox();
+            this.pbEng4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.gbEng3 = new System.Windows.Forms.GroupBox();
+            this.pbEng3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.gbEng2 = new System.Windows.Forms.GroupBox();
+            this.pbEng2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.gbEng1 = new System.Windows.Forms.GroupBox();
+            this.pbEng1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -255,6 +274,20 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.gbEngines.SuspendLayout();
+            this.gbEng4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.gbEng3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.gbEng2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.gbEng1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -267,7 +300,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(2175, 35);
+            this.menuStrip1.Size = new System.Drawing.Size(2153, 35);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -359,10 +392,10 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 1601);
+            this.statusStrip.Location = new System.Drawing.Point(0, 1695);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.statusStrip.Size = new System.Drawing.Size(2175, 30);
+            this.statusStrip.Size = new System.Drawing.Size(2153, 30);
             this.statusStrip.TabIndex = 53;
             this.statusStrip.Text = "statusStrip";
             // 
@@ -379,7 +412,7 @@
             this.lblCurrentShow.AutoSize = true;
             this.lblCurrentShow.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblCurrentShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentShow.Location = new System.Drawing.Point(188, 62);
+            this.lblCurrentShow.Location = new System.Drawing.Point(173, 49);
             this.lblCurrentShow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentShow.Name = "lblCurrentShow";
             this.lblCurrentShow.Size = new System.Drawing.Size(49, 25);
@@ -390,7 +423,7 @@
             // 
             this.lblCurrentShowHeader.AutoSize = true;
             this.lblCurrentShowHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentShowHeader.Location = new System.Drawing.Point(20, 62);
+            this.lblCurrentShowHeader.Location = new System.Drawing.Point(5, 49);
             this.lblCurrentShowHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentShowHeader.Name = "lblCurrentShowHeader";
             this.lblCurrentShowHeader.Size = new System.Drawing.Size(164, 25);
@@ -401,7 +434,7 @@
             // 
             this.lblPlaylistNameHeader.AutoSize = true;
             this.lblPlaylistNameHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(406, 62);
+            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(391, 49);
             this.lblPlaylistNameHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistNameHeader.Name = "lblPlaylistNameHeader";
             this.lblPlaylistNameHeader.Size = new System.Drawing.Size(150, 25);
@@ -412,7 +445,7 @@
             // 
             this.lblPlaylistName.AutoSize = true;
             this.lblPlaylistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistName.Location = new System.Drawing.Point(564, 62);
+            this.lblPlaylistName.Location = new System.Drawing.Point(549, 49);
             this.lblPlaylistName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistName.Name = "lblPlaylistName";
             this.lblPlaylistName.Size = new System.Drawing.Size(49, 25);
@@ -423,7 +456,7 @@
             // 
             this.lblTrioChannelHeader.AutoSize = true;
             this.lblTrioChannelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannelHeader.Location = new System.Drawing.Point(756, 62);
+            this.lblTrioChannelHeader.Location = new System.Drawing.Point(724, 49);
             this.lblTrioChannelHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrioChannelHeader.Name = "lblTrioChannelHeader";
             this.lblTrioChannelHeader.Size = new System.Drawing.Size(144, 25);
@@ -434,7 +467,7 @@
             // 
             this.lblTrioChannel.AutoSize = true;
             this.lblTrioChannel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannel.Location = new System.Drawing.Point(902, 62);
+            this.lblTrioChannel.Location = new System.Drawing.Point(870, 49);
             this.lblTrioChannel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrioChannel.Name = "lblTrioChannel";
             this.lblTrioChannel.Size = new System.Drawing.Size(49, 25);
@@ -448,11 +481,11 @@
             this.dataModeSelect.Controls.Add(this.tpBalanceOfPower);
             this.dataModeSelect.Controls.Add(this.tpReferendums);
             this.dataModeSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataModeSelect.Location = new System.Drawing.Point(12, 109);
+            this.dataModeSelect.Location = new System.Drawing.Point(7, 134);
             this.dataModeSelect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataModeSelect.Name = "dataModeSelect";
             this.dataModeSelect.SelectedIndex = 0;
-            this.dataModeSelect.Size = new System.Drawing.Size(1029, 1222);
+            this.dataModeSelect.Size = new System.Drawing.Size(1029, 1218);
             this.dataModeSelect.TabIndex = 93;
             this.dataModeSelect.SelectedIndexChanged += new System.EventHandler(this.dataModeSelect_SelectedIndexChanged);
             // 
@@ -473,7 +506,7 @@
             this.tpRaces.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpRaces.Name = "tpRaces";
             this.tpRaces.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpRaces.Size = new System.Drawing.Size(1021, 1184);
+            this.tpRaces.Size = new System.Drawing.Size(1021, 1180);
             this.tpRaces.TabIndex = 0;
             this.tpRaces.Text = "Race Boards";
             // 
@@ -1000,7 +1033,7 @@
             this.tpExitPolls.Location = new System.Drawing.Point(4, 34);
             this.tpExitPolls.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpExitPolls.Name = "tpExitPolls";
-            this.tpExitPolls.Size = new System.Drawing.Size(1021, 1184);
+            this.tpExitPolls.Size = new System.Drawing.Size(1021, 1180);
             this.tpExitPolls.TabIndex = 1;
             this.tpExitPolls.Text = "Voter Analysis";
             // 
@@ -1137,7 +1170,7 @@
             this.tpBalanceOfPower.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpBalanceOfPower.Name = "tpBalanceOfPower";
             this.tpBalanceOfPower.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpBalanceOfPower.Size = new System.Drawing.Size(1021, 1184);
+            this.tpBalanceOfPower.Size = new System.Drawing.Size(1021, 1180);
             this.tpBalanceOfPower.TabIndex = 2;
             this.tpBalanceOfPower.Text = "Balance of Power";
             // 
@@ -1202,7 +1235,7 @@
             this.tpReferendums.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpReferendums.Name = "tpReferendums";
             this.tpReferendums.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpReferendums.Size = new System.Drawing.Size(1021, 1184);
+            this.tpReferendums.Size = new System.Drawing.Size(1021, 1180);
             this.tpReferendums.TabIndex = 3;
             this.tpReferendums.Text = "Referendums";
             // 
@@ -1333,10 +1366,10 @@
             this.pnlStack.Controls.Add(this.txtStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackEntriesCount);
             this.pnlStack.Controls.Add(this.lblStackHeader);
-            this.pnlStack.Location = new System.Drawing.Point(1050, 146);
+            this.pnlStack.Location = new System.Drawing.Point(1044, 169);
             this.pnlStack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlStack.Name = "pnlStack";
-            this.pnlStack.Size = new System.Drawing.Size(1098, 1183);
+            this.pnlStack.Size = new System.Drawing.Size(1098, 1184);
             this.pnlStack.TabIndex = 120;
             // 
             // pnlUpDn
@@ -1739,7 +1772,7 @@
             // 
             this.lblIpAddress.AutoSize = true;
             this.lblIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIpAddress.Location = new System.Drawing.Point(1233, 62);
+            this.lblIpAddress.Location = new System.Drawing.Point(1189, 49);
             this.lblIpAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIpAddress.Name = "lblIpAddress";
             this.lblIpAddress.Size = new System.Drawing.Size(49, 25);
@@ -1750,7 +1783,7 @@
             // 
             this.lblHostName.AutoSize = true;
             this.lblHostName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHostName.Location = new System.Drawing.Point(1395, 62);
+            this.lblHostName.Location = new System.Drawing.Point(1351, 49);
             this.lblHostName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHostName.Name = "lblHostName";
             this.lblHostName.Size = new System.Drawing.Size(49, 25);
@@ -1761,7 +1794,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1092, 62);
+            this.label3.Location = new System.Drawing.Point(1048, 49);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(141, 25);
@@ -1772,13 +1805,42 @@
             // 
             this.lblMediaSequencer.BackColor = System.Drawing.Color.White;
             this.lblMediaSequencer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMediaSequencer.Location = new System.Drawing.Point(1050, 105);
+            this.lblMediaSequencer.Location = new System.Drawing.Point(1043, 124);
             this.lblMediaSequencer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMediaSequencer.Name = "lblMediaSequencer";
-            this.lblMediaSequencer.Size = new System.Drawing.Size(1098, 35);
+            this.lblMediaSequencer.Size = new System.Drawing.Size(1098, 41);
             this.lblMediaSequencer.TabIndex = 124;
             this.lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER:";
             this.lblMediaSequencer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(10, 1526);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(375, 164);
+            this.listBox1.TabIndex = 126;
+            // 
+            // LiveUpdateTimer
+            // 
+            this.LiveUpdateTimer.Interval = 5000;
+            this.LiveUpdateTimer.Tick += new System.EventHandler(this.LiveUpdateTimer_Tick);
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.HorizontalScrollbar = true;
+            this.listBox2.ItemHeight = 20;
+            this.listBox2.Location = new System.Drawing.Point(388, 1526);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.ScrollAlwaysVisible = true;
+            this.listBox2.Size = new System.Drawing.Size(1759, 164);
+            this.listBox2.TabIndex = 127;
             // 
             // connectionPanel
             // 
@@ -1789,11 +1851,11 @@
             this.connectionPanel.Controls.Add(this.gbViz3);
             this.connectionPanel.Controls.Add(this.gbViz2);
             this.connectionPanel.Controls.Add(this.gbViz1);
-            this.connectionPanel.Location = new System.Drawing.Point(15, 1335);
+            this.connectionPanel.Location = new System.Drawing.Point(10, 1361);
             this.connectionPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.connectionPanel.Name = "connectionPanel";
-            this.connectionPanel.Size = new System.Drawing.Size(1422, 144);
-            this.connectionPanel.TabIndex = 125;
+            this.connectionPanel.Size = new System.Drawing.Size(1422, 155);
+            this.connectionPanel.TabIndex = 128;
             // 
             // gbViz6
             // 
@@ -1860,7 +1922,6 @@
             this.gbPortlbl6.Size = new System.Drawing.Size(102, 25);
             this.gbPortlbl6.TabIndex = 1;
             this.gbPortlbl6.Text = "Port: 6100";
-            this.gbPortlbl6.Click += new System.EventHandler(this.label1_Click);
             // 
             // gbIPlbl6
             // 
@@ -2048,7 +2109,7 @@
             this.gbViz3.Controls.Add(this.gbIPlbl3);
             this.gbViz3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbViz3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbViz3.Location = new System.Drawing.Point(720, 8);
+            this.gbViz3.Location = new System.Drawing.Point(714, 8);
             this.gbViz3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbViz3.Name = "gbViz3";
             this.gbViz3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -2235,7 +2296,6 @@
             this.gbViz1.TabStop = false;
             this.gbViz1.Text = "Viz  1";
             this.gbViz1.Visible = false;
-            this.gbViz1.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // gbNamelbl1
             // 
@@ -2307,46 +2367,268 @@
             this.gbIPlbl1.TabIndex = 0;
             this.gbIPlbl1.Text = "IP: 10.232.86.84";
             // 
-            // listBox1
+            // lblConfig
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(15, 1488);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(375, 104);
-            this.listBox1.TabIndex = 126;
+            this.lblConfig.AutoSize = true;
+            this.lblConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfig.Location = new System.Drawing.Point(96, 92);
+            this.lblConfig.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblConfig.Name = "lblConfig";
+            this.lblConfig.Size = new System.Drawing.Size(49, 25);
+            this.lblConfig.TabIndex = 132;
+            this.lblConfig.Text = "N/A";
             // 
-            // LiveUpdateTimer
+            // label6
             // 
-            this.LiveUpdateTimer.Interval = 5000;
-            this.LiveUpdateTimer.Tick += new System.EventHandler(this.LiveUpdateTimer_Tick);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 92);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 25);
+            this.label6.TabIndex = 131;
+            this.label6.Text = "Config:";
             // 
-            // listBox2
+            // lblNetwork
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.HorizontalScrollbar = true;
-            this.listBox2.ItemHeight = 20;
-            this.listBox2.Location = new System.Drawing.Point(398, 1488);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.ScrollAlwaysVisible = true;
-            this.listBox2.Size = new System.Drawing.Size(1777, 104);
-            this.listBox2.TabIndex = 127;
+            this.lblNetwork.AutoSize = true;
+            this.lblNetwork.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNetwork.Location = new System.Drawing.Point(505, 92);
+            this.lblNetwork.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNetwork.Name = "lblNetwork";
+            this.lblNetwork.Size = new System.Drawing.Size(49, 25);
+            this.lblNetwork.TabIndex = 134;
+            this.lblNetwork.Text = "N/A";
+            this.lblNetwork.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(391, 92);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 25);
+            this.label4.TabIndex = 133;
+            this.label4.Text = "Nettwork:";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblScenes);
+            this.panel1.Controls.Add(this.gbEngines);
+            this.panel1.Location = new System.Drawing.Point(1446, 1361);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(696, 155);
+            this.panel1.TabIndex = 135;
+            // 
+            // lblScenes
+            // 
+            this.lblScenes.AutoSize = true;
+            this.lblScenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScenes.Location = new System.Drawing.Point(8, 125);
+            this.lblScenes.Name = "lblScenes";
+            this.lblScenes.Size = new System.Drawing.Size(90, 25);
+            this.lblScenes.TabIndex = 1;
+            this.lblScenes.Text = "Scenes: ";
+            // 
+            // gbEngines
+            // 
+            this.gbEngines.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.gbEngines.Controls.Add(this.gbEng4);
+            this.gbEngines.Controls.Add(this.gbEng3);
+            this.gbEngines.Controls.Add(this.gbEng2);
+            this.gbEngines.Controls.Add(this.gbEng1);
+            this.gbEngines.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbEngines.Location = new System.Drawing.Point(12, 3);
+            this.gbEngines.Name = "gbEngines";
+            this.gbEngines.Size = new System.Drawing.Size(675, 116);
+            this.gbEngines.TabIndex = 0;
+            this.gbEngines.TabStop = false;
+            this.gbEngines.Text = "Engines Used For RaceBoards";
+            this.gbEngines.UseWaitCursor = true;
+            // 
+            // gbEng4
+            // 
+            this.gbEng4.Controls.Add(this.pbEng4);
+            this.gbEng4.Controls.Add(this.pictureBox8);
+            this.gbEng4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbEng4.Location = new System.Drawing.Point(477, 35);
+            this.gbEng4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng4.Name = "gbEng4";
+            this.gbEng4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng4.Size = new System.Drawing.Size(100, 68);
+            this.gbEng4.TabIndex = 180;
+            this.gbEng4.TabStop = false;
+            this.gbEng4.Text = "Viz 4";
+            this.gbEng4.UseWaitCursor = true;
+            this.gbEng4.Visible = false;
+            // 
+            // pbEng4
+            // 
+            this.pbEng4.BackColor = System.Drawing.Color.Transparent;
+            this.pbEng4.Image = ((System.Drawing.Image)(resources.GetObject("pbEng4.Image")));
+            this.pbEng4.Location = new System.Drawing.Point(38, 29);
+            this.pbEng4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbEng4.Name = "pbEng4";
+            this.pbEng4.Size = new System.Drawing.Size(24, 24);
+            this.pbEng4.TabIndex = 164;
+            this.pbEng4.TabStop = false;
+            this.pbEng4.UseWaitCursor = true;
+            this.pbEng4.Visible = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(38, 29);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(24, 25);
+            this.pictureBox8.TabIndex = 163;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.UseWaitCursor = true;
+            // 
+            // gbEng3
+            // 
+            this.gbEng3.Controls.Add(this.pbEng3);
+            this.gbEng3.Controls.Add(this.pictureBox6);
+            this.gbEng3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbEng3.Location = new System.Drawing.Point(325, 35);
+            this.gbEng3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng3.Name = "gbEng3";
+            this.gbEng3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng3.Size = new System.Drawing.Size(100, 68);
+            this.gbEng3.TabIndex = 180;
+            this.gbEng3.TabStop = false;
+            this.gbEng3.Text = "Viz 3";
+            this.gbEng3.UseWaitCursor = true;
+            this.gbEng3.Visible = false;
+            // 
+            // pbEng3
+            // 
+            this.pbEng3.BackColor = System.Drawing.Color.Transparent;
+            this.pbEng3.Image = ((System.Drawing.Image)(resources.GetObject("pbEng3.Image")));
+            this.pbEng3.Location = new System.Drawing.Point(38, 29);
+            this.pbEng3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbEng3.Name = "pbEng3";
+            this.pbEng3.Size = new System.Drawing.Size(24, 24);
+            this.pbEng3.TabIndex = 164;
+            this.pbEng3.TabStop = false;
+            this.pbEng3.UseWaitCursor = true;
+            this.pbEng3.Visible = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(38, 29);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(24, 25);
+            this.pictureBox6.TabIndex = 163;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.UseWaitCursor = true;
+            // 
+            // gbEng2
+            // 
+            this.gbEng2.Controls.Add(this.pbEng2);
+            this.gbEng2.Controls.Add(this.pictureBox4);
+            this.gbEng2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbEng2.Location = new System.Drawing.Point(173, 35);
+            this.gbEng2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng2.Name = "gbEng2";
+            this.gbEng2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng2.Size = new System.Drawing.Size(100, 68);
+            this.gbEng2.TabIndex = 180;
+            this.gbEng2.TabStop = false;
+            this.gbEng2.Text = "Viz 2";
+            this.gbEng2.UseWaitCursor = true;
+            this.gbEng2.Visible = false;
+            // 
+            // pbEng2
+            // 
+            this.pbEng2.BackColor = System.Drawing.Color.Transparent;
+            this.pbEng2.Image = ((System.Drawing.Image)(resources.GetObject("pbEng2.Image")));
+            this.pbEng2.Location = new System.Drawing.Point(38, 29);
+            this.pbEng2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbEng2.Name = "pbEng2";
+            this.pbEng2.Size = new System.Drawing.Size(24, 24);
+            this.pbEng2.TabIndex = 164;
+            this.pbEng2.TabStop = false;
+            this.pbEng2.UseWaitCursor = true;
+            this.pbEng2.Visible = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(38, 29);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(24, 25);
+            this.pictureBox4.TabIndex = 163;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.UseWaitCursor = true;
+            // 
+            // gbEng1
+            // 
+            this.gbEng1.Controls.Add(this.pbEng1);
+            this.gbEng1.Controls.Add(this.pictureBox2);
+            this.gbEng1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbEng1.Location = new System.Drawing.Point(21, 35);
+            this.gbEng1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng1.Name = "gbEng1";
+            this.gbEng1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbEng1.Size = new System.Drawing.Size(100, 68);
+            this.gbEng1.TabIndex = 179;
+            this.gbEng1.TabStop = false;
+            this.gbEng1.Text = "Viz 1";
+            this.gbEng1.UseWaitCursor = true;
+            this.gbEng1.Visible = false;
+            // 
+            // pbEng1
+            // 
+            this.pbEng1.BackColor = System.Drawing.Color.Transparent;
+            this.pbEng1.Image = ((System.Drawing.Image)(resources.GetObject("pbEng1.Image")));
+            this.pbEng1.Location = new System.Drawing.Point(38, 29);
+            this.pbEng1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbEng1.Name = "pbEng1";
+            this.pbEng1.Size = new System.Drawing.Size(24, 24);
+            this.pbEng1.TabIndex = 164;
+            this.pbEng1.TabStop = false;
+            this.pbEng1.UseWaitCursor = true;
+            this.pbEng1.Visible = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(38, 29);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(24, 25);
+            this.pictureBox2.TabIndex = 163;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.UseWaitCursor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(2175, 1631);
+            this.ClientSize = new System.Drawing.Size(2153, 1725);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lblNetwork);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblConfig);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.connectionPanel);
+            this.Controls.Add(this.pnlStack);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.connectionPanel);
             this.Controls.Add(this.lblMediaSequencer);
-            this.Controls.Add(this.pnlStack);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblHostName);
             this.Controls.Add(this.lblIpAddress);
@@ -2441,6 +2723,21 @@
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.gbEngines.ResumeLayout(false);
+            this.gbEng4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.gbEng3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.gbEng2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.gbEng1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEng1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2543,43 +2840,6 @@
         private System.Windows.Forms.ToolStripMenuItem usePrimaryMediaSequencerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useBackupMediaSequencerToolStripMenuItem;
         private System.Windows.Forms.Label lblMediaSequencer;
-        private System.Windows.Forms.Panel connectionPanel;
-        private System.Windows.Forms.GroupBox gbViz1;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.PictureBox gbLEDOn1;
-        private System.Windows.Forms.PictureBox gbLEDOff1;
-        private System.Windows.Forms.Label gbPortlbl1;
-        private System.Windows.Forms.Label gbIPlbl1;
-        private System.Windows.Forms.GroupBox gbViz2;
-        private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.PictureBox gbLEDOn2;
-        private System.Windows.Forms.PictureBox gbLEDOff2;
-        private System.Windows.Forms.Label gbPortlbl2;
-        private System.Windows.Forms.Label gbIPlbl2;
-        private System.Windows.Forms.GroupBox gbViz6;
-        private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.PictureBox gbLEDOn6;
-        private System.Windows.Forms.PictureBox gbLEDOff6;
-        private System.Windows.Forms.Label gbPortlbl6;
-        private System.Windows.Forms.Label gbIPlbl6;
-        private System.Windows.Forms.GroupBox gbViz5;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.PictureBox gbLEDOn5;
-        private System.Windows.Forms.PictureBox gbLEDOff5;
-        private System.Windows.Forms.Label gbPortlbl5;
-        private System.Windows.Forms.Label gbIPlbl5;
-        private System.Windows.Forms.GroupBox gbViz4;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.PictureBox gbLEDOn4;
-        private System.Windows.Forms.PictureBox gbLEDOff4;
-        private System.Windows.Forms.Label gbPortlbl4;
-        private System.Windows.Forms.Label gbIPlbl4;
-        private System.Windows.Forms.GroupBox gbViz3;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.PictureBox gbLEDOn3;
-        private System.Windows.Forms.PictureBox gbLEDOff3;
-        private System.Windows.Forms.Label gbPortlbl3;
-        private System.Windows.Forms.Label gbIPlbl3;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -2612,11 +2872,67 @@
         private System.Windows.Forms.Button btnStackElementDown;
         private System.Windows.Forms.Button btnStackElementUp;
         private System.Windows.Forms.Timer LiveUpdateTimer;
-        private System.Windows.Forms.Label gbNamelbl4;
-        private System.Windows.Forms.Label gbNamelbl3;
-        private System.Windows.Forms.Label gbNamelbl2;
-        private System.Windows.Forms.Label gbNamelbl1;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Panel connectionPanel;
+        private System.Windows.Forms.GroupBox gbViz6;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.PictureBox gbLEDOn6;
+        private System.Windows.Forms.PictureBox gbLEDOff6;
+        private System.Windows.Forms.Label gbPortlbl6;
+        private System.Windows.Forms.Label gbIPlbl6;
+        private System.Windows.Forms.GroupBox gbViz5;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.PictureBox gbLEDOn5;
+        private System.Windows.Forms.PictureBox gbLEDOff5;
+        private System.Windows.Forms.Label gbPortlbl5;
+        private System.Windows.Forms.Label gbIPlbl5;
+        private System.Windows.Forms.GroupBox gbViz4;
+        private System.Windows.Forms.Label gbNamelbl4;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.PictureBox gbLEDOn4;
+        private System.Windows.Forms.PictureBox gbLEDOff4;
+        private System.Windows.Forms.Label gbPortlbl4;
+        private System.Windows.Forms.Label gbIPlbl4;
+        private System.Windows.Forms.GroupBox gbViz3;
+        private System.Windows.Forms.Label gbNamelbl3;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.PictureBox gbLEDOn3;
+        private System.Windows.Forms.PictureBox gbLEDOff3;
+        private System.Windows.Forms.Label gbPortlbl3;
+        private System.Windows.Forms.Label gbIPlbl3;
+        private System.Windows.Forms.GroupBox gbViz2;
+        private System.Windows.Forms.Label gbNamelbl2;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.PictureBox gbLEDOn2;
+        private System.Windows.Forms.PictureBox gbLEDOff2;
+        private System.Windows.Forms.Label gbPortlbl2;
+        private System.Windows.Forms.Label gbIPlbl2;
+        private System.Windows.Forms.GroupBox gbViz1;
+        private System.Windows.Forms.Label gbNamelbl1;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.PictureBox gbLEDOn1;
+        private System.Windows.Forms.PictureBox gbLEDOff1;
+        private System.Windows.Forms.Label gbPortlbl1;
+        private System.Windows.Forms.Label gbIPlbl1;
+        private System.Windows.Forms.Label lblConfig;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblNetwork;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblScenes;
+        private System.Windows.Forms.GroupBox gbEngines;
+        private System.Windows.Forms.GroupBox gbEng4;
+        private System.Windows.Forms.PictureBox pbEng4;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.GroupBox gbEng3;
+        private System.Windows.Forms.PictureBox pbEng3;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.GroupBox gbEng2;
+        private System.Windows.Forms.PictureBox pbEng2;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.GroupBox gbEng1;
+        private System.Windows.Forms.PictureBox pbEng1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
