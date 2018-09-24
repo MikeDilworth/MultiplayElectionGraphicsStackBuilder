@@ -203,7 +203,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblNetwork = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.enginePanel = new System.Windows.Forms.Panel();
             this.lblScenes = new System.Windows.Forms.Label();
             this.gbEngines = new System.Windows.Forms.GroupBox();
             this.gbEng4 = new System.Windows.Forms.GroupBox();
@@ -274,7 +274,7 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.enginePanel.SuspendLayout();
             this.gbEngines.SuspendLayout();
             this.gbEng4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbEng4)).BeginInit();
@@ -1487,7 +1487,7 @@
             this.btnTake.Name = "btnTake";
             this.btnTake.Size = new System.Drawing.Size(270, 214);
             this.btnTake.TabIndex = 143;
-            this.btnTake.Text = "Take\r\n(Space)";
+            this.btnTake.Text = "Take\r\n Next(Space)";
             this.btnTake.UseVisualStyleBackColor = false;
             this.btnTake.Click += new System.EventHandler(this.btnTake_Click);
             // 
@@ -2414,14 +2414,14 @@
             this.label4.TabIndex = 133;
             this.label4.Text = "Nettwork:";
             // 
-            // panel1
+            // enginePanel
             // 
-            this.panel1.Controls.Add(this.lblScenes);
-            this.panel1.Controls.Add(this.gbEngines);
-            this.panel1.Location = new System.Drawing.Point(1446, 1361);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(696, 155);
-            this.panel1.TabIndex = 135;
+            this.enginePanel.Controls.Add(this.lblScenes);
+            this.enginePanel.Controls.Add(this.gbEngines);
+            this.enginePanel.Location = new System.Drawing.Point(1439, 1361);
+            this.enginePanel.Name = "enginePanel";
+            this.enginePanel.Size = new System.Drawing.Size(696, 155);
+            this.enginePanel.TabIndex = 135;
             // 
             // lblScenes
             // 
@@ -2619,7 +2619,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(2153, 1725);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.enginePanel);
             this.Controls.Add(this.lblNetwork);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblConfig);
@@ -2723,8 +2723,8 @@
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOn1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbLEDOff1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.enginePanel.ResumeLayout(false);
+            this.enginePanel.PerformLayout();
             this.gbEngines.ResumeLayout(false);
             this.gbEng4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbEng4)).EndInit();
@@ -2918,7 +2918,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblNetwork;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel enginePanel;
         private System.Windows.Forms.Label lblScenes;
         private System.Windows.Forms.GroupBox gbEngines;
         private System.Windows.Forms.GroupBox gbEng4;

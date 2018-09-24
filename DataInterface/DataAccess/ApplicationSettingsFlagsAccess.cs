@@ -113,8 +113,8 @@ namespace DataInterface.DataAccess
                                 cmd.Parameters.Add("@HostPC_Name", SqlDbType.NVarChar).Value = hostPC_Name;
                                 cmd.Parameters.Add("@HostPC_IP_Address", SqlDbType.NVarChar).Value = hostPC_IP_Address;
                                 cmd.Parameters.Add("@Engine_Enabled_1", SqlDbType.Bit).Value = engine_Enabled_1;
-                                cmd.Parameters.Add("Engine_IP_Address_1", SqlDbType.NVarChar).Value = engine_IP_Address_2;
-                                cmd.Parameters.Add("@Engine_Enabled_2", SqlDbType.Bit).Value = engine_Enabled_1;
+                                cmd.Parameters.Add("Engine_IP_Address_1", SqlDbType.NVarChar).Value = engine_IP_Address_1;
+                                cmd.Parameters.Add("@Engine_Enabled_2", SqlDbType.Bit).Value = engine_Enabled_2;
                                 cmd.Parameters.Add("Engine_IP_Address_2", SqlDbType.NVarChar).Value = engine_IP_Address_2;
                                 cmd.Parameters.Add("Entry_Text", SqlDbType.NVarChar).Value = entry_Text;
                                 cmd.Parameters.Add("@Application_Version", SqlDbType.NVarChar).Value = application_Version;

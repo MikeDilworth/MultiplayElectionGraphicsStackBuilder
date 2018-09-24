@@ -297,31 +297,6 @@ namespace GUILayer.Forms
                 // Set connection string for functions to get simulated time
                 TimeFunctions.ElectionsDBConnectionString = ElectionsDBConnectionString;
 
-                // Make entry into applications log
-                ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
-                ipAddress = HostIPNameFunctions.GetLocalIPAddress();
-                hostName = HostIPNameFunctions.GetHostName(ipAddress);
-                lblIpAddress.Text = ipAddress;
-                lblHostName.Text = hostName; 
-
-                // Post application log entry
-                applicationSettingsFlagsAccess.ElectionsDBConnectionString = ElectionsDBConnectionString;
-                applicationSettingsFlagsAccess.PostApplicationLogEntry(
-                    Properties.Settings.Default.ApplicationName,
-                    Properties.Settings.Default.ApplicationName,
-                    hostName,
-                    ipAddress,
-                    // Engines not used for this application
-                    false,
-                    "",
-                    false,
-                    "",
-                    "Launched application",
-                    Convert.ToString(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version), 
-                    Properties.Settings.Default.ApplicationID,
-                    "",
-                    System.DateTime.Now
-                );
 
                 // Set version number
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
@@ -346,7 +321,17 @@ namespace GUILayer.Forms
         // Handler for main form load
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
+
+            string[] IPs = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
+            bool[] enables = new bool[4] { false, false, false, false };
+
+            // Make entry into applications log
+            ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
+            ipAddress = HostIPNameFunctions.GetLocalIPAddress();
+            hostName = HostIPNameFunctions.GetHostName(ipAddress);
+            lblIpAddress.Text = ipAddress;
+            lblHostName.Text = hostName;
+
             // Read in config settings - default to Media Sequencer #1
             mseEndpoint1 = Properties.Settings.Default.MSEEndpoint1;
             mseEndpoint2 = Properties.Settings.Default.MSEEndpoint2;
@@ -396,6 +381,7 @@ namespace GUILayer.Forms
             
             this.Size = new Size(1462, 991);
             connectionPanel.Visible = false;
+            enginePanel.Visible = false;
             listBox1.Visible = false;
             listBox2.Visible = false;
             panel3.Size = new Size(648, 155);
@@ -416,6 +402,7 @@ namespace GUILayer.Forms
                 lblConfig.Text = configName;
                 lblNetwork.Text = Network;
                 connectionPanel.Visible = true;
+                enginePanel.Visible = true;
                 listBox1.Visible = true;
                 listBox2.Visible = true;
                 stackGrid.Size = new Size(648, 468);
@@ -491,7 +478,7 @@ namespace GUILayer.Forms
                 var engineInfo = Properties.Settings.Default["Engine1_IPAddress"];
                 string engineData;
                 string engineStr;
-
+                
                 // read engine info until no more engines found
                 while (done == false)
                 {
@@ -550,6 +537,8 @@ namespace GUILayer.Forms
                                     gbViz1.Enabled = viz.enable;
                                     gbEng1.Visible = true;
                                     gbEng1.Enabled = viz.enable;
+                                    IPs[0] = viz.IPAddress;
+                                    enables[0] = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -562,6 +551,8 @@ namespace GUILayer.Forms
                                     gbViz2.Enabled = viz.enable;
                                     gbEng2.Visible = true;
                                     gbEng2.Enabled = viz.enable;
+                                    IPs[1] = viz.IPAddress;
+                                    enables[1] = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -574,6 +565,8 @@ namespace GUILayer.Forms
                                     gbViz3.Enabled = viz.enable;
                                     gbEng3.Visible = true;
                                     gbEng3.Enabled = viz.enable;
+                                    IPs[2] = viz.IPAddress;
+                                    enables[2] = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -586,6 +579,8 @@ namespace GUILayer.Forms
                                     gbViz4.Enabled = viz.enable;
                                     gbEng4.Visible = true;
                                     gbEng4.Enabled = viz.enable;
+                                    IPs[3] = viz.IPAddress;
+                                    enables[3] = viz.enable;
                                     if (viz.enable)
                                         vizClientSockets[i - 1].Connect();
                                     break;
@@ -723,7 +718,33 @@ namespace GUILayer.Forms
             lblMediaSequencer.BackColor = System.Drawing.Color.White;
             usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
             useBackupMediaSequencerToolStripMenuItem.Checked = false;
+
+            // Make entry into applications log
             
+            // Post application log entry
+            applicationSettingsFlagsAccess.ElectionsDBConnectionString = ElectionsDBConnectionString;
+            applicationSettingsFlagsAccess.PostApplicationLogEntry(
+                Properties.Settings.Default.ApplicationName,
+                Properties.Settings.Default.ApplicationName,
+                hostName,
+                ipAddress,
+                enables[0],
+                IPs[0],
+                enables[1],
+                IPs[1],
+                "Launched application",
+                Convert.ToString(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version),
+                Properties.Settings.Default.ApplicationID,
+                "",
+                System.DateTime.Now
+                //enables[2],
+                //IPs[2],
+                //enables[3],
+                //IPs[3]
+
+            );
+
+
         }
         public void ConnectToVizEngines()
         {
@@ -1050,7 +1071,7 @@ namespace GUILayer.Forms
         {
             try
             {
-                // Setup the available races collection
+                // Setup the application flags
                 this.applicationSettingsFlagsCollection = new ApplicationSettingsFlagsCollection();
                 this.applicationSettingsFlagsCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
                 applicationFlags = this.applicationSettingsFlagsCollection.GetFlagsCollection();
@@ -1693,8 +1714,12 @@ namespace GUILayer.Forms
                         stackDescription = saveStack.StackDescription;
                         stackMetadata.ixStackID = stackID;
                         stackMetadata.StackName = stackDescription;
-                        
-                        stackMetadata.StackType = 0;
+
+                        if (builderOnlyMode == false)
+                            stackMetadata.StackType = (short)(10 + dataModeSelect.SelectedIndex);
+                        else
+                            stackMetadata.StackType = 0;
+
                         stackMetadata.ShowName = currentShowName;
                         stackMetadata.ConceptID = conceptID;
                         stackMetadata.ConceptName = conceptName;
