@@ -26,6 +26,7 @@ namespace LogicLayer.Collections
         public static Boolean UseSimulatedTime { get; set; }
         public static Boolean ShowRacesBeforePollClosing { get; set; }
         public static Boolean ShowTenthsofPercent { get; set; }
+        public static Boolean PollClosingLockout { get; set; }
         #endregion
 
         #region Public Methods
@@ -90,6 +91,7 @@ namespace LogicLayer.Collections
             UseSimulatedTime = flags.UseSimulatedElectionDayTime;
             ShowRacesBeforePollClosing = flags.OptionalFlag1;
             ShowTenthsofPercent = flags.UseTenthsOfPercent;
+            PollClosingLockout = flags.PollClosingLockoutEnable;
             
 
             // Return 

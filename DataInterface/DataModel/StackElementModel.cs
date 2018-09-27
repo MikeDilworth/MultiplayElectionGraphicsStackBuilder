@@ -15,6 +15,7 @@ namespace DataInterface.DataModel
         public Double fkey_StackID { get; set; }
         public Int64 Stack_Element_ID { get; set; }
         public Int16 Stack_Element_Type { get; set; }
+        public Int16 Stack_Element_Data_Type { get; set; }
         public string Stack_Element_Description { get; set; }
         public string Stack_Element_TemplateID { get; set; }
 

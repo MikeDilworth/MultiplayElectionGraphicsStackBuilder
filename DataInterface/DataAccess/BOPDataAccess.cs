@@ -27,7 +27,7 @@ namespace DataInterface.DataAccess
         /// <summary>
         /// Method to get the Balance of Power Data
         /// </summary>
-        public DataTable GetBOPData(string raceOffice, string timeStr, string electionType)
+        public DataTable GetBOPData(string raceOffice, DateTime timeStr, int atStake)
         {
             DataTable dataTable = new DataTable();
 
@@ -43,8 +43,10 @@ namespace DataInterface.DataAccess
                         {
                             cmd.CommandText = SQLCommands.sqlGetBOPData;
                             cmd.Parameters.Add("@Race_Office", SqlDbType.Text).Value = raceOffice;
-                            cmd.Parameters.Add("@timeStr", SqlDbType.Text).Value = timeStr;
-                            cmd.Parameters.Add("@new", SqlDbType.Text).Value = electionType;
+                            cmd.Parameters.Add("@timeStr", SqlDbType.DateTime).Value = timeStr;
+                            //cmd.Parameters.Add("@timeStr", SqlDbType.Text).Value = timeStr;
+                            cmd.Parameters.Add("@new", SqlDbType.Bit).Value = atStake;
+                            //cmd.Parameters.Add("@new", SqlDbType.Text).Value = electionType;
                             sqlDataAdapter.SelectCommand = cmd;
                             sqlDataAdapter.SelectCommand.Connection = connection;
                             sqlDataAdapter.SelectCommand.CommandType = CommandType.Text;

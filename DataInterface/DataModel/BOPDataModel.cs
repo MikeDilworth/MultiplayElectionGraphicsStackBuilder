@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataInterface.DataModel
 {
-    public class BOPData
+    public class BOPDataModel
     {
         public Int16 BOPType { get; set; }
         public string Branch { get; set; }

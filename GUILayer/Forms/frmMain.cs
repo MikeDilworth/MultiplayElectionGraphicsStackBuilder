@@ -22,6 +22,7 @@ using MSEInterface;
 using MSEInterface.Constants;
 using AsyncClientSocket;
 using System.Data.SqlClient;
+using System.IO;
 
 // Required for implementing logging to status bar
 
@@ -40,6 +41,7 @@ namespace GUILayer.Forms
         #region Globals
         Boolean nonNumberEntered = false;
         public static Boolean UseSimulatedTime = false;
+        public static Boolean PollClosinglockout = false;
         DateTime referenceTime = DateTime.MaxValue;
 
         string elementCollectionURIShow;
@@ -297,7 +299,7 @@ namespace GUILayer.Forms
                 // Set connection string for functions to get simulated time
                 TimeFunctions.ElectionsDBConnectionString = ElectionsDBConnectionString;
 
-
+                
                 // Set version number
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 this.Text = String.Format("Election Graphics Stack Builder Application  Version {0}", version);
@@ -1079,6 +1081,7 @@ namespace GUILayer.Forms
                 ApplicationSettingsFlagsModel flags = null;
                 flags = applicationFlags[0];
                 UseSimulatedTime = flags.UseSimulatedElectionDayTime;
+                PollClosinglockout = flags.PollClosingLockoutEnable;
             }
 
             catch (Exception ex)
@@ -1363,10 +1366,11 @@ namespace GUILayer.Forms
         {
             Int16 seType = (short)StackElementTypes.Race_Board_1_Way;
             string seDescription = "Race Board (1-Way)";
+            Int16 seDataType = (int)DataTypes.Race_Boards;
 
             if (insertNext == true)
             {
-                AddRaceBoardToStack(seType, seDescription);
+                AddRaceBoardToStack(seType, seDescription, seDataType);
             }
             else
             {
@@ -1390,7 +1394,9 @@ namespace GUILayer.Forms
         {
             Int16 seType = (short)StackElementTypes.Race_Board_2_Way;
             string seDescription = "Race Board (2-Way)";
-            AddRaceBoardToStack(seType, seDescription);
+            Int16 seDataType = (int)DataTypes.Race_Boards;
+
+            AddRaceBoardToStack(seType, seDescription, seDataType);
         }
 
         // Handler for Add 3-Way race board button
@@ -1398,18 +1404,22 @@ namespace GUILayer.Forms
         {
             Int16 seType = (short)StackElementTypes.Race_Board_3_Way;
             string seDescription = "Race Board (3-Way)";
-            AddRaceBoardToStack(seType, seDescription);
+            Int16 seDataType = (int)DataTypes.Race_Boards;
+
+            AddRaceBoardToStack(seType, seDescription, seDataType);
         }
 
         private void btnAddRace4Way_Click(object sender, EventArgs e)
         {
             Int16 seType = (short)StackElementTypes.Race_Board_4_Way;
             string seDescription = "Race Board (4-Way)";
-            AddRaceBoardToStack(seType, seDescription);    
+            Int16 seDataType = (int)DataTypes.Race_Boards;
+
+            AddRaceBoardToStack(seType, seDescription, seDataType);
         }
 
         // Generic method to add a race board to a stack
-        private void AddRaceBoardToStack(Int16 stackElementType, string stackElementDescription)
+        private void AddRaceBoardToStack(Int16 stackElementType, string stackElementDescription, Int16 stackElementDataType)
         {
             try
             {
@@ -1424,6 +1434,7 @@ namespace GUILayer.Forms
                 newStackElement.fkey_StackID = stackID;
                 newStackElement.Stack_Element_ID = stackElements.Count;
                 newStackElement.Stack_Element_Type = stackElementType;
+                newStackElement.Stack_Element_Data_Type = stackElementDataType;
                 newStackElement.Stack_Element_Description = stackElementDescription;
                 
                 // Get the template ID for the specified element type & concept ID
@@ -1483,11 +1494,13 @@ namespace GUILayer.Forms
         {
             Int16 seType = (short)StackElementTypes.Race_Board_2_Way;
             string seDescription = "Race Board (2-Way)";
+            Int16 seDataType = (int)DataTypes.Race_Boards;
+
             Int16 i = 0;
             foreach (DataGridViewRow rowNum in availableRacesGrid.Rows)
             {
                 availableRacesGrid.CurrentCell = availableRacesGrid.Rows[i].Cells[0];
-                AddRaceBoardToStack(seType, seDescription);
+                AddRaceBoardToStack(seType, seDescription, seDataType);
                 i++;
             }
         }
@@ -2869,6 +2882,7 @@ namespace GUILayer.Forms
                 newStackElement.fkey_StackID = 0;
                 newStackElement.Stack_Element_ID = stackElements.Count;
                 newStackElement.Stack_Element_Type = eType;
+                newStackElement.Stack_Element_Data_Type = (Int16)DataTypes.Balance_of_Power;
                 newStackElement.Stack_Element_Description = "Balance Of Power";
                 // Get the template ID for the specified element type
                 newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, eType);
@@ -2951,6 +2965,7 @@ namespace GUILayer.Forms
                 newStackElement.fkey_StackID = 0;
                 newStackElement.Stack_Element_ID = stackElements.Count;
                 newStackElement.Stack_Element_Type = (short)StackElementTypes.Exit_Poll_Full_Screen;
+                newStackElement.Stack_Element_Data_Type = (short)DataTypes.Exit_Polls;
                 newStackElement.Stack_Element_Description = "Exit Poll";
                 // Get the template ID for the specified element type
                 newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, (short)StackElementTypes.Exit_Poll_Full_Screen);
@@ -3063,6 +3078,7 @@ namespace GUILayer.Forms
                 newStackElement.fkey_StackID = 0;
                 newStackElement.Stack_Element_ID = stackElements.Count;
                 newStackElement.Stack_Element_Type = (short)StackElementTypes.Referendums;
+                newStackElement.Stack_Element_Data_Type = (short)DataTypes.Referendums;
                 newStackElement.Stack_Element_Description = "Referendums";
                 // Get the template ID for the specified element type
                 newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, (short)StackElementTypes.Referendums);
@@ -3525,6 +3541,7 @@ namespace GUILayer.Forms
                 newStackElement.fkey_StackID = 0;
                 newStackElement.Stack_Element_ID = stackElements.Count;
                 newStackElement.Stack_Element_Type = (short)eType;
+                newStackElement.Stack_Element_Data_Type = (short)DataTypes.Race_Boards;
                 newStackElement.Stack_Element_Description = eDesc;
                 
                 // Get the template ID for the specified element type
@@ -3774,55 +3791,180 @@ namespace GUILayer.Forms
         {
             if (stackGrid.Rows.Count > 0)
             {
-                BindingList<RaceDataModel> rd = new BindingList<RaceDataModel>();
 
-                //Get the selected race list object
                 currentRaceIndex = stackGrid.CurrentCell.RowIndex;
-                short stateNumber = stackElements[currentRaceIndex].State_Number;
-                short cd = stackElements[currentRaceIndex].CD;
-                string raceOffice = stackElements[currentRaceIndex].Office_Code;
-                string electionType = stackElements[currentRaceIndex].Election_Type;
-                int candidatesToReturn = (int)stackElements[currentRaceIndex].Stack_Element_Type;
-                bool candidateSelectEnable;
+                Int16 stackElementDataType = (Int16)stackElements[currentRaceIndex].Stack_Element_Data_Type;
 
-                if ((int)stackElements[currentRaceIndex].Stack_Element_Type % 2 == 0)
-                    candidateSelectEnable = true;
-                else
-                    candidateSelectEnable = false;
-
-                int cand1 = stackElements[currentRaceIndex].Race_CandidateID_1;
-                int cand2 = stackElements[currentRaceIndex].Race_CandidateID_2;
-                int cand3 = stackElements[currentRaceIndex].Race_CandidateID_3;
-                int cand4 = stackElements[currentRaceIndex].Race_CandidateID_4;
-
-                candidatesToReturn = (candidatesToReturn + 1) / 2;
-                //rd = GetRaceData(stateNumber, raceOffice, cd, electionType, (short)candidatesToReturn);
-                rd = GetRaceData(stateNumber, raceOffice, cd, electionType, (short)candidatesToReturn, candidateSelectEnable, cand1, cand2, cand3, cand4);
-
-                string dataStr = $"{rd[0].StateName} {rd[0].OfficeName}";
-
-
-                for (int i = 0; i < candidatesToReturn; i++)
+                switch (stackElementDataType)
                 {
-                    dataStr += $" - {rd[i].CandidateLastName} {rd[i].CandidateVoteCount}";
+                    case (short)DataTypes.Race_Boards:
+                        TakeRaceBoards();
+                        break;
+
+                    case (short)DataTypes.Balance_of_Power:
+                        TakeBOP();
+                        break;
+
+                    case (short)DataTypes.Referendums:
+                        //TakeRaceBoards();
+                        break;
+
+
 
                 }
-
-
-                listBox1.Items.Add(dataStr);
-                listBox1.SelectedIndex = listBox1.Items.Count - 1;
-
-                string outStr = GetRaceBoardMapkeyStr(rd, candidatesToReturn);
-
-                //SendToViz(RBSceneName, outStr, 1);
-                SendToViz(outStr);
-                LiveUpdateTimer.Enabled = false;
-                LiveUpdateTimer.Enabled = true;
-
             }
         }
 
-        
+        public void TakeBOP()
+        {
+            currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+            int seType = (int)stackElements[currentRaceIndex].Stack_Element_Type;
+            int seDataType = (int)stackElements[currentRaceIndex].Stack_Element_Data_Type;
+
+            string ofc = "H";
+            string office = "HOUSE";
+
+            if ((int)stackElements[currentRaceIndex].Stack_Element_Type % 2 == 0)
+            {
+                ofc = "H";
+                office = "HOUSE";
+
+            }
+            else
+            {
+                ofc = "S";
+                office = "SENATE";
+
+            }
+
+            DateTime currentTime = TimeFunctions.GetTime();
+            string currTime = currentTime.ToString();
+
+            
+            int BOPtion = (((int)stackElements[currentRaceIndex].Stack_Element_Type - 10) / 2);
+
+            
+            
+            DataTable dt = new DataTable();
+            BOPDataAccess bop = new BOPDataAccess();
+            bop.ElectionsDBConnectionString = ElectionsDBConnectionString;
+            int curNew = BOPtion;
+            if (BOPtion == 2)
+                curNew = 0;
+            dt = bop.GetBOPData(ofc, currentTime, curNew);
+
+            BOPDataModel BOPData = new BOPDataModel();
+            DataRow row = dt.Rows[0];
+
+            BOPData.Total = Convert.ToInt16(row["TOTAL_COUNT"]);
+            BOPData.DemBaseline = Convert.ToInt16(row["DEM_BASELINE_COUNT"]);
+            BOPData.RepBaseline = Convert.ToInt16(row["GOP_BASELINE_COUNT"]);
+            BOPData.IndBaseline  = Convert.ToInt16(row["IND_BASELINE_COUNT"]);
+            BOPData.DemCount = Convert.ToInt16(row["DEM_COUNT"]);
+            BOPData.RepCount = Convert.ToInt16(row["GOP_COUNT"]);
+            BOPData.IndCount = Convert.ToInt16(row["IND_COUNT"]);
+            BOPData.DemDelta = Convert.ToInt16(row["DEM_DELTA"]);
+            BOPData.RepDelta = Convert.ToInt16(row["GOP_DELTA"]);
+            BOPData.IndDelta = Convert.ToInt16(row["IND_DELTA"]);
+            BOPData.Branch = office;
+
+            if (BOPtion == 0)
+                BOPData.Session = "CURRENT";
+            else
+                BOPData.Session = "NEW";
+
+
+            string outStr = GetBOPMapKeyStr(BOPData, ofc, BOPtion);
+
+        }
+
+        public string GetBOPMapKeyStr(BOPDataModel BOPData, string  ofc, int BOPtion)
+        {
+            //Variables – 
+            //SENATE or HOUSE
+            //CURRENT / NEW
+
+            //BOP_DATA = SENATE ^ CURRENT~RepNum = 10 | RepNetChange = 10 | DemNum = 20 | DemNetChange = 20 | IndNum = 1 | IndNetChange = 1
+
+            //(for net gain)
+            //BOP_DATA = NET_GAIN~HouseNum | SenNum
+
+            string MapKeyStr;
+
+            if (BOPtion < 2)
+            {
+                MapKeyStr = $"BOP_DATA = {BOPData.Branch} ^ {BOPData.Session}~";
+                if (BOPtion == 0)
+                    MapKeyStr += $"{BOPData.RepBaseline} | {BOPData.RepDelta} | {BOPData.DemBaseline} | {BOPData.DemDelta} | {BOPData.IndBaseline} | {BOPData.IndDelta}";
+                else
+                    MapKeyStr += $"{BOPData.RepCount} | {BOPData.RepDelta} | {BOPData.DemCount} | {BOPData.DemDelta} | {BOPData.IndCount} | {BOPData.IndDelta}";
+            }
+            else
+            {
+                // BOP_DATA = NET_GAIN~party^HouseNum|party^SenNum
+
+                MapKeyStr = $"BOP_DATA = NET_GAIN~{BOPData.Branch} ^ {BOPData.Session}~";
+
+            }
+
+            return MapKeyStr;
+
+        }
+
+        public void TakeRaceBoards()
+        {
+            BindingList<RaceDataModel> rd = new BindingList<RaceDataModel>();
+
+            //Get the selected race list object
+            currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+            short stateNumber = stackElements[currentRaceIndex].State_Number;
+            short cd = stackElements[currentRaceIndex].CD;
+            string raceOffice = stackElements[currentRaceIndex].Office_Code;
+            string electionType = stackElements[currentRaceIndex].Election_Type;
+            int candidatesToReturn = (int)stackElements[currentRaceIndex].Stack_Element_Type;
+            bool candidateSelectEnable;
+
+            candidatesToReturn = (candidatesToReturn + 1) / 2;
+            if ((int)stackElements[currentRaceIndex].Stack_Element_Type % 2 == 0)
+                candidateSelectEnable = true;
+            else
+                candidateSelectEnable = false;
+
+            int cand1 = stackElements[currentRaceIndex].Race_CandidateID_1;
+            int cand2 = stackElements[currentRaceIndex].Race_CandidateID_2;
+            int cand3 = stackElements[currentRaceIndex].Race_CandidateID_3;
+            int cand4 = stackElements[currentRaceIndex].Race_CandidateID_4;
+
+            rd = GetRaceData(stateNumber, raceOffice, cd, electionType, (short)candidatesToReturn, candidateSelectEnable, cand1, cand2, cand3, cand4);
+
+            StateMetadataModel st = GetStateMetadata(stateNumber);
+            string stateName = st.State_Name;
+            string dataStr = $"{stateName} {rd[0].OfficeName}";
+
+
+            if (candidatesToReturn > rd.Count)
+                candidatesToReturn = rd.Count;
+
+            for (int i = 0; i < candidatesToReturn; i++)
+            {
+                dataStr += $" - {rd[i].CandidateLastName} {rd[i].CandidateVoteCount}";
+
+            }
+
+
+            listBox1.Items.Add(dataStr);
+            listBox1.SelectedIndex = listBox1.Items.Count - 1;
+
+            string outStr = GetRaceBoardMapkeyStr(rd, candidatesToReturn);
+
+            //SendToViz(RBSceneName, outStr, 1);
+            SendToViz(outStr);
+            LiveUpdateTimer.Enabled = false;
+            LiveUpdateTimer.Enabled = true;
+
+        }
+
+
         public string GetRaceBoardMapkeyStr(BindingList<RaceDataModel> raceData, int numCand)
         {
             //Example of a 2 way raceboard with the Dem candidate winning and adding a gain
@@ -3835,19 +3977,35 @@ namespace GUILayer.Forms
 
             string mapKeyStr = "";
 
+            // Gets either simulated or actual time based on flag
+            DateTime timeNow = TimeFunctions.GetTime();
+            DateTime pollClosingTime = raceData[0].RacePollClosingTime;
+
             RaceBoardModel raceBoardData = new RaceBoardModel();
-            
-            raceBoardData.state = raceData[0].StateName.Trim();
+
+            short stateNumber = stackElements[currentRaceIndex].State_Number;
+            StateMetadataModel st = GetStateMetadata(stateNumber);
+            //raceBoardData.state = raceData[0].StateName.Trim();
+            raceBoardData.state = st.State_Name;
             raceBoardData.cd = raceData[0].CD.ToString();
-            raceBoardData.pctsReporting = raceData[0].PercentExpectedVote.ToString();
-            bool raceCalled = raceData[0].RaceWinnerCalled;
             TimeSpan fifteenMinutes = new TimeSpan(0, 15, 0);
             bool candidateCalledWinner = false;
             DateTime raceCallTime = raceData[0].RaceWinnerCallTime;
-
+            bool raceCalled = false;
+            
             // get office strings
             raceBoardData.office = GetOfficeStr(raceData[0]);
 
+            if (raceData[0].Office != "H")
+            {
+                raceBoardData.pctsReporting = raceData[0].PercentExpectedVote.ToString();
+
+            }
+            else
+            {
+                int temp = (int)(raceData[0].PrecinctsReporting * 100.0 / raceData[0].TotalPrecincts);
+                raceBoardData.pctsReporting = temp.ToString();
+            }
 
             for (int i = 0; i < numCand; i++)
             {
@@ -3875,6 +4033,11 @@ namespace GUILayer.Forms
 
                 }
 
+                // filename only, no path, no extension
+                candidate.headshot = Path.GetFileNameWithoutExtension(candidate.headshot);
+
+
+
                 // Format vote count as string with commas
                 if (raceData[i].CandidateVoteCount > 0)
                     //candidate.votes = string.Format("{0:n0}", raceData[i].CandidateVoteCount);
@@ -3891,39 +4054,48 @@ namespace GUILayer.Forms
                 candidate.incumbent = raceData[i].IsIncumbentFlag == "Y" ? "1" : "0";
                 var winnerCandidateId = 0;
 
-                //Check for AP race call
-                if (raceData[i].RaceUseAPRaceCall)
+                
+                if (timeNow >= pollClosingTime || PollClosinglockout == false)
                 {
-                    //Check for AP called winner
-                    if (raceData[i].cStat.ToUpper() == "W")
+                    //Check for AP race call
+                    if (raceData[i].RaceUseAPRaceCall)
                     {
-                        raceCalled = true;
-                        candidateCalledWinner = true;
-                        var raceCallTimeStr = raceData[i].estTS;
+                        //Check for AP called winner
+                        if (raceData[i].cStat.ToUpper() == "W")
+                        {
+                            raceCalled = true;
+                            candidateCalledWinner = true;
+                            var raceCallTimeStr = raceData[i].estTS;
 
-                        raceCallTime = GetApRaceCallDateTime(raceCallTimeStr);
+                            raceCallTime = GetApRaceCallDateTime(raceCallTimeStr);
+                        }
+                        else
+                        {
+                            candidateCalledWinner = false;
+                        }
                     }
+                    //Check for Fox race call
                     else
                     {
-                        candidateCalledWinner = false;
+                        winnerCandidateId = raceData[i].RaceWinnerCandidateID;
+                        if (raceData[i].RaceWinnerCalled)
+                        {
+                            raceCalled = true;
+
+                            // If the race was not called by AP, use the Race_WinnerCallTime from the DB
+                            raceCallTime = raceData[i].RaceWinnerCallTime;
+                            candidateCalledWinner = (winnerCandidateId == raceData[i].RaceWinnerCandidateID);
+                        }
+                        else
+                        {
+                            raceCalled = false;
+                            candidateCalledWinner = false;
+                        }
                     }
                 }
-                //Check for Fox race call
                 else
                 {
-                    winnerCandidateId = raceData[i].RaceWinnerCandidateID;
-                    if (raceData[i].RaceWinnerCalled)
-                    {
-                        raceCalled = true;
-
-                        // If the race was not called by AP, use the Race_WinnerCallTime from the DB
-                        raceCallTime = raceData[i].RaceWinnerCallTime;
-                        candidateCalledWinner = (winnerCandidateId == raceData[i].RaceWinnerCandidateID);
-                    }
-                    else
-                    {
-                        candidateCalledWinner = false;
-                    }
+                    candidateCalledWinner = false;
                 }
 
                 if (winnerCandidateId == raceData[i].CandidateID)
@@ -3944,10 +4116,7 @@ namespace GUILayer.Forms
             // Set board mode 
             if (raceCalled)
             {
-                DateTime pollClosingTime = raceData[0].RacePollClosingTime;
                 
-                // Gets either simulated or actual time based on flag
-                DateTime timeNow = TimeFunctions.GetTime();
                 // if race is called before the polls are closed time then use poll closing time as the race call time
                 if (raceCallTime < pollClosingTime)
                     raceCallTime = pollClosingTime;
@@ -3972,10 +4141,6 @@ namespace GUILayer.Forms
             }
 
 
-
-
-
-
             //USGOV99991 ^ USGOV99992 ~state = New York; race = CD02; precincts = 10; office = house; racemode = 1 ~
             //name = candidate1; party = 0; incum = 0; vote = 3000; percent = 23.4; check = 0; gain = 0; imagePath = George_Bush | 
             //name = candidate2; party = 1; incum = 0; vote = 5000; percent = 33.4; check = 1; gain = 1; imagePath = barack_obama
@@ -3990,8 +4155,8 @@ namespace GUILayer.Forms
 
             for (int i = 0; i < numCand; i++)
             {
-                //mapKeyStr += $"name={raceBoardData.candData[i].firstName} {raceBoardData.candData[i].lastName};party={raceBoardData.candData[i].party};incum={raceBoardData.candData[i].incumbent};";
-                mapKeyStr += $"name={raceBoardData.candData[i].lastName};party={raceBoardData.candData[i].party};incum={raceBoardData.candData[i].incumbent};";
+                mapKeyStr += $"name={raceBoardData.candData[i].firstName} {raceBoardData.candData[i].lastName};party={raceBoardData.candData[i].party};incum={raceBoardData.candData[i].incumbent};";
+                //mapKeyStr += $"name={raceBoardData.candData[i].lastName};party={raceBoardData.candData[i].party};incum={raceBoardData.candData[i].incumbent};";
                 mapKeyStr += $"vote={raceBoardData.candData[i].votes};percent={raceBoardData.candData[i].percent};check={raceBoardData.candData[i].winner};gain={raceBoardData.candData[i].gain};";
                 mapKeyStr += $"imagePath={raceBoardData.candData[i].headshot}";
                 if (i < numCand - 1)
@@ -4075,7 +4240,8 @@ namespace GUILayer.Forms
                     {
                         //MD Modified 03/05/2018 to support 2018 primaries
                         //raceOfficeStr = "U.S. House CD " + RaceDistrict.ToString();
-                        raceOfficeStr = "HOUSE CD " + rd.CD.ToString();
+                        //raceOfficeStr = "HOUSE CD " + rd.CD.ToString();
+                        raceOfficeStr = "HOUSE";
                     }
                 }
             }
@@ -4130,7 +4296,8 @@ namespace GUILayer.Forms
                         {
                             //MD Modified 03/05/2018 to support 2018 primaries
                             //raceOfficeStr = "U.S. House CD " + RaceDistrict.ToString();
-                            raceOfficeStr = "HOUSE CD " + rd.CD.ToString();
+                            //raceOfficeStr = "HOUSE CD " + rd.CD.ToString();
+                            raceOfficeStr = "HOUSE";
                         }
                     }
                 }
@@ -4245,6 +4412,7 @@ namespace GUILayer.Forms
             LiveUpdateTimer.Enabled = false;
             panel2.BackColor = Color.Navy;
             stackLocked = false;
+            LoopTimer.Enabled = false;
         }
 
         private void btnLock_Click(object sender, EventArgs e)
@@ -4263,9 +4431,27 @@ namespace GUILayer.Forms
                 {
                     string scenename = tabConfig[index].TabOutput[i].sceneName;
                     int engine = tabConfig[index].TabOutput[i].engine;
-                    if (vizEngines[engine - 1].enable)
-                        LoadScene(scenename, engine);
+                    if (vizEngines.Count > 0)
+                    {
+                        if (vizEngines[engine - 1].enable)
+                            LoadScene(scenename, engine);
+                    }
                 }
+
+                // if Looping checked start
+                if (cbLooping.Checked)
+                {
+                    if (stackLocked && stackGrid.Rows.Count > 0)
+                    {
+                        TakeNext();
+                        LoopTimer.Enabled = true;
+                    }
+                }
+                else
+                {
+                    LoopTimer.Enabled = false;
+                }
+
             }
         }
 
@@ -4318,9 +4504,36 @@ namespace GUILayer.Forms
         }
 
 
+
         #endregion
 
+        private void cbLooping_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLooping.Checked)
+            {
+                if (stackLocked && stackGrid.Rows.Count > 0)
+                {
+                    TakeNext();
+                    LoopTimer.Enabled = true;
+                }
+            }
+            else
+            {
+                LoopTimer.Enabled = false;
+            }
+        }
 
+        private void LoopTimer_Tick(object sender, EventArgs e)
+        {
+            if (currentRaceIndex >= stackGrid.RowCount - 1)
+            {
+                currentRaceIndex = 0;
+                stackGrid.CurrentCell = stackGrid.Rows[currentRaceIndex].Cells[0];
+                TakeCurrent();
+            }
+            else
+                TakeNext();
+        }
     }
 
 }

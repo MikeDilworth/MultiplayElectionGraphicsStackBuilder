@@ -218,6 +218,7 @@
             this.gbEng1 = new System.Windows.Forms.GroupBox();
             this.pbEng1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.LoopTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -1474,6 +1475,7 @@
             this.cbLooping.TabIndex = 144;
             this.cbLooping.Text = "Looping";
             this.cbLooping.UseVisualStyleBackColor = true;
+            this.cbLooping.CheckedChanged += new System.EventHandler(this.cbLooping_CheckedChanged);
             // 
             // btnTake
             // 
@@ -2613,6 +2615,11 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.UseWaitCursor = true;
             // 
+            // LoopTimer
+            // 
+            this.LoopTimer.Interval = 5000;
+            this.LoopTimer.Tick += new System.EventHandler(this.LoopTimer_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -2933,6 +2940,7 @@
         private System.Windows.Forms.GroupBox gbEng1;
         private System.Windows.Forms.PictureBox pbEng1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Timer LoopTimer;
     }
 }
 

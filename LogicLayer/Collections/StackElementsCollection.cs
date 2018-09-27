@@ -61,6 +61,7 @@ namespace LogicLayer.Collections
                         fkey_StackID = Convert.ToDouble(row["fkey_StackID"] ?? 0),
                         Stack_Element_ID = Convert.ToInt64(row["Stack_Element_ID"] ?? 0),
                         Stack_Element_Type = Convert.ToInt16(row["Stack_Element_Type"] ?? 0),
+                        Stack_Element_Data_Type = Convert.ToInt16(row["Stack_Element_Data_Type"] ?? 0),
                         Stack_Element_Description = row["Stack_Element_Description"].ToString() ?? "",
                         Stack_Element_TemplateID = row["Stack_Element_TemplateID"].ToString() ?? "",
 
@@ -133,6 +134,7 @@ namespace LogicLayer.Collections
                     dataTable.Columns.Add("fkey_StackID", typeof(Double));
                     dataTable.Columns.Add("Stack_Element_ID", typeof(Int64));
                     dataTable.Columns.Add("Stack_Element_Type", typeof(Int16));
+                    dataTable.Columns.Add("Stack_Element_Data_Type", typeof(Int16));
                     dataTable.Columns.Add("Stack_Element_Description", typeof(String));
                     dataTable.Columns.Add("Stack_Element_TemplateID", typeof(String));
                     // General race/election info
@@ -178,6 +180,7 @@ namespace LogicLayer.Collections
                         stackElement["fkey_StackID"] = stackID; //Use passed in stack ID for all elements
                         stackElement["Stack_Element_ID"] = i; //Re-sequence element ID
                         stackElement["Stack_Element_Type"] = stackElements[i].Stack_Element_Type;
+                        stackElement["Stack_Element_Data_Type"] = stackElements[i].Stack_Element_Data_Type;
                         stackElement["Stack_Element_Description"] = stackElements[i].Stack_Element_Description;
                         stackElement["Stack_Element_TemplateID"] = stackElements[i].Stack_Element_TemplateID;
 
