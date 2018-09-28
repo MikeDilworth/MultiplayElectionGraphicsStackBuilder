@@ -324,16 +324,6 @@ namespace GUILayer.Forms
         private void frmMain_Load(object sender, EventArgs e)
         {
 
-            string[] IPs = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
-            bool[] enables = new bool[4] { false, false, false, false };
-
-            // Make entry into applications log
-            ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
-            ipAddress = HostIPNameFunctions.GetLocalIPAddress();
-            hostName = HostIPNameFunctions.GetHostName(ipAddress);
-            lblIpAddress.Text = ipAddress;
-            lblHostName.Text = hostName;
-
             // Read in config settings - default to Media Sequencer #1
             mseEndpoint1 = Properties.Settings.Default.MSEEndpoint1;
             mseEndpoint2 = Properties.Settings.Default.MSEEndpoint2;
@@ -346,6 +336,37 @@ namespace GUILayer.Forms
             currentPlaylistName = Properties.Settings.Default.CurrentSelectedPlaylist;
             string sceneDescription = Properties.Settings.Default.Scene_Name;
             var useSceneName = Properties.Settings.Default[sceneDescription];
+
+
+            // Get host IP
+            ipAddress = HostIPNameFunctions.GetLocalIPAddress();
+            hostName = HostIPNameFunctions.GetHostName(ipAddress);
+            lblIpAddress.Text = ipAddress;
+            lblHostName.Text = hostName;
+
+            usingPrimaryMediaSequencer = true;
+
+            // Log application start
+            log.Info("Starting Stack Builder application");
+
+            lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER: " + Convert.ToString(Properties.Settings.Default.MSEEndpoint1);
+            lblMediaSequencer.BackColor = System.Drawing.Color.White;
+            usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
+            useBackupMediaSequencerToolStripMenuItem.Checked = false;
+
+
+            LoadConfig();
+
+        }
+        private void loadConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadConfig();
+        }
+
+        public void LoadConfig()
+        {
+            string[] IPs = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
+            bool[] enables = new bool[4] { false, false, false, false };
 
             //builderOnlyMode = Properties.Settings.Default.builderOnly;
             //Network = Properties.Settings.Default.Network;
@@ -361,7 +382,7 @@ namespace GUILayer.Forms
                 row = dtComp.Rows[0];
                 computerName = row["Name"].ToString() ?? "";
                 configName = row["Config1"].ToString() ?? "";
-                if ( configName == null)
+                if (configName == null)
                     configName = "DEFAULT";
             }
             else
@@ -380,7 +401,7 @@ namespace GUILayer.Forms
             builderOnlyMode = Convert.ToBoolean(row["StackBuildOnly"] ?? 0);
             Network = row["Network"].ToString() ?? "";
 
-            
+
             this.Size = new Size(1462, 991);
             connectionPanel.Visible = false;
             enginePanel.Visible = false;
@@ -395,13 +416,13 @@ namespace GUILayer.Forms
             TakePanel.Visible = false;
             SaveActivatePanel.Visible = true;
             pnlUpDn.Location = new Point(676, 250);
-            
+
             if (builderOnlyMode == false)
             {
                 // Enlarge form
                 this.Size = new Size(1462, 1165);
 
-                lblConfig.Text = configName;
+                lblConfig.Text = $"{configName}  {DateTime.Now}";
                 lblNetwork.Text = Network;
                 connectionPanel.Visible = true;
                 enginePanel.Visible = true;
@@ -464,7 +485,7 @@ namespace GUILayer.Forms
                     tpReferendums.Enabled = false;
                 }
 
-                
+
 
                 // get viz engine info
 
@@ -472,7 +493,7 @@ namespace GUILayer.Forms
                 DataTable dtEng = new DataTable();
                 dtEng = GetDBData(cmdStr, ElectionsDBConnectionString);
                 row = dtEng.Rows[0];
-                
+
 
                 int i = 0;
                 bool done = false;
@@ -480,7 +501,7 @@ namespace GUILayer.Forms
                 var engineInfo = Properties.Settings.Default["Engine1_IPAddress"];
                 string engineData;
                 string engineStr;
-                
+
                 // read engine info until no more engines found
                 while (done == false)
                 {
@@ -627,7 +648,7 @@ namespace GUILayer.Forms
             //dt = GetDBData(cmdStr, ElectionsDBConnectionString);
             string tabName;
             bool enab;
-            
+
             for (int tabNo = 0; tabNo < 4; tabNo++)
             {
                 switch (tabNo)
@@ -654,7 +675,7 @@ namespace GUILayer.Forms
                         break;
                 }
 
-                
+
                 cmdStr = $"SELECT * FROM FE_TabConfig WHERE Config = '{configName}' AND TabName = '{tabName}'";
                 dt = GetDBData(cmdStr, ElectionsDBConnectionString);
 
@@ -665,7 +686,7 @@ namespace GUILayer.Forms
                 string sceneCode;
                 string sceneName = "";
                 int engine = 0;
-                bool[] outEng = new bool[4] { false, false, false, false } ;
+                bool[] outEng = new bool[4] { false, false, false, false };
 
                 if (dt.Rows.Count > 0)
                 {
@@ -684,7 +705,7 @@ namespace GUILayer.Forms
                         tod.Add(to);
                         sceneName += $"{engine}: {GetSceneName(sceneCode)}; ";
                         outEng[engine - 1] = true;
-                        
+
                     }
                     td.tabName = tabName;
                     td.showTab = enab;
@@ -710,19 +731,9 @@ namespace GUILayer.Forms
             }
 
             SetOutput();
-
-            usingPrimaryMediaSequencer = true;
-
-            // Log application start
-            log.Info("Starting Stack Builder application");
-
-            lblMediaSequencer.Text = "USING PRIMARY MEDIA SEQUENCER: " + Convert.ToString(Properties.Settings.Default.MSEEndpoint1);
-            lblMediaSequencer.BackColor = System.Drawing.Color.White;
-            usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
-            useBackupMediaSequencerToolStripMenuItem.Checked = false;
-
             // Make entry into applications log
-            
+            ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
+
             // Post application log entry
             applicationSettingsFlagsAccess.ElectionsDBConnectionString = ElectionsDBConnectionString;
             applicationSettingsFlagsAccess.PostApplicationLogEntry(
@@ -739,15 +750,17 @@ namespace GUILayer.Forms
                 Properties.Settings.Default.ApplicationID,
                 "",
                 System.DateTime.Now
-                //enables[2],
-                //IPs[2],
-                //enables[3],
-                //IPs[3]
+            //enables[2],
+            //IPs[2],
+            //enables[3],
+            //IPs[3]
 
             );
 
 
+
         }
+
         public void ConnectToVizEngines()
         {
             
@@ -993,7 +1006,6 @@ namespace GUILayer.Forms
                 gbTime.Text = @"ACTUAL TIME";
             }
 
-            //label1.Text = Convert.ToString(referenceTime);
             timeLabel.Text = String.Format("{0:h:mm:ss tt  MMM dd, yyyy}", referenceTime);
 
         }
@@ -3751,23 +3763,7 @@ namespace GUILayer.Forms
             }
         }
         #endregion
-
-        private void groupBox6_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbPromptForInfo_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
+        
         #region Methods for taking data to air
         private void btnTake_Click(object sender, EventArgs e)
         {
@@ -3806,111 +3802,209 @@ namespace GUILayer.Forms
                         break;
 
                     case (short)DataTypes.Referendums:
-                        //TakeRaceBoards();
+                        TakeReferendums();
                         break;
-
-
 
                 }
             }
         }
 
-        public void TakeBOP()
+
+
+
+        public void LoadScene(string sceneName, int EngineNo)
         {
-            currentRaceIndex = stackGrid.CurrentCell.RowIndex;
-            int seType = (int)stackElements[currentRaceIndex].Stack_Element_Type;
-            int seDataType = (int)stackElements[currentRaceIndex].Stack_Element_Data_Type;
+            string cmd = $"0 RENDERER*MAIN_LAYER SET_OBJECT SCENE*{sceneName}{term}";
+            byte[] bCmd = Encoding.UTF8.GetBytes(cmd);
+            vizClientSockets[EngineNo - 1].Send(bCmd);
+        }
 
-            string ofc = "H";
-            string office = "HOUSE";
+        private void SendToViz(string cmd)
+        {
 
-            if ((int)stackElements[currentRaceIndex].Stack_Element_Type % 2 == 0)
+            string vizCmd = "";
+
+            int index = dataModeSelect.SelectedIndex;
+
+            for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
             {
-                ofc = "H";
-                office = "HOUSE";
+                string sceneName = tabConfig[index].TabOutput[i].sceneName;
+                int engine = tabConfig[index].TabOutput[i].engine;
+                if (index == 0)
+                    vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
 
+                if (index == 2)
+                    vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}BOP_FS{quot} {cmd}{term}";
+
+                if (index == 3)
+                    vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}REFERENDUM_DATA{quot} {cmd}{term}";
+
+
+                if (vizEngines[engine - 1].enable)
+                {
+                    byte[] bCmd = Encoding.UTF8.GetBytes(vizCmd);
+                    if (vizEngines[engine - 1].enable)
+                        vizClientSockets[engine - 1].Send(bCmd);
+                }
             }
-            else
-            {
-                ofc = "S";
-                office = "SENATE";
-
-            }
-
-            DateTime currentTime = TimeFunctions.GetTime();
-            string currTime = currentTime.ToString();
-
             
-            int BOPtion = (((int)stackElements[currentRaceIndex].Stack_Element_Type - 10) / 2);
+            listBox2.Items.Add(vizCmd);
+            listBox2.SelectedIndex = listBox2.Items.Count - 1;
 
-            
-            
-            DataTable dt = new DataTable();
-            BOPDataAccess bop = new BOPDataAccess();
-            bop.ElectionsDBConnectionString = ElectionsDBConnectionString;
-            int curNew = BOPtion;
-            if (BOPtion == 2)
-                curNew = 0;
-            dt = bop.GetBOPData(ofc, currentTime, curNew);
+        }
+        private void SendToViz2(string sceneName, string cmd, int EngineNo)
+        {
 
-            BOPDataModel BOPData = new BOPDataModel();
-            DataRow row = dt.Rows[0];
+            string vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
 
-            BOPData.Total = Convert.ToInt16(row["TOTAL_COUNT"]);
-            BOPData.DemBaseline = Convert.ToInt16(row["DEM_BASELINE_COUNT"]);
-            BOPData.RepBaseline = Convert.ToInt16(row["GOP_BASELINE_COUNT"]);
-            BOPData.IndBaseline  = Convert.ToInt16(row["IND_BASELINE_COUNT"]);
-            BOPData.DemCount = Convert.ToInt16(row["DEM_COUNT"]);
-            BOPData.RepCount = Convert.ToInt16(row["GOP_COUNT"]);
-            BOPData.IndCount = Convert.ToInt16(row["IND_COUNT"]);
-            BOPData.DemDelta = Convert.ToInt16(row["DEM_DELTA"]);
-            BOPData.RepDelta = Convert.ToInt16(row["GOP_DELTA"]);
-            BOPData.IndDelta = Convert.ToInt16(row["IND_DELTA"]);
-            BOPData.Branch = office;
-
-            if (BOPtion == 0)
-                BOPData.Session = "CURRENT";
-            else
-                BOPData.Session = "NEW";
-
-
-            string outStr = GetBOPMapKeyStr(BOPData, ofc, BOPtion);
+            byte[] bCmd = Encoding.UTF8.GetBytes(vizCmd);
+            vizClientSockets[EngineNo - 1].Send(bCmd);
+            listBox2.Items.Add(vizCmd);
+            listBox2.SelectedIndex = listBox2.Items.Count - 1;
 
         }
 
-        public string GetBOPMapKeyStr(BOPDataModel BOPData, string  ofc, int BOPtion)
+        private void LiveUpdateTimer_Tick(object sender, EventArgs e)
         {
-            //Variables – 
-            //SENATE or HOUSE
-            //CURRENT / NEW
+            TakeCurrent();
+        }
 
-            //BOP_DATA = SENATE ^ CURRENT~RepNum = 10 | RepNetChange = 10 | DemNum = 20 | DemNetChange = 20 | IndNum = 1 | IndNetChange = 1
+        
+        private void stackGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            TakeCurrent();
+        }
 
-            //(for net gain)
-            //BOP_DATA = NET_GAIN~HouseNum | SenNum
+        private void btnUnlock_Click(object sender, EventArgs e)
+        {
+            LiveUpdateTimer.Enabled = false;
+            panel2.BackColor = Color.Navy;
+            stackLocked = false;
+            LoopTimer.Enabled = false;
+        }
 
-            string MapKeyStr;
-
-            if (BOPtion < 2)
+        private void btnLock_Click(object sender, EventArgs e)
+        {
+            if (stackGrid.Rows.Count > 0)
             {
-                MapKeyStr = $"BOP_DATA = {BOPData.Branch} ^ {BOPData.Session}~";
-                if (BOPtion == 0)
-                    MapKeyStr += $"{BOPData.RepBaseline} | {BOPData.RepDelta} | {BOPData.DemBaseline} | {BOPData.DemDelta} | {BOPData.IndBaseline} | {BOPData.IndDelta}";
+                stackLocked = true;
+                //LoadScene(RBSceneName, 1);
+                currentRaceIndex = -1;
+                stackGrid.CurrentCell = stackGrid.Rows[0].Cells[0];
+                panel2.BackColor = Color.Lime;
+
+                int index = dataModeSelect.SelectedIndex;
+
+                for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
+                {
+                    string scenename = tabConfig[index].TabOutput[i].sceneName;
+                    int engine = tabConfig[index].TabOutput[i].engine;
+                    if (vizEngines.Count > 0)
+                    {
+                        if (vizEngines[engine - 1].enable)
+                            LoadScene(scenename, engine);
+                    }
+                }
+
+                // if Looping checked start
+                if (cbLooping.Checked)
+                {
+                    if (stackLocked && stackGrid.Rows.Count > 0)
+                    {
+                        TakeNext();
+                        LoopTimer.Enabled = true;
+                    }
+                }
                 else
-                    MapKeyStr += $"{BOPData.RepCount} | {BOPData.RepDelta} | {BOPData.DemCount} | {BOPData.DemDelta} | {BOPData.IndCount} | {BOPData.IndDelta}";
+                {
+                    LoopTimer.Enabled = false;
+                }
+
             }
-            else
+        }
+
+        public static DataTable GetDBData(string cmdStr, string dbConnection)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
             {
-                // BOP_DATA = NET_GAIN~party^HouseNum|party^SenNum
+                // Instantiate the connection
+                using (SqlConnection connection = new SqlConnection(dbConnection))
+                {
+                    // Create the command and set its properties
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter())
+                        {
+                            cmd.CommandText = cmdStr;
+                            //cmd.Parameters.Add("@StackID", SqlDbType.Float).Value = stackID;
+                            sqlDataAdapter.SelectCommand = cmd;
+                            sqlDataAdapter.SelectCommand.Connection = connection;
+                            sqlDataAdapter.SelectCommand.CommandType = CommandType.Text;
 
-                MapKeyStr = $"BOP_DATA = NET_GAIN~{BOPData.Branch} ^ {BOPData.Session}~";
-
+                            // Fill the datatable from adapter
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                //log.Error("GetDBData Exception occurred: " + ex.Message);
+                //log.Debug("GetDBData Exception occurred", ex);
             }
 
-            return MapKeyStr;
+            return dataTable;
+        }
+
+        public void SetOutput()
+        {
+            int index = dataModeSelect.SelectedIndex;
+            gbEngines.Text = $"Engines used for {tabConfig[index].tabName}";
+            pbEng1.Visible = tabConfig[index].outputEngine[0];
+            pbEng2.Visible = tabConfig[index].outputEngine[1];
+            pbEng3.Visible = tabConfig[index].outputEngine[2];
+            pbEng4.Visible = tabConfig[index].outputEngine[3];
+            lblScenes.Text = $"Scenes: {tabConfig[index].engineSceneDef}";
 
         }
 
+
+
+        
+        private void cbLooping_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLooping.Checked)
+            {
+                if (stackLocked && stackGrid.Rows.Count > 0)
+                {
+                    TakeNext();
+                    LoopTimer.Enabled = true;
+                }
+            }
+            else
+            {
+                LoopTimer.Enabled = false;
+            }
+        }
+
+        private void LoopTimer_Tick(object sender, EventArgs e)
+        {
+            if (currentRaceIndex >= stackGrid.RowCount - 1)
+            {
+                currentRaceIndex = 0;
+                stackGrid.CurrentCell = stackGrid.Rows[currentRaceIndex].Cells[0];
+                TakeCurrent();
+            }
+            else
+                TakeNext();
+        }
+
+        #endregion
+
+        #region Raceboards Data processing
         public void TakeRaceBoards()
         {
             BindingList<RaceDataModel> rd = new BindingList<RaceDataModel>();
@@ -3992,7 +4086,7 @@ namespace GUILayer.Forms
             bool candidateCalledWinner = false;
             DateTime raceCallTime = raceData[0].RaceWinnerCallTime;
             bool raceCalled = false;
-            
+
             // get office strings
             raceBoardData.office = GetOfficeStr(raceData[0]);
 
@@ -4024,7 +4118,7 @@ namespace GUILayer.Forms
                         candidate.headshot = raceData[i].HeadshotPathFNC;
                     }
                 }
-                else if(Network == "FBN")
+                else if (Network == "FBN")
                 {
                     if (raceData[i].UseHeadshotFBN)
                     {
@@ -4054,7 +4148,7 @@ namespace GUILayer.Forms
                 candidate.incumbent = raceData[i].IsIncumbentFlag == "Y" ? "1" : "0";
                 var winnerCandidateId = 0;
 
-                
+
                 if (timeNow >= pollClosingTime || PollClosinglockout == false)
                 {
                     //Check for AP race call
@@ -4100,8 +4194,8 @@ namespace GUILayer.Forms
 
                 if (winnerCandidateId == raceData[i].CandidateID)
                 {
-                    candidate.winner  = "1";
-                    candidate.gain  = GetGainFlag(raceData[i]);
+                    candidate.winner = "1";
+                    candidate.gain = GetGainFlag(raceData[i]);
                 }
                 else
                 {
@@ -4116,7 +4210,7 @@ namespace GUILayer.Forms
             // Set board mode 
             if (raceCalled)
             {
-                
+
                 // if race is called before the polls are closed time then use poll closing time as the race call time
                 if (raceCallTime < pollClosingTime)
                     raceCallTime = pollClosingTime;
@@ -4130,7 +4224,7 @@ namespace GUILayer.Forms
                     raceBoardData.mode = (int)BoardModes.Race_Board_Race_Called;
             }
             else if (raceData[0].RaceTooCloseToCall)
-             {
+            {
                 // RaceTooCloseToCall flag is set
                 raceBoardData.mode = (int)BoardModes.Race_Board_To_Close_To_Call;
             }
@@ -4148,7 +4242,7 @@ namespace GUILayer.Forms
             //USGOV99991^ USGOV99992 ~ state=New York; race=CD02;precincts=10 ; office=house; racemode=1 ~ name=candidate1; party=0; incum=0; vote=3000; percent=23.4 ; check=0; gain=0; imagePath= George_Bush |name=candidate2; party=1; incum=0; vote=5000; percent=33.4 ; check=1; gain=1; imagePath= barack_obama
 
 
-            
+
             string raceblock = $"~state={raceBoardData.state};race={raceBoardData.cd};precincts={raceBoardData.pctsReporting};office={raceBoardData.office};racemode={raceBoardData.mode}~";
 
             mapKeyStr += raceblock;
@@ -4348,192 +4442,137 @@ namespace GUILayer.Forms
             }
             return apRaceCallDateTimeStr;
         }
-
-                
-        public void LoadScene(string sceneName, int EngineNo)
-        {
-            string cmd = $"0 RENDERER*MAIN_LAYER SET_OBJECT SCENE*{sceneName}{term}";
-            byte[] bCmd = Encoding.UTF8.GetBytes(cmd);
-            vizClientSockets[EngineNo - 1].Send(bCmd);
-        }
-        private void SendToViz(string cmd)
-        {
-
-            string vizCmd = "";
-
-            int index = dataModeSelect.SelectedIndex;
-
-            for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
-            {
-                string sceneName = tabConfig[index].TabOutput[i].sceneName;
-                int engine = tabConfig[index].TabOutput[i].engine;
-                vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
-
-                if (vizEngines[engine - 1].enable)
-                {
-                    byte[] bCmd = Encoding.UTF8.GetBytes(vizCmd);
-                    if (vizEngines[engine - 1].enable)
-                        vizClientSockets[engine - 1].Send(bCmd);
-
-                }
-
-            }
-
-            
-            listBox2.Items.Add(vizCmd);
-            listBox2.SelectedIndex = listBox2.Items.Count - 1;
-
-        }
-        private void SendToViz2(string sceneName, string cmd, int EngineNo)
-        {
-
-            string vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
-
-            byte[] bCmd = Encoding.UTF8.GetBytes(vizCmd);
-            vizClientSockets[EngineNo - 1].Send(bCmd);
-            listBox2.Items.Add(vizCmd);
-            listBox2.SelectedIndex = listBox2.Items.Count - 1;
-
-        }
-
-        private void LiveUpdateTimer_Tick(object sender, EventArgs e)
-        {
-            TakeCurrent();
-        }
-
+        #endregion
         
-        private void stackGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        #region Balance Of Power Data Processing
+        public void TakeBOP()
         {
-            TakeCurrent();
-        }
+            currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+            int seType = (int)stackElements[currentRaceIndex].Stack_Element_Type;
+            int seDataType = (int)stackElements[currentRaceIndex].Stack_Element_Data_Type;
 
-        private void btnUnlock_Click(object sender, EventArgs e)
-        {
-            LiveUpdateTimer.Enabled = false;
-            panel2.BackColor = Color.Navy;
-            stackLocked = false;
-            LoopTimer.Enabled = false;
-        }
+            string ofc = "H";
+            string office = "HOUSE";
 
-        private void btnLock_Click(object sender, EventArgs e)
-        {
-            if (stackGrid.Rows.Count > 0)
+            if ((int)stackElements[currentRaceIndex].Stack_Element_Type % 2 == 0)
             {
-                stackLocked = true;
-                //LoadScene(RBSceneName, 1);
-                currentRaceIndex = -1;
-                stackGrid.CurrentCell = stackGrid.Rows[0].Cells[0];
-                panel2.BackColor = Color.Lime;
+                ofc = "H";
+                office = "HOUSE";
 
-                int index = dataModeSelect.SelectedIndex;
+            }
+            else
+            {
+                ofc = "S";
+                office = "SENATE";
 
-                for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
-                {
-                    string scenename = tabConfig[index].TabOutput[i].sceneName;
-                    int engine = tabConfig[index].TabOutput[i].engine;
-                    if (vizEngines.Count > 0)
-                    {
-                        if (vizEngines[engine - 1].enable)
-                            LoadScene(scenename, engine);
-                    }
-                }
+            }
 
-                // if Looping checked start
-                if (cbLooping.Checked)
-                {
-                    if (stackLocked && stackGrid.Rows.Count > 0)
-                    {
-                        TakeNext();
-                        LoopTimer.Enabled = true;
-                    }
-                }
+            DateTime currentTime = TimeFunctions.GetTime();
+            string currTime = currentTime.ToString();
+
+
+            int BOPtion = (((int)stackElements[currentRaceIndex].Stack_Element_Type - 10) / 2);
+
+
+
+            DataTable dt = new DataTable();
+            BOPDataAccess bop = new BOPDataAccess();
+            bop.ElectionsDBConnectionString = ElectionsDBConnectionString;
+
+            int curNew = BOPtion;
+            if (BOPtion == 2)
+                curNew = 0;
+
+
+            dt = bop.GetBOPData(ofc, currentTime, curNew);
+
+            BOPDataModel BOPData = new BOPDataModel();
+            DataRow row = dt.Rows[0];
+
+            BOPData.Total = Convert.ToInt16(row["TOTAL_COUNT"]);
+            BOPData.DemBaseline = Convert.ToInt16(row["DEM_BASELINE_COUNT"]);
+            BOPData.RepBaseline = Convert.ToInt16(row["GOP_BASELINE_COUNT"]);
+            BOPData.IndBaseline = Convert.ToInt16(row["IND_BASELINE_COUNT"]);
+            BOPData.DemCount = Convert.ToInt16(row["DEM_COUNT"]);
+            BOPData.RepCount = Convert.ToInt16(row["GOP_COUNT"]);
+            BOPData.IndCount = Convert.ToInt16(row["IND_COUNT"]);
+            BOPData.DemDelta = Convert.ToInt16(row["DEM_DELTA"]);
+            BOPData.RepDelta = Convert.ToInt16(row["GOP_DELTA"]);
+            BOPData.IndDelta = Convert.ToInt16(row["IND_DELTA"]);
+            BOPData.Branch = office;
+
+            if (BOPtion == 0)
+                BOPData.Session = "CURRENT";
+            else
+                BOPData.Session = "NEW";
+
+
+            string outStr = GetBOPMapKeyStr(BOPData, ofc, BOPtion);
+
+        }
+
+        public string GetBOPMapKeyStr(BOPDataModel BOPData, string ofc, int BOPtion)
+        {
+            //Variables – 
+            //SENATE or HOUSE
+            //CURRENT / NEW
+
+            //BOP_DATA = SENATE ^ CURRENT~RepNum = 10 | RepNetChange = 10 | DemNum = 20 | DemNetChange = 20 | IndNum = 1 | IndNetChange = 1
+
+            //(for net gain)
+            //BOP_DATA = NET_GAIN~HouseNum | SenNum
+
+            string MapKeyStr;
+
+            if (BOPtion < 2)
+            {
+                MapKeyStr = $"BOP_DATA = {BOPData.Branch} ^ {BOPData.Session}~";
+                if (BOPtion == 0)
+                    MapKeyStr += $"{BOPData.RepBaseline} | {BOPData.RepDelta} | {BOPData.DemBaseline} | {BOPData.DemDelta} | {BOPData.IndBaseline} | {BOPData.IndDelta}";
                 else
-                {
-                    LoopTimer.Enabled = false;
-                }
-
+                    MapKeyStr += $"{BOPData.RepCount} | {BOPData.RepDelta} | {BOPData.DemCount} | {BOPData.DemDelta} | {BOPData.IndCount} | {BOPData.IndDelta}";
             }
-        }
-
-        public static DataTable GetDBData(string cmdStr, string dbConnection)
-        {
-            DataTable dataTable = new DataTable();
-
-            try
+            else
             {
-                // Instantiate the connection
-                using (SqlConnection connection = new SqlConnection(dbConnection))
-                {
-                    // Create the command and set its properties
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter())
-                        {
-                            cmd.CommandText = cmdStr;
-                            //cmd.Parameters.Add("@StackID", SqlDbType.Float).Value = stackID;
-                            sqlDataAdapter.SelectCommand = cmd;
-                            sqlDataAdapter.SelectCommand.Connection = connection;
-                            sqlDataAdapter.SelectCommand.CommandType = CommandType.Text;
+                // BOP_DATA = NET_GAIN~party^HouseNum|party^SenNum
 
-                            // Fill the datatable from adapter
-                            sqlDataAdapter.Fill(dataTable);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                //log.Error("GetDBData Exception occurred: " + ex.Message);
-                //log.Debug("GetDBData Exception occurred", ex);
+                MapKeyStr = $"BOP_DATA = NET_GAIN~{BOPData.Branch} ^ {BOPData.Session}~";
+
             }
 
-            return dataTable;
-        }
-
-        public void SetOutput()
-        {
-            int index = dataModeSelect.SelectedIndex;
-            gbEngines.Text = $"Engines used for {tabConfig[index].tabName}";
-            pbEng1.Visible = tabConfig[index].outputEngine[0];
-            pbEng2.Visible = tabConfig[index].outputEngine[1];
-            pbEng3.Visible = tabConfig[index].outputEngine[2];
-            pbEng4.Visible = tabConfig[index].outputEngine[3];
-            lblScenes.Text = $"Scenes: {tabConfig[index].engineSceneDef}";
+            return MapKeyStr;
 
         }
-
-
-
         #endregion
 
-        private void cbLooping_CheckedChanged(object sender, EventArgs e)
+        public void TakeReferendums()
         {
-            if (cbLooping.Checked)
-            {
-                if (stackLocked && stackGrid.Rows.Count > 0)
-                {
-                    TakeNext();
-                    LoopTimer.Enabled = true;
-                }
-            }
-            else
-            {
-                LoopTimer.Enabled = false;
-            }
+            //Get the selected race list object
+            currentRaceIndex = stackGrid.CurrentCell.RowIndex;
+            short stateNumber = stackElements[currentRaceIndex].State_Number;
+            string raceOffice = stackElements[currentRaceIndex].Office_Code;
+
+            referendumsDataCollection = new ReferendumsDataCollection();
+            referendumsDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
+            referendumsData = referendumsDataCollection.GetReferendumsDataCollection(stateNumber, raceOffice);
+
+            string outStr = GetReferendumsMapKeyStr(referendumsData);
+
+
+
         }
 
-        private void LoopTimer_Tick(object sender, EventArgs e)
+        public string GetReferendumsMapKeyStr(BindingList<ReferendumDataModel> refData)
         {
-            if (currentRaceIndex >= stackGrid.RowCount - 1)
-            {
-                currentRaceIndex = 0;
-                stackGrid.CurrentCell = stackGrid.Rows[currentRaceIndex].Cells[0];
-                TakeCurrent();
-            }
-            else
-                TakeNext();
+            string MapKeyStr = $"{refData[0].StateName}|{refData[0].PropRefID}|{refData[0].Description}|{refData[0].Detailtext}";
+            if (refData[0].WinnerCalled)
+                //if (refData[0].WinnerCandidateID == refData[0].)
+
+                MapKeyStr += $"";
+
+            return MapKeyStr;
         }
+        
     }
 
 }

@@ -219,6 +219,8 @@
             this.pbEng1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LoopTimer = new System.Windows.Forms.Timer(this.components);
+            this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -328,7 +330,9 @@
             this.resetStatusBarToolStripMenuItem,
             this.toolStripMenuItem2,
             this.usePrimaryMediaSequencerToolStripMenuItem,
-            this.useBackupMediaSequencerToolStripMenuItem});
+            this.useBackupMediaSequencerToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.loadConfigurationToolStripMenuItem});
             this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
             this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
             this.utilitiesToolStripMenuItem.Text = "&Utilities";
@@ -413,7 +417,7 @@
             this.lblCurrentShow.AutoSize = true;
             this.lblCurrentShow.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblCurrentShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentShow.Location = new System.Drawing.Point(173, 49);
+            this.lblCurrentShow.Location = new System.Drawing.Point(183, 89);
             this.lblCurrentShow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentShow.Name = "lblCurrentShow";
             this.lblCurrentShow.Size = new System.Drawing.Size(49, 25);
@@ -424,7 +428,7 @@
             // 
             this.lblCurrentShowHeader.AutoSize = true;
             this.lblCurrentShowHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentShowHeader.Location = new System.Drawing.Point(5, 49);
+            this.lblCurrentShowHeader.Location = new System.Drawing.Point(15, 89);
             this.lblCurrentShowHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentShowHeader.Name = "lblCurrentShowHeader";
             this.lblCurrentShowHeader.Size = new System.Drawing.Size(164, 25);
@@ -435,7 +439,7 @@
             // 
             this.lblPlaylistNameHeader.AutoSize = true;
             this.lblPlaylistNameHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(391, 49);
+            this.lblPlaylistNameHeader.Location = new System.Drawing.Point(401, 89);
             this.lblPlaylistNameHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistNameHeader.Name = "lblPlaylistNameHeader";
             this.lblPlaylistNameHeader.Size = new System.Drawing.Size(150, 25);
@@ -446,7 +450,7 @@
             // 
             this.lblPlaylistName.AutoSize = true;
             this.lblPlaylistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistName.Location = new System.Drawing.Point(549, 49);
+            this.lblPlaylistName.Location = new System.Drawing.Point(559, 89);
             this.lblPlaylistName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistName.Name = "lblPlaylistName";
             this.lblPlaylistName.Size = new System.Drawing.Size(49, 25);
@@ -457,7 +461,7 @@
             // 
             this.lblTrioChannelHeader.AutoSize = true;
             this.lblTrioChannelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannelHeader.Location = new System.Drawing.Point(724, 49);
+            this.lblTrioChannelHeader.Location = new System.Drawing.Point(734, 89);
             this.lblTrioChannelHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrioChannelHeader.Name = "lblTrioChannelHeader";
             this.lblTrioChannelHeader.Size = new System.Drawing.Size(144, 25);
@@ -468,7 +472,7 @@
             // 
             this.lblTrioChannel.AutoSize = true;
             this.lblTrioChannel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrioChannel.Location = new System.Drawing.Point(870, 49);
+            this.lblTrioChannel.Location = new System.Drawing.Point(880, 89);
             this.lblTrioChannel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrioChannel.Name = "lblTrioChannel";
             this.lblTrioChannel.Size = new System.Drawing.Size(49, 25);
@@ -482,11 +486,11 @@
             this.dataModeSelect.Controls.Add(this.tpBalanceOfPower);
             this.dataModeSelect.Controls.Add(this.tpReferendums);
             this.dataModeSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataModeSelect.Location = new System.Drawing.Point(7, 134);
+            this.dataModeSelect.Location = new System.Drawing.Point(7, 129);
             this.dataModeSelect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataModeSelect.Name = "dataModeSelect";
             this.dataModeSelect.SelectedIndex = 0;
-            this.dataModeSelect.Size = new System.Drawing.Size(1029, 1218);
+            this.dataModeSelect.Size = new System.Drawing.Size(1029, 1222);
             this.dataModeSelect.TabIndex = 93;
             this.dataModeSelect.SelectedIndexChanged += new System.EventHandler(this.dataModeSelect_SelectedIndexChanged);
             // 
@@ -507,7 +511,7 @@
             this.tpRaces.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpRaces.Name = "tpRaces";
             this.tpRaces.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpRaces.Size = new System.Drawing.Size(1021, 1180);
+            this.tpRaces.Size = new System.Drawing.Size(1021, 1184);
             this.tpRaces.TabIndex = 0;
             this.tpRaces.Text = "Race Boards";
             // 
@@ -517,7 +521,7 @@
             this.panel4.Controls.Add(this.txtNextPollClosingTime);
             this.panel4.Controls.Add(this.txtNextPollClosingTimeHeader);
             this.panel4.Controls.Add(this.lblAvailRaceCnt);
-            this.panel4.Location = new System.Drawing.Point(9, 231);
+            this.panel4.Location = new System.Drawing.Point(9, 232);
             this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(999, 49);
@@ -613,7 +617,7 @@
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox1.Controls.Add(this.btnAddAll);
             this.groupBox1.Controls.Add(this.btnInsert);
-            this.groupBox1.Location = new System.Drawing.Point(636, 998);
+            this.groupBox1.Location = new System.Drawing.Point(636, 1001);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -657,7 +661,7 @@
             this.groupBox5.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox5.Controls.Add(this.btnAddRace4Way);
             this.groupBox5.Controls.Add(this.btnSelect4);
-            this.groupBox5.Location = new System.Drawing.Point(636, 820);
+            this.groupBox5.Location = new System.Drawing.Point(636, 823);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -703,7 +707,7 @@
             this.groupBox4.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox4.Controls.Add(this.btnAddRace3WaySelect);
             this.groupBox4.Controls.Add(this.btnAddRace3Way);
-            this.groupBox4.Location = new System.Drawing.Point(636, 642);
+            this.groupBox4.Location = new System.Drawing.Point(636, 645);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -818,7 +822,7 @@
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox3.Controls.Add(this.btnAddRace2WaySelect);
             this.groupBox3.Controls.Add(this.btnAddRace2Way);
-            this.groupBox3.Location = new System.Drawing.Point(636, 463);
+            this.groupBox3.Location = new System.Drawing.Point(636, 466);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -945,7 +949,7 @@
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox2.Controls.Add(this.btnAddRace1Way);
             this.groupBox2.Controls.Add(this.btnAddRace1WaySelect);
-            this.groupBox2.Location = new System.Drawing.Point(636, 285);
+            this.groupBox2.Location = new System.Drawing.Point(636, 288);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -997,7 +1001,7 @@
             this.availableRacesGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Race_ID,
             this.Race_Description});
-            this.availableRacesGrid.Location = new System.Drawing.Point(9, 285);
+            this.availableRacesGrid.Location = new System.Drawing.Point(9, 288);
             this.availableRacesGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.availableRacesGrid.MultiSelect = false;
             this.availableRacesGrid.Name = "availableRacesGrid";
@@ -1774,7 +1778,7 @@
             // 
             this.lblIpAddress.AutoSize = true;
             this.lblIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIpAddress.Location = new System.Drawing.Point(1189, 49);
+            this.lblIpAddress.Location = new System.Drawing.Point(870, 48);
             this.lblIpAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIpAddress.Name = "lblIpAddress";
             this.lblIpAddress.Size = new System.Drawing.Size(49, 25);
@@ -1785,7 +1789,7 @@
             // 
             this.lblHostName.AutoSize = true;
             this.lblHostName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHostName.Location = new System.Drawing.Point(1351, 49);
+            this.lblHostName.Location = new System.Drawing.Point(1032, 48);
             this.lblHostName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHostName.Name = "lblHostName";
             this.lblHostName.Size = new System.Drawing.Size(49, 25);
@@ -1796,7 +1800,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1048, 49);
+            this.label3.Location = new System.Drawing.Point(729, 48);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(141, 25);
@@ -1807,7 +1811,7 @@
             // 
             this.lblMediaSequencer.BackColor = System.Drawing.Color.White;
             this.lblMediaSequencer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMediaSequencer.Location = new System.Drawing.Point(1043, 124);
+            this.lblMediaSequencer.Location = new System.Drawing.Point(1044, 122);
             this.lblMediaSequencer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMediaSequencer.Name = "lblMediaSequencer";
             this.lblMediaSequencer.Size = new System.Drawing.Size(1098, 41);
@@ -2374,7 +2378,7 @@
             this.lblConfig.AutoSize = true;
             this.lblConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfig.Location = new System.Drawing.Point(96, 92);
+            this.lblConfig.Location = new System.Drawing.Point(323, 48);
             this.lblConfig.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfig.Name = "lblConfig";
             this.lblConfig.Size = new System.Drawing.Size(49, 25);
@@ -2385,7 +2389,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 92);
+            this.label6.Location = new System.Drawing.Point(233, 48);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 25);
@@ -2397,7 +2401,7 @@
             this.lblNetwork.AutoSize = true;
             this.lblNetwork.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetwork.Location = new System.Drawing.Point(505, 92);
+            this.lblNetwork.Location = new System.Drawing.Point(127, 48);
             this.lblNetwork.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNetwork.Name = "lblNetwork";
             this.lblNetwork.Size = new System.Drawing.Size(49, 25);
@@ -2409,7 +2413,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(391, 92);
+            this.label4.Location = new System.Drawing.Point(13, 48);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 25);
@@ -2619,6 +2623,18 @@
             // 
             this.LoopTimer.Interval = 5000;
             this.LoopTimer.Tick += new System.EventHandler(this.LoopTimer_Tick);
+            // 
+            // loadConfigurationToolStripMenuItem
+            // 
+            this.loadConfigurationToolStripMenuItem.Name = "loadConfigurationToolStripMenuItem";
+            this.loadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(331, 30);
+            this.loadConfigurationToolStripMenuItem.Text = "Load Configuration";
+            this.loadConfigurationToolStripMenuItem.Click += new System.EventHandler(this.loadConfigurationToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(328, 6);
             // 
             // frmMain
             // 
@@ -2941,6 +2957,8 @@
         private System.Windows.Forms.PictureBox pbEng1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Timer LoopTimer;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem loadConfigurationToolStripMenuItem;
     }
 }
 
