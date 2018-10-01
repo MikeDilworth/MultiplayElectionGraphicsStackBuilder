@@ -367,6 +367,7 @@ namespace GUILayer.Forms
         {
             string[] IPs = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
             bool[] enables = new bool[4] { false, false, false, false };
+            string applicationLogComments;
 
             //builderOnlyMode = Properties.Settings.Default.builderOnly;
             //Network = Properties.Settings.Default.Network;
@@ -401,7 +402,8 @@ namespace GUILayer.Forms
             builderOnlyMode = Convert.ToBoolean(row["StackBuildOnly"] ?? 0);
             Network = row["Network"].ToString() ?? "";
 
-
+            applicationLogComments = $"{Network}; Config: {configName}; ";
+            
             this.Size = new Size(1462, 991);
             connectionPanel.Visible = false;
             enginePanel.Visible = false;
@@ -690,6 +692,8 @@ namespace GUILayer.Forms
 
                 if (dt.Rows.Count > 0)
                 {
+                    if (enab)
+                        applicationLogComments += $"{tabName}:";
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         row = dt.Rows[i];
@@ -705,6 +709,7 @@ namespace GUILayer.Forms
                         tod.Add(to);
                         sceneName += $"{engine}: {GetSceneName(sceneCode)}; ";
                         outEng[engine - 1] = true;
+                        applicationLogComments += $" {engine}: {sceneCode}";
 
                     }
                     td.tabName = tabName;
@@ -715,6 +720,8 @@ namespace GUILayer.Forms
                     td.engineSceneDef = sceneName;
                     td.TabOutput.AddRange(tod);
                     tabConfig.Add(td);
+                    if (enab)
+                        applicationLogComments += $"; ";
 
                 }
                 else
@@ -730,7 +737,9 @@ namespace GUILayer.Forms
 
             }
 
-            SetOutput();
+            SetOutput(0);
+
+
             // Make entry into applications log
             ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
 
@@ -748,7 +757,7 @@ namespace GUILayer.Forms
                 "Launched application",
                 Convert.ToString(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version),
                 Properties.Settings.Default.ApplicationID,
-                "",
+                applicationLogComments,
                 System.DateTime.Now
             //enables[2],
             //IPs[2],
@@ -1030,7 +1039,7 @@ namespace GUILayer.Forms
                 gbExitPolls.Visible = false;
 
             if (!builderOnlyMode)
-                SetOutput();
+                SetOutput(dataModeSelect.SelectedIndex);
         }
 
         #endregion 
@@ -3790,6 +3799,7 @@ namespace GUILayer.Forms
 
                 currentRaceIndex = stackGrid.CurrentCell.RowIndex;
                 Int16 stackElementDataType = (Int16)stackElements[currentRaceIndex].Stack_Element_Data_Type;
+                SetOutput(stackElementDataType);
 
                 switch (stackElementDataType)
                 {
@@ -3819,12 +3829,13 @@ namespace GUILayer.Forms
             vizClientSockets[EngineNo - 1].Send(bCmd);
         }
 
-        private void SendToViz(string cmd)
+        private void SendToViz(string cmd, int dataType)
         {
 
             string vizCmd = "";
 
-            int index = dataModeSelect.SelectedIndex;
+            //int index = dataModeSelect.SelectedIndex;
+            int index = dataType;
 
             for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
             {
@@ -3893,16 +3904,19 @@ namespace GUILayer.Forms
                 stackGrid.CurrentCell = stackGrid.Rows[0].Cells[0];
                 panel2.BackColor = Color.Lime;
 
-                int index = dataModeSelect.SelectedIndex;
+                //int index = dataModeSelect.SelectedIndex;
 
-                for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
+                for (int index = 0; index < 4; index++)
                 {
-                    string scenename = tabConfig[index].TabOutput[i].sceneName;
-                    int engine = tabConfig[index].TabOutput[i].engine;
-                    if (vizEngines.Count > 0)
+                    for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
                     {
-                        if (vizEngines[engine - 1].enable)
-                            LoadScene(scenename, engine);
+                        string scenename = tabConfig[index].TabOutput[i].sceneName;
+                        int engine = tabConfig[index].TabOutput[i].engine;
+                        if (vizEngines.Count > 0)
+                        {
+                            if (vizEngines[engine - 1].enable)
+                                LoadScene(scenename, engine);
+                        }
                     }
                 }
 
@@ -3959,9 +3973,9 @@ namespace GUILayer.Forms
             return dataTable;
         }
 
-        public void SetOutput()
+        public void SetOutput(int index)
         {
-            int index = dataModeSelect.SelectedIndex;
+            //int index = dataModeSelect.SelectedIndex;
             gbEngines.Text = $"Engines used for {tabConfig[index].tabName}";
             pbEng1.Visible = tabConfig[index].outputEngine[0];
             pbEng2.Visible = tabConfig[index].outputEngine[1];
@@ -4016,6 +4030,7 @@ namespace GUILayer.Forms
             string raceOffice = stackElements[currentRaceIndex].Office_Code;
             string electionType = stackElements[currentRaceIndex].Election_Type;
             int candidatesToReturn = (int)stackElements[currentRaceIndex].Stack_Element_Type;
+            int dataType = (int)stackElements[currentRaceIndex].Stack_Element_Data_Type;
             bool candidateSelectEnable;
 
             candidatesToReturn = (candidatesToReturn + 1) / 2;
@@ -4052,7 +4067,7 @@ namespace GUILayer.Forms
             string outStr = GetRaceBoardMapkeyStr(rd, candidatesToReturn);
 
             //SendToViz(RBSceneName, outStr, 1);
-            SendToViz(outStr);
+            SendToViz(outStr, dataType);
             LiveUpdateTimer.Enabled = false;
             LiveUpdateTimer.Enabled = true;
 
@@ -4481,7 +4496,7 @@ namespace GUILayer.Forms
 
             int curNew = BOPtion;
             if (BOPtion == 2)
-                curNew = 0;
+                curNew = 1;
 
 
             dt = bop.GetBOPData(ofc, currentTime, curNew);
@@ -4502,12 +4517,20 @@ namespace GUILayer.Forms
             BOPData.Branch = office;
 
             if (BOPtion == 0)
+            {
                 BOPData.Session = "CURRENT";
+                BOPData.DemDelta = 0;
+                BOPData.RepDelta = 0;
+                BOPData.IndDelta = 0;
+
+            }
             else
                 BOPData.Session = "NEW";
 
 
             string outStr = GetBOPMapKeyStr(BOPData, ofc, BOPtion);
+            SendToViz(outStr, seDataType);
+
 
         }
 
@@ -4545,19 +4568,25 @@ namespace GUILayer.Forms
         }
         #endregion
 
+        #region Referendums Data Processing
         public void TakeReferendums()
         {
             //Get the selected race list object
             currentRaceIndex = stackGrid.CurrentCell.RowIndex;
             short stateNumber = stackElements[currentRaceIndex].State_Number;
             string raceOffice = stackElements[currentRaceIndex].Office_Code;
+            int seDataType = (int)stackElements[currentRaceIndex].Stack_Element_Data_Type;
 
             referendumsDataCollection = new ReferendumsDataCollection();
             referendumsDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
             referendumsData = referendumsDataCollection.GetReferendumsDataCollection(stateNumber, raceOffice);
 
-            string outStr = GetReferendumsMapKeyStr(referendumsData);
+            string outStr = "";
 
+            if (referendumsData.Count >= 2)
+                outStr = GetReferendumsMapKeyStr(referendumsData);
+
+            SendToViz(outStr, seDataType);
 
 
         }
@@ -4565,14 +4594,26 @@ namespace GUILayer.Forms
         public string GetReferendumsMapKeyStr(BindingList<ReferendumDataModel> refData)
         {
             string MapKeyStr = $"{refData[0].StateName}|{refData[0].PropRefID}|{refData[0].Description}|{refData[0].Detailtext}";
-            if (refData[0].WinnerCalled)
-                //if (refData[0].WinnerCandidateID == refData[0].)
 
-                MapKeyStr += $"";
+
+            if (refData[0].WinnerCalled)
+            {
+                MapKeyStr += $"1|";
+            }
+            else if (refData[1].WinnerCalled)
+            {
+                MapKeyStr += $"2|";
+            }
+            else
+                MapKeyStr += $"0|";
+
+            
+            MapKeyStr += $"{refData[0].VoteCount}| |{refData[1].VoteCount}| |";
 
             return MapKeyStr;
         }
-        
+        #endregion
+
     }
 
 }
