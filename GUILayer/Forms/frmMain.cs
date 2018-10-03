@@ -85,19 +85,22 @@ namespace GUILayer.Forms
         
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
 
+        public string[] lastSceneLoaded = new string[4];
+                        
 
-        #endregion
 
-        #region Collection & binding list definitions
-        /// <summary>
-        /// Define classes for collections and logic
-        /// </summary>
+    #endregion
 
-        // Define the binding list object for the list of available shows
-        //BindingList<ShowObject> showNames;
+    #region Collection & binding list definitions
+    /// <summary>
+    /// Define classes for collections and logic
+    /// </summary>
 
-        // Define the collection object for the list of available stacks
-        private StacksCollection stacksCollection;
+    // Define the binding list object for the list of available shows
+    //BindingList<ShowObject> showNames;
+
+    // Define the collection object for the list of available stacks
+    private StacksCollection stacksCollection;
         BindingList<StackModel> stacks;
 
         // Define the collection object for the elements within a specified working stack
@@ -491,7 +494,7 @@ namespace GUILayer.Forms
 
                 // get viz engine info
 
-                cmdStr = $"SELECT * FROM FE_EngineDefs WHERE Name = '{configName}'";
+                cmdStr = $"SELECT * FROM FE_EngineDefs WHERE Config = '{configName}'";
                 DataTable dtEng = new DataTable();
                 dtEng = GetDBData(cmdStr, ElectionsDBConnectionString);
                 row = dtEng.Rows[0];
@@ -738,6 +741,25 @@ namespace GUILayer.Forms
             }
 
             SetOutput(0);
+
+
+            // Initial load all scenes
+            for (int index = 0; index < 4; index++)
+            {
+                for (int i = 0; i < tabConfig[index].TabOutput.Count; i++)
+                {
+                    string scenename = tabConfig[index].TabOutput[i].sceneName;
+                    int engine = tabConfig[index].TabOutput[i].engine;
+                    if (vizEngines.Count > 0)
+                    {
+                        if (vizEngines[engine - 1].enable)
+                        {
+                            LoadScene(scenename, engine);
+                        }
+                    }
+                }
+            }
+
 
 
             // Make entry into applications log
@@ -1720,6 +1742,9 @@ namespace GUILayer.Forms
                     while ((foundMatch == false) && (searchIndex < availableRaces.Count));
                 }
             }
+            else if (e.KeyChar == ' ')
+                btnTake_Click(sender, e);
+
         }
 
         #endregion
@@ -3339,12 +3364,12 @@ namespace GUILayer.Forms
 
                     selectedCandidate1 = selectCand.Cand1;
                     cand1Name = selectCand.CandName1;
-                    selectedCandidate2 = selectCand.Cand2;
-                    cand2Name = selectCand.CandName2;
-                    selectedCandidate3 = selectCand.Cand3;
-                    cand3Name = selectCand.CandName3;
-                    selectedCandidate4 = selectCand.Cand4;
-                    cand4Name = selectCand.CandName4;
+                    //selectedCandidate2 = selectCand.Cand2;
+                    //cand2Name = selectCand.CandName2;
+                    //selectedCandidate3 = selectCand.Cand3;
+                    //cand3Name = selectCand.CandName3;
+                    //selectedCandidate4 = selectCand.Cand4;
+                    //cand4Name = selectCand.CandName4;
                     AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
                 }
 
@@ -3393,10 +3418,10 @@ namespace GUILayer.Forms
                     cand1Name = selectCand.CandName1;
                     selectedCandidate2 = selectCand.Cand2;
                     cand2Name = selectCand.CandName2;
-                    selectedCandidate3 = selectCand.Cand3;
-                    cand3Name = selectCand.CandName3;
-                    selectedCandidate4 = selectCand.Cand4;
-                    cand4Name = selectCand.CandName4;
+                    //selectedCandidate3 = selectCand.Cand3;
+                    //cand3Name = selectCand.CandName3;
+                    //selectedCandidate4 = selectCand.Cand4;
+                    //cand4Name = selectCand.CandName4;
                     AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
                 }
 
@@ -3448,8 +3473,8 @@ namespace GUILayer.Forms
                     cand2Name = selectCand.CandName2;
                     selectedCandidate3 = selectCand.Cand3;
                     cand3Name = selectCand.CandName3;
-                    selectedCandidate4 = selectCand.Cand4;
-                    cand4Name = selectCand.CandName4;
+                    //selectedCandidate4 = selectCand.Cand4;
+                    //cand4Name = selectCand.CandName4;
                     AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
                 }
 
@@ -3820,13 +3845,12 @@ namespace GUILayer.Forms
         }
 
 
-
-
         public void LoadScene(string sceneName, int EngineNo)
         {
             string cmd = $"0 RENDERER*MAIN_LAYER SET_OBJECT SCENE*{sceneName}{term}";
             byte[] bCmd = Encoding.UTF8.GetBytes(cmd);
             vizClientSockets[EngineNo - 1].Send(bCmd);
+            lastSceneLoaded[EngineNo - 1] = sceneName;
         }
 
         private void SendToViz(string cmd, int dataType)
@@ -3841,11 +3865,17 @@ namespace GUILayer.Forms
             {
                 string sceneName = tabConfig[index].TabOutput[i].sceneName;
                 int engine = tabConfig[index].TabOutput[i].engine;
+
+                // load scene if last scene loaded on this viz is not = sceneName
+                if (lastSceneLoaded[engine - 1] != sceneName)
+                    LoadScene(sceneName, engine);
+
+
                 if (index == 0)
                     vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}CANDIDATE_DATA{quot} {cmd}{term}";
 
                 if (index == 2)
-                    vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}BOP_FS{quot} {cmd}{term}";
+                    vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}BOP_DATA{quot} {cmd}{term}";
 
                 if (index == 3)
                     vizCmd = $"SEND SCENE*{sceneName}*MAP SET_STRING_ELEMENT {quot}REFERENDUM_DATA{quot} {cmd}{term}";
@@ -4096,7 +4126,12 @@ namespace GUILayer.Forms
             StateMetadataModel st = GetStateMetadata(stateNumber);
             //raceBoardData.state = raceData[0].StateName.Trim();
             raceBoardData.state = st.State_Name;
-            raceBoardData.cd = raceData[0].CD.ToString();
+
+            if (raceData[0].CD == 0)
+                raceBoardData.cd = string.Empty;
+            else
+                raceBoardData.cd = raceData[0].CD.ToString();
+
             TimeSpan fifteenMinutes = new TimeSpan(0, 15, 0);
             bool candidateCalledWinner = false;
             DateTime raceCallTime = raceData[0].RaceWinnerCallTime;
@@ -4381,25 +4416,25 @@ namespace GUILayer.Forms
                 {
                     if (rd.Office == "P")
                     {
-                        raceOfficeStr = "President";
+                        raceOfficeStr = "PRESIDENT";
                     }
                     else if (rd.Office == "G")
                     {
-                        raceOfficeStr = "Governor";
+                        raceOfficeStr = "GOVERNOR";
                     }
                     else if (rd.Office == "L")
                     {
-                        raceOfficeStr = "Lt. Governor";
+                        raceOfficeStr = "LT. GOVERNOR";
                     }
                     else if ((rd.Office == "S") | (rd.Office == "S2"))
                     {
-                        raceOfficeStr = "Senate";
+                        raceOfficeStr = "SENATE";
                     }
                     else if (rd.Office == "H")
                     {
                         if (rd.IsAtLargeHouseState)
                         {
-                            raceOfficeStr = "House At Large";
+                            raceOfficeStr = "HOUSE AT LARGE";
                         }
                         else
                         {
@@ -4544,16 +4579,16 @@ namespace GUILayer.Forms
 
             //(for net gain)
             //BOP_DATA = NET_GAIN~HouseNum | SenNum
-
+            //BRANCH ^ MODE ~ RepNum=0 | RepNetChange=0 | DemNum=0 | DemNetChange=0 | IndNum=0 | IndNetChange=0
             string MapKeyStr;
 
             if (BOPtion < 2)
             {
-                MapKeyStr = $"BOP_DATA = {BOPData.Branch} ^ {BOPData.Session}~";
+                MapKeyStr = $"{BOPData.Branch}^{BOPData.Session}~";
                 if (BOPtion == 0)
-                    MapKeyStr += $"{BOPData.RepBaseline} | {BOPData.RepDelta} | {BOPData.DemBaseline} | {BOPData.DemDelta} | {BOPData.IndBaseline} | {BOPData.IndDelta}";
+                    MapKeyStr += $"RepNum={BOPData.RepBaseline}|RepNetChange{BOPData.RepDelta}|DemNum={BOPData.DemBaseline}|DemNetChange={BOPData.DemDelta}|IndNum={BOPData.IndBaseline}|IndNetChange={BOPData.IndDelta}";
                 else
-                    MapKeyStr += $"{BOPData.RepCount} | {BOPData.RepDelta} | {BOPData.DemCount} | {BOPData.DemDelta} | {BOPData.IndCount} | {BOPData.IndDelta}";
+                    MapKeyStr += $"RepNum={BOPData.RepCount}|RepNetChange{BOPData.RepDelta}|DemNum={BOPData.DemCount}|DemNetChange={BOPData.DemDelta}|IndNum={BOPData.IndCount}|IndNetChange={BOPData.IndDelta}";
             }
             else
             {
@@ -4581,6 +4616,9 @@ namespace GUILayer.Forms
             referendumsDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
             referendumsData = referendumsDataCollection.GetReferendumsDataCollection(stateNumber, raceOffice);
 
+            referendumsData[0].VotePct = (Int32)referendumsData[0].VoteCount * 100 / referendumsData[0].TotalVotes;
+            referendumsData[1].VotePct = (Int32)referendumsData[1].VoteCount * 100 / referendumsData[1].TotalVotes;
+
             string outStr = "";
 
             if (referendumsData.Count >= 2)
@@ -4593,9 +4631,18 @@ namespace GUILayer.Forms
 
         public string GetReferendumsMapKeyStr(BindingList<ReferendumDataModel> refData)
         {
-            string MapKeyStr = $"{refData[0].StateName}|{refData[0].PropRefID}|{refData[0].Description}|{refData[0].Detailtext}";
+            string MapKeyStr = $"{refData[0].StateName}|{refData[0].PropRefID}|{refData[0].Description}|{refData[0].Detailtext}|";
 
 
+            if (refData[0].WinnerCalled)
+            {
+                MapKeyStr += $"{refData[0].WinnerCandidateID}|";
+            }
+            else
+                MapKeyStr += $"0|";
+
+
+            /*
             if (refData[0].WinnerCalled)
             {
                 MapKeyStr += $"1|";
@@ -4607,8 +4654,9 @@ namespace GUILayer.Forms
             else
                 MapKeyStr += $"0|";
 
-            
-            MapKeyStr += $"{refData[0].VoteCount}| |{refData[1].VoteCount}| |";
+            */
+
+            MapKeyStr += $"{refData[0].VotePct}| |{refData[1].VotePct}| |";
 
             return MapKeyStr;
         }

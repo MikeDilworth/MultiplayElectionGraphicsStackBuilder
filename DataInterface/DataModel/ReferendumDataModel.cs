@@ -15,6 +15,7 @@ namespace DataInterface.DataModel
         public string PropRefID { get; set; }
         public Int32 VoteCount { get; set; }
         public Int32 TotalVotes { get; set; }
+        public Int32 VotePct { get; set; }
         public string CandLastName { get; set; }
         public string cStat { get; set; }
         public Int32 PrecinctsPercent { get; set; }

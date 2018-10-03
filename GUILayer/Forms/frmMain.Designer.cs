@@ -40,6 +40,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.usePrimaryMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useBackupMediaSequencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miAboutBox = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -219,8 +221,6 @@
             this.pbEng1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LoopTimer = new System.Windows.Forms.Timer(this.components);
-            this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.dataModeSelect.SuspendLayout();
@@ -376,6 +376,18 @@
             this.useBackupMediaSequencerToolStripMenuItem.Size = new System.Drawing.Size(331, 30);
             this.useBackupMediaSequencerToolStripMenuItem.Text = "Use Backup Media Sequencer";
             this.useBackupMediaSequencerToolStripMenuItem.Click += new System.EventHandler(this.useBackupMediaSequencerToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(328, 6);
+            // 
+            // loadConfigurationToolStripMenuItem
+            // 
+            this.loadConfigurationToolStripMenuItem.Name = "loadConfigurationToolStripMenuItem";
+            this.loadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(331, 30);
+            this.loadConfigurationToolStripMenuItem.Text = "Load Configuration";
+            this.loadConfigurationToolStripMenuItem.Click += new System.EventHandler(this.loadConfigurationToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -1038,7 +1050,7 @@
             this.tpExitPolls.Location = new System.Drawing.Point(4, 34);
             this.tpExitPolls.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpExitPolls.Name = "tpExitPolls";
-            this.tpExitPolls.Size = new System.Drawing.Size(1021, 1180);
+            this.tpExitPolls.Size = new System.Drawing.Size(1021, 1184);
             this.tpExitPolls.TabIndex = 1;
             this.tpExitPolls.Text = "Voter Analysis";
             // 
@@ -1175,7 +1187,7 @@
             this.tpBalanceOfPower.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpBalanceOfPower.Name = "tpBalanceOfPower";
             this.tpBalanceOfPower.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpBalanceOfPower.Size = new System.Drawing.Size(1021, 1180);
+            this.tpBalanceOfPower.Size = new System.Drawing.Size(1021, 1184);
             this.tpBalanceOfPower.TabIndex = 2;
             this.tpBalanceOfPower.Text = "Balance of Power";
             // 
@@ -1240,7 +1252,7 @@
             this.tpReferendums.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tpReferendums.Name = "tpReferendums";
             this.tpReferendums.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpReferendums.Size = new System.Drawing.Size(1021, 1180);
+            this.tpReferendums.Size = new System.Drawing.Size(1021, 1184);
             this.tpReferendums.TabIndex = 3;
             this.tpReferendums.Text = "Referendums";
             // 
@@ -2378,7 +2390,7 @@
             this.lblConfig.AutoSize = true;
             this.lblConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfig.Location = new System.Drawing.Point(323, 48);
+            this.lblConfig.Location = new System.Drawing.Point(299, 48);
             this.lblConfig.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfig.Name = "lblConfig";
             this.lblConfig.Size = new System.Drawing.Size(49, 25);
@@ -2389,7 +2401,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(233, 48);
+            this.label6.Location = new System.Drawing.Point(209, 48);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 25);
@@ -2623,18 +2635,6 @@
             // 
             this.LoopTimer.Interval = 5000;
             this.LoopTimer.Tick += new System.EventHandler(this.LoopTimer_Tick);
-            // 
-            // loadConfigurationToolStripMenuItem
-            // 
-            this.loadConfigurationToolStripMenuItem.Name = "loadConfigurationToolStripMenuItem";
-            this.loadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(331, 30);
-            this.loadConfigurationToolStripMenuItem.Text = "Load Configuration";
-            this.loadConfigurationToolStripMenuItem.Click += new System.EventHandler(this.loadConfigurationToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(328, 6);
             // 
             // frmMain
             // 
