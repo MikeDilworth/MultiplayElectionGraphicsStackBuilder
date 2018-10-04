@@ -4586,9 +4586,9 @@ namespace GUILayer.Forms
             {
                 MapKeyStr = $"{BOPData.Branch}^{BOPData.Session}~";
                 if (BOPtion == 0)
-                    MapKeyStr += $"RepNum={BOPData.RepBaseline}|RepNetChange{BOPData.RepDelta}|DemNum={BOPData.DemBaseline}|DemNetChange={BOPData.DemDelta}|IndNum={BOPData.IndBaseline}|IndNetChange={BOPData.IndDelta}";
+                    MapKeyStr += $"RepNum={BOPData.RepBaseline}|RepNetChange={BOPData.RepDelta}|DemNum={BOPData.DemBaseline}|DemNetChange={BOPData.DemDelta}|IndNum={BOPData.IndBaseline}|IndNetChange={BOPData.IndDelta}";
                 else
-                    MapKeyStr += $"RepNum={BOPData.RepCount}|RepNetChange{BOPData.RepDelta}|DemNum={BOPData.DemCount}|DemNetChange={BOPData.DemDelta}|IndNum={BOPData.IndCount}|IndNetChange={BOPData.IndDelta}";
+                    MapKeyStr += $"RepNum={BOPData.RepCount}|RepNetChange={BOPData.RepDelta}|DemNum={BOPData.DemCount}|DemNetChange={BOPData.DemDelta}|IndNum={BOPData.IndCount}|IndNetChange={BOPData.IndDelta}";
             }
             else
             {
@@ -4616,8 +4616,18 @@ namespace GUILayer.Forms
             referendumsDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
             referendumsData = referendumsDataCollection.GetReferendumsDataCollection(stateNumber, raceOffice);
 
-            referendumsData[0].VotePct = (Int32)referendumsData[0].VoteCount * 100 / referendumsData[0].TotalVotes;
-            referendumsData[1].VotePct = (Int32)referendumsData[1].VoteCount * 100 / referendumsData[1].TotalVotes;
+            if (referendumsData[0].TotalVotes > 0)
+            {
+                
+                referendumsData[0].VotePct = (Int32)referendumsData[0].VoteCount * 100 / referendumsData[0].TotalVotes;
+                referendumsData[1].VotePct = (Int32)referendumsData[1].VoteCount * 100 / referendumsData[1].TotalVotes;
+            }
+            else
+            {
+                referendumsData[0].VotePct = 0;
+                referendumsData[1].VotePct = 0;
+
+            }
 
             string outStr = "";
 
