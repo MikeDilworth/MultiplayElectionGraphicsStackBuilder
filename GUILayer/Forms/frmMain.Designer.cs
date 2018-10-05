@@ -1462,7 +1462,7 @@
             this.TakePanel.Controls.Add(this.cbAutoCalledRaces);
             this.TakePanel.Controls.Add(this.cbLooping);
             this.TakePanel.Controls.Add(this.btnTake);
-            this.TakePanel.Location = new System.Drawing.Point(639, 3);
+            this.TakePanel.Location = new System.Drawing.Point(636, 6);
             this.TakePanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TakePanel.Name = "TakePanel";
             this.TakePanel.Size = new System.Drawing.Size(330, 331);
@@ -1557,10 +1557,10 @@
             this.SaveActivatePanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.SaveActivatePanel.Controls.Add(this.cbPromptForInfo);
             this.SaveActivatePanel.Controls.Add(this.btnSaveActivateStack);
-            this.SaveActivatePanel.Location = new System.Drawing.Point(634, 123);
+            this.SaveActivatePanel.Location = new System.Drawing.Point(636, 123);
             this.SaveActivatePanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SaveActivatePanel.Name = "SaveActivatePanel";
-            this.SaveActivatePanel.Size = new System.Drawing.Size(336, 214);
+            this.SaveActivatePanel.Size = new System.Drawing.Size(334, 214);
             this.SaveActivatePanel.TabIndex = 145;
             // 
             // cbPromptForInfo
@@ -1590,6 +1590,7 @@
             this.btnSaveActivateStack.TabIndex = 138;
             this.btnSaveActivateStack.Text = "Save && Activate\r\nStack\r\n(Ctrl-S)";
             this.btnSaveActivateStack.UseVisualStyleBackColor = false;
+            this.btnSaveActivateStack.Click += new System.EventHandler(this.btnSaveActivateStack_Click);
             // 
             // StackPanel
             // 

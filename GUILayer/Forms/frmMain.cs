@@ -4210,6 +4210,7 @@ namespace GUILayer.Forms
                             raceCalled = true;
                             candidateCalledWinner = true;
                             var raceCallTimeStr = raceData[i].estTS;
+                            winnerCandidateId = raceData[i].CandidateID;
 
                             raceCallTime = GetApRaceCallDateTime(raceCallTimeStr);
                         }
@@ -4671,7 +4672,6 @@ namespace GUILayer.Forms
             return MapKeyStr;
         }
         #endregion
-
     }
 
 }
