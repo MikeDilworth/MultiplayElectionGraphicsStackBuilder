@@ -1753,6 +1753,14 @@ namespace GUILayer.Forms
         /// <summary>
         /// Stack manipulation methods
         /// </summary>
+        /// 
+        // 10/08/2018 Handler for change to graphics concept; previously, was not being set when concept was changed via drop-down
+        private void cbGraphicConcept_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            conceptID = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptID;
+            conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
+        }
+
         // Handler for Save Stack button
         private void btnSaveStack_Click(object sender, EventArgs e)
         {
@@ -1975,6 +1983,10 @@ namespace GUILayer.Forms
                     stackElementsCollection.GetStackElementsCollection(selectedStack.ixStackID);
                     // Update stack entries count label
                     txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
+
+                    // 10/08/2018 Set graphics concept in drop-down
+                    cbGraphicConcept.SelectedIndex = selectedStack.ConceptID - 1;
+
                     //txtStackName.Text = selectedStack.StackName + " [ID: " + Convert.ToString(selectedStack.ixStackID) + "]";
                     txtStackName.Text = selectedStack.StackName;
                 }
@@ -2087,7 +2099,30 @@ namespace GUILayer.Forms
         {
             try
             {
-                if (stackElements.Count > 0)
+                if (stackElements.Count == 0)
+                {
+                    MessageBox.Show("There are no elements specified in the stack to save.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+                // Added for 2018 Mid-Terms - new concepts for 6-Way & 8-Way boards; need to check for correct number of boards
+                // Check for 6-Way boards
+                else if ((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Six_Way - 1) && (stackElements.Count != 6))
+                {
+                    MessageBox.Show("There must be exactly six (6) elements in the stack in order to save it for this graphics concept. " + 
+                        "Either set the number of boards to six (6), or choose another graphics concept from the drop-down menu.", 
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Check for 8-Way boards
+                else if ((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1) && (stackElements.Count != 8))
+                {
+                    MessageBox.Show("There must be exactly eight (8) elements in the stack in order to save it for this graphics concept " +
+                        "Either set the number of boards to six (6), or choose another graphics concept from the drop-down menu.", 
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                else if (stackElements.Count > 0)
                 {
                     // Only display dialog if checkbox for prompt for info is checked
                     if (cbPromptForInfo.Checked == true)
@@ -2160,12 +2195,11 @@ namespace GUILayer.Forms
                         ActivateStack(stackID, stackDescription, stackElementsCollection, stackElements);
                     }
 
+                    // Set status strip
+                    toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
+                    // toolStripStatusLabel.Text = "Status Logging Message: Stack saved out to database and activated";
+                    toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack \"{0}\" saved out to database and activated", stackDescription);
                 }
-
-                // Set status strip
-                toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
-                // toolStripStatusLabel.Text = "Status Logging Message: Stack saved out to database and activated";
-                toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack \"{0}\" saved out to database and activated", stackDescription);
             }
                     
             catch (Exception ex)
@@ -4672,6 +4706,7 @@ namespace GUILayer.Forms
             return MapKeyStr;
         }
         #endregion
+
     }
 
 }

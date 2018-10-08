@@ -86,9 +86,6 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder_Save\GUILayer\bin\Debug\MSEInterface.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder_Save\GUILayer\bin\Debug\log4net.xml
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder_Save\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe.config
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\DataInterface.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\log4net.dll
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\LogicLayer.dll
@@ -106,8 +103,6 @@ C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBui
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmSelectShow.resources
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.Properties.Resources.resources
 C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.GenerateResource.Cache
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.exe
-C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\MultiPlayStackBuilder.pdb
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe.config
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.exe
 C:\Users\Aruti\Source\Repos\electiongraphicsstackbuilder\GUILayer\bin\Debug\MultiPlayStackBuilder.pdb
@@ -156,3 +151,38 @@ C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilde
 C:\X\ElectionGraphicsStackBuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.pdb
 C:\X\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.exe
 C:\X\ElectionGraphicsStackBuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe.config
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\AsyncClientSocket.dll
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\AsyncClientSocket.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CoreCompileInputs.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CopyComplete
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.exe
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe.config
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\AsyncClientSocket.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\MSEInterface.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\AsyncClientSocket.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\MSEInterface.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.xml
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csprojAssemblyReference.cache
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmLoadStack.resources
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmSaveStack.resources
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmCandidateSelect.resources
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmAbout.resources
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmMain.resources
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmSelectShow.resources
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Properties.Resources.resources
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.GenerateResource.cache
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CoreCompileInputs.cache
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CopyComplete
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.exe
+C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.pdb

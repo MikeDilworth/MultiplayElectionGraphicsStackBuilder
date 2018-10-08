@@ -45,3 +45,16 @@ C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csprojResolveA
 C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
 C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.dll
 C:\X\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\bin\Debug\LogicLayer.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\bin\Debug\DataInterface.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\bin\Debug\log4net.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\bin\Debug\DataInterface.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\bin\Debug\log4net.xml
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csprojAssemblyReference.cache
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.pdb

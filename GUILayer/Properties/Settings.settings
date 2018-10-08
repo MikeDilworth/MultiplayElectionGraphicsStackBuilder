@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="MSEEndpoint1" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://172.21.0.35:8580/</Value>
+      <Value Profile="(Default)">http:/10.232.84.199:8580/</Value>
     </Setting>
     <Setting Name="DefaultTrioProfile" Type="System.String" Scope="Application">
       <Value Profile="(Default)">MJD Test Profile</Value>
@@ -18,7 +18,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TopLevelShowsDirectory" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">directory/shows/MULTIPLAY/</Value>
+      <Value Profile="(Default)">directory/shows/MIDTERMS_2018/</Value>
     </Setting>
     <Setting Name="MasterPlaylistsDirectory" Type="System.String" Scope="Application">
       <Value Profile="(Default)">directory/playlists/</Value>

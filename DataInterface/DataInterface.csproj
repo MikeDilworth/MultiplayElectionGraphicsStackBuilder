@@ -74,6 +74,7 @@
     <Compile Include="DataModel\StateMetadataModel.cs" />
     <Compile Include="Enums\BoardModes.cs" />
     <Compile Include="Enums\DataTypes.cs" />
+    <Compile Include="Enums\GraphicsConcepts.cs" />
     <Compile Include="Enums\SpecialCaseFilterModes.cs" />
     <Compile Include="Enums\StackElementTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

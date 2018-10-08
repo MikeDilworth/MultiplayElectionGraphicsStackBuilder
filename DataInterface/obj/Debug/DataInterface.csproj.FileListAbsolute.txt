@@ -34,3 +34,15 @@ C:\X\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.C
 C:\X\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.dll
 C:\X\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.pdb
 C:\X\ElectionGraphicsStackBuilder\DataInterface\obj\Debug\DataInterface.csprojResolveAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csprojResolveAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.CoreCompileInputs.cache
+C:\Users\Dilworth\Documents\Visual Studio 2012\Projects\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.CopyComplete
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\bin\Debug\DataInterface.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\bin\Debug\DataInterface.pdb
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.xml
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csprojAssemblyReference.cache
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.CoreCompileInputs.cache
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.CopyComplete
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.dll
+C:\_dev\bitbucket\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.pdb
