@@ -14,17 +14,13 @@ namespace DataInterface.Enums
         [Description("32x9")]
         ThirtyTwo_By_Nine = 1,
 
-        [Description("TopOfHour")]
-        Top_Of_Hour = 2,
-
         [Description("16x9)")]
-        Sixteen_By_Nine = 3,
+        Sixteen_By_Nine = 2,
 
-        [Description("6-Way)")]
-        Six_Way = 4,
+        [Description("32x9 (5-10)")]
+        ThirtyTwo_By_Nine_Five_Ten = 3,
 
         [Description("8-Way)")]
-        Eight_Way = 5,
-
+        Eight_Way = 4,
     }
 }

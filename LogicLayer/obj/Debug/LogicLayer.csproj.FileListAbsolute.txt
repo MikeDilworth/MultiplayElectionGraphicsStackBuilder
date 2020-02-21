@@ -58,3 +58,14 @@ C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.c
 C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
 C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.dll
 C:\_dev\bitbucket\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\bin\Debug\LogicLayer.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\bin\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\bin\Debug\log4net.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\bin\Debug\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\bin\Debug\log4net.xml
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csprojAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\LogicLayer\obj\Debug\LogicLayer.pdb

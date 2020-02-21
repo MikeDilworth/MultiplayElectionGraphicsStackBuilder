@@ -82,25 +82,25 @@ namespace GUILayer.Forms
         public string hostName = string.Empty;
 
         public List<TabDefinitionModel> tabConfig = new List<TabDefinitionModel>();
-        
+
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
 
         public string[] lastSceneLoaded = new string[4];
-                        
 
 
-    #endregion
 
-    #region Collection & binding list definitions
-    /// <summary>
-    /// Define classes for collections and logic
-    /// </summary>
+        #endregion
 
-    // Define the binding list object for the list of available shows
-    //BindingList<ShowObject> showNames;
+        #region Collection & binding list definitions
+        /// <summary>
+        /// Define classes for collections and logic
+        /// </summary>
 
-    // Define the collection object for the list of available stacks
-    private StacksCollection stacksCollection;
+        // Define the binding list object for the list of available shows
+        //BindingList<ShowObject> showNames;
+
+        // Define the collection object for the list of available stacks
+        private StacksCollection stacksCollection;
         BindingList<StackModel> stacks;
 
         // Define the collection object for the elements within a specified working stack
@@ -116,7 +116,7 @@ namespace GUILayer.Forms
         BindingList<AvailableRaceModel> availableRaces;
 
         // Define the collection object for the list of Referendums
-        private ReferendumsCollection  referendumsCollection;
+        private ReferendumsCollection referendumsCollection;
         BindingList<ReferendumModel> referendums;
 
         // Define the collection object for the list of Referendums data
@@ -144,14 +144,14 @@ namespace GUILayer.Forms
         BindingList<StateMetadataModel> stateMetadata;
 
         // Define the collection used for storing state metadata for all 50 states + US
-        private GraphicsConceptsCollection  graphicsConceptsCollection;
+        private GraphicsConceptsCollection graphicsConceptsCollection;
         BindingList<GraphicsConceptsModel> graphicsConcepts;
         BindingList<GraphicsConceptsModel> graphicsConceptTypes;
 
         // Define the collection object for the list of available races
         private ApplicationSettingsFlagsCollection applicationSettingsFlagsCollection;
         BindingList<ApplicationSettingsFlagsModel> applicationFlags;
-        
+
         internal static readonly XNamespace Atom = "http://www.w3.org/2005/Atom";
 
         // Instantiate MSE classes
@@ -172,7 +172,7 @@ namespace GUILayer.Forms
         string profilesURI = string.Empty;
         string currentShowName = string.Empty;
         string currentPlaylistName = string.Empty;
-        
+
         /*
         Boolean mseEndpoint1_Enable = Properties.Settings.Default.MSEEndpoint1_Enable;
         string mseEndpoint1 = Properties.Settings.Default.MSEEndpoint1;
@@ -191,7 +191,7 @@ namespace GUILayer.Forms
 
         //Read in default Trio profile and channel
         string defaultTrioProfile = Properties.Settings.Default.DefaultTrioProfile;
-        string defaultTrioChannel = Properties.Settings.Default.DefaultTrioChannel;                        
+        string defaultTrioChannel = Properties.Settings.Default.DefaultTrioChannel;
         #endregion
 
         #region Logger instantiation - uses reflection to get module name
@@ -227,14 +227,14 @@ namespace GUILayer.Forms
         /// <summary>
         /// Main form init, activation and close
         /// </summary>
-        
+
         public frmMain()
         {
             InitializeComponent();
 
             try
             {
-                
+
                 // Setup show controls
                 if (Properties.Settings.Default.EnableShowSelectControls)
                     enableShowSelectControls = true;
@@ -302,12 +302,12 @@ namespace GUILayer.Forms
                 // Set connection string for functions to get simulated time
                 TimeFunctions.ElectionsDBConnectionString = ElectionsDBConnectionString;
 
-                
+
                 // Set version number
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 this.Text = String.Format("Election Graphics Stack Builder Application  Version {0}", version);
 
-                
+
 
             }
             catch (Exception ex)
@@ -406,7 +406,7 @@ namespace GUILayer.Forms
             Network = row["Network"].ToString() ?? "";
 
             applicationLogComments = $"{Network}; Config: {configName}; ";
-            
+
             this.Size = new Size(1462, 991);
             connectionPanel.Visible = false;
             enginePanel.Visible = false;
@@ -794,7 +794,7 @@ namespace GUILayer.Forms
 
         public void ConnectToVizEngines()
         {
-            
+
             for (int i = 0; i < vizEngines.Count; i++)
             {
                 // Connect to the ClientSocket; call-backs for connection status will indicate status of client sockets
@@ -803,7 +803,7 @@ namespace GUILayer.Forms
                     vizClientSockets[i].AutoReconnect = true;
                     vizClientSockets[i].Connect();
                 }
-                
+
             }
         }
 
@@ -814,8 +814,8 @@ namespace GUILayer.Forms
             dt = GetDBData(cmdStr, ElectionsDBConnectionString);
 
             DataRow row = dt.Rows[0];
-            return  row["IP_Address"].ToString() ?? "";
-            
+            return row["IP_Address"].ToString() ?? "";
+
         }
         public string GetSceneName(string sceneCode)
         {
@@ -826,12 +826,12 @@ namespace GUILayer.Forms
             string[] strSeparator = new string[] { "/" };
             string sceneName = "";
 
-            
+
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
                 string scenePath = row["ScenePath"].ToString() ?? "";
-                sceneNames = scenePath.Split(strSeparator,StringSplitOptions.None);
+                sceneNames = scenePath.Split(strSeparator, StringSplitOptions.None);
                 int i = sceneNames.Length;
                 sceneName = sceneNames[i - 1];
                 return sceneName;
@@ -846,7 +846,7 @@ namespace GUILayer.Forms
             DataTable dt = new DataTable();
             string cmdStr = $"SELECT * FROM FE_Scenes WHERE SceneCode = '{sceneCode}'";
             dt = GetDBData(cmdStr, ElectionsDBConnectionString);
-            
+
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
@@ -917,7 +917,7 @@ namespace GUILayer.Forms
                 return;
             }
 
-            
+
             bool connected = vizEngines[i].connected;
             switch (i + 1)
             {
@@ -1010,7 +1010,7 @@ namespace GUILayer.Forms
                     Properties.Settings.Default.ApplicationID,
                     "",
                     System.DateTime.Now
-                );               
+                );
             }
         }
 
@@ -1064,8 +1064,8 @@ namespace GUILayer.Forms
                 SetOutput(dataModeSelect.SelectedIndex);
         }
 
-        #endregion 
-        
+        #endregion
+
         #region Utility functions
         // Refresh the list of available stacks for the grid
 
@@ -1087,7 +1087,7 @@ namespace GUILayer.Forms
         }
         #endregion
 
-        # region Data refresh functions
+        #region Data refresh functions
         // Refresh the list of available races for the races list
         private void RefreshAvailableRacesList()
         {
@@ -1146,7 +1146,7 @@ namespace GUILayer.Forms
                 availableRaces = this.availableRacesCollection.GetFilteredRaceCollection(ofc, cStatus, scfm, stateMetadata);
 
                 // Set next poll closing label
-                if (scfm == (short) SpecialCaseFilterModes.Next_Poll_Closing_States_Only)
+                if (scfm == (short)SpecialCaseFilterModes.Next_Poll_Closing_States_Only)
                 {
                     txtNextPollClosingTime.Text = Convert.ToString(this.availableRacesCollection.NextPollClosingTime);
                     txtNextPollClosingTimeHeader.Visible = true;
@@ -1233,7 +1233,7 @@ namespace GUILayer.Forms
                 this.raceDataCollection = new RaceDataCollection();
                 this.raceDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
                 // Specify state ID = -1 => Don't query database for candidate data until requesting actual race data
-                raceData = this.raceDataCollection.GetRaceDataCollection(-1, "P", 0, "G", 1, false , 0, 0, 0, 0);
+                raceData = this.raceDataCollection.GetRaceDataCollection(-1, "P", 0, "G", 1, false, 0, 0, 0, 0);
             }
             catch (Exception ex)
             {
@@ -1294,7 +1294,7 @@ namespace GUILayer.Forms
                 conceptName = graphicsConceptTypes[0].ConceptName;
                 cbGraphicConcept.SelectedIndex = 0;
                 cbGraphicConcept.Text = conceptName;
-                
+
                 // Setup the master race collection & bind to grid
                 //this.graphicsConceptsCollection = new GraphicsConceptsCollection();
                 //this.graphicsConceptsCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
@@ -1407,16 +1407,25 @@ namespace GUILayer.Forms
         // Handler for Add 1-Way race board button
         private void btnAddRace1Way_Click(object sender, EventArgs e)
         {
-            Int16 seType = (short)StackElementTypes.Race_Board_1_Way;
-            string seDescription = "Race Board (1-Way)";
-            Int16 seDataType = (int)DataTypes.Race_Boards;
-
-            if (insertNext == true)
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
             {
-                AddRaceBoardToStack(seType, seDescription, seDataType);
+                MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
+                Int16 seType = (short)StackElementTypes.Race_Board_1_Way;
+                string seDescription = "Race Board (1-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
+
+                if (insertNext == true)
+                {
+                    AddRaceBoardToStack(seType, seDescription, seDataType);
+                }
+                else
+                {
+                }
             }
         }
 
@@ -1435,30 +1444,139 @@ namespace GUILayer.Forms
         // General method to add a 2-way race board
         private void Add2WayBoard()
         {
-            Int16 seType = (short)StackElementTypes.Race_Board_2_Way;
-            string seDescription = "Race Board (2-Way)";
-            Int16 seDataType = (int)DataTypes.Race_Boards;
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            {
+                MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Int16 seType = (short)StackElementTypes.Race_Board_2_Way;
+                string seDescription = "Race Board (2-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
 
-            AddRaceBoardToStack(seType, seDescription, seDataType);
+                AddRaceBoardToStack(seType, seDescription, seDataType);
+            }
         }
 
         // Handler for Add 3-Way race board button
         private void btnAddRace3Way_Click(object sender, EventArgs e)
         {
-            Int16 seType = (short)StackElementTypes.Race_Board_3_Way;
-            string seDescription = "Race Board (3-Way)";
-            Int16 seDataType = (int)DataTypes.Race_Boards;
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            {
+                MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Int16 seType = (short)StackElementTypes.Race_Board_3_Way;
+                string seDescription = "Race Board (3-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
 
-            AddRaceBoardToStack(seType, seDescription, seDataType);
+                AddRaceBoardToStack(seType, seDescription, seDataType);
+            }
         }
 
         private void btnAddRace4Way_Click(object sender, EventArgs e)
         {
-            Int16 seType = (short)StackElementTypes.Race_Board_4_Way;
-            string seDescription = "Race Board (4-Way)";
-            Int16 seDataType = (int)DataTypes.Race_Boards;
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            {
+                MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Int16 seType = (short)StackElementTypes.Race_Board_4_Way;
+                string seDescription = "Race Board (4-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
 
-            AddRaceBoardToStack(seType, seDescription, seDataType);
+                AddRaceBoardToStack(seType, seDescription, seDataType);
+            }
+        }
+
+        // Handler for add Top 5 Candidates board button
+        private void btnAddRace5Way_Click(object sender, EventArgs e)
+        {
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            {
+                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Int16 seType = (short)StackElementTypes.Race_Board_5_Way;
+                string seDescription = "Race Board (5-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
+
+                AddRaceBoardToStack(seType, seDescription, seDataType);
+            }
+        }
+  
+        // Handler for add Top 6 Candidates board button
+        private void btnAddRace6Way_Click(object sender, EventArgs e)
+        {
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            {
+                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Int16 seType = (short)StackElementTypes.Race_Board_6_Way;
+                string seDescription = "Race Board (6-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
+
+                AddRaceBoardToStack(seType, seDescription, seDataType);
+            }
+        }
+
+        // Handler for add Top 7 Candidates board button
+        private void btnAddRace7Way_Click(object sender, EventArgs e)
+        {
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            {
+                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Int16 seType = (short)StackElementTypes.Race_Board_7_Way;
+                string seDescription = "Race Board (7-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
+
+                AddRaceBoardToStack(seType, seDescription, seDataType);
+            }
+        }
+
+        // Handler for add Top 8 Candidates board button
+        private void btnAddRace8Way_Click(object sender, EventArgs e)
+        {
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            {
+                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Int16 seType = (short)StackElementTypes.Race_Board_8_Way;
+                string seDescription = "Race Board (8-Way)";
+                Int16 seDataType = (int)DataTypes.Race_Boards;
+
+                AddRaceBoardToStack(seType, seDescription, seDataType);
+            }
+        }
+
+        // Handler for add All Candidates (variable based on candidates remaining) board button
+        private void btnAllCandidates_Click(object sender, EventArgs e)
+        {
+
         }
 
         // Generic method to add a race board to a stack
@@ -1479,7 +1597,7 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = stackElementType;
                 newStackElement.Stack_Element_Data_Type = stackElementDataType;
                 newStackElement.Stack_Element_Description = stackElementDescription;
-                
+
                 // Get the template ID for the specified element type & concept ID
                 newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, stackElementType);
 
@@ -1649,9 +1767,14 @@ namespace GUILayer.Forms
                 case Keys.F12:
                     rbNone.Checked = true;
                     break;
-                case Keys.A:
+                case Keys.Q:
                     if (e.Control == true)
                         btnAddAll_Click(sender, e);
+                    break;
+                // Add All Candidates Graphic
+                case Keys.A:
+                    if (e.Control == true)
+                        btnAllCandidates_Click(sender, e);
                     break;
                 // Check for 1 -> 4 way boards (horse-raced)
                 case Keys.D1:
@@ -1678,6 +1801,24 @@ namespace GUILayer.Forms
                     else if (e.Alt == true)
                         btnSelect4_Click(sender, e);
                     break;
+                // Added 02/20/2020
+                case Keys.D5:
+                    if (e.Control == true)
+                        btnAddRace5Way_Click(sender, e);
+                    break;
+                case Keys.D6:
+                    if (e.Control == true)
+                        btnAddRace6Way_Click(sender, e);
+                    break;
+                case Keys.D7:
+                    if (e.Control == true)
+                        btnAddRace7Way_Click(sender, e);
+                    break;
+                case Keys.D8:
+                    if (e.Control == true)
+                        btnAddRace8Way_Click(sender, e);
+                    break;
+
                 // Stack operations
                 case Keys.R:
                     if (e.Control == true)
@@ -1703,9 +1844,9 @@ namespace GUILayer.Forms
                     if (e.Control == true)
                         btnSaveStack_Click(sender, e);
                     break;
-                //default:
-                //    rbShowAll.Checked = true;
-                //    break;
+                    //default:
+                    //    rbShowAll.Checked = true;
+                    //    break;
             }
         }
 
@@ -1768,9 +1909,9 @@ namespace GUILayer.Forms
             {
                 if (stackElements.Count > 0)
                 {
-                    
+
                     DialogResult dr = new DialogResult();
-                    FrmSaveStack saveStack = new FrmSaveStack(stackID ,stackDescription);
+                    FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
                     dr = saveStack.ShowDialog();
                     if (dr == DialogResult.OK)
                     {
@@ -1807,7 +1948,7 @@ namespace GUILayer.Forms
                 toolStripStatusLabel.BackColor = System.Drawing.Color.SpringGreen;
                 //toolStripStatusLabel.Text = "Status Logging Message: Stack successfully saved out to database";
                 toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack {0} saved out to database", stackID);
-            
+
 
             }
             catch (Exception ex)
@@ -1947,12 +2088,12 @@ namespace GUILayer.Forms
         private void LoadSelectedStack()
         {
             try
-            {               
+            {
                 //Refresh the list of available stacks
                 Int32 stackIndex = 0;
 
                 // Setup dialog to load stack
-                DialogResult dr = new DialogResult();               
+                DialogResult dr = new DialogResult();
                 frmLoadStack loadStack = new frmLoadStack();
 
                 loadStack.EnableShowControls = enableShowSelectControls;
@@ -2026,7 +2167,7 @@ namespace GUILayer.Forms
                                 txtStackName.Text = "None Selected";
 
                                 // Update stack entries count label
-                                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);                             
+                                txtStackEntriesCount.Text = Convert.ToString(stackElements.Count);
                             }
                             else okToGo = false;
                         }
@@ -2107,18 +2248,18 @@ namespace GUILayer.Forms
 
                 // Added for 2018 Mid-Terms - new concepts for 6-Way & 8-Way boards; need to check for correct number of boards
                 // Check for 6-Way boards
-                else if ((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Six_Way - 1) && (stackElements.Count != 6))
-                {
-                    MessageBox.Show("There must be exactly six (6) elements in the stack in order to save it for this graphics concept. " + 
-                        "Either set the number of boards to six (6), or choose another graphics concept from the drop-down menu.", 
-                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //else if ((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Six_Way - 1) && (stackElements.Count != 6))
+                //{
+                //    MessageBox.Show("There must be exactly six (6) elements in the stack in order to save it for this graphics concept. " +
+                //        "Either set the number of boards to six (6), or choose another graphics concept from the drop-down menu.",
+                //        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
 
                 // Check for 8-Way boards
                 else if ((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1) && (stackElements.Count != 8))
                 {
-                    MessageBox.Show("There must be exactly eight (8) elements in the stack in order to save it for this graphics concept " +
-                        "Either set the number of boards to six (6), or choose another graphics concept from the drop-down menu.", 
+                    MessageBox.Show("There must be exactly eight (8) elements in the stack in order to save it for this graphics concept. " +
+                        "Either set the number of boards to eight (8), or choose another, compatible graphics concept from the drop-down menu.",
                         "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -2201,7 +2342,7 @@ namespace GUILayer.Forms
                     toolStripStatusLabel.Text = String.Format("Status Logging Message: Stack \"{0}\" saved out to database and activated", stackDescription);
                 }
             }
-                    
+
             catch (Exception ex)
             {
                 log.Debug("Exception occurred", ex);
@@ -2215,377 +2356,377 @@ namespace GUILayer.Forms
         private void ActivateStack(Double stack_ID, string stack_Description, StackElementsCollection _stackElementsCollection, BindingList<StackElementModel> _stackElements)
         {
             try
-            {    
-                    // MSE OPERATION
-                    string groupSelfLink = string.Empty;
+            {
+                // MSE OPERATION
+                string groupSelfLink = string.Empty;
 
-                    // Get playlists directory URI based on current show
-                    string showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI, currentShowName);
+                // Get playlists directory URI based on current show
+                string showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI, currentShowName);
 
-                    // Iterate through the races in the stack to build the preview collection, then call methods to create group containing elements
-                    // Clear out the existing race preview collection
-                    racePreview.Clear();
+                // Iterate through the races in the stack to build the preview collection, then call methods to create group containing elements
+                // Clear out the existing race preview collection
+                racePreview.Clear();
 
-                    string raceBoardTypeDescription = string.Empty;
-                    Int16 candidatesToReturn = 0;
-                    Int16 dataType = 0;
-                    string BOPHeader = String.Empty;
-                    
-                    // Build the Race Preview collection - contains strings for each race in the group/stack
-                    // Iterate through each race in the stack to build the race preview command strings collection                    
-                    for (int i = 0; i < _stackElements.Count; ++i)
+                string raceBoardTypeDescription = string.Empty;
+                Int16 candidatesToReturn = 0;
+                Int16 dataType = 0;
+                string BOPHeader = String.Empty;
+
+                // Build the Race Preview collection - contains strings for each race in the group/stack
+                // Iterate through each race in the stack to build the race preview command strings collection                    
+                for (int i = 0; i < _stackElements.Count; ++i)
+                {
+                    switch (_stackElements[i].Stack_Element_Type)
                     {
-                        switch (_stackElements[i].Stack_Element_Type)
-                        {
-                            case (Int16)StackElementTypes.Race_Board_1_Way:
-                                raceBoardTypeDescription = "1-Way Board";                                                                                                                                  
-                                candidatesToReturn = 1;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_1_Way:
+                            raceBoardTypeDescription = "1-Way Board";
+                            candidatesToReturn = 1;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Race_Board_1_Way_Select:
-                                raceBoardTypeDescription = "1-Way Select Board";
-                                candidatesToReturn = 1;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_1_Way_Select:
+                            raceBoardTypeDescription = "1-Way Select Board";
+                            candidatesToReturn = 1;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Race_Board_2_Way:
-                                raceBoardTypeDescription = "2-Way Board";
-                                candidatesToReturn = 2;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_2_Way:
+                            raceBoardTypeDescription = "2-Way Board";
+                            candidatesToReturn = 2;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Race_Board_2_Way_Select:
-                                raceBoardTypeDescription = "2-Way Select Board";
-                                candidatesToReturn = 2;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_2_Way_Select:
+                            raceBoardTypeDescription = "2-Way Select Board";
+                            candidatesToReturn = 2;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Race_Board_3_Way:
-                                raceBoardTypeDescription = "3-Way Board";
-                                candidatesToReturn = 3;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_3_Way:
+                            raceBoardTypeDescription = "3-Way Board";
+                            candidatesToReturn = 3;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Race_Board_3_Way_Select:
-                                raceBoardTypeDescription = "3-Way Select Board";
-                                candidatesToReturn = 3;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_3_Way_Select:
+                            raceBoardTypeDescription = "3-Way Select Board";
+                            candidatesToReturn = 3;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Race_Board_4_Way:
-                                raceBoardTypeDescription = "4-Way Board";
-                                candidatesToReturn = 4;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_4_Way:
+                            raceBoardTypeDescription = "4-Way Board";
+                            candidatesToReturn = 4;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Race_Board_4_Way_Select:
-                                raceBoardTypeDescription = "4-Way Select Board";
-                                candidatesToReturn = 4;
-                                dataType = (Int16) DataTypes.Race_Boards;
-                                break;
+                        case (Int16)StackElementTypes.Race_Board_4_Way_Select:
+                            raceBoardTypeDescription = "4-Way Select Board";
+                            candidatesToReturn = 4;
+                            dataType = (Int16)DataTypes.Race_Boards;
+                            break;
 
-                            case (Int16)StackElementTypes.Exit_Poll_Full_Screen:
-                                raceBoardTypeDescription = "Exit Polls";
-                                dataType = (Int16)DataTypes.Exit_Polls;
-                                break;
+                        case (Int16)StackElementTypes.Exit_Poll_Full_Screen:
+                            raceBoardTypeDescription = "Exit Polls";
+                            dataType = (Int16)DataTypes.Exit_Polls;
+                            break;
 
-                            case (Int16)StackElementTypes.Balance_of_Power_House_Current:
-                                raceBoardTypeDescription = "Balance of Power - House: Current";
-                                BOPHeader = "HOUSE^CURRENT";
-                                dataType = (Int16)DataTypes.Balance_of_Power;
-                                break;
+                        case (Int16)StackElementTypes.Balance_of_Power_House_Current:
+                            raceBoardTypeDescription = "Balance of Power - House: Current";
+                            BOPHeader = "HOUSE^CURRENT";
+                            dataType = (Int16)DataTypes.Balance_of_Power;
+                            break;
 
-                            case (Int16)StackElementTypes.Balance_of_Power_Senate_Current:
-                                raceBoardTypeDescription = "Balance of Power - Senate: Current";
-                                BOPHeader = "SENATE^CURRENT";
-                                dataType = (Int16)DataTypes.Balance_of_Power;
-                                break;
+                        case (Int16)StackElementTypes.Balance_of_Power_Senate_Current:
+                            raceBoardTypeDescription = "Balance of Power - Senate: Current";
+                            BOPHeader = "SENATE^CURRENT";
+                            dataType = (Int16)DataTypes.Balance_of_Power;
+                            break;
 
-                            case (Int16)StackElementTypes.Balance_of_Power_House_New:
-                                raceBoardTypeDescription = "Balance of Power - House: New";
-                                BOPHeader = "HOUSE^NEW";
-                                dataType = (Int16)DataTypes.Balance_of_Power;
-                                break;
+                        case (Int16)StackElementTypes.Balance_of_Power_House_New:
+                            raceBoardTypeDescription = "Balance of Power - House: New";
+                            BOPHeader = "HOUSE^NEW";
+                            dataType = (Int16)DataTypes.Balance_of_Power;
+                            break;
 
-                            case (Int16)StackElementTypes.Balance_of_Power_Senate_New:
-                                raceBoardTypeDescription = "Balance of Power - Senate: New";
-                                BOPHeader = "SENATE^NEW";
-                                dataType = (Int16)DataTypes.Balance_of_Power;
-                                break;
+                        case (Int16)StackElementTypes.Balance_of_Power_Senate_New:
+                            raceBoardTypeDescription = "Balance of Power - Senate: New";
+                            BOPHeader = "SENATE^NEW";
+                            dataType = (Int16)DataTypes.Balance_of_Power;
+                            break;
 
-                            case (Int16)StackElementTypes.Balance_of_Power_House_Net_Gain:
-                                raceBoardTypeDescription = "Balance of Power - House: Net Gain";
-                                BOPHeader = "HOUSE^NET GAIN";
-                                dataType = (Int16)DataTypes.Balance_of_Power;
-                                break;
+                        case (Int16)StackElementTypes.Balance_of_Power_House_Net_Gain:
+                            raceBoardTypeDescription = "Balance of Power - House: Net Gain";
+                            BOPHeader = "HOUSE^NET GAIN";
+                            dataType = (Int16)DataTypes.Balance_of_Power;
+                            break;
 
-                            case (Int16)StackElementTypes.Balance_of_Power_Senate_Net_Gain:
-                                raceBoardTypeDescription = "Balance of Power - Senate: Net Gain";
-                                BOPHeader = "SENATE^NET GAIN";
-                                dataType = (Int16)DataTypes.Balance_of_Power;
-                                break;
+                        case (Int16)StackElementTypes.Balance_of_Power_Senate_Net_Gain:
+                            raceBoardTypeDescription = "Balance of Power - Senate: Net Gain";
+                            BOPHeader = "SENATE^NET GAIN";
+                            dataType = (Int16)DataTypes.Balance_of_Power;
+                            break;
 
-                            case (Int16)StackElementTypes.Referendums:
-                                raceBoardTypeDescription = "Referendums";
-                                dataType = (Int16)DataTypes.Referendums;
-                                break;
+                        case (Int16)StackElementTypes.Referendums:
+                            raceBoardTypeDescription = "Referendums";
+                            dataType = (Int16)DataTypes.Referendums;
+                            break;
 
-                        }
+                    }
 
-                        // Instantiate and set the values of a race preview element
-                        RacePreviewModel newRacePreviewElement = new RacePreviewModel();
+                    // Instantiate and set the values of a race preview element
+                    RacePreviewModel newRacePreviewElement = new RacePreviewModel();
 
-                        switch (dataType)
-                        {                            
-                            case (Int16)DataTypes.Race_Boards:
+                    switch (dataType)
+                    {
+                        case (Int16)DataTypes.Race_Boards:
 
-                                // Request the race data for the element in the stack - updates raceData binding list
-                                GetRaceData(_stackElements[i].State_Number, _stackElements[i].Race_Office, _stackElements[i].CD, _stackElements[i].Election_Type, candidatesToReturn, false, 0, 0, 0, 0);
+                            // Request the race data for the element in the stack - updates raceData binding list
+                            GetRaceData(_stackElements[i].State_Number, _stackElements[i].Race_Office, _stackElements[i].CD, _stackElements[i].Election_Type, candidatesToReturn, false, 0, 0, 0, 0);
 
-                                // Check for data returned for race
-                                if (raceData.Count > 0)
-                                {
-                                    // Instantiate and set the values of a race preview element
-                                    //RacePreviewModel newRacePreviewElement = new RacePreviewModel();
+                            // Check for data returned for race
+                            if (raceData.Count > 0)
+                            {
+                                // Instantiate and set the values of a race preview element
+                                //RacePreviewModel newRacePreviewElement = new RacePreviewModel();
 
-                                    // Set the name of the element for the group
-                                    newRacePreviewElement.Raceboard_Description = _stackElements[i].Listbox_Description + " - " + raceBoardTypeDescription;
-                                    //newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + stackElements[i].Listbox_Description;
+                                // Set the name of the element for the group
+                                newRacePreviewElement.Raceboard_Description = _stackElements[i].Listbox_Description + " - " + raceBoardTypeDescription;
+                                //newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + stackElements[i].Listbox_Description;
 
-                                    // Set FIELD_TYPE value - stack ID plus stack index
-                                    newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
+                                // Set FIELD_TYPE value - stack ID plus stack index
+                                newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
 
-                                    // Call method to assemble the race data into the required command string for the raceboards scene
-                                    newRacePreviewElement.Raceboard_Preview_Field_Text = GetRacePreviewString(_stackElements[i], candidatesToReturn);
+                                // Call method to assemble the race data into the required command string for the raceboards scene
+                                newRacePreviewElement.Raceboard_Preview_Field_Text = GetRacePreviewString(_stackElements[i], candidatesToReturn);
 
-                                    // Append the preview element to the race preview collection
-                                    racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
-                                }
-                                break;
+                                // Append the preview element to the race preview collection
+                                racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
+                            }
+                            break;
 
-                            case (Int16)DataTypes.Exit_Polls:
+                        case (Int16)DataTypes.Exit_Polls:
 
-                                string epType = _stackElements[i].Race_RecordType[0].ToString();
-                                Int32 epID = _stackElements[i].ExitPoll_mxID;
-                                string st = _stackElements[i].State_Mnemonic;
-                                string ofc = _stackElements[i].Office_Code;
-                                Int32 jCde = _stackElements[i].County_Number;
-                                Int16 rowNum = _stackElements[i].ExitPoll_xRow;
-                                Int32 subID = _stackElements[i].ExitPoll_SubsetID;
-                                string eType = _stackElements[i].Election_Type;
-                                string q = _stackElements[i].ExitPoll_ShortMxLabel;
+                            string epType = _stackElements[i].Race_RecordType[0].ToString();
+                            Int32 epID = _stackElements[i].ExitPoll_mxID;
+                            string st = _stackElements[i].State_Mnemonic;
+                            string ofc = _stackElements[i].Office_Code;
+                            Int32 jCde = _stackElements[i].County_Number;
+                            Int16 rowNum = _stackElements[i].ExitPoll_xRow;
+                            Int32 subID = _stackElements[i].ExitPoll_SubsetID;
+                            string eType = _stackElements[i].Election_Type;
+                            string q = _stackElements[i].ExitPoll_ShortMxLabel;
 
-                                StackElementModel stElement = new StackElementModel();
-                                stElement = _stackElements[i];
+                            StackElementModel stElement = new StackElementModel();
+                            stElement = _stackElements[i];
 
-                                // Setup the referendums collection
-                                var records = ExitPollDataCollection.GetExitPollDataCollection(ElectionsDBConnectionString, epType, epID, st, ofc, (short)jCde, rowNum, (short)subID, eType);
+                            // Setup the referendums collection
+                            var records = ExitPollDataCollection.GetExitPollDataCollection(ElectionsDBConnectionString, epType, epID, st, ofc, (short)jCde, rowNum, (short)subID, eType);
 
-                                // Check for data returned for race
-                                if (records.Count > 0)
-                                {
+                            // Check for data returned for race
+                            if (records.Count > 0)
+                            {
 
-                                    // Set the name of the element for the group
-                                    newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
-
-                                    // Set FIELD_TYPE value - stack ID plus stack index
-                                    newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
-
-                                    // Call method to assemble the race data into the required command string for the raceboards scene
-                                    newRacePreviewElement.Raceboard_Preview_Field_Text = GetExitPollPreviewString(records, stElement);
-
-                                    // Append the preview element to the race preview collection
-                                    racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
-                                }
-                                break;
-
-                            case (Int16)DataTypes.Balance_of_Power:
-
-                                
                                 // Set the name of the element for the group
                                 newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
 
                                 // Set FIELD_TYPE value - stack ID plus stack index
-                                newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i;
+                                newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
 
                                 // Call method to assemble the race data into the required command string for the raceboards scene
-                                newRacePreviewElement.Raceboard_Preview_Field_Text = GetBOPPreviewString(_stackElements[i], BOPHeader);
-                                
+                                newRacePreviewElement.Raceboard_Preview_Field_Text = GetExitPollPreviewString(records, stElement);
+
                                 // Append the preview element to the race preview collection
                                 racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
-                                
-                                break;
+                            }
+                            break;
 
-                            case (Int16)DataTypes.Referendums:
+                        case (Int16)DataTypes.Balance_of_Power:
 
-                                // Setup the referendums collection
-                                this.referendumsDataCollection  = new ReferendumsDataCollection();
-                                this.referendumsDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
-                                referendumsData = referendumsDataCollection.GetReferendumsDataCollection(_stackElements[i].State_Number, _stackElements[i].Race_Office);
 
-                                ReferendumDataModel refData = new ReferendumDataModel();
+                            // Set the name of the element for the group
+                            newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
 
-                                // Check for data returned for race
-                                if (referendumsData.Count > 0)
-                                {
+                            // Set FIELD_TYPE value - stack ID plus stack index
+                            newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i;
 
-                                    refData = referendumsData[1];
+                            // Call method to assemble the race data into the required command string for the raceboards scene
+                            newRacePreviewElement.Raceboard_Preview_Field_Text = GetBOPPreviewString(_stackElements[i], BOPHeader);
 
-                                    // Set the name of the element for the group
-                                    newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
+                            // Append the preview element to the race preview collection
+                            racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
 
-                                    // Set FIELD_TYPE value - stack ID plus stack index
-                                    newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
+                            break;
 
-                                    // Call method to assemble the race data into the required command string for the raceboards scene
-                                    newRacePreviewElement.Raceboard_Preview_Field_Text = GetReferendumPreviewString(refData);
+                        case (Int16)DataTypes.Referendums:
 
-                                    // Append the preview element to the race preview collection
-                                    racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
-                                }
-                                break;
-                        }
+                            // Setup the referendums collection
+                            this.referendumsDataCollection = new ReferendumsDataCollection();
+                            this.referendumsDataCollection.ElectionsDBConnectionString = ElectionsDBConnectionString;
+                            referendumsData = referendumsDataCollection.GetReferendumsDataCollection(_stackElements[i].State_Number, _stackElements[i].Race_Office);
 
-                    }
+                            ReferendumDataModel refData = new ReferendumDataModel();
 
-                    // MSE OPERATION - SAVE OUT THE GROUP W/STACK ELEMENTS
-                    // Get playlists directory URI based on current show
-                    showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI, currentShowName);
-
-                    // Log if the URI could not be resolved
-                    if (showPlaylistsDirectoryURI == string.Empty)
-                    {
-                        log.Error("Could not resolve Show Playlist Directory URI");
-                        log.Debug("Could not resolve Show Playlist Directory URI");
-                    }
-
-                    // Get templates directory URI based on current show
-                    string showTemplatesDirectoryURI = show.GetTemplateCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
-
-                    // Log if the URI could not be resolved
-                    if (showTemplatesDirectoryURI == string.Empty)
-                    {
-                        log.Error("Could not resolve Show Templates Directory URI");
-                        log.Debug("Could not resolve Show Templates Directory URI");
-                    }
-
-                    // Check for a playlist in the VDOM with the specified name & return the Alt link; if the playlist doesn't exist, create it first
-                    if (playlist.CheckIfPlaylistExists(showPlaylistsDirectoryURI, currentPlaylistName) == false)
-                    {
-                        playlist.CreatePlaylist(showPlaylistsDirectoryURI, currentPlaylistName);
-                    }
-
-                    // Check for a playlist in the VDOM with the specified name & return the Down link
-                    // Delete the group so it can be re-created
-                    string playlistDownLink = playlist.GetPlaylistDownLink(showPlaylistsDirectoryURI, currentPlaylistName);
-                    if (playlistDownLink != string.Empty)
-                    {
-                        // Get the self link to the specified group
-                        groupSelfLink = group.GetGroupSelfLink(playlistDownLink, stack_Description);
-
-                        // Delete the group if it exists
-                        if (groupSelfLink != string.Empty)
-                        {
-                            group.DeleteGroup(groupSelfLink);
-                        }
-
-                        // Create the group
-                        REST_RESPONSE restResponse = group.CreateGroup(playlistDownLink, stack_Description);
-
-                        // Check for elements in collection and add to group
-                        if (racePreview.Count > 0)
-                        {
-                            // Iterate through each element in the preview collection and add the element to the group
-                            for (int i = 0; i < racePreview.Count; ++i)
+                            // Check for data returned for race
+                            if (referendumsData.Count > 0)
                             {
-                                // Get the element from the collection
-                                RacePreviewModel racePreviewElement;
-                                racePreviewElement = racePreview[i];
 
-                                // Add the element to the group
-                                //Get the info for the current race
-                                StackElementModel selectedStackElement = _stackElementsCollection.GetStackElement(_stackElements, i);
+                                refData = referendumsData[1];
 
-                                //Set template ID
-                                string templateID = selectedStackElement.Stack_Element_TemplateID;
+                                // Set the name of the element for the group
+                                newRacePreviewElement.Raceboard_Description = raceBoardTypeDescription + ": " + _stackElements[i].Listbox_Description;
 
-                                //Set page number
-                                string pageNumber = i.ToString();
+                                // Set FIELD_TYPE value - stack ID plus stack index
+                                newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
 
-                                //Gets the URI's for the given show
-                                GET_URI getURI = new GET_URI();
+                                // Call method to assemble the race data into the required command string for the raceboards scene
+                                newRacePreviewElement.Raceboard_Preview_Field_Text = GetReferendumPreviewString(refData);
 
-                                //Get the show info
-                                //Get the URI to the show elements collection
-                                elementCollectionURIShow = show.GetElementCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
+                                // Append the preview element to the race preview collection
+                                racePreviewCollection.AppendRacePreviewElement(newRacePreviewElement);
+                            }
+                            break;
+                    }
 
-                                // Log if the URI could not be resolved
-                                if (elementCollectionURIShow == string.Empty)
-                                {
-                                    log.Error("Could not resolve Show Elements Collection URI");
-                                    log.Debug("Could not resolve Show Elements Collection URI");
-                                }
+                }
+
+                // MSE OPERATION - SAVE OUT THE GROUP W/STACK ELEMENTS
+                // Get playlists directory URI based on current show
+                showPlaylistsDirectoryURI = show.GetPlaylistDirectoryFromShow(topLevelShowsDirectoryURI, currentShowName);
+
+                // Log if the URI could not be resolved
+                if (showPlaylistsDirectoryURI == string.Empty)
+                {
+                    log.Error("Could not resolve Show Playlist Directory URI");
+                    log.Debug("Could not resolve Show Playlist Directory URI");
+                }
+
+                // Get templates directory URI based on current show
+                string showTemplatesDirectoryURI = show.GetTemplateCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
+
+                // Log if the URI could not be resolved
+                if (showTemplatesDirectoryURI == string.Empty)
+                {
+                    log.Error("Could not resolve Show Templates Directory URI");
+                    log.Debug("Could not resolve Show Templates Directory URI");
+                }
+
+                // Check for a playlist in the VDOM with the specified name & return the Alt link; if the playlist doesn't exist, create it first
+                if (playlist.CheckIfPlaylistExists(showPlaylistsDirectoryURI, currentPlaylistName) == false)
+                {
+                    playlist.CreatePlaylist(showPlaylistsDirectoryURI, currentPlaylistName);
+                }
+
+                // Check for a playlist in the VDOM with the specified name & return the Down link
+                // Delete the group so it can be re-created
+                string playlistDownLink = playlist.GetPlaylistDownLink(showPlaylistsDirectoryURI, currentPlaylistName);
+                if (playlistDownLink != string.Empty)
+                {
+                    // Get the self link to the specified group
+                    groupSelfLink = group.GetGroupSelfLink(playlistDownLink, stack_Description);
+
+                    // Delete the group if it exists
+                    if (groupSelfLink != string.Empty)
+                    {
+                        group.DeleteGroup(groupSelfLink);
+                    }
+
+                    // Create the group
+                    REST_RESPONSE restResponse = group.CreateGroup(playlistDownLink, stack_Description);
+
+                    // Check for elements in collection and add to group
+                    if (racePreview.Count > 0)
+                    {
+                        // Iterate through each element in the preview collection and add the element to the group
+                        for (int i = 0; i < racePreview.Count; ++i)
+                        {
+                            // Get the element from the collection
+                            RacePreviewModel racePreviewElement;
+                            racePreviewElement = racePreview[i];
+
+                            // Add the element to the group
+                            //Get the info for the current race
+                            StackElementModel selectedStackElement = _stackElementsCollection.GetStackElement(_stackElements, i);
+
+                            //Set template ID
+                            string templateID = selectedStackElement.Stack_Element_TemplateID;
+
+                            //Set page number
+                            string pageNumber = i.ToString();
+
+                            //Gets the URI's for the given show
+                            GET_URI getURI = new GET_URI();
+
+                            //Get the show info
+                            //Get the URI to the show elements collection
+                            elementCollectionURIShow = show.GetElementCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
+
+                            // Log if the URI could not be resolved
+                            if (elementCollectionURIShow == string.Empty)
+                            {
+                                log.Error("Could not resolve Show Elements Collection URI");
+                                log.Debug("Could not resolve Show Elements Collection URI");
+                            }
 
 
-                                //Get the URI to the show templates collection
-                                templateCollectionURIShow = show.GetTemplateCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
+                            //Get the URI to the show templates collection
+                            templateCollectionURIShow = show.GetTemplateCollectionFromShow(topLevelShowsDirectoryURI, currentShowName);
 
-                                // Log if the URI could not be resolved
-                                if (templateCollectionURIShow == string.Empty)
-                                {
-                                    log.Error("Could not resolve Show Templates Collection URI");
-                                    log.Debug("Could not resolve Show Templates Collection URI");
-                                }
+                            // Log if the URI could not be resolved
+                            if (templateCollectionURIShow == string.Empty)
+                            {
+                                log.Error("Could not resolve Show Templates Collection URI");
+                                log.Debug("Could not resolve Show Templates Collection URI");
+                            }
 
-                                //Get the URI to the model for the specified template within the specified show
-                                templateModel = template.GetTemplateElementModel(templateCollectionURIShow, templateID);
+                            //Get the URI to the model for the specified template within the specified show
+                            templateModel = template.GetTemplateElementModel(templateCollectionURIShow, templateID);
 
-                                // Alert if template model not found
-                                if (templateModel == null)
-                                {
-                                    // Log error
-                                    log.Error("Could not resolve template model - template might not exist");
-                                    log.Debug("Could not resolve template model - template might not exist");
-                                }
+                            // Alert if template model not found
+                            if (templateModel == null)
+                            {
+                                // Log error
+                                log.Error("Could not resolve template model - template might not exist");
+                                log.Debug("Could not resolve template model - template might not exist");
+                            }
 
-                                //Get the URI to the currently-specified playlist                                
-                                elementCollectionURIPlaylist = restResponse.downLink;
+                            //Get the URI to the currently-specified playlist                                
+                            elementCollectionURIPlaylist = restResponse.downLink;
 
-                                // Check for element collection URI for the specified playlist
-                                if (elementCollectionURIPlaylist == null)
-                                {                                
-                                    log.Error("Could not resolve URI for specified playlist");
-                                    log.Debug("Could not resolve URI for specified playlist");
-                                }
+                            // Check for element collection URI for the specified playlist
+                            if (elementCollectionURIPlaylist == null)
+                            {
+                                log.Error("Could not resolve URI for specified playlist");
+                                log.Debug("Could not resolve URI for specified playlist");
+                            }
 
 
-                                // Set the data values as name/value pairs
-                                // Get the element from the collection
-                                racePreviewElement = racePreview[i];
+                            // Set the data values as name/value pairs
+                            // Get the element from the collection
+                            racePreviewElement = racePreview[i];
 
-                                // Add the element to the group
-                                // NOTE: Currently hard-wired for race boards - will need to be extended to support varying data types
-                                Dictionary<string, string> nameValuePairs =
-                                    new Dictionary<string, string> { { TemplateFieldNames.RaceBoard_Template_Preview_Field, racePreviewElement.Raceboard_Preview_Field_Text }, 
+                            // Add the element to the group
+                            // NOTE: Currently hard-wired for race boards - will need to be extended to support varying data types
+                            Dictionary<string, string> nameValuePairs =
+                                new Dictionary<string, string> { { TemplateFieldNames.RaceBoard_Template_Preview_Field, racePreviewElement.Raceboard_Preview_Field_Text },
                                                                          { TemplateFieldNames.RaceBoard_Template_Type_Field, stack_ID.ToString() + "|" + pageNumber } };
 
-                                // Instance the element management class
-                                MANAGE_ELEMENTS element = new MANAGE_ELEMENTS();
+                            // Instance the element management class
+                            MANAGE_ELEMENTS element = new MANAGE_ELEMENTS();
 
-                                // Create the new element
-                                element.createNewElement(i.ToString() + ": " + racePreviewElement.Raceboard_Description, elementCollectionURIPlaylist, templateModel, nameValuePairs, defaultTrioChannel);
-                            }
+                            // Create the new element
+                            element.createNewElement(i.ToString() + ": " + racePreviewElement.Raceboard_Description, elementCollectionURIPlaylist, templateModel, nameValuePairs, defaultTrioChannel);
                         }
                     }
-                    // Log if the URI could not be resolved
-                    else
-                    {
-                        log.Error("Could not resolve Playlist Down link");
-                        log.Debug("Could not resolve Playlist Down link");
-                    }
                 }
-            
+                // Log if the URI could not be resolved
+                else
+                {
+                    log.Error("Could not resolve Playlist Down link");
+                    log.Debug("Could not resolve Playlist Down link");
+                }
+            }
+
             catch (Exception ex)
             {
                 log.Debug("Exception occurred", ex);
@@ -2757,7 +2898,7 @@ namespace GUILayer.Forms
 
 
 
-        
+
         // Method to get the Referendum string 
         private string GetReferendumPreviewString(ReferendumDataModel referendumData)
         {
@@ -2769,16 +2910,16 @@ namespace GUILayer.Forms
             {
 
                 // ex State|Proposition|Proposition Name|Proposition Description|Checkstate|Yes Votes|Yes Info|No Votes|No Info|
-                previewField = previewField + referendumData.StateName + "|"; 
-                previewField = previewField + referendumData.PropRefID + "|"; 
+                previewField = previewField + referendumData.StateName + "|";
+                previewField = previewField + referendumData.PropRefID + "|";
                 previewField = previewField + referendumData.Description + "|";
                 previewField = previewField + referendumData.Detailtext + "|";
-                previewField = previewField +  "0|"; //Checkstate
+                previewField = previewField + "0|"; //Checkstate
                 previewField = previewField + " |"; //Yes_Num
                 previewField = previewField + " |"; //Yes_Info
                 previewField = previewField + " |"; //No_Num
                 previewField = previewField + " |"; //Mo_Info
-                
+
             }
             catch (Exception ex)
             {
@@ -2794,9 +2935,9 @@ namespace GUILayer.Forms
         private string GetExitPollPreviewString(BindingList<ExitPollDataModel> exitPollData, StackElementModel stackElement)
         {
 
-            
+
             Int32 numResp = exitPollData.Count;
-            
+
             // Init
             string previewField = "!"; // Bang
             string Title = "EXIT POLL";
@@ -2894,7 +3035,7 @@ namespace GUILayer.Forms
                     switch (i)
                     {
                         case 1:
-                            bopType.eType = (short) StackElementTypes.Balance_of_Power_House_Current;
+                            bopType.eType = (short)StackElementTypes.Balance_of_Power_House_Current;
                             bopType.branch = "HOUSE";
                             bopType.session = "CURRENT";
                             break;
@@ -3130,7 +3271,7 @@ namespace GUILayer.Forms
         }
 
 
-        #endregion 
+        #endregion
 
         #region Referendums
         private void button1_Click(object sender, EventArgs e)
@@ -3369,42 +3510,51 @@ namespace GUILayer.Forms
         {
             try
             {
-                Int32 selectedCandidate1 = 0;
-                Int32 selectedCandidate2 = 0;
-                Int32 selectedCandidate3 = 0;
-                Int32 selectedCandidate4 = 0;
-                string cand1Name = string.Empty;
-                string cand2Name = string.Empty;
-                string cand3Name = string.Empty;
-                string cand4Name = string.Empty;
-                Int16 numCand = 1;
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                string eType = selectedRace.Election_Type;
-                string ofc = selectedRace.Race_Office;
-                Int16 st = selectedRace.State_Number;
-                string des = selectedRace.Race_Description;
-
-                DialogResult dr = new DialogResult();
-                //frmCandidateSelect selectCand = new frmCandidateSelect();
-                FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
-                dr = selectCand.ShowDialog();
-                if (dr == DialogResult.OK)
+                // Check for correct graphics concept selected
+                if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
                 {
-                    // Set candidateID's
+                    MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Int32 selectedCandidate1 = 0;
+                    Int32 selectedCandidate2 = 0;
+                    Int32 selectedCandidate3 = 0;
+                    Int32 selectedCandidate4 = 0;
+                    string cand1Name = string.Empty;
+                    string cand2Name = string.Empty;
+                    string cand3Name = string.Empty;
+                    string cand4Name = string.Empty;
+                    Int16 numCand = 1;
 
-                    selectedCandidate1 = selectCand.Cand1;
-                    cand1Name = selectCand.CandName1;
-                    //selectedCandidate2 = selectCand.Cand2;
-                    //cand2Name = selectCand.CandName2;
-                    //selectedCandidate3 = selectCand.Cand3;
-                    //cand3Name = selectCand.CandName3;
-                    //selectedCandidate4 = selectCand.Cand4;
-                    //cand4Name = selectCand.CandName4;
-                    AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    //Get the selected race list object
+                    int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
+                    AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
+
+                    string eType = selectedRace.Election_Type;
+                    string ofc = selectedRace.Race_Office;
+                    Int16 st = selectedRace.State_Number;
+                    string des = selectedRace.Race_Description;
+
+                    DialogResult dr = new DialogResult();
+                    //frmCandidateSelect selectCand = new frmCandidateSelect();
+                    FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
+                    dr = selectCand.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        // Set candidateID's
+
+                        selectedCandidate1 = selectCand.Cand1;
+                        cand1Name = selectCand.CandName1;
+                        //selectedCandidate2 = selectCand.Cand2;
+                        //cand2Name = selectCand.CandName2;
+                        //selectedCandidate3 = selectCand.Cand3;
+                        //cand3Name = selectCand.CandName3;
+                        //selectedCandidate4 = selectCand.Cand4;
+                        //cand4Name = selectCand.CandName4;
+                        AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    }
                 }
 
             }
@@ -3421,42 +3571,52 @@ namespace GUILayer.Forms
         {
             try
             {
-                Int32 selectedCandidate1 = 0;
-                Int32 selectedCandidate2 = 0;
-                Int32 selectedCandidate3 = 0;
-                Int32 selectedCandidate4 = 0;
-                string cand1Name = string.Empty;
-                string cand2Name = string.Empty;
-                string cand3Name = string.Empty;
-                string cand4Name = string.Empty;
-                Int16 numCand = 2;
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                string eType = selectedRace.Election_Type;
-                string ofc = selectedRace.Race_Office;
-                Int16 st = selectedRace.State_Number;
-                string des = selectedRace.Race_Description;
-
-                DialogResult dr = new DialogResult();
-                //frmCandidateSelect selectCand = new frmCandidateSelect();
-                FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
-                dr = selectCand.ShowDialog();
-                if (dr == DialogResult.OK)
+                // Check for correct graphics concept selected
+                if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
                 {
-                    // Set candidateID's
+                    MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
 
-                    selectedCandidate1 = selectCand.Cand1;
-                    cand1Name = selectCand.CandName1;
-                    selectedCandidate2 = selectCand.Cand2;
-                    cand2Name = selectCand.CandName2;
-                    //selectedCandidate3 = selectCand.Cand3;
-                    //cand3Name = selectCand.CandName3;
-                    //selectedCandidate4 = selectCand.Cand4;
-                    //cand4Name = selectCand.CandName4;
-                    AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    Int32 selectedCandidate1 = 0;
+                    Int32 selectedCandidate2 = 0;
+                    Int32 selectedCandidate3 = 0;
+                    Int32 selectedCandidate4 = 0;
+                    string cand1Name = string.Empty;
+                    string cand2Name = string.Empty;
+                    string cand3Name = string.Empty;
+                    string cand4Name = string.Empty;
+                    Int16 numCand = 2;
+
+                    //Get the selected race list object
+                    int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
+                    AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
+
+                    string eType = selectedRace.Election_Type;
+                    string ofc = selectedRace.Race_Office;
+                    Int16 st = selectedRace.State_Number;
+                    string des = selectedRace.Race_Description;
+
+                    DialogResult dr = new DialogResult();
+                    //frmCandidateSelect selectCand = new frmCandidateSelect();
+                    FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
+                    dr = selectCand.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        // Set candidateID's
+
+                        selectedCandidate1 = selectCand.Cand1;
+                        cand1Name = selectCand.CandName1;
+                        selectedCandidate2 = selectCand.Cand2;
+                        cand2Name = selectCand.CandName2;
+                        //selectedCandidate3 = selectCand.Cand3;
+                        //cand3Name = selectCand.CandName3;
+                        //selectedCandidate4 = selectCand.Cand4;
+                        //cand4Name = selectCand.CandName4;
+                        AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    }
                 }
 
             }
@@ -3474,44 +3634,52 @@ namespace GUILayer.Forms
         {
             try
             {
-                Int32 selectedCandidate1 = 0;
-                Int32 selectedCandidate2 = 0;
-                Int32 selectedCandidate3 = 0;
-                Int32 selectedCandidate4 = 0;
-                string cand1Name = string.Empty;
-                string cand2Name = string.Empty;
-                string cand3Name = string.Empty;
-                string cand4Name = string.Empty;
-                Int16 numCand = 3;
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                string eType = selectedRace.Election_Type;
-                string ofc = selectedRace.Race_Office;
-                Int16 st = selectedRace.State_Number;
-                string des = selectedRace.Race_Description;
-
-                DialogResult dr = new DialogResult();
-                //frmCandidateSelect selectCand = new frmCandidateSelect();
-                FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
-                dr = selectCand.ShowDialog();
-                if (dr == DialogResult.OK)
+                // Check for correct graphics concept selected
+                if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
                 {
-                    // Set candidateID's
-
-                    selectedCandidate1 = selectCand.Cand1;
-                    cand1Name = selectCand.CandName1;
-                    selectedCandidate2 = selectCand.Cand2;
-                    cand2Name = selectCand.CandName2;
-                    selectedCandidate3 = selectCand.Cand3;
-                    cand3Name = selectCand.CandName3;
-                    //selectedCandidate4 = selectCand.Cand4;
-                    //cand4Name = selectCand.CandName4;
-                    AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    Int32 selectedCandidate1 = 0;
+                    Int32 selectedCandidate2 = 0;
+                    Int32 selectedCandidate3 = 0;
+                    Int32 selectedCandidate4 = 0;
+                    string cand1Name = string.Empty;
+                    string cand2Name = string.Empty;
+                    string cand3Name = string.Empty;
+                    string cand4Name = string.Empty;
+                    Int16 numCand = 3;
 
+                    //Get the selected race list object
+                    int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
+                    AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
+
+                    string eType = selectedRace.Election_Type;
+                    string ofc = selectedRace.Race_Office;
+                    Int16 st = selectedRace.State_Number;
+                    string des = selectedRace.Race_Description;
+
+                    DialogResult dr = new DialogResult();
+                    //frmCandidateSelect selectCand = new frmCandidateSelect();
+                    FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
+                    dr = selectCand.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        // Set candidateID's
+
+                        selectedCandidate1 = selectCand.Cand1;
+                        cand1Name = selectCand.CandName1;
+                        selectedCandidate2 = selectCand.Cand2;
+                        cand2Name = selectCand.CandName2;
+                        selectedCandidate3 = selectCand.Cand3;
+                        cand3Name = selectCand.CandName3;
+                        //selectedCandidate4 = selectCand.Cand4;
+                        //cand4Name = selectCand.CandName4;
+                        AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3, selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3526,47 +3694,56 @@ namespace GUILayer.Forms
         {
             try
             {
-                Int32 selectedCandidate1 = 0;
-                Int32 selectedCandidate2 = 0;
-                Int32 selectedCandidate3 = 0;
-                Int32 selectedCandidate4 = 0;
-                string cand1Name = string.Empty;
-                string cand2Name = string.Empty;
-                string cand3Name = string.Empty;
-                string cand4Name = string.Empty;
-                Int16 numCand = 4;
-
-                //Get the selected race list object
-                int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
-                AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
-
-                string eType = selectedRace.Election_Type;
-                string ofc = selectedRace.Race_Office;
-                Int16 st = selectedRace.State_Number;
-                string des = selectedRace.Race_Description;
-
-                DialogResult dr = new DialogResult();
-                //frmCandidateSelect selectCand = new frmCandidateSelect();
-                FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
-
-                // Only process if required number of candidates in race
-                if (selectCand.candidatesFound)
+                // Check for correct graphics concept selected
+                if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
                 {
-                    dr = selectCand.ShowDialog();
-                    if (dr == DialogResult.OK)
-                    {
-                        // Set candidateID's
+                    MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Int32 selectedCandidate1 = 0;
+                    Int32 selectedCandidate2 = 0;
+                    Int32 selectedCandidate3 = 0;
+                    Int32 selectedCandidate4 = 0;
+                    string cand1Name = string.Empty;
+                    string cand2Name = string.Empty;
+                    string cand3Name = string.Empty;
+                    string cand4Name = string.Empty;
+                    Int16 numCand = 4;
 
-                        selectedCandidate1 = selectCand.Cand1;
-                        cand1Name = selectCand.CandName1;
-                        selectedCandidate2 = selectCand.Cand2;
-                        cand2Name = selectCand.CandName2;
-                        selectedCandidate3 = selectCand.Cand3;
-                        cand3Name = selectCand.CandName3;
-                        selectedCandidate4 = selectCand.Cand4;
-                        cand4Name = selectCand.CandName4;
-                        AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3,
-                            selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                    //Get the selected race list object
+                    int currentRaceIndex = availableRacesGrid.CurrentCell.RowIndex;
+                    AvailableRaceModel selectedRace = availableRacesCollection.GetRace(availableRaces, currentRaceIndex);
+
+                    string eType = selectedRace.Election_Type;
+                    string ofc = selectedRace.Race_Office;
+                    Int16 st = selectedRace.State_Number;
+                    string des = selectedRace.Race_Description;
+
+                    DialogResult dr = new DialogResult();
+                    //frmCandidateSelect selectCand = new frmCandidateSelect();
+                    FrmCandidateSelect selectCand = new FrmCandidateSelect(numCand, st, ofc, eType, des);
+
+                    // Only process if required number of candidates in race
+                    if (selectCand.candidatesFound)
+                    {
+                        dr = selectCand.ShowDialog();
+                        if (dr == DialogResult.OK)
+                        {
+                            // Set candidateID's
+
+                            selectedCandidate1 = selectCand.Cand1;
+                            cand1Name = selectCand.CandName1;
+                            selectedCandidate2 = selectCand.Cand2;
+                            cand2Name = selectCand.CandName2;
+                            selectedCandidate3 = selectCand.Cand3;
+                            cand3Name = selectCand.CandName3;
+                            selectedCandidate4 = selectCand.Cand4;
+                            cand4Name = selectCand.CandName4;
+                            AddSelectRaceBoardToStack(numCand, selectedCandidate1, selectedCandidate2, selectedCandidate3,
+                                selectedCandidate4, cand1Name, cand2Name, cand3Name, cand4Name);
+                        }
                     }
                 }
             }
@@ -3613,7 +3790,7 @@ namespace GUILayer.Forms
                 // Calculate element type based on number of candidates
                 int eType = numCand * 2;
 
-                string eDesc = "Race Board (" + numCand + "-Way Select)"; 
+                string eDesc = "Race Board (" + numCand + "-Way Select)";
 
                 // Instantiate new stack element model
                 StackElementModel newStackElement = new StackElementModel();
@@ -3623,7 +3800,7 @@ namespace GUILayer.Forms
                 newStackElement.Stack_Element_Type = (short)eType;
                 newStackElement.Stack_Element_Data_Type = (short)DataTypes.Race_Boards;
                 newStackElement.Stack_Element_Description = eDesc;
-                
+
                 // Get the template ID for the specified element type
                 newStackElement.Stack_Element_TemplateID = GetTemplate(conceptID, newStackElement.Stack_Element_Type);
 
@@ -3685,7 +3862,7 @@ namespace GUILayer.Forms
             if (graphicsConceptTypes.Count > 0)
             {
                 // Set data members for specifying graphics concept
-                conceptID = (short) (cbGraphicConcept.SelectedIndex + 1);
+                conceptID = (short)(cbGraphicConcept.SelectedIndex + 1);
                 conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
 
                 // Re-assign templates to elements in grid
@@ -3701,17 +3878,17 @@ namespace GUILayer.Forms
                 stackGrid.Refresh();
             }
         }
-        
+
         // Look up Template Name from conceptID and BoardType - used when saving out various graphic element types
         private string GetTemplate(Int16 tempConceptID, Int16 tempElementType)
         {
             string Template = string.Empty;
-            for (short  i = 0; i < graphicsConcepts.Count; i++)
+            for (short i = 0; i < graphicsConcepts.Count; i++)
             {
                 if ((tempConceptID == graphicsConcepts[i].ConceptID) & (tempElementType == (short)graphicsConcepts[i].ElementTypeCode))
                 {
                     Template = graphicsConcepts[i].TemplateName;
-                }                
+                }
             }
             return Template;
         }
@@ -3720,7 +3897,7 @@ namespace GUILayer.Forms
         // data type and cannot be changed.
         private void stackGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (GetStackGridHighlightEnableFlag((int) e.RowIndex))
+            if (GetStackGridHighlightEnableFlag((int)e.RowIndex))
             {
                 stackGrid.Rows[e.RowIndex].Cells["TemplateID"].Style.BackColor = Color.Red;
 
@@ -3730,7 +3907,7 @@ namespace GUILayer.Forms
                 stackGrid.Rows[e.RowIndex].Cells["TemplateID"].Style.BackColor = Color.White;
             }
         }
-        
+
         // Method to determine if the stack grid entry template column should be highlighted to indicate
         // that the graphics concept for that entry cannot be changed to the overall concept selected.
         private Boolean GetStackGridHighlightEnableFlag(int rowIndex)
@@ -3749,7 +3926,7 @@ namespace GUILayer.Forms
                         if ((graphicsConcepts[j].AllowConceptChange == false) &&
                             (graphicsConcepts[j].IsBaseConcept == false))
                         {
-                            highlightEnable = true;                           
+                            highlightEnable = true;
                         }
                         else
                         {
@@ -3831,7 +4008,7 @@ namespace GUILayer.Forms
             }
         }
         #endregion
-        
+
         #region Methods for taking data to air
         private void btnTake_Click(object sender, EventArgs e)
         {
@@ -3878,7 +4055,6 @@ namespace GUILayer.Forms
             }
         }
 
-
         public void LoadScene(string sceneName, int EngineNo)
         {
             string cmd = $"0 RENDERER*MAIN_LAYER SET_OBJECT SCENE*{sceneName}{term}";
@@ -3922,7 +4098,7 @@ namespace GUILayer.Forms
                         vizClientSockets[engine - 1].Send(bCmd);
                 }
             }
-            
+
             listBox2.Items.Add(vizCmd);
             listBox2.SelectedIndex = listBox2.Items.Count - 1;
 
@@ -3944,7 +4120,6 @@ namespace GUILayer.Forms
             TakeCurrent();
         }
 
-        
         private void stackGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             TakeCurrent();
@@ -4049,9 +4224,6 @@ namespace GUILayer.Forms
 
         }
 
-
-
-        
         private void cbLooping_CheckedChanged(object sender, EventArgs e)
         {
             if (cbLooping.Checked)
@@ -4528,7 +4700,7 @@ namespace GUILayer.Forms
             return apRaceCallDateTimeStr;
         }
         #endregion
-        
+
         #region Balance Of Power Data Processing
         public void TakeBOP()
         {
@@ -4653,7 +4825,7 @@ namespace GUILayer.Forms
 
             if (referendumsData[0].TotalVotes > 0)
             {
-                
+
                 referendumsData[0].VotePct = (Int32)referendumsData[0].VoteCount * 100 / referendumsData[0].TotalVotes;
                 referendumsData[1].VotePct = (Int32)referendumsData[1].VoteCount * 100 / referendumsData[1].TotalVotes;
             }
@@ -4706,7 +4878,6 @@ namespace GUILayer.Forms
             return MapKeyStr;
         }
         #endregion
-
     }
 
 }
