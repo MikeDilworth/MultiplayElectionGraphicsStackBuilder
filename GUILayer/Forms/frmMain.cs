@@ -1923,6 +1923,7 @@ namespace GUILayer.Forms
                         stackMetadata.ixStackID = stackID;
                         stackMetadata.StackName = stackDescription;
 
+                        // This is where we set the stack type - will be used to signal broker for special graphics types (e.g. 8-way board)
                         if (builderOnlyMode == false)
                             stackMetadata.StackType = (short)(10 + dataModeSelect.SelectedIndex);
                         else
@@ -2287,7 +2288,13 @@ namespace GUILayer.Forms
                             stackMetadata.ixStackID = stackID;
                             stackMetadata.StackName = stackDescription;
 
-                            stackMetadata.StackType = 0;
+                            // Modified 02/21/2020 to set to special stack type ID if 8-way multi races selected
+                            if ((builderOnlyMode == true) && (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1))
+                                stackMetadata.StackType = 8;
+                            else
+                                stackMetadata.StackType = 0;
+
+                            //stackMetadata.StackType = 0;
                             stackMetadata.ShowName = currentShowName;
                             stackMetadata.ConceptID = conceptID;
                             stackMetadata.ConceptName = conceptName;
