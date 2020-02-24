@@ -231,7 +231,6 @@ namespace GUILayer.Forms
 
             try
             {
-
                 // Setup show controls
                 if (Properties.Settings.Default.EnableShowSelectControls)
                     enableShowSelectControls = true;
@@ -304,8 +303,6 @@ namespace GUILayer.Forms
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 this.Text = String.Format("Election Graphics Stack Builder Application  Version {0}", version);
 
-
-
             }
             catch (Exception ex)
             {
@@ -337,7 +334,6 @@ namespace GUILayer.Forms
             string sceneDescription = Properties.Settings.Default.Scene_Name;
             var useSceneName = Properties.Settings.Default[sceneDescription];
 
-
             // Get host IP
             ipAddress = HostIPNameFunctions.GetLocalIPAddress();
             hostName = HostIPNameFunctions.GetHostName(ipAddress);
@@ -354,9 +350,7 @@ namespace GUILayer.Forms
             usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
             useBackupMediaSequencerToolStripMenuItem.Checked = false;
 
-
             LoadConfig();
-
         }
         private void loadConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -367,7 +361,7 @@ namespace GUILayer.Forms
         {
             string[] IPs = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
             bool[] enables = new bool[4] { false, false, false, false };
-            string applicationLogComments;
+            string applicationLogComments = string.Empty;
 
             //builderOnlyMode = Properties.Settings.Default.builderOnly;
             //Network = Properties.Settings.Default.Network;
@@ -390,19 +384,28 @@ namespace GUILayer.Forms
                 configName = "DEFAULT";
 
             // get tab enables and mode and network
+            bool RBenable = false;
+            bool VAenable = false;
+            bool BOPenable = false;
+            bool REFenable = false;
+            builderOnlyMode = false;
+
             DataTable dtEnab = new DataTable();
             cmdStr = $"SELECT * FROM FE_Tabs WHERE Config = '{configName}'";
             dtEnab = GetDBData(cmdStr, ElectionsDBConnectionString);
 
-            row = dtEnab.Rows[0];
-            bool RBenable = Convert.ToBoolean(row["RaceBoards"] ?? 0);
-            bool VAenable = Convert.ToBoolean(row["VoterAnalysis"] ?? 0);
-            bool BOPenable = Convert.ToBoolean(row["BOP"] ?? 0);
-            bool REFenable = Convert.ToBoolean(row["Referendums"] ?? 0);
-            builderOnlyMode = Convert.ToBoolean(row["StackBuildOnly"] ?? 0);
-            Network = row["Network"].ToString() ?? "";
+            if (dtEnab.Rows.Count > 0)
+            {
+                row = dtEnab.Rows[0];
+               RBenable = Convert.ToBoolean(row["RaceBoards"] ?? 0);
+               VAenable = Convert.ToBoolean(row["VoterAnalysis"] ?? 0);
+               BOPenable = Convert.ToBoolean(row["BOP"] ?? 0);
+               REFenable = Convert.ToBoolean(row["Referendums"] ?? 0);
+               builderOnlyMode = Convert.ToBoolean(row["StackBuildOnly"] ?? 0);
+               Network = row["Network"].ToString() ?? "";
 
-            applicationLogComments = $"{Network}; Config: {configName}; ";
+                applicationLogComments = $"{Network}; Config: {configName}; ";
+            }
 
             this.Size = new Size(1462, 991);
             connectionPanel.Visible = false;
@@ -487,157 +490,156 @@ namespace GUILayer.Forms
                     tpReferendums.Enabled = false;
                 }
 
-
-
                 // get viz engine info
-
                 cmdStr = $"SELECT * FROM FE_EngineDefs WHERE Config = '{configName}'";
                 DataTable dtEng = new DataTable();
                 dtEng = GetDBData(cmdStr, ElectionsDBConnectionString);
-                row = dtEng.Rows[0];
-
-
-                int i = 0;
-                bool done = false;
-                string engineParam;
-                var engineInfo = Properties.Settings.Default["Engine1_IPAddress"];
-                string engineData;
-                string engineStr;
-
-                // read engine info until no more engines found
-                while (done == false)
+                if (dtEng.Rows.Count > 0)
                 {
-                    EngineModel viz = new EngineModel();
-                    i++;
-                    engineParam = $"Engine{i}_IPAddress";
+                    row = dtEng.Rows[0];
 
-                    try
+                    int i = 0;
+                    bool done = false;
+                    string engineParam;
+                    var engineInfo = Properties.Settings.Default["Engine1_IPAddress"];
+                    string engineData;
+                    string engineStr;
+
+                    // read engine info until no more engines found
+                    while (done == false)
                     {
-                        engineStr = $"Eng{i}_";
+                        EngineModel viz = new EngineModel();
+                        i++;
+                        engineParam = $"Engine{i}_IPAddress";
 
-                        engineData = row[engineStr + "Name"].ToString() ?? "";
-                        if (engineData != null)
+                        try
                         {
+                            engineStr = $"Eng{i}_";
 
-
-                            viz.EngineName = engineData;
-                            viz.IPAddress = GetIP(engineData);
-                            viz.Port = Convert.ToInt32(row[engineStr + "Port"] ?? 0);
-                            viz.enable = Convert.ToBoolean(row[engineStr + "Enable"] ?? 0);
-                            viz.id = i;
-                            viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
-
-
-                            /*
-                            engineInfo = Properties.Settings.Default[engineParam];
-                            viz.IPAddress = (string)engineInfo;
-
-                            engineParam = $"Engine{i}_Port";
-                            engineInfo = Properties.Settings.Default[engineParam];
-                            viz.Port = (int)engineInfo;
-
-                            engineParam = $"Engine{i}_Enable";
-                            engineInfo = Properties.Settings.Default[engineParam];
-                            viz.enable = (bool)engineInfo;
-
-                            viz.id = i;
-                            viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
-                            */
-
-                            vizEngines.Add(viz);
-
-                            vizClientSockets.Add(new ClientSocket(viz.systemIP, viz.Port));
-                            vizClientSockets[i - 1].DataReceived += vizDataReceived;
-                            vizClientSockets[i - 1].ConnectionStatusChanged += vizConnectionStatusChanged;
-
-
-                            // set viz address labels
-                            switch (i)
+                            engineData = row[engineStr + "Name"].ToString() ?? "";
+                            if (engineData != null)
                             {
-                                case 1:
-                                    gbNamelbl1.Text = viz.EngineName;
-                                    gbIPlbl1.Text = "IP: " + viz.IPAddress;
-                                    gbPortlbl1.Text = "Port: " + viz.Port.ToString();
-                                    gbViz1.Visible = true;
-                                    gbViz1.Enabled = viz.enable;
-                                    gbEng1.Visible = true;
-                                    gbEng1.Enabled = viz.enable;
-                                    IPs[0] = viz.IPAddress;
-                                    enables[0] = viz.enable;
-                                    if (viz.enable)
-                                        vizClientSockets[i - 1].Connect();
-                                    break;
 
-                                case 2:
-                                    gbNamelbl2.Text = viz.EngineName;
-                                    gbIPlbl2.Text = "IP: " + viz.IPAddress;
-                                    gbPortlbl2.Text = "Port: " + viz.Port.ToString();
-                                    gbViz2.Visible = true;
-                                    gbViz2.Enabled = viz.enable;
-                                    gbEng2.Visible = true;
-                                    gbEng2.Enabled = viz.enable;
-                                    IPs[1] = viz.IPAddress;
-                                    enables[1] = viz.enable;
-                                    if (viz.enable)
-                                        vizClientSockets[i - 1].Connect();
-                                    break;
 
-                                case 3:
-                                    gbNamelbl3.Text = viz.EngineName;
-                                    gbIPlbl3.Text = "IP: " + viz.IPAddress;
-                                    gbPortlbl3.Text = "Port: " + viz.Port.ToString();
-                                    gbViz3.Visible = true;
-                                    gbViz3.Enabled = viz.enable;
-                                    gbEng3.Visible = true;
-                                    gbEng3.Enabled = viz.enable;
-                                    IPs[2] = viz.IPAddress;
-                                    enables[2] = viz.enable;
-                                    if (viz.enable)
-                                        vizClientSockets[i - 1].Connect();
-                                    break;
+                                viz.EngineName = engineData;
+                                viz.IPAddress = GetIP(engineData);
+                                viz.Port = Convert.ToInt32(row[engineStr + "Port"] ?? 0);
+                                viz.enable = Convert.ToBoolean(row[engineStr + "Enable"] ?? 0);
+                                viz.id = i;
+                                viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
 
-                                case 4:
-                                    gbNamelbl4.Text = viz.EngineName;
-                                    gbIPlbl4.Text = "IP: " + viz.IPAddress;
-                                    gbPortlbl4.Text = "Port: " + viz.Port.ToString();
-                                    gbViz4.Visible = true;
-                                    gbViz4.Enabled = viz.enable;
-                                    gbEng4.Visible = true;
-                                    gbEng4.Enabled = viz.enable;
-                                    IPs[3] = viz.IPAddress;
-                                    enables[3] = viz.enable;
-                                    if (viz.enable)
-                                        vizClientSockets[i - 1].Connect();
-                                    break;
 
-                                case 5:
-                                    gbIPlbl5.Text = "IP: " + viz.IPAddress;
-                                    gbPortlbl5.Text = "Port: " + viz.Port.ToString();
-                                    gbViz5.Visible = true;
-                                    gbViz5.Enabled = viz.enable;
-                                    if (viz.enable)
-                                        vizClientSockets[i - 1].Connect();
-                                    break;
+                                /*
+                                engineInfo = Properties.Settings.Default[engineParam];
+                                viz.IPAddress = (string)engineInfo;
 
-                                case 6:
-                                    gbIPlbl6.Text = "IP: " + viz.IPAddress;
-                                    gbPortlbl6.Text = "Port: " + viz.Port.ToString();
-                                    gbViz6.Visible = true;
-                                    gbViz6.Enabled = viz.enable;
-                                    if (viz.enable)
-                                        vizClientSockets[i - 1].Connect();
-                                    break;
+                                engineParam = $"Engine{i}_Port";
+                                engineInfo = Properties.Settings.Default[engineParam];
+                                viz.Port = (int)engineInfo;
 
+                                engineParam = $"Engine{i}_Enable";
+                                engineInfo = Properties.Settings.Default[engineParam];
+                                viz.enable = (bool)engineInfo;
+
+                                viz.id = i;
+                                viz.systemIP = System.Net.IPAddress.Parse(viz.IPAddress);
+                                */
+
+                                vizEngines.Add(viz);
+
+                                vizClientSockets.Add(new ClientSocket(viz.systemIP, viz.Port));
+                                vizClientSockets[i - 1].DataReceived += vizDataReceived;
+                                vizClientSockets[i - 1].ConnectionStatusChanged += vizConnectionStatusChanged;
+
+
+                                // set viz address labels
+                                switch (i)
+                                {
+                                    case 1:
+                                        gbNamelbl1.Text = viz.EngineName;
+                                        gbIPlbl1.Text = "IP: " + viz.IPAddress;
+                                        gbPortlbl1.Text = "Port: " + viz.Port.ToString();
+                                        gbViz1.Visible = true;
+                                        gbViz1.Enabled = viz.enable;
+                                        gbEng1.Visible = true;
+                                        gbEng1.Enabled = viz.enable;
+                                        IPs[0] = viz.IPAddress;
+                                        enables[0] = viz.enable;
+                                        if (viz.enable)
+                                            vizClientSockets[i - 1].Connect();
+                                        break;
+
+                                    case 2:
+                                        gbNamelbl2.Text = viz.EngineName;
+                                        gbIPlbl2.Text = "IP: " + viz.IPAddress;
+                                        gbPortlbl2.Text = "Port: " + viz.Port.ToString();
+                                        gbViz2.Visible = true;
+                                        gbViz2.Enabled = viz.enable;
+                                        gbEng2.Visible = true;
+                                        gbEng2.Enabled = viz.enable;
+                                        IPs[1] = viz.IPAddress;
+                                        enables[1] = viz.enable;
+                                        if (viz.enable)
+                                            vizClientSockets[i - 1].Connect();
+                                        break;
+
+                                    case 3:
+                                        gbNamelbl3.Text = viz.EngineName;
+                                        gbIPlbl3.Text = "IP: " + viz.IPAddress;
+                                        gbPortlbl3.Text = "Port: " + viz.Port.ToString();
+                                        gbViz3.Visible = true;
+                                        gbViz3.Enabled = viz.enable;
+                                        gbEng3.Visible = true;
+                                        gbEng3.Enabled = viz.enable;
+                                        IPs[2] = viz.IPAddress;
+                                        enables[2] = viz.enable;
+                                        if (viz.enable)
+                                            vizClientSockets[i - 1].Connect();
+                                        break;
+
+                                    case 4:
+                                        gbNamelbl4.Text = viz.EngineName;
+                                        gbIPlbl4.Text = "IP: " + viz.IPAddress;
+                                        gbPortlbl4.Text = "Port: " + viz.Port.ToString();
+                                        gbViz4.Visible = true;
+                                        gbViz4.Enabled = viz.enable;
+                                        gbEng4.Visible = true;
+                                        gbEng4.Enabled = viz.enable;
+                                        IPs[3] = viz.IPAddress;
+                                        enables[3] = viz.enable;
+                                        if (viz.enable)
+                                            vizClientSockets[i - 1].Connect();
+                                        break;
+
+                                    case 5:
+                                        gbIPlbl5.Text = "IP: " + viz.IPAddress;
+                                        gbPortlbl5.Text = "Port: " + viz.Port.ToString();
+                                        gbViz5.Visible = true;
+                                        gbViz5.Enabled = viz.enable;
+                                        if (viz.enable)
+                                            vizClientSockets[i - 1].Connect();
+                                        break;
+
+                                    case 6:
+                                        gbIPlbl6.Text = "IP: " + viz.IPAddress;
+                                        gbPortlbl6.Text = "Port: " + viz.Port.ToString();
+                                        gbViz6.Visible = true;
+                                        gbViz6.Enabled = viz.enable;
+                                        if (viz.enable)
+                                            vizClientSockets[i - 1].Connect();
+                                        break;
+
+                                }
+
+                                if (i == 4)
+                                    done = true;
                             }
-
-                            if (i == 4)
-                                done = true;
                         }
-                    }
-                    catch
-                    {
-                        // Next engine not found
-                        done = true;
+                        catch
+                        {
+                            // Next engine not found
+                            done = true;
+                        }
                     }
                 }
                 //ConnectToVizEngines();
@@ -2770,12 +2772,15 @@ namespace GUILayer.Forms
         // Method to get the RACE_PREVIEW string for a specified race - references raceData binding list
         private string GetRacePreviewString(StackElementModel stackElement, Int16 candidatesToReturn)
         {
-            // FoxIDs for all candidates separated by | then
-            // ~ Board Mode ~ State Name ^ House CD # or County Name ^ Precincts Reporting ^ Race Description ^ 0
+            // Modified 02/24/2020
+            // Race modes: 0=blank; 1 = race called; 2 = just called; 3 = too close to call;  4 = runoff; 5 = race to watch
+            // Party codes: 0 = Rep; 1 = Dem; 2 = Ind; 3 = Lib
+            // UPDATED 02/24/2020
+            // FoxIDs for all candidates separated by ^ then
+            // ~state=<state name>; race=<CD # or County Name>; precincts=<Precincts Reporting>; office=<Race Description>; racemode=<see above> ~ 
             // Then for each candidate:
-            // Name ^ Party ID ^ Incumbent Status ^ Vote Count ^ Percent ^ Winner Status ^ Gain Status ^ Headshot Path
-            // Separated by |
-            // Board Modes  0 - Normal, 1 - Race Called, 2 - Just Called, 3 - Too Close To Call, 4 - Runoff, 55 - Race To Watch
+            // name=<candidate name>; party=<party ID>; incum=<0 or 1>; vote=<vote count no commas>; percent=<candidate percentage>; check=<winner status 0 or 1>; gain=<0 or 1>; imagepath=<base filename only> ^
+            // Separated by ^
 
             // Init
             //string previewField = string.Empty;
@@ -2790,118 +2795,131 @@ namespace GUILayer.Forms
                     {
                         if (i != 0)
                         {
-                            previewField = previewField + "|";
+                            previewField += "^";
                         }
-                        previewField = previewField + raceData[i].FoxID;
-                    }
 
-                    //Ex: USGOV001769|USGOV000540~0~WISCONSIN^^^DEMOCRATIC PRIMARY^0~HILLARY CRINTON^1^0^ ^ %^0^0^O:\\business\\ObjectStore\\2016\\Q1\\clinton_hillary_official.png|BERNIE SANDERS^1^0^ ^ %^0^0^O:\\business\\ObjectStore\\2015\\Q3\\Sanders_Bernie_IVT_Sen.png
+                        // Prevent blank Fox IDs - use default if none returned
+                        if (raceData[i].FoxID.Trim() == "")
+                        {
+                            raceData[i].FoxID = "USGOV999999";
+                        }
+
+                        previewField += raceData[i].FoxID;
+                    }
+                    previewField += "~";
+
+                    // Get top-level race data
+                    // Race district string
+                    string raceDistrict = ((stackElement.Race_Office).Trim() == "H") ? Convert.ToString(stackElement.Race_District) : " ";
+
+                    // FoxIDs for all candidates separated by ^ then
+                    // ~state=<state name>; race=<CD # or County Name>; precincts=<Precincts Reporting>; office=<Race Description>; racemode=<see above> ~ 
                     // Add race metadata
-                    previewField = previewField + "~";
-                    previewField = previewField + (Int16)BoardModes.Race_Board_Normal;
-                    previewField = previewField + "~";
-                    previewField = previewField + stackElement.State_Name.ToUpper().Trim();
-                    previewField = previewField + "^^^";
+                    previewField += "state=" + stackElement.State_Name.ToUpper().Trim() + ";";
+                    previewField += "race= ;";
+                    previewField += "precincts= ;";
+                    previewField += "office=";
                     // Add race descriptor
                     //Dem primary
                     if (stackElement.Election_Type == "D")
                     {
-                        previewField = previewField + "DEMOCRATIC PRIMARY";
+                        previewField += "DEMOCRATIC PRIMARY";
                     }
                     //Rep primary
                     else if (stackElement.Election_Type == "R")
                     {
-                        previewField = previewField + "REPUBLICAN PRIMARY";
+                        previewField += "REPUBLICAN PRIMARY";
                     }
                     //Dem caucuses
                     else if (stackElement.Election_Type == "E")
                     {
-                        previewField = previewField + "DEMOCRATIC CAUCUSES";
+                        previewField += "DEMOCRATIC CAUCUSES";
                     }
                     //Rep caucuses
                     else if (stackElement.Election_Type == "S")
                     {
-                        previewField = previewField + "DEMOCRATIC CAUCUSES";
+                        previewField += "DEMOCRATIC CAUCUSES";
                     }
                     // Not a primary or caucus event - build string based on office type
                     else
                     {
                         if (stackElement.Race_Office == "P")
                         {
-                            previewField = previewField + "President";
+                            previewField += "President";
                         }
                         else if (stackElement.Race_Office == "G")
                         {
-                            previewField = previewField + "Governor";
+                            previewField += "Governor";
                         }
                         else if (stackElement.Race_Office == "L")
                         {
-                            previewField = previewField + "Lt. Governor";
+                            previewField += "Lt. Governor";
                         }
                         else if ((stackElement.Race_Office == "S") | (stackElement.Race_Office == "S2"))
                         {
-                            previewField = previewField + "Senate";
+                            previewField += "Senate";
                         }
                         else if (stackElement.Race_Office == "H")
                         {
                             if (GetStateMetadata(stackElement.State_Number).IsAtLargeHouseState)
                             {
-                                previewField = previewField + "House At Large";
+                                previewField += "House At Large";
                             }
                             else
                             {
-                                previewField = previewField + "U.S. House CD " + stackElement.Race_District.ToString();
+                                previewField += "U.S. House CD " + stackElement.Race_District.ToString();
                             }
                         }
                     }
-                    previewField = previewField + "^0~";
+                    previewField += ";";
 
+                    previewField += "racemode = " + (Int16)BoardModes.Race_Board_Normal;
+                    previewField += "~";
+
+                    // Then for each candidate:
+                    // name=<candidate name>; party=<party ID>; incum=<0 or 1>; vote=<vote count no commas>; percent=<candidate percentage>; check=<winner status 0 or 1>; gain=<0 or 1>; imagepath=<base filename only> ^
+                    // Separated by ^
                     // Add candidate data - only include name and headshot (no data for preview)
-                    for (int i = 0; i < candidatesToReturn; ++i)
+                    for (int j = 0; j < candidatesToReturn; ++j)
                     {
-                        if (i != 0)
+                        if (j != 0)
                         {
-                            previewField = previewField + "|";
+                            previewField += previewField + "^";
                         }
-                        previewField = previewField + raceData[i].CandidateLastName.Trim();
-                        previewField = previewField + "^";
+                        previewField += "name=" + raceData[j].CandidateLastName.Trim() + ";";
+
                         // Add party ID
-                        if (raceData[i].CandidatePartyID.ToUpper() == "REP")
+                        if (raceData[j].CandidatePartyID.ToUpper() == "REP")
                         {
-                            previewField = previewField + "0";
+                            previewField += "party=0;";
                         }
-                        else if (raceData[i].CandidatePartyID.ToUpper() == "DEM")
+                        else if (raceData[j].CandidatePartyID.ToUpper() == "DEM")
                         {
-                            previewField = previewField + "1";
+                            previewField += "party=1;";
                         }
                         // Modified 10/13/2016 to support Libertarian candidates
-                        else if (raceData[i].CandidatePartyID.ToUpper() == "LIB")
+                        else if (raceData[j].CandidatePartyID.ToUpper() == "LIB")
                         {
-                            previewField = previewField + "3";
+                            previewField += "party=3;";
                         }
                         else
                         {
-                            previewField = previewField + "2";
+                            previewField += "party=2;";
                         }
-                        // Add blank fields for data
-                        previewField = previewField + "^0^ ^ ^0^0^";
-                        // Add headshot path
-                        previewField = previewField + raceData[i].HeadshotPathFNC.Trim();
+                        // Add base filename from headshot path
+                        previewField += "imagepath=" + Path.GetFileNameWithoutExtension(Path.GetFileName(raceData[j].HeadshotPathFNC.Trim()));
                     }
                 }
             }
             catch (Exception ex)
             {
                 // Log error
-                log.Error("frmMain Exception occurred: " + ex.Message);
-                log.Debug("frmMain Exception occurred", ex);
+                log.Error("frmMain Preview String Exception occurred: " + ex.Message);
+                log.Debug("frmMain Preview String Exception occurred", ex);
             }
 
             return previewField;
         }
-
-
-
 
         // Method to get the Referendum string 
         private string GetReferendumPreviewString(ReferendumDataModel referendumData)
