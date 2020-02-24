@@ -50,7 +50,6 @@ C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbui
 C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\DataInterface\bin\Debug\DataInterface.pdb
 C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.dll
 C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\DataInterface\bin\Debug\log4net.xml
-C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csprojAssemblyReference.cache
 C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.CoreCompileInputs.cache
 C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.csproj.CopyComplete
 C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\DataInterface\obj\Debug\DataInterface.dll

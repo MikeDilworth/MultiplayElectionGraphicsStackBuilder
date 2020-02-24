@@ -57,9 +57,6 @@ namespace GUILayer.Forms
         Boolean insertNext = true;
         Int32 insertPoint;
 
-        // For no use what so ever
-        ulong useless = 0;
-
         Int16 conceptID;
         string conceptName;
 
@@ -3892,6 +3889,9 @@ namespace GUILayer.Forms
             string Template = string.Empty;
             for (short i = 0; i < graphicsConcepts.Count; i++)
             {
+                // Modified 02/21/2020 for special case of 5-8 candidates graphics concept; stack element type values = 5-way thru 8-way, lookup for template = 5
+                if ((tempElementType >= (short)StackElementTypes.Race_Board_5_Way) && (tempElementType <= (short)StackElementTypes.Race_Board_8_Way))
+                    tempElementType = (short)StackElementTypes.Race_Board_5_Way;
                 if ((tempConceptID == graphicsConcepts[i].ConceptID) & (tempElementType == (short)graphicsConcepts[i].ElementTypeCode))
                 {
                     Template = graphicsConcepts[i].TemplateName;
