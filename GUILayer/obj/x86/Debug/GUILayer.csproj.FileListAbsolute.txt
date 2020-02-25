@@ -186,3 +186,29 @@ C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.c
 C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CopyComplete
 C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.exe
 C:\_dev\bitbucket\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe.config
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.exe
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\ElectionGraphicsStackBuilder.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\AsyncClientSocket.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\MSEInterface.dll
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\AsyncClientSocket.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\DataInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\LogicLayer.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\MSEInterface.pdb
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\bin\Debug\log4net.xml
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csprojAssemblyReference.cache
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmLoadStack.resources
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmSaveStack.resources
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.FrmCandidateSelect.resources
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmAbout.resources
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmMain.resources
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Forms.frmSelectShow.resources
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.Properties.Resources.resources
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.GenerateResource.cache
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CoreCompileInputs.cache
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\GUILayer.csproj.CopyComplete
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.exe
+C:\Users\Dilworth\Documents\Visual Studio 2017\Projects\electiongraphicsstackbuilder\GUILayer\obj\x86\Debug\ElectionGraphicsStackBuilder.pdb

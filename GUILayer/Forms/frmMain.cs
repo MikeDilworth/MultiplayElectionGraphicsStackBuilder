@@ -83,9 +83,6 @@ namespace GUILayer.Forms
         public List<ClientSocket> vizClientSockets = new List<ClientSocket>();
 
         public string[] lastSceneLoaded = new string[4];
-
-
-
         #endregion
 
         #region Collection & binding list definitions
@@ -759,8 +756,6 @@ namespace GUILayer.Forms
                 }
             }
 
-
-
             // Make entry into applications log
             ApplicationSettingsFlagsAccess applicationSettingsFlagsAccess = new ApplicationSettingsFlagsAccess();
 
@@ -786,9 +781,6 @@ namespace GUILayer.Forms
             //IPs[3]
 
             );
-
-
-
         }
 
         public void ConnectToVizEngines()
@@ -2487,8 +2479,17 @@ namespace GUILayer.Forms
                     {
                         case (Int16)DataTypes.Race_Boards:
 
+                            bool candidateSelectEnable = false;
+                            if ((_stackElements[i].Stack_Element_Type == (short)StackElementTypes.Race_Board_1_Way_Select) || (_stackElements[i].Stack_Element_Type == (short)StackElementTypes.Race_Board_2_Way_Select) ||
+                               (_stackElements[i].Stack_Element_Type == (short)StackElementTypes.Race_Board_3_Way_Select) || (_stackElements[i].Stack_Element_Type == (short)StackElementTypes.Race_Board_4_Way_Select))
+                            {
+                                candidateSelectEnable = true;
+                            }
+
                             // Request the race data for the element in the stack - updates raceData binding list
-                            GetRaceData(_stackElements[i].State_Number, _stackElements[i].Race_Office, _stackElements[i].CD, _stackElements[i].Election_Type, candidatesToReturn, false, 0, 0, 0, 0);
+                            // Modified 02/25/2020 to support preview strings for select boards
+                            GetRaceData(_stackElements[i].State_Number, _stackElements[i].Race_Office, _stackElements[i].CD, _stackElements[i].Election_Type, candidatesToReturn, candidateSelectEnable, 
+                                _stackElements[i].Race_CandidateID_1, _stackElements[i].Race_CandidateID_2, _stackElements[i].Race_CandidateID_3, _stackElements[i].Race_CandidateID_4);
 
                             // Check for data returned for race
                             if (raceData.Count > 0)
@@ -2503,7 +2504,7 @@ namespace GUILayer.Forms
                                 // Set FIELD_TYPE value - stack ID plus stack index
                                 newRacePreviewElement.Raceboard_Type_Field_Text = stack_ID.ToString() + "|" + i.ToString();
 
-                                // Call method to assemble the race data into the required command string for the raceboards scene
+                                // Call method to assemble the race data into the required preview command string for the raceboards scene
                                 newRacePreviewElement.Raceboard_Preview_Field_Text = GetRacePreviewString(_stackElements[i], candidatesToReturn);
 
                                 // Append the preview element to the race preview collection
@@ -2838,7 +2839,7 @@ namespace GUILayer.Forms
                     //Rep caucuses
                     else if (stackElement.Election_Type == "S")
                     {
-                        previewField += "DEMOCRATIC CAUCUSES";
+                        previewField += "REPUBLICAN CAUCUSES";
                     }
                     // Not a primary or caucus event - build string based on office type
                     else
@@ -2884,7 +2885,7 @@ namespace GUILayer.Forms
                     {
                         if (j != 0)
                         {
-                            previewField += previewField + "^";
+                            previewField += "^";
                         }
                         previewField += "name=" + raceData[j].CandidateLastName.Trim() + ";";
 
@@ -4227,7 +4228,7 @@ namespace GUILayer.Forms
                     }
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 // Log error
                 //log.Error("GetDBData Exception occurred: " + ex.Message);
