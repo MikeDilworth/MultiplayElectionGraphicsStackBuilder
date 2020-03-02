@@ -49,9 +49,10 @@
             this.btnActivateStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivateStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Complete_and_ok_16xLG_color;
             this.btnActivateStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActivateStack.Location = new System.Drawing.Point(74, 677);
+            this.btnActivateStack.Location = new System.Drawing.Point(79, 1047);
+            this.btnActivateStack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnActivateStack.Name = "btnActivateStack";
-            this.btnActivateStack.Size = new System.Drawing.Size(165, 65);
+            this.btnActivateStack.Size = new System.Drawing.Size(248, 100);
             this.btnActivateStack.TabIndex = 2;
             this.btnActivateStack.Text = "       Activate Stack\r\n             (Ctrl-A)\r\n";
             this.btnActivateStack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -63,9 +64,10 @@
             this.btnLoadStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
             this.btnLoadStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLoadStack.Location = new System.Drawing.Point(74, 592);
+            this.btnLoadStack.Location = new System.Drawing.Point(79, 916);
+            this.btnLoadStack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLoadStack.Name = "btnLoadStack";
-            this.btnLoadStack.Size = new System.Drawing.Size(165, 65);
+            this.btnLoadStack.Size = new System.Drawing.Size(248, 100);
             this.btnLoadStack.TabIndex = 1;
             this.btnLoadStack.Text = "Load Stack\r\n(Ctrl-L)";
             this.btnLoadStack.UseVisualStyleBackColor = true;
@@ -75,9 +77,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Location = new System.Drawing.Point(18, 14);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.Size = new System.Drawing.Size(180, 25);
             this.label3.TabIndex = 5;
             this.label3.Text = "Available Stacks:";
             // 
@@ -108,7 +111,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.availableStacksGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.availableStacksGrid.Location = new System.Drawing.Point(14, 28);
+            this.availableStacksGrid.Location = new System.Drawing.Point(21, 43);
+            this.availableStacksGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.availableStacksGrid.MultiSelect = false;
             this.availableStacksGrid.Name = "availableStacksGrid";
             this.availableStacksGrid.ReadOnly = true;
@@ -123,7 +127,7 @@
             this.availableStacksGrid.RowHeadersWidth = 15;
             this.availableStacksGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.availableStacksGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.availableStacksGrid.Size = new System.Drawing.Size(511, 546);
+            this.availableStacksGrid.Size = new System.Drawing.Size(725, 840);
             this.availableStacksGrid.TabIndex = 0;
             this.availableStacksGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableStacksGrid_CellClick);
             this.availableStacksGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableStacksGrid_CellContentClick);
@@ -164,9 +168,10 @@
             this.btnDeleteStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteStack.Image = global::GUILayer.Properties.Resources.StatusAnnotations_Blocked_16xLG_color;
             this.btnDeleteStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteStack.Location = new System.Drawing.Point(300, 592);
+            this.btnDeleteStack.Location = new System.Drawing.Point(418, 916);
+            this.btnDeleteStack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDeleteStack.Name = "btnDeleteStack";
-            this.btnDeleteStack.Size = new System.Drawing.Size(165, 65);
+            this.btnDeleteStack.Size = new System.Drawing.Size(248, 100);
             this.btnDeleteStack.TabIndex = 3;
             this.btnDeleteStack.Text = "Delete Stack\r\n(Ctrl-D)";
             this.btnDeleteStack.UseVisualStyleBackColor = true;
@@ -178,9 +183,10 @@
             this.btnCancelStackLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelStackLoad.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
             this.btnCancelStackLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelStackLoad.Location = new System.Drawing.Point(300, 677);
+            this.btnCancelStackLoad.Location = new System.Drawing.Point(418, 1047);
+            this.btnCancelStackLoad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelStackLoad.Name = "btnCancelStackLoad";
-            this.btnCancelStackLoad.Size = new System.Drawing.Size(165, 65);
+            this.btnCancelStackLoad.Size = new System.Drawing.Size(248, 100);
             this.btnCancelStackLoad.TabIndex = 4;
             this.btnCancelStackLoad.Text = "Cancel\r\n(Ctrl-C)\r\n";
             this.btnCancelStackLoad.UseVisualStyleBackColor = true;
@@ -189,11 +195,11 @@
             // frmLoadStack
             // 
             this.AcceptButton = this.btnLoadStack;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.CancelButton = this.btnCancelStackLoad;
-            this.ClientSize = new System.Drawing.Size(896, 754);
+            this.ClientSize = new System.Drawing.Size(770, 1160);
             this.Controls.Add(this.btnCancelStackLoad);
             this.Controls.Add(this.btnActivateStack);
             this.Controls.Add(this.btnLoadStack);
@@ -201,6 +207,7 @@
             this.Controls.Add(this.availableStacksGrid);
             this.Controls.Add(this.btnDeleteStack);
             this.Location = new System.Drawing.Point(550, 150);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmLoadStack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Load Stack";

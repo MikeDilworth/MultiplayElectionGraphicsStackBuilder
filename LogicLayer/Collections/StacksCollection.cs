@@ -36,7 +36,7 @@ namespace LogicLayer.Collections
         /// <summary>
         /// Get the MSE Stack list from the SQL DB; clears out existing collection first
         /// </summary>
-        public BindingList<StackModel> GetStackCollection()
+        public BindingList<StackModel> GetStackCollection(string StackNamePrefix)
         {
             DataTable dataTable;
 
@@ -51,17 +51,23 @@ namespace LogicLayer.Collections
 
                 foreach (DataRow row in dataTable.Rows)
                 {
+                    string stackName = row["StackName"].ToString() ?? "";
+
                     var newStack = new StackModel()
                     {
                         ixStackID = Convert.ToDouble(row["ixStackID"] ?? 0),
-                        StackName = row["StackName"].ToString() ?? "",
+                        StackName = stackName.Substring(4),
                         StackType = Convert.ToInt16(row["StackType"] ?? 0),
                         ShowName = row["ShowName"].ToString() ?? "",
                         ConceptID = Convert.ToInt16(row["ConceptID"] ?? 0),
                         ConceptName = row["ConceptName"].ToString() ?? "",
                         Notes = row["Notes"].ToString() ?? "",
                     };
-                    stacks.Add(newStack);
+                    // Added 02/27/2020 to filter by specified network
+                    if ((row["StackName"].ToString().Substring(0, 4) ?? "") == (StackNamePrefix + "-"))
+                    {
+                        stacks.Add(newStack);
+                    }
                 }
             }
             catch (Exception ex)

@@ -37,6 +37,9 @@ namespace GUILayer.Forms
         private string stackDesc;
         public string StackDesc { get { return stackDesc; } set { StackDesc = stackDesc; } }
 
+        private string stackNamePrefix;
+        public string StackNamePrefix { get { return stackNamePrefix; } set { StackDesc = stackNamePrefix; } }
+
         public Boolean EnableShowControls { get; set;}
 
         //string topLevelShowsDirectoryURI = Properties.Settings.Default.MSEEndpoint1 + Properties.Settings.Default.TopLevelShowsDirectory;
@@ -49,7 +52,7 @@ namespace GUILayer.Forms
 
         //public event DelDeleteStack DeleteStack;
 
-        public frmLoadStack()
+        public frmLoadStack(string stackNamePrefix)
         {
             InitializeComponent();
 
@@ -57,7 +60,7 @@ namespace GUILayer.Forms
             KeyPreview = true;
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
 
-            RefreshStacksList();
+            RefreshStacksList(stackNamePrefix);
 
             if (EnableShowControls)
             {
@@ -107,14 +110,14 @@ namespace GUILayer.Forms
         #endregion
         
         // Method to refresh the stacks list
-        private void RefreshStacksList()
+        private void RefreshStacksList(string stackNamePrefix)
         {
             try
             {
                 // Setup the available stacks collection
                 this.stacksCollection = new StacksCollection();
                 this.stacksCollection.MainDBConnectionString = GraphicsDBConnectionString;
-                stacks = this.stacksCollection.GetStackCollection();
+                stacks = this.stacksCollection.GetStackCollection(stackNamePrefix);
 
                 // Setup the available stacks grid
                 availableStacksGrid.AutoGenerateColumns = false;

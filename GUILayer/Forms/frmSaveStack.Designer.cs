@@ -34,12 +34,14 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.availableStacksGrid = new System.Windows.Forms.DataGridView();
-            this.btnSaveStack = new System.Windows.Forms.Button();
-            this.txtStackDescription = new System.Windows.Forms.TextBox();
-            this.lblStackDescription = new System.Windows.Forms.Label();
             this.ixStackID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSaveStack = new System.Windows.Forms.Button();
+            this.txtStackDescription = new System.Windows.Forms.TextBox();
+            this.lblStackDescription = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtStackNamePrefix = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.availableStacksGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,9 +51,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::GUILayer.Properties.Resources.action_Cancel_16xLG;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(290, 607);
+            this.btnCancel.Location = new System.Drawing.Point(435, 934);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(154, 65);
+            this.btnCancel.Size = new System.Drawing.Size(231, 100);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel\r\n(Ctrl-C)";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -61,9 +64,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Location = new System.Drawing.Point(18, 14);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.Size = new System.Drawing.Size(180, 25);
             this.label3.TabIndex = 121;
             this.label3.Text = "Available Stacks:";
             // 
@@ -94,7 +98,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.availableStacksGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.availableStacksGrid.Location = new System.Drawing.Point(15, 28);
+            this.availableStacksGrid.Location = new System.Drawing.Point(22, 43);
+            this.availableStacksGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.availableStacksGrid.MultiSelect = false;
             this.availableStacksGrid.Name = "availableStacksGrid";
             this.availableStacksGrid.ReadOnly = true;
@@ -109,44 +114,10 @@
             this.availableStacksGrid.RowHeadersWidth = 15;
             this.availableStacksGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.availableStacksGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.availableStacksGrid.Size = new System.Drawing.Size(518, 515);
+            this.availableStacksGrid.Size = new System.Drawing.Size(777, 767);
             this.availableStacksGrid.TabIndex = 120;
             this.availableStacksGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableStacksGrid_CellClick);
             this.availableStacksGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableStacksGrid_CellContentClick);
-            // 
-            // btnSaveStack
-            // 
-            this.btnSaveStack.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
-            this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveStack.Location = new System.Drawing.Point(99, 607);
-            this.btnSaveStack.Name = "btnSaveStack";
-            this.btnSaveStack.Size = new System.Drawing.Size(154, 65);
-            this.btnSaveStack.TabIndex = 2;
-            this.btnSaveStack.Text = "Save Stack\r\n(Ctrl-S)";
-            this.btnSaveStack.UseVisualStyleBackColor = true;
-            this.btnSaveStack.Click += new System.EventHandler(this.btnSaveStack_Click);
-            // 
-            // txtStackDescription
-            // 
-            this.txtStackDescription.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtStackDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStackDescription.Location = new System.Drawing.Point(103, 564);
-            this.txtStackDescription.MaxLength = 50;
-            this.txtStackDescription.Name = "txtStackDescription";
-            this.txtStackDescription.Size = new System.Drawing.Size(270, 22);
-            this.txtStackDescription.TabIndex = 1;
-            // 
-            // lblStackDescription
-            // 
-            this.lblStackDescription.AutoSize = true;
-            this.lblStackDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStackDescription.Location = new System.Drawing.Point(15, 567);
-            this.lblStackDescription.Name = "lblStackDescription";
-            this.lblStackDescription.Size = new System.Drawing.Size(87, 16);
-            this.lblStackDescription.TabIndex = 126;
-            this.lblStackDescription.Text = "Description";
             // 
             // ixStackID
             // 
@@ -173,14 +144,76 @@
             this.StackName.ReadOnly = true;
             this.StackName.Width = 500;
             // 
+            // btnSaveStack
+            // 
+            this.btnSaveStack.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSaveStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveStack.Image = global::GUILayer.Properties.Resources.folder_Open_16xLG;
+            this.btnSaveStack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveStack.Location = new System.Drawing.Point(148, 934);
+            this.btnSaveStack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSaveStack.Name = "btnSaveStack";
+            this.btnSaveStack.Size = new System.Drawing.Size(231, 100);
+            this.btnSaveStack.TabIndex = 2;
+            this.btnSaveStack.Text = "Save Stack\r\n(Ctrl-S)";
+            this.btnSaveStack.UseVisualStyleBackColor = true;
+            this.btnSaveStack.Click += new System.EventHandler(this.btnSaveStack_Click);
+            // 
+            // txtStackDescription
+            // 
+            this.txtStackDescription.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtStackDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStackDescription.Location = new System.Drawing.Point(224, 872);
+            this.txtStackDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtStackDescription.MaxLength = 50;
+            this.txtStackDescription.Name = "txtStackDescription";
+            this.txtStackDescription.Size = new System.Drawing.Size(442, 30);
+            this.txtStackDescription.TabIndex = 1;
+            // 
+            // lblStackDescription
+            // 
+            this.lblStackDescription.AutoSize = true;
+            this.lblStackDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStackDescription.Location = new System.Drawing.Point(89, 872);
+            this.lblStackDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStackDescription.Name = "lblStackDescription";
+            this.lblStackDescription.Size = new System.Drawing.Size(127, 25);
+            this.lblStackDescription.TabIndex = 126;
+            this.lblStackDescription.Text = "Description:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(22, 833);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(203, 25);
+            this.label1.TabIndex = 127;
+            this.label1.Text = "Stack Name Prefix: ";
+            // 
+            // txtStackNamePrefix
+            // 
+            this.txtStackNamePrefix.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtStackNamePrefix.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStackNamePrefix.Location = new System.Drawing.Point(224, 828);
+            this.txtStackNamePrefix.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtStackNamePrefix.MaxLength = 50;
+            this.txtStackNamePrefix.Name = "txtStackNamePrefix";
+            this.txtStackNamePrefix.ReadOnly = true;
+            this.txtStackNamePrefix.Size = new System.Drawing.Size(100, 30);
+            this.txtStackNamePrefix.TabIndex = 128;
+            // 
             // FrmSaveStack
             // 
             this.AcceptButton = this.btnSaveStack;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(549, 684);
+            this.ClientSize = new System.Drawing.Size(824, 1052);
+            this.Controls.Add(this.txtStackNamePrefix);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtStackDescription);
             this.Controls.Add(this.lblStackDescription);
             this.Controls.Add(this.btnCancel);
@@ -188,6 +221,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.availableStacksGrid);
             this.Location = new System.Drawing.Point(550, 150);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmSaveStack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Save Stack";
@@ -208,5 +242,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ixStackID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShowName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StackName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtStackNamePrefix;
     }
 }

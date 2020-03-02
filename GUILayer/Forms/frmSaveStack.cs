@@ -30,13 +30,15 @@ namespace GUILayer.Forms
         //private string stackDescription;
         //public string StackDescription { get { return stackDescription; } set { StackDescription = stackDescription; } }
         public string StackDescription { get; set; }
+        // Added 02/27/2020
+        public string StackNamePrefix { get; set; }
 
         public Boolean EnableShowControls { get; set; }
 
-        public FrmSaveStack(Double stID, string stackDesc)
+        public FrmSaveStack(Double stID, string stackDesc, string stackNamePrefix)
         {
             InitializeComponent();
-            RefreshStacksList();
+            RefreshStacksList(stackNamePrefix);
 
             if (EnableShowControls)
             {
@@ -53,6 +55,11 @@ namespace GUILayer.Forms
 
             //txtStackID.Text = Convert.ToString(stID);
             txtStackDescription.Text = stackDesc;
+            
+            // Added 02/27/2020
+            txtStackNamePrefix.Text = stackNamePrefix;
+            StackNamePrefix = stackNamePrefix;
+
             //txtStackID.Focus();
             txtStackDescription.Focus();
         }
@@ -86,14 +93,14 @@ namespace GUILayer.Forms
         }
         #endregion
 
-        private void RefreshStacksList()
+        private void RefreshStacksList(string stackNamePrefix)
         {
             try
             {
                 // Setup the available stacks collection
                 this.stacksCollection = new StacksCollection();
                 this.stacksCollection.MainDBConnectionString = GraphicsDBConnectionString;
-                stacks = this.stacksCollection.GetStackCollection();
+                stacks = this.stacksCollection.GetStackCollection(stackNamePrefix);
 
                 // Setup the available stacks grid
                 availableStacksGrid.AutoGenerateColumns = false;
@@ -139,7 +146,7 @@ namespace GUILayer.Forms
             //Check if playlist already exists in database; if prompt for overwrite not checked, skip step
             try
             {
-                Double stackExistsID = stacksCollection.CheckIfStackExists_DB(txtStackDescription.Text.Trim());
+                Double stackExistsID = stacksCollection.CheckIfStackExists_DB(StackNamePrefix + "-" + txtStackDescription.Text.Trim());
                 if (stackExistsID != -1)
                 {
                     // Check to see if the sublist already exists in the database; if so, prompt for overwrite

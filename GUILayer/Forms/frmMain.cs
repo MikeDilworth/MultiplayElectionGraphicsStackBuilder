@@ -246,7 +246,7 @@ namespace GUILayer.Forms
                 toolStripStatusLabel.Text = "Starting program initialization - loading data from SQL database.";
 
                 // Query the graphics DB to get the list of already saved stacks
-                RefreshStacksList();
+                RefreshStacksList(Network);
 
                 // Query the elections DB to get the list of exit poll questions
                 RefreshExitPollQuestions();
@@ -294,7 +294,6 @@ namespace GUILayer.Forms
 
                 // Set connection string for functions to get simulated time
                 TimeFunctions.ElectionsDBConnectionString = ElectionsDBConnectionString;
-
 
                 // Set version number
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
@@ -347,7 +346,10 @@ namespace GUILayer.Forms
             usePrimaryMediaSequencerToolStripMenuItem.Checked = true;
             useBackupMediaSequencerToolStripMenuItem.Checked = false;
 
+            // Load config & set network label
             LoadConfig();
+            lblNetwork.Text = Network;
+            lblConfig.Text = configName;
         }
         private void loadConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1060,14 +1062,14 @@ namespace GUILayer.Forms
         #region Utility functions
         // Refresh the list of available stacks for the grid
 
-        private void RefreshStacksList()
+        private void RefreshStacksList(string stackNamePrefix)
         {
             try
             {
                 // Setup the available stacks collection
                 this.stacksCollection = new StacksCollection();
                 this.stacksCollection.MainDBConnectionString = GraphicsDBConnectionString;
-                stacks = this.stacksCollection.GetStackCollection();
+                stacks = this.stacksCollection.GetStackCollection(stackNamePrefix);
             }
             catch (Exception ex)
             {
@@ -1473,9 +1475,15 @@ namespace GUILayer.Forms
         private void btnAddRace4Way_Click(object sender, EventArgs e)
         {
             // Check for correct graphics concept selected
-            if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            //if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+            //{
+            //    MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+            //        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            // Check for correct graphics concept selected
+            if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
             {
-                MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                MessageBox.Show("You must first select the 32x9 (4-10) graphics concept from the drop-down before specifying this board type",
                     "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -1494,7 +1502,7 @@ namespace GUILayer.Forms
             // Check for correct graphics concept selected
             if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
             {
-                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                MessageBox.Show("You must first select the 32x9 (4-10) graphics concept from the drop-down before specifying this board type",
                     "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -1513,7 +1521,7 @@ namespace GUILayer.Forms
             // Check for correct graphics concept selected
             if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
             {
-                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                MessageBox.Show("You must first select the 32x9 (4-10) graphics concept from the drop-down before specifying this board type",
                     "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -1532,7 +1540,7 @@ namespace GUILayer.Forms
             // Check for correct graphics concept selected
             if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
             {
-                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                MessageBox.Show("You must first select the 32x9 (4-10) graphics concept from the drop-down before specifying this board type",
                     "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -1551,7 +1559,7 @@ namespace GUILayer.Forms
             // Check for correct graphics concept selected
             if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
             {
-                MessageBox.Show("You must first select the 32x9 (5-10) graphics concept from the drop-down before specifying this board type",
+                MessageBox.Show("You must first select the 32x9 (4-10) graphics concept from the drop-down before specifying this board type",
                     "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -1902,7 +1910,7 @@ namespace GUILayer.Forms
                 {
 
                     DialogResult dr = new DialogResult();
-                    FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
+                    FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription, Network);
                     dr = saveStack.ShowDialog();
                     if (dr == DialogResult.OK)
                     {
@@ -2086,11 +2094,11 @@ namespace GUILayer.Forms
 
                 // Setup dialog to load stack
                 DialogResult dr = new DialogResult();
-                frmLoadStack loadStack = new frmLoadStack();
+                frmLoadStack loadStack = new frmLoadStack(Network);
 
                 loadStack.EnableShowControls = enableShowSelectControls;
 
-                RefreshStacksList();
+                RefreshStacksList(Network);
 
                 dr = loadStack.ShowDialog();
 
@@ -2217,7 +2225,7 @@ namespace GUILayer.Forms
                     }
                 }
                 //Refresh the list of available stacks
-                RefreshStacksList();
+                RefreshStacksList(Network);
             }
             catch (Exception ex)
             {
@@ -2261,7 +2269,7 @@ namespace GUILayer.Forms
                     if (cbPromptForInfo.Checked == true)
                     {
                         DialogResult dr = new DialogResult();
-                        FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription);
+                        FrmSaveStack saveStack = new FrmSaveStack(stackID, stackDescription, Network);
 
                         saveStack.EnableShowControls = enableShowSelectControls;
 
@@ -2277,7 +2285,9 @@ namespace GUILayer.Forms
                             stackID = saveStack.StackId;
                             stackDescription = saveStack.StackDescription;
                             stackMetadata.ixStackID = stackID;
-                            stackMetadata.StackName = stackDescription;
+
+                            // Modified 02/27/2020 to add network ID prefix to stack name
+                            stackMetadata.StackName = Network + "-" + stackDescription;
 
                             // Modified 02/21/2020 to set to special stack type ID if 8-way multi races selected
                             if ((builderOnlyMode == true) && (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1))
@@ -2286,7 +2296,7 @@ namespace GUILayer.Forms
                                 stackMetadata.StackType = 0;
 
                             //stackMetadata.StackType = 0;
-                            stackMetadata.ShowName = currentShowName;
+                            stackMetadata.ShowName = Network + "-" + currentShowName;
                             stackMetadata.ConceptID = conceptID;
                             stackMetadata.ConceptName = conceptName;
                             stackMetadata.Notes = "Not currently used";
@@ -2312,7 +2322,9 @@ namespace GUILayer.Forms
                         StackModel stackMetadata = new StackModel();
 
                         stackMetadata.ixStackID = stackID;
-                        stackMetadata.StackName = stackDescription;
+                        
+                        // Modified 02/27/2020 to add stack prefix for network
+                        stackMetadata.StackName = Network + "-" + stackDescription;
 
                         stackMetadata.StackType = 0;
                         stackMetadata.ShowName = currentShowName;
@@ -3909,8 +3921,9 @@ namespace GUILayer.Forms
             for (short i = 0; i < graphicsConcepts.Count; i++)
             {
                 // Modified 02/21/2020 for special case of 5-8 candidates graphics concept; stack element type values = 5-way thru 8-way, lookup for template = 5
-                if ((tempElementType >= (short)StackElementTypes.Race_Board_5_Way) && (tempElementType <= (short)StackElementTypes.Race_Board_8_Way))
-                    tempElementType = (short)StackElementTypes.Race_Board_5_Way;
+                //if ((tempElementType >= (short)StackElementTypes.Race_Board_5_Way) && (tempElementType <= (short)StackElementTypes.Race_Board_8_Way))
+                if ((tempElementType >= (short)StackElementTypes.Race_Board_4_Way) && (tempElementType <= (short)StackElementTypes.Race_Board_8_Way))
+                        tempElementType = (short)StackElementTypes.Race_Board_5_Way;
                 if ((tempConceptID == graphicsConcepts[i].ConceptID) & (tempElementType == (short)graphicsConcepts[i].ElementTypeCode))
                 {
                     Template = graphicsConcepts[i].TemplateName;
