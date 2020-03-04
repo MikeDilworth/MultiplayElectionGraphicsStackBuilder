@@ -3730,9 +3730,14 @@ namespace GUILayer.Forms
             try
             {
                 // Check for correct graphics concept selected
-                if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+                //if (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
+                //{
+                //    MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                //        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
+                if (cbGraphicConcept.SelectedIndex != (short)GraphicsConcepts.ThirtyTwo_By_Nine_Five_Ten - 1)
                 {
-                    MessageBox.Show("You must first select a valid, compatible graphics concept from the drop-down before specifying this board type",
+                    MessageBox.Show("You must first select the 32x9 (4-10) graphics concept from the drop-down before specifying this board type",
                         "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
