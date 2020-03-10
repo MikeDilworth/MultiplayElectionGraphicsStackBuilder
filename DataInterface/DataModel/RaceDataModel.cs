@@ -20,6 +20,11 @@ namespace DataInterface.DataModel
         public Int32 TotalPrecincts { get; set; }
         public Int32 PrecinctsReporting { get; set; }
         public float PercentExpectedVote { get; set; }
+
+        // Added 03/10/2020 to support 2020 primaries
+        public Int16 DemDelegatesAtStake { get; set; }
+        public Int16 RepDelegatesAtStake { get; set; }
+
         public Int32 CandidateID { get; set; }
         public string FoxID { get; set; }
         public string CandidateLastName { get; set; }

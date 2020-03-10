@@ -2831,7 +2831,8 @@ namespace GUILayer.Forms
                     previewField += "state=" + stackElement.State_Name.ToUpper().Trim() + ";";
                     previewField += "race= ;";
                     previewField += "precincts= ;";
-                    previewField += "office=";
+                    previewField += "office= ";
+
                     // Add race descriptor
                     //Dem primary
                     if (stackElement.Election_Type == "D")
@@ -2887,6 +2888,11 @@ namespace GUILayer.Forms
                     previewField += ";";
 
                     previewField += "racemode = " + (Int16)BoardModes.Race_Board_Normal;
+                    previewField += ";";
+
+                    // Add delegates at stake - HARD-CODED FOR DEM DELEGATES FOR 2020
+                    previewField += "evdel= " + raceData[0].DemDelegatesAtStake.ToString();
+
                     previewField += "~";
 
                     // Then for each candidate:

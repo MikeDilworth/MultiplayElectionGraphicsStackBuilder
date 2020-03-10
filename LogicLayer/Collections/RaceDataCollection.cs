@@ -84,6 +84,9 @@ namespace LogicLayer.Collections
                             TotalPrecincts = Convert.ToInt32(row["totPcts"] ?? 0),
                             PrecinctsReporting = Convert.ToInt32(row["pctsRep"] ?? 0),
                             PercentExpectedVote = Convert.ToSingle(row["pctExpVote"] ?? 0),
+                            // Added 03/10/2020 to support 2020 primaries
+                            DemDelegatesAtStake = Convert.ToInt16(row["DemDelegatesAvailable"] ?? 0),
+                            RepDelegatesAtStake = Convert.ToInt16(row["RepDelegatesAvailable"] ?? 0),
                             CandidateID = Convert.ToInt32(row["cID"] ?? 0),
                             FoxID = row["FoxID"].ToString().Trim() ?? "USGOV999999",
                             CandidateLastName = row["candLastName"].ToString().Trim() ?? "",
