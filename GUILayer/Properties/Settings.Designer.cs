@@ -144,7 +144,7 @@ namespace GUILayer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Election Graphics Stack Builder")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Election Graphics (Multi-Play) Stack Builder")]
         public string ApplicationName {
             get {
                 return ((string)(this["ApplicationName"]));

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Election Graphics Stack Builder")]
+[assembly: AssemblyTitle("Election Graphics (Multi-Play) Stack Builder")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fox News Graphics Engineering")]
-[assembly: AssemblyProduct("Election Graphics Stack Builder")]
+[assembly: AssemblyProduct("Election Graphics (Multi-Play) Stack Builder")]
 [assembly: AssemblyCopyright("Copyright ©  2016-2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

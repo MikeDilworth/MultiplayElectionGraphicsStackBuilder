@@ -527,7 +527,7 @@
             this.tpRaces.Controls.Add(this.availableRacesGrid);
             this.tpRaces.Location = new System.Drawing.Point(4, 25);
             this.tpRaces.Name = "tpRaces";
-            this.tpRaces.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpRaces.Padding = new System.Windows.Forms.Padding(3);
             this.tpRaces.Size = new System.Drawing.Size(678, 765);
             this.tpRaces.TabIndex = 0;
             this.tpRaces.Text = "Races";
@@ -1253,7 +1253,7 @@
             this.tpBalanceOfPower.Controls.Add(this.btnAddBalanceOfPower);
             this.tpBalanceOfPower.Location = new System.Drawing.Point(4, 25);
             this.tpBalanceOfPower.Name = "tpBalanceOfPower";
-            this.tpBalanceOfPower.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpBalanceOfPower.Padding = new System.Windows.Forms.Padding(3);
             this.tpBalanceOfPower.Size = new System.Drawing.Size(678, 765);
             this.tpBalanceOfPower.TabIndex = 2;
             this.tpBalanceOfPower.Text = "Balance of Power";
@@ -1315,7 +1315,7 @@
             this.tpReferendums.Controls.Add(this.ReferendumsGrid);
             this.tpReferendums.Location = new System.Drawing.Point(4, 25);
             this.tpReferendums.Name = "tpReferendums";
-            this.tpReferendums.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpReferendums.Padding = new System.Windows.Forms.Padding(3);
             this.tpReferendums.Size = new System.Drawing.Size(678, 765);
             this.tpReferendums.TabIndex = 3;
             this.tpReferendums.Text = "Referendums";
@@ -2432,7 +2432,7 @@
             this.enginePanel.Controls.Add(this.lblScenes);
             this.enginePanel.Controls.Add(this.gbEngines);
             this.enginePanel.Location = new System.Drawing.Point(959, 885);
-            this.enginePanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.enginePanel.Margin = new System.Windows.Forms.Padding(2);
             this.enginePanel.Name = "enginePanel";
             this.enginePanel.Size = new System.Drawing.Size(464, 101);
             this.enginePanel.TabIndex = 135;
@@ -2457,9 +2457,9 @@
             this.gbEngines.Controls.Add(this.gbEng1);
             this.gbEngines.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbEngines.Location = new System.Drawing.Point(8, 2);
-            this.gbEngines.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbEngines.Margin = new System.Windows.Forms.Padding(2);
             this.gbEngines.Name = "gbEngines";
-            this.gbEngines.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbEngines.Padding = new System.Windows.Forms.Padding(2);
             this.gbEngines.Size = new System.Drawing.Size(450, 75);
             this.gbEngines.TabIndex = 0;
             this.gbEngines.TabStop = false;
@@ -2651,7 +2651,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Election Graphics Stack Builder Application  Version  1.1.1";
+            this.Text = "Election Graphics (Multi-Play) Stack Builder Application  Version  1.1.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);

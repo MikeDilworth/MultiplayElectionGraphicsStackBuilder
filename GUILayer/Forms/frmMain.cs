@@ -297,7 +297,7 @@ namespace GUILayer.Forms
 
                 // Set version number
                 var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-                this.Text = String.Format("Election Graphics Stack Builder Application  Version {0}", version);
+                this.Text = String.Format("Election Graphics (Multi-Play) Stack Builder Application  Version {0}", version);
 
             }
             catch (Exception ex)
@@ -969,7 +969,7 @@ namespace GUILayer.Forms
         // Method for main form close - confirm with operator
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result1 = MessageBox.Show("Are you sure you want to exit the Election Graphics Stack Builder Application?", "Warning",
+            DialogResult result1 = MessageBox.Show("Are you sure you want to exit the Election Graphics (Multi-Play) Stack Builder Application?", "Warning",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 != DialogResult.Yes)
             {
