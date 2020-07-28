@@ -1612,9 +1612,11 @@ namespace GUILayer.Forms
 
                 // Specific to race boards
                 newStackElement.Race_ID = selectedRace.Race_ID;
-                newStackElement.Race_RecordType = string.Empty;
+                // Deleted for 2020 General Election
+                // newStackElement.Race_RecordType = string.Empty;
                 newStackElement.Race_Office = selectedRace.Race_Office;
-                newStackElement.Race_District = selectedRace.CD;
+                // Modified for 2020 General Election
+                //newStackElement.Race_District = selectedRace.CD;
                 newStackElement.Race_CandidateID_1 = 0;
                 newStackElement.Race_CandidateID_2 = 0;
                 newStackElement.Race_CandidateID_3 = 0;
@@ -1623,6 +1625,8 @@ namespace GUILayer.Forms
                 newStackElement.Race_UseAPRaceCall = selectedRace.Race_UseAPRaceCall;
 
                 //Specific to exit polls - set to default values
+                // Modified for 2020 General Election
+                /*
                 newStackElement.ExitPoll_mxID = 0;
                 newStackElement.ExitPoll_BoardID = 0;
                 newStackElement.ExitPoll_ShortMxLabel = string.Empty;
@@ -1636,6 +1640,8 @@ namespace GUILayer.Forms
                 newStackElement.ExitPoll_HeaderText_2 = string.Empty;
                 newStackElement.ExitPoll_SubsetName = string.Empty;
                 newStackElement.ExitPoll_SubsetID = 0;
+                */
+
 
                 // Add element
                 stackElementsCollection.AppendStackElement(newStackElement);
@@ -2525,16 +2531,21 @@ namespace GUILayer.Forms
                             break;
 
                         case (Int16)DataTypes.Exit_Polls:
-
-                            string epType = _stackElements[i].Race_RecordType[0].ToString();
-                            Int32 epID = _stackElements[i].ExitPoll_mxID;
+                            // Modified for 2020 General Election
+                            // string epType = _stackElements[i].Race_RecordType[0].ToString();
+                            string epType = "";
+                            // Int32 epID = _stackElements[i].ExitPoll_mxID;
+                            Int32 epID = 0;
                             string st = _stackElements[i].State_Mnemonic;
                             string ofc = _stackElements[i].Office_Code;
                             Int32 jCde = _stackElements[i].County_Number;
-                            Int16 rowNum = _stackElements[i].ExitPoll_xRow;
-                            Int32 subID = _stackElements[i].ExitPoll_SubsetID;
+                            // Int16 rowNum = _stackElements[i].ExitPoll_xRow;
+                            Int16 rowNum = 0;
+                            // Int32 subID = _stackElements[i].ExitPoll_SubsetID;
+                            Int32 subID = 0;
                             string eType = _stackElements[i].Election_Type;
-                            string q = _stackElements[i].ExitPoll_ShortMxLabel;
+                            // string q = _stackElements[i].ExitPoll_ShortMxLabel;
+                            //string q = "";
 
                             StackElementModel stElement = new StackElementModel();
                             stElement = _stackElements[i];
@@ -2823,7 +2834,9 @@ namespace GUILayer.Forms
 
                     // Get top-level race data
                     // Race district string
-                    string raceDistrict = ((stackElement.Race_Office).Trim() == "H") ? Convert.ToString(stackElement.Race_District) : " ";
+                    // Modified for 2020 General Election
+                    //string raceDistrict = ((stackElement.Race_Office).Trim() == "H") ? Convert.ToString(stackElement.Race_District) : " ";
+                    string raceDistrict = ((stackElement.Race_Office).Trim() == "H") ? Convert.ToString(stackElement.CD) : " ";
 
                     // FoxIDs for all candidates separated by ^ then
                     // ~state=<state name>; race=<CD # or County Name>; precincts=<Precincts Reporting>; office=<Race Description>; racemode=<see above> ~ 
@@ -2881,7 +2894,9 @@ namespace GUILayer.Forms
                             }
                             else
                             {
-                                previewField += "U.S. House CD " + stackElement.Race_District.ToString();
+                                // Modified for 2020 General Election
+                                // previewField += "U.S. House CD " + stackElement.Race_District.ToString();
+                                previewField += "U.S. House CD " + stackElement.CD.ToString();
                             }
                         }
                     }
@@ -2976,11 +2991,13 @@ namespace GUILayer.Forms
         private string GetExitPollPreviewString(BindingList<ExitPollDataModel> exitPollData, StackElementModel stackElement)
         {
 
-
             Int32 numResp = exitPollData.Count;
 
             // Init
             string previewField = "!"; // Bang
+
+            // Modified for 2020 General Election
+            /*
             string Title = "EXIT POLL";
             if (stackElement.ExitPoll_ShortMxLabel[0] == 'N')
                 Title = "ENTRANCE POLL";
@@ -3019,7 +3036,7 @@ namespace GUILayer.Forms
                 log.Error("frmMain Exception occurred: " + ex.Message);
                 log.Debug("frmMain Exception occurred", ex);
             }
-
+            */
             return previewField;
         }
 
@@ -3161,9 +3178,11 @@ namespace GUILayer.Forms
 
                 // Specific to race boards
                 newStackElement.Race_ID = 0;
-                newStackElement.Race_RecordType = string.Empty;
+                // Deleted for 2020 General Election
+                // newStackElement.Race_RecordType = string.Empty;
                 newStackElement.Race_Office = string.Empty;
-                newStackElement.Race_District = 0;
+                // Deleted for 2020 General Election
+                // newStackElement.Race_District = 0;
                 newStackElement.Race_CandidateID_1 = 0;
                 newStackElement.Race_CandidateID_2 = 0;
                 newStackElement.Race_CandidateID_3 = 0;
@@ -3172,6 +3191,8 @@ namespace GUILayer.Forms
                 newStackElement.Race_UseAPRaceCall = false;
 
                 //Specific to exit polls - set to default values
+                // Modified for 2020 General Election
+                /*
                 newStackElement.ExitPoll_mxID = 0;
                 newStackElement.ExitPoll_BoardID = 0;
                 newStackElement.ExitPoll_ShortMxLabel = string.Empty;
@@ -3185,6 +3206,13 @@ namespace GUILayer.Forms
                 newStackElement.ExitPoll_HeaderText_2 = string.Empty;
                 newStackElement.ExitPoll_SubsetName = string.Empty;
                 newStackElement.ExitPoll_SubsetID = 0;
+                */
+                // Added for 2020 General Election
+                newStackElement.VA_Data_ID = "";
+                newStackElement.VA_Title = "";
+                newStackElement.VA_Type = "";
+                newStackElement.VA_Map_Color = "";
+                newStackElement.VA_Map_ColorNum = 0;
 
                 // Add element
                 stackElementsCollection.AppendStackElement(newStackElement);
@@ -3244,9 +3272,11 @@ namespace GUILayer.Forms
 
                 // Specific to race boards
                 newStackElement.Race_ID = 0;
-                newStackElement.Race_RecordType = selectedPoll.questionType;
+                // Deleted for 2020 General Election
+                // newStackElement.Race_RecordType = selectedPoll.questionType;
                 newStackElement.Race_Office = selectedPoll.office;
-                newStackElement.Race_District = selectedPoll.CD;
+                // Deleted for 2020 General Election
+                // newStackElement.Race_District = selectedPoll.CD;
                 newStackElement.Race_CandidateID_1 = 0;
                 newStackElement.Race_CandidateID_2 = 0;
                 newStackElement.Race_CandidateID_3 = 0;
@@ -3255,6 +3285,8 @@ namespace GUILayer.Forms
                 newStackElement.Race_UseAPRaceCall = false;
 
                 //Specific to exit polls - set to default values
+                // Modified for 2020 General Election
+                /*
                 newStackElement.ExitPoll_mxID = Convert.ToInt32(selectedPoll.mxID);
                 newStackElement.ExitPoll_BoardID = 0;
                 newStackElement.ExitPoll_ShortMxLabel = selectedPoll.shortMxLabel;
@@ -3268,6 +3300,13 @@ namespace GUILayer.Forms
                 newStackElement.ExitPoll_HeaderText_2 = string.Empty;
                 newStackElement.ExitPoll_SubsetName = selectedPoll.subsetName;
                 newStackElement.ExitPoll_SubsetID = selectedPoll.subsetID;
+                */
+                // Added for 2020 General Election
+                newStackElement.VA_Data_ID = "";
+                newStackElement.VA_Title = "";
+                newStackElement.VA_Type = "";
+                newStackElement.VA_Map_Color = "";
+                newStackElement.VA_Map_ColorNum = 0;
 
                 // Add element
                 stackElementsCollection.AppendStackElement(newStackElement);
@@ -3359,9 +3398,11 @@ namespace GUILayer.Forms
 
                 // Specific to race boards
                 newStackElement.Race_ID = 0;
-                newStackElement.Race_RecordType = string.Empty;
+                // Deleted for 2020 General Election
+                // newStackElement.Race_RecordType = string.Empty;
                 newStackElement.Race_Office = selectedReferendum.race_OfficeCode;
-                newStackElement.Race_District = 0;
+                // Deleted for 2020 General Election
+                // newStackElement.Race_District = 0;
                 newStackElement.Race_CandidateID_1 = 0;
                 newStackElement.Race_CandidateID_2 = 0;
                 newStackElement.Race_CandidateID_3 = 0;
@@ -3370,6 +3411,8 @@ namespace GUILayer.Forms
                 newStackElement.Race_UseAPRaceCall = false;
 
                 //Specific to exit polls - set to default values
+                // Modified for 2020 General Election
+                /*
                 newStackElement.ExitPoll_mxID = 0;
                 newStackElement.ExitPoll_BoardID = 0;
                 newStackElement.ExitPoll_ShortMxLabel = String.Empty;
@@ -3383,6 +3426,13 @@ namespace GUILayer.Forms
                 newStackElement.ExitPoll_HeaderText_2 = string.Empty;
                 newStackElement.ExitPoll_SubsetName = string.Empty;
                 newStackElement.ExitPoll_SubsetID = 0;
+                */
+                // Added for 2020 General Election
+                newStackElement.VA_Data_ID = "";
+                newStackElement.VA_Title = "";
+                newStackElement.VA_Type = "";
+                newStackElement.VA_Map_Color = "";
+                newStackElement.VA_Map_ColorNum = 0;
 
                 // Add element
                 stackElementsCollection.AppendStackElement(newStackElement);
@@ -3862,9 +3912,11 @@ namespace GUILayer.Forms
 
                 // Specific to race boards
                 newStackElement.Race_ID = selectedRace.Race_ID;
-                newStackElement.Race_RecordType = string.Empty;
+                // Modified for 2020 General Election
+                // newStackElement.Race_RecordType = string.Empty;
                 newStackElement.Race_Office = selectedRace.Race_Office;
-                newStackElement.Race_District = selectedRace.CD;
+                // Modified for 2020 General Election
+                //newStackElement.Race_District = selectedRace.CD;
                 newStackElement.Race_CandidateID_1 = cID1;
                 newStackElement.Race_CandidateID_2 = cID2;
                 newStackElement.Race_CandidateID_3 = cID3;
@@ -3873,6 +3925,8 @@ namespace GUILayer.Forms
                 newStackElement.Race_UseAPRaceCall = selectedRace.Race_UseAPRaceCall;
 
                 //Specific to exit polls - set to default values
+                // Modified for 2020 General Election
+                /*
                 newStackElement.ExitPoll_mxID = 0;
                 newStackElement.ExitPoll_BoardID = 0;
                 newStackElement.ExitPoll_ShortMxLabel = string.Empty;
@@ -3886,6 +3940,15 @@ namespace GUILayer.Forms
                 newStackElement.ExitPoll_HeaderText_2 = string.Empty;
                 newStackElement.ExitPoll_SubsetName = string.Empty;
                 newStackElement.ExitPoll_SubsetID = 0;
+                */
+
+                // Added for 2020 General Election
+                newStackElement.VA_Data_ID = "";
+                newStackElement.VA_Title = "";
+                newStackElement.VA_Type = "";
+                newStackElement.VA_Map_Color = "";
+                newStackElement.VA_Map_ColorNum = 0;
+
 
                 // Add element
                 stackElementsCollection.AppendStackElement(newStackElement);

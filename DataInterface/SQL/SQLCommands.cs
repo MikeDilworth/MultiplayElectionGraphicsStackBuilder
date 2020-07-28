@@ -22,12 +22,17 @@ namespace DataInterface.SQL
         /// <summary>
         /// Sql to get the top-level stack metadata
         /// </summary>
-        public static readonly string sqlGetStacksList = "SELECT * FROM MSE_Stacks";
+        /// 
+        // Modified for 2020 General Election
+        // public static readonly string sqlGetStacksList = "SELECT * FROM MSE_Stacks";
+        public static readonly string sqlGetStacksList = "SELECT * FROM Stacks";
 
         /// <summary>
         /// Sql to get the elements for a specified stack
         /// </summary>
-        public static readonly string sqlGetStackElements = "SELECT * FROM MSE_Stack_Elements WHERE fkey_StackID = @StackID";
+        // Modified for 2020 General Election
+        // public static readonly string sqlGetStackElements = "SELECT * FROM MSE_Stack_Elements WHERE fkey_StackID = @StackID";
+        public static readonly string sqlGetStackElements = "SELECT * FROM Stack_Elements WHERE fkey_StackID = @StackID";
 
         /// <summary>
         /// Sql to save the top-level stack metadata

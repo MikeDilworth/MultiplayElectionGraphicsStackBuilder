@@ -78,17 +78,21 @@ namespace LogicLayer.Collections
 
                         // Specific to race boards
                         Race_ID = Convert.ToInt32(row["Race_ID"] ?? 0),
-                        Race_RecordType = row["Race_RecordType"].ToString() ?? "",
+                        // Deleted for 2020 General Election
+                        // Race_RecordType = row["Race_RecordType"].ToString() ?? "",
                         Race_Office = row["Race_Office"].ToString() ?? "",
-                        Race_District = Convert.ToInt16(row["Race_District"] ?? 0),
+                        // Deleted for 2020 General Election
+                        // Race_District = Convert.ToInt16(row["Race_District"] ?? 0),
                         Race_CandidateID_1 = Convert.ToInt32(row["Race_CandidateID_1"] ?? 0),
                         Race_CandidateID_2 = Convert.ToInt32(row["Race_CandidateID_2"] ?? 0),
                         Race_CandidateID_3 = Convert.ToInt32(row["Race_CandidateID_3"] ?? 0),
                         Race_CandidateID_4 = Convert.ToInt32(row["Race_CandidateID_4"] ?? 0),
                         Race_PollClosingTime = Convert.ToDateTime(row["Race_PollClosingTime"] ?? 0),
-                        Race_UseAPRaceCall = Convert.ToBoolean(row["Race_UseAPRaceCall"] ?? 0),                       
+                        Race_UseAPRaceCall = Convert.ToBoolean(row["Race_UseAPRaceCall"] ?? 0),
 
                         // Specific to exit polls
+                        // Modified for 2020 General Election
+                        /*
                         ExitPoll_mxID = Convert.ToInt32(row["ExitPoll_mxID"] ?? 0),
                         ExitPoll_BoardID = Convert.ToInt16(row["ExitPoll_BoardID"] ?? 0),
                         ExitPoll_ShortMxLabel = row["ExitPoll_ShortMxLabel"].ToString() ?? "",
@@ -102,7 +106,14 @@ namespace LogicLayer.Collections
                         ExitPoll_HeaderText_2 = row["ExitPoll_HeaderText_2"].ToString() ?? "",
                         ExitPoll_SubsetName = row["ExitPoll_SubsetName"].ToString() ?? "",
                         ExitPoll_SubsetID = Convert.ToInt32(row["ExitPoll_SubsetID"] ?? 0),
-                    };
+                        */
+                        // Added for 2020 General Election
+                        VA_Data_ID = "",
+                        VA_Title = "",
+                        VA_Type = "",
+                        VA_Map_Color = "",
+                        VA_Map_ColorNum = 0,
+    };
                     stackElements.Add(newStackElement);
 
                     this.collectionCount = stackElements.Count;
@@ -149,16 +160,21 @@ namespace LogicLayer.Collections
                     dataTable.Columns.Add("Listbox_Description", typeof(String));
                     // Specific to race boards
                     dataTable.Columns.Add("Race_ID", typeof(Int32));
-                    dataTable.Columns.Add("Race_RecordType", typeof(String));
+                    // Modified for 2020 General Election
+                    // dataTable.Columns.Add("Race_RecordType", typeof(String));
                     dataTable.Columns.Add("Race_Office", typeof(String));
-                    dataTable.Columns.Add("Race_District", typeof(Int16));
+                    // Modified for 2020 General Election
+                    // dataTable.Columns.Add("Race_District", typeof(Int16));
                     dataTable.Columns.Add("Race_CandidateID_1", typeof(Int32));
                     dataTable.Columns.Add("Race_CandidateID_2", typeof(Int32));
                     dataTable.Columns.Add("Race_CandidateID_3", typeof(Int32));
                     dataTable.Columns.Add("Race_CandidateID_4", typeof(Int32));
+                    dataTable.Columns.Add("Race_CandidateID_5", typeof(Int32));
                     dataTable.Columns.Add("Race_PollClosingTime", typeof(DateTime));
                     dataTable.Columns.Add("Race_UseAPRaceCall", typeof(Boolean));
                     //Specific to exit polls
+                    // Modified for 2020 General Election
+                    /*
                     dataTable.Columns.Add("ExitPoll_mxID", typeof(Int32));
                     dataTable.Columns.Add("ExitPoll_BoardID", typeof(Int16));
                     dataTable.Columns.Add("ExitPoll_ShortMxLabel", typeof(String));
@@ -172,6 +188,13 @@ namespace LogicLayer.Collections
                     dataTable.Columns.Add("ExitPoll_HeaderText_2", typeof(String));
                     dataTable.Columns.Add("ExitPoll_SubsetName", typeof(String));
                     dataTable.Columns.Add("ExitPoll_SubsetID", typeof(Int32));
+                    */
+                    // Added for 2020 General Election
+                    dataTable.Columns.Add("VA_Data_ID", typeof(String));
+                    dataTable.Columns.Add("VA_Title", typeof(String));
+                    dataTable.Columns.Add("VA_Type", typeof(String));
+                    dataTable.Columns.Add("VA_Map_Color", typeof(String));
+                    dataTable.Columns.Add("VA_Map_ColorNum", typeof(Int32));
 
                     for (int i = 0; i < stackElements.Count; i++)
                     {
@@ -197,17 +220,22 @@ namespace LogicLayer.Collections
 
                         // Specific to race boards
                         stackElement["Race_ID"] = stackElements[i].Race_ID;
-                        stackElement["Race_RecordType"] = stackElements[i].Race_RecordType;
+                        // Deleted for 2020 General Election
+                        // stackElement["Race_RecordType"] = stackElements[i].Race_RecordType;
                         stackElement["Race_Office"] = stackElements[i].Race_Office;
-                        stackElement["Race_District"] = stackElements[i].Race_District;
+                        // Deleted for 2020 General Election
+                        // stackElement["Race_District"] = stackElements[i].Race_District;
                         stackElement["Race_CandidateID_1"] = stackElements[i].Race_CandidateID_1;
                         stackElement["Race_CandidateID_2"] = stackElements[i].Race_CandidateID_2;
                         stackElement["Race_CandidateID_3"] = stackElements[i].Race_CandidateID_3;
                         stackElement["Race_CandidateID_4"] = stackElements[i].Race_CandidateID_4;
+                        stackElement["Race_CandidateID_5"] = stackElements[i].Race_CandidateID_5;
                         stackElement["Race_PollClosingTime"] = stackElements[i].Race_PollClosingTime;
                         stackElement["Race_UseAPRaceCall"] = stackElements[i].Race_UseAPRaceCall;
 
                         //Specific to exit polls
+                        // Modified for 2020 Generla Election
+                        /*
                         stackElement["ExitPoll_mxID"] = stackElements[i].ExitPoll_mxID;
                         stackElement["ExitPoll_BoardID"] = stackElements[i].ExitPoll_BoardID;
                         stackElement["ExitPoll_ShortMxLabel"] = stackElements[i].ExitPoll_ShortMxLabel;
@@ -221,6 +249,13 @@ namespace LogicLayer.Collections
                         stackElement["ExitPoll_HeaderText_2"] = stackElements[i].ExitPoll_HeaderText_2;
                         stackElement["ExitPoll_SubsetName"] = stackElements[i].ExitPoll_SubsetName;
                         stackElement["ExitPoll_SubsetID"] = stackElements[i].ExitPoll_SubsetID;
+                        */
+                        // Added for 2020 General Election
+                        stackElement["VA_Data_ID"] = stackElements[i].VA_Data_ID;
+                        stackElement["VA_Title"] = stackElements[i].VA_Title;
+                        stackElement["VA_Type"] = stackElements[i].VA_Type;
+                        stackElement["VA_Map_Color"] = stackElements[i].VA_Map_Color;
+                        stackElement["VA_Map_ColorNum"] = stackElements[i].VA_Map_ColorNum;
 
                         dataTable.Rows.Add(stackElement);
                     }

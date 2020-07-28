@@ -32,17 +32,23 @@ namespace DataInterface.DataModel
 
         // Specific to race boards
         public Int32 Race_ID { get; set; }
-        public string Race_RecordType { get; set; }
+        // Deleted for 2020 General Election
+        // public string Race_RecordType { get; set; }
         public string Race_Office { get; set; }
-        public Int16 Race_District { get; set; }
+        // Deleted for 2020 General Election - redundant with CD above
+        // public Int16 Race_District { get; set; }
         public Int32 Race_CandidateID_1 { get; set; }
         public Int32 Race_CandidateID_2 { get; set; }
         public Int32 Race_CandidateID_3 { get; set; }
         public Int32 Race_CandidateID_4 { get; set; }
+        // Added for 2020 General Election
+        public Int32 Race_CandidateID_5 { get; set; }
         public DateTime Race_PollClosingTime { get; set; }
         public Boolean Race_UseAPRaceCall { get; set; }
 
-        //Specific to exit polls
+        // Specific to exit polls
+        // Modified for 2020 General Election
+        /*
         public Int32 ExitPoll_mxID { get; set; }
         public Int16 ExitPoll_BoardID { get; set; }
         public string ExitPoll_ShortMxLabel { get; set; }
@@ -56,5 +62,13 @@ namespace DataInterface.DataModel
         public string ExitPoll_HeaderText_2 { get; set; }
         public string ExitPoll_SubsetName { get; set; }
         public Int32 ExitPoll_SubsetID { get; set; }
+        */
+
+        // Added for 2020 General Election
+        public string VA_Data_ID { get; set; }
+        public string VA_Title { get; set; }
+        public string VA_Type { get; set; }
+        public string VA_Map_Color { get; set; }
+        public Int32 VA_Map_ColorNum { get; set; }
     }
 }
