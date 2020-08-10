@@ -37,8 +37,9 @@ namespace DataInterface.SQL
         /// <summary>
         /// Sql to save the top-level stack metadata
         /// </summary>
-        public static readonly string sqlSaveStack = "MSE_Stack_Save_Metadata " +
-	        "@ixStackID, " + 
+        //public static readonly string sqlSaveStack = "MSE_Stack_Save_Metadata " +
+        public static readonly string sqlSaveStack = "Stack_Save_Metadata " +
+            "@ixStackID, " + 
 	        "@StackName, " + 
 	        "@StackType, " + 
             "@ShowName, " +
@@ -49,17 +50,20 @@ namespace DataInterface.SQL
         /// <summary>
         /// Sql to delete the specified stack
         /// </summary>
-        public static readonly string sqlDeleteStack = "DELETE FROM MSE_Stacks WHERE ixStackID = @StackID";
+        //public static readonly string sqlDeleteStack = "DELETE FROM MSE_Stacks WHERE ixStackID = @StackID";
+        public static readonly string sqlDeleteStack = "DELETE FROM Stacks WHERE ixStackID = @StackID";
 
         /// <summary>
         /// Sql to check for an existing stack with the same name
         /// </summary>
-        public static readonly string sqlCheckIfStackExists = "SELECT * FROM MSE_Stacks WHERE StackName = @StackName";
+        //public static readonly string sqlCheckIfStackExists = "SELECT * FROM MSE_Stacks WHERE StackName = @StackName";
+        public static readonly string sqlCheckIfStackExists = "SELECT * FROM Stacks WHERE StackName = @StackName";
 
         /// <summary>
         /// Sql to save the stack elements - takes table-valued parameter
         /// </summary>
-        public static readonly string sqlSaveStackElements = "dbo.MSE_Stack_Add_Elements " + 
+        //public static readonly string sqlSaveStackElements = "dbo.MSE_Stack_Add_Elements " +
+        public static readonly string sqlSaveStackElements = "dbo.Stack_Add_Elements " +
             "@Stack_Elements_In, " + 
             "@StackID, " + 
             "@ClearStackBeforeAdding";
@@ -67,8 +71,9 @@ namespace DataInterface.SQL
         /// <summary>
         /// Sql to save the stack elements
         /// </summary>
-        public static readonly string sqlSaveStackElementsDiscrete = "MSE_Stack_Add_Single_Element " +
-	        "@fkey_StackID, " + 
+        //public static readonly string sqlSaveStackElementsDiscrete = "MSE_Stack_Add_Single_Element " +
+        public static readonly string sqlSaveStackElementsDiscrete = "Stack_Add_Single_Element " +
+            "@fkey_StackID, " + 
 	        "@Stack_Element_ID, " + 
 	        "@Stack_Element_Type, " + 
 	        "@Stack_Element_Description, " +
