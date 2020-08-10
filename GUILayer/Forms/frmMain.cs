@@ -2104,7 +2104,7 @@ namespace GUILayer.Forms
 
                 loadStack.EnableShowControls = enableShowSelectControls;
 
-                RefreshStacksList(Network);
+                //RefreshStacksList(Network);
 
                 dr = loadStack.ShowDialog();
 

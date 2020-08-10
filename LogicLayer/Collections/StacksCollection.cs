@@ -56,7 +56,8 @@ namespace LogicLayer.Collections
                     var newStack = new StackModel()
                     {
                         ixStackID = Convert.ToDouble(row["ixStackID"] ?? 0),
-                        StackName = stackName.Substring(4),
+                        //StackName = stackName.Substring(4),
+                        StackName = row["StackName"].ToString() ?? "",
                         StackType = Convert.ToInt16(row["StackType"] ?? -1),
                         ShowName = row["ShowName"].ToString() ?? "",
                         ConceptID = Convert.ToInt16(row["ConceptID"] ?? 0),
@@ -65,7 +66,9 @@ namespace LogicLayer.Collections
                     };
                     // Added 02/27/2020 to filter by specified network
                     // Modified for 2020 General Election to only show stacks wuith StackTypeID =- 0 or 8 => Multi-play stacks; other stacks would be Stackmaster
-                    if (((row["StackName"].ToString().Substring(0, 4) ?? "") == (StackNamePrefix + "-")) && ((newStack.StackType == 0) || (newStack.StackType == 8)))
+                    if ((row["StackName"].ToString().Length >= 4) && 
+                        ((row["StackName"].ToString().Substring(0, 4) ?? "") == (StackNamePrefix + "-")) && 
+                        ((newStack.StackType == 0) || (newStack.StackType == 8)))
                     {
                         stacks.Add(newStack);
                     }
