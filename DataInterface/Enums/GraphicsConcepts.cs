@@ -22,5 +22,8 @@ namespace DataInterface.Enums
 
         [Description("8-Way)")]
         Eight_Way = 4,
+
+        [Description("8-Way (Type 2))")]
+        Eight_Way_Type_2 = 5,
     }
 }

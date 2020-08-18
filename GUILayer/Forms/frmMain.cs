@@ -2262,7 +2262,8 @@ namespace GUILayer.Forms
                 //}
 
                 // Check for 8-Way boards
-                else if ((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1) && (stackElements.Count != 8))
+                else if (((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1) || 
+                        (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way_Type_2 - 1))  && (stackElements.Count != 8))
                 {
                     MessageBox.Show("There must be exactly eight (8) elements in the stack in order to save it for this graphics concept. " +
                         "Either set the number of boards to eight (8), or choose another, compatible graphics concept from the drop-down menu.",
@@ -2296,7 +2297,9 @@ namespace GUILayer.Forms
                             stackMetadata.StackName = Network + "-" + stackDescription;
 
                             // Modified 02/21/2020 to set to special stack type ID if 8-way multi races selected
-                            if ((builderOnlyMode == true) && (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1))
+                            if ((builderOnlyMode == true) && 
+                                ((cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way - 1) ||
+                                (cbGraphicConcept.SelectedIndex == (short)GraphicsConcepts.Eight_Way_Type_2 - 1)))
                                 stackMetadata.StackType = 8;
                             else
                                 stackMetadata.StackType = 0;
