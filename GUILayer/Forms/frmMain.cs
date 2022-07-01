@@ -1572,12 +1572,6 @@ namespace GUILayer.Forms
             }
         }
 
-        // Handler for add All Candidates (variable based on candidates remaining) board button
-        private void btnAllCandidates_Click(object sender, EventArgs e)
-        {
-
-        }
-
         // Generic method to add a race board to a stack
         private void AddRaceBoardToStack(Int16 stackElementType, string stackElementDescription, Int16 stackElementDataType)
         {
@@ -1905,6 +1899,11 @@ namespace GUILayer.Forms
         {
             conceptID = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptID;
             conceptName = graphicsConceptTypes[cbGraphicConcept.SelectedIndex].ConceptName;
+        }
+
+        private void btnAllCandidates_Click(object sender, EventArgs e)
+        {
+
         }
 
         // Handler for Save Stack button

@@ -421,7 +421,7 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 746);
+            this.statusStrip.Location = new System.Drawing.Point(0, 875);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1436, 22);
             this.statusStrip.TabIndex = 53;
@@ -2624,7 +2624,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1436, 768);
+            this.ClientSize = new System.Drawing.Size(1436, 897);
             this.Controls.Add(this.enginePanel);
             this.Controls.Add(this.lblNetwork);
             this.Controls.Add(this.label4);
